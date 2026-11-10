@@ -17,4 +17,4 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 ## Notas de F0
 - Monorepo con Dart pub workspaces ([ADR-003](../adr/ADR-003-monorepo-pub-workspaces.md)); Flutter 3.47.9.
 - CI en `.github/workflows/ci.yml`: formato, análisis, pruebas y APK debug como artefacto.
-- Verificación de licencias: [`docs/fuentes-de-datos.md`](../fuentes-de-datos.md) y [ADR-004](../adr/ADR-004-licencias-fuentes-verificacion-f0.md) (**propuesto**: afecta el orden de proveedores de imagen en F3; requiere aprobación del dueño).
+- Verificación de licencias: [`docs/fuentes-de-datos.md`](../fuentes-de-datos.md) y [ADR-004](../adr/ADR-004-licencias-fuentes-verificacion-f0.md) (**propuesto**: afecta el orden de proveedores de imagen en F3 y exige Overpass propio o de pago antes de F7; requiere aprobación del dueño). Confirmado contra páginas oficiales el 2026-11-10, salvo el permiso de Esri para guardar techos trazados.
