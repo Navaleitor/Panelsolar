@@ -87,9 +87,14 @@ jobs:
       - name: Dependencias
         run: flutter pub get
 
+      # Versión automática: cada ejecución es más nueva que la anterior, así
+      # Android acepta instalarla encima (ADR-006).
       - name: Compilar APK debug
         working-directory: app
-        run: flutter build apk --debug
+        run: >
+          flutter build apk --debug
+          --build-number=${{ github.run_number }}
+          --build-name=0.1.${{ github.run_number }}
 
       - name: Subir APK como artefacto
         uses: actions/upload-artifact@v4
@@ -97,3 +102,58 @@ jobs:
           name: panelsolar-debug-${{ github.sha }}
           path: app/build/app/outputs/flutter-apk/app-debug.apk
           retention-days: 30
+
+  # Publica el APK como Release con un enlace fijo que siempre baja la versión
+  # más reciente (ADR-006). Solo en push a la rama base, no en ramas de fase.
+  release-apk:
+    name: Publicar APK (enlace fijo)
+    needs: build-apk
+    if: github.event_name == 'push' && github.ref == 'refs/heads/ccr-4f7d63d4-px61ld'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 20
+
+      - name: Descargar APK compilado
+        uses: actions/download-artifact@v4
+        with:
+          name: panelsolar-debug-${{ github.sha }}
+          path: apk
+
+      - name: Preparar archivo y notas
+        run: |
+          mv apk/app-debug.apk panelsolar.apk
+          {
+            echo "Versión de prueba 0.1.${{ github.run_number }}."
+            echo
+            echo "Enlace fijo a la versión más reciente:"
+            echo "https://github.com/${{ github.repository }}/releases/latest/download/panelsolar.apk"
+            echo
+            echo "Cambios recientes:"
+            git log -10 --no-merges --pretty='- %s'
+          } > notas.md
+
+      - name: Publicar Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          target_commitish: ${{ github.sha }}
+          name: Panelsolar 0.1.${{ github.run_number }} (prueba)
+          body_path: notas.md
+          make_latest: "true"
+          files: panelsolar.apk
+
+      - name: Borrar releases de prueba viejas (se conservan las últimas 10)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release list --repo "${{ github.repository }}" --limit 200 \
+            --json tagName,createdAt --jq 'sort_by(.createdAt) | reverse | .[10:] | .[].tagName' \
+            | grep '^build-' \
+            | while read -r tag; do
+                gh release delete "$tag" --repo "${{ github.repository }}" --yes --cleanup-tag
+              done
