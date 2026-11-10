@@ -25,6 +25,13 @@ Flutter estable + Dart 3, Riverpod, go_router, drift (SQLite), flutter_map, fl_c
 - Conventional Commits: `feat(site): ...`, `fix(engine): ...`, `docs: ...`.
 - Solo fuentes de datos gratuitas con licencia comercial (ver plan B.4/B.5). Nunca Google Maps ni Open-Meteo.
 
+## Comandos
+- Workspace (ADR-003): `flutter pub get` **en la raíz**; nunca en un paquete suelto.
+- App: `cd app && flutter analyze && flutter test`. Paquetes: `cd packages/<p> && dart analyze --fatal-infos && dart test`.
+- Esquema de BD: receta en `packages/persistence/README.md` (`make-migrations` + `build_runner`). El código generado se versiona.
+- Textos de UI: `app/lib/core/l10n/arb/app_es.arb` + `app_en.arb`.
+- Plantilla de README de módulo: `docs/plantillas/README-feature.md`.
+
 ## Antes de entregar
 - `flutter analyze` y `flutter test` (o `dart test` en paquetes puros) en verde.
 - Migración de BD nueva ⇒ prueba de migración.
