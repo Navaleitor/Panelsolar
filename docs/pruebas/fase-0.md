@@ -24,8 +24,9 @@ Lista para el dueño. Marca cada casilla en tu teléfono Android (8.0 o superior
 - [ ] La ejecución de **CI** está en verde (formato, análisis, pruebas y APK).
 - [ ] Existen las plantillas al abrir un *issue* nuevo: "Error (bug)" y "Mejora".
 
-## 4. Decisiones pendientes de tu aprobación
-- [ ] **ADR-004** (`docs/adr/ADR-004-licencias-fuentes-verificacion-f0.md`): Esri World Imagery no parece permitir guardar techos trazados en una app comercial. Propuesta: empezar F3 con ortofotos abiertas, dron y modo sin imagen, y usar Esri solo como vista de referencia hasta que Esri lo confirme por escrito. ¿Apruebas?
-- [ ] **Nominatim/Overpass** sirven para el inicio, pero su límite es por app (no por usuario); antes de publicar (F7) habrá que tener una alternativa. ¿De acuerdo?
+## 4. Decisiones (resueltas el 2026-11-10)
+- [x] ADR-004 aceptado: geocodificación y Overpass públicos detrás de interfaces; solución comercial en F7.
+- [x] ADR-005 aceptado: techo por capas, con la imagen importada y calibrada como principal.
+- [ ] Enviar la consulta a Esri (`docs/legal/consulta-esri.md`) y guardar la respuesta en `docs/legal/`.
 
 Firma / fecha: ____________________

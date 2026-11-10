@@ -1,6 +1,6 @@
 # Fuentes de datos: licencias, límites y atribuciones
 
-Verificación hecha en F0 (2026-11-10). Decisión derivada: [ADR-004](adr/ADR-004-licencias-fuentes-verificacion-f0.md).
+Verificación hecha en F0 (2026-11-10). Decisiones derivadas (aceptadas por el dueño): [ADR-004](adr/ADR-004-licencias-fuentes-verificacion-f0.md) y [ADR-005 — estrategia de techo por capas](adr/ADR-005-estrategia-techo-por-capas.md).
 
 > **Cómo se verificó.** Primera pasada: buscadores que citan las páginas oficiales (la red estaba bloqueada). Segunda pasada (mismo día): descarga directa de las páginas y PDF oficiales con `curl` (y navegador sin interfaz para las páginas que se arman con JavaScript); las citas de abajo son textuales. Columna "Estado": ✅ confirmado en la fuente oficial citada · ⚠️ fuente secundaria, o la página oficial sigue bloqueada · ❓ sin confirmar.
 
@@ -13,6 +13,11 @@ Verificación hecha en F0 (2026-11-10). Decisión derivada: [ADR-004](adr/ADR-00
 | PVGIS (JRC) | TMY, horizonte, validación | Sí (CC BY 4.0, política de reutilización de la Comisión) | No | 30 llamadas/s por IP (429); saturación → 529 | Crédito a "PVGIS © Unión Europea" indicando cambios | ✅ |
 | Overpass API (OSM) | Huella del edificio | Datos sí (ODbL); **servidores públicos: uso comercial debe ir a servidor propio o de pago** | No | < 10 000 consultas/día y < 1 GB/día **sumando a todos los usuarios de la app**; ÷100 si es uso regular | "© OpenStreetMap contributors" + enlace a /copyright | ✅ |
 | Nominatim (OSM) | Dirección → coordenadas | Datos sí (ODbL); servidor público con capacidad muy limitada | No | **1 petición/s por aplicación**, User-Agent propio, sin autocompletar, poder cambiar de servicio sin actualizar la app | "© OpenStreetMap contributors" | ✅ |
+| Imagen importada por el usuario (capa 0, ADR-005) | Imagen de fondo calibrada para trazar techo | Responsabilidad del usuario sobre su imagen | No | — | — | N/A |
+| Google Open Buildings 2.5D (capa 1) | Contorno automático | Sí (CC BY 4.0) | No | Archivos estáticos propios | "Google Open Buildings" (CC BY 4.0) | ⚠️ verificar en F3 |
+| Overture Maps — buildings (capa 1) | Contorno automático | Sí (ODbL, según tema) | No | Archivos estáticos propios | Según tema (OSM + otros) | ⚠️ verificar en F3 |
+| Microsoft Building Footprints (capa 1) | Contorno automático | Sí (ODbL) | No | Archivos estáticos propios | "Microsoft Building Footprints" (ODbL) | ⚠️ verificar en F3 |
+| Google Solar API (capa 3, BYO key) | Modo Pro opcional | Clave y tarjeta del instalador | Sí (del instalador) | 10 000 Building Insights + 1 000 Data Layers/mes (dato del dueño) | Según términos de Google | ⚠️ verificar en F3 (caché) |
 | Google Drive (`drive.appdata`) | Respaldo | N/A | OAuth | Cuota del Drive del usuario | — | ✅ no sensible |
 
 ## 1. Esri World Imagery / ArcGIS Location Platform
@@ -38,6 +43,8 @@ Verificación hecha en F0 (2026-11-10). Decisión derivada: [ADR-004](adr/ADR-00
 
 **Conclusión:** mostrar World Imagery en Panelsolar (app comercial, flutter_map) y ponerla como imagen estática en el PDF está **permitido** con "Powered by Esri" + proveedores. Lo que **sigue sin estar permitido por escrito** es guardar el polígono trazado; y la caché sin conexión está **prohibida** fuera de los SDK de ArcGIS. Ver ADR-004.
 
+**Decisión (ADR-005):** Esri queda como **capa 2: solo ver y ajustar**, sin caché sin conexión ni geometría derivada de Esri, hasta que responda la consulta escrita ([`docs/legal/consulta-esri.md`](legal/consulta-esri.md)).
+
 ## 2. NASA POWER
 - ✅ Texto de reconocimiento oficial (Referencing Guide): *"When POWER data products are used in a publication include both POWER's Reference and POWER's Data Reference"*. Reference: *"The data was obtained from National Aeronautics and Space Administration (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded through the NASA Earth Science Division."* Data Reference: *"The data was obtained from the POWER Project's Hourly 2.x.x version on YYYY/MM/DD."* El proyecto además *"kindly requests"* que se le avise de los usos (larc-power-project@mail.nasa.gov). [power.larc.nasa.gov/docs/referencing](https://power.larc.nasa.gov/docs/referencing/)
 - ⚠️ Licencia / uso comercial: las páginas de POWER Docs (inicio, FAQ, referencias) **no publican una licencia**. Se mantiene la cita del foro de Earthdata: *"public domain and free of any charges or fees … commercial applications with the request that you acknowledge usage"* [forum.earthdata.nasa.gov](https://forum.earthdata.nasa.gov/viewtopic.php?p=15146). earthdata.nasa.gov y su foro **siguen bloqueados** desde el entorno (sin conexión).
@@ -60,7 +67,7 @@ Verificación hecha en F0 (2026-11-10). Decisión derivada: [ADR-004](adr/ADR-00
 - ✅ Política oficial: *"No heavy uses (an absolute maximum of 1 request per second)"*; *"Provide a valid HTTP Referer or User-Agent identifying the application (stock User-Agents as set by http libraries will not do)"*; *"the usage limits above apply per website/application: the sum of traffic by all your users should not exceed the limits."* [Nominatim usage policy](https://operations.osmfoundation.org/policies/nominatim/)
 - ✅ **Nuevo:** *"Apps must make sure that they can switch the service at our request at any time (in particular, switching should be possible without requiring a software update)."* → la URL del geocodificador debe ser configurable en remoto.
 - ✅ Prohibido: *"Auto-complete search"*, consultas sistemáticas y reventa. Resultados en caché. Y: *"Commercial applications should keep that in mind when relying on this API for serving paying customers."*
-- Implicación: apta para el MVP con caché; para la app publicada hay que tener alternativa (Photon, servicio de pago o "BYO endpoint").
+- Decisión (ADR-004 aceptado): se desarrolla con el servicio público detrás de la interfaz `Geocoder`; la solución comercial (servidor propio, de pago o BYO) se decide en F7.
 
 ## 6. ODbL (datos OSM de Overpass y Nominatim)
 - ✅ [openstreetmap.org/copyright](https://www.openstreetmap.org/copyright): *"You are free to copy, distribute, transmit and adapt our data, as long as you credit OpenStreetMap and its contributors. If you alter or build upon our data, you may distribute the result only under the same license."*
@@ -70,6 +77,15 @@ Verificación hecha en F0 (2026-11-10). Decisión derivada: [ADR-004](adr/ADR-00
 ## 7. Google Drive — scope `drive.appdata`
 - ✅ Tabla oficial, sección *"Non-sensitive scopes"*: `https://www.googleapis.com/auth/drive.appdata` (*"View and manage the app's own configuration data in your Google Drive."*) junto con `drive.file` y `drive.install`. `drive` y `drive.readonly` están en *"Restricted scopes"*. [developers.google.com – api-specific-auth](https://developers.google.com/workspace/drive/api/guides/api-specific-auth) (actualizada 2026-09-03)
 - ✅ Definición: *"Non-sensitive: These scopes provide the smallest scope of authorization and only require basic OAuth App Verification."* La evaluación de seguridad (CASA) solo aplica a restringidos: *"If you store restricted scope data on servers (or transmit), then you must go through a security assessment."* → **`drive.appdata` no requiere CASA.**
+
+## 8. Fuentes del techo por capas (ADR-005) — pendientes de verificar en F3
+- **Capa 0 — imagen importada:** la app solo mide sobre la imagen que el usuario trae (captura, dron o plano); no descarga ni integra ningún proveedor. Aviso al importar: el usuario debe tener derecho a usar esa imagen.
+- **Capa 1 — datos abiertos de edificios** (se preprocesan por zona en archivos estáticos alojados gratis):
+  - Google Open Buildings 2.5D — CC BY 4.0. ⚠️ Confirmar licencia exacta, cobertura (América Latina, África, Asia) y atribución.
+  - Overture Maps (tema *buildings*) — mayormente ODbL por incluir OSM. ⚠️ Confirmar licencia por fuente dentro del tema.
+  - Microsoft Building Footprints — ODbL. ⚠️ Confirmar.
+  - Con ODbL aplica §6: atribución y *share-alike* si se redistribuye la base derivada (los archivos por zona que publiquemos **sí** serían redistribución → deben publicarse bajo ODbL).
+- **Capa 3 — Google Solar API (BYO key):** la clave, la cuenta y la tarjeta son del instalador. ⚠️ Confirmar en F3 la cuota gratuita y qué permite guardar en el teléfono (términos de caché de Google Maps Platform).
 
 ## Atribuciones (para pantallas y reportes)
 Se centralizarán en `packages/data_sources` (F2/F3) y se imprimirán en cada reporte PDF que use la fuente: "Powered by Esri" + proveedores de la capa; referencia NASA POWER con versión y fecha; "PVGIS © Unión Europea (CC BY 4.0)"; "© OpenStreetMap contributors — openstreetmap.org/copyright".
