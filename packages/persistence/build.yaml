@@ -1,0 +1,11 @@
+targets:
+  $default:
+    builders:
+      drift_dev:
+        options:
+          # Fechas como texto ISO-8601 (legibles y con precisión de microsegundos).
+          store_date_time_values_as_text: true
+          databases:
+            app_database: lib/src/database/app_database.dart
+          schema_dir: drift_schemas/
+          test_dir: test/generated_migrations/
