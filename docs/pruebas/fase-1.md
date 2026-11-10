@@ -3,9 +3,10 @@
 Lista para el dueño. Marca cada casilla en tu teléfono Android (8.0 o superior). Si algo falla, abre un *issue* con la plantilla **Error (bug)**: qué hiciste, qué pasó, qué esperabas y una captura.
 
 ## 0. Instalar el APK
-1. GitHub → **Actions** → flujo **CI** → ejecución más reciente de la rama `fase-1-clientes` con ✅.
-2. En **Artifacts** descarga `panelsolar-debug-<código>` (.zip) y dentro está `app-debug.apk`.
-3. Instálalo encima de la versión de F0 (**sin desinstalar**: así se prueba la migración de la base de datos).
+- **Tras integrar F1 en la rama base** (lo normal): abre el enlace fijo
+  **https://github.com/Navaleitor/Panelsolar/releases/latest/download/panelsolar.apk**
+  e instálalo **encima** de la versión de F0, sin desinstalar: así se prueba que la base de datos se actualiza conservando los datos.
+- **Antes de integrar** (opcional): GitHub → **Actions** → **CI** → ejecución de la rama `fase-1-clientes` con ✅ → **Artifacts** → `panelsolar-debug-<código>` (.zip con el APK).
 
 - [ ] La app abre sin errores.
 - [ ] **Ajustes** dice **Funcionando · esquema v3**. (Si venías de F0 decía v2: la base se actualizó sola.)
