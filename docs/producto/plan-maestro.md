@@ -305,5 +305,20 @@ El diseño se guarda como un **grafo** (paneles → strings → caja combinadora
 - Al cerrar F2: reporte de comparación motor vs pvlib/PVWatts/PVGIS para los 6 sitios dentro de tolerancia.
 - En cada fase: lista de aceptación en `docs/pruebas/fase-N.md` revisada por el dueño en su teléfono.
 
+## Orquestación con sub-chats (pedido del dueño)
+Este chat es el **principal (coordinador)**. Cada fase tiene su propio sub-chat (sesión en la nube) con rama `fase-N-...`, partiendo de la rama base `ccr-4f7d63d4-px61ld` (rama por defecto del repo, ya contiene plan, CLAUDE.md, fases.md y ADRs).
+
+Estado actual:
+- ✅ **F0 Cimientos** — creado y trabajando (`session_01WWCD8ktTRhr2b9gZUQfRY8`).
+- ✅ **F1 Clientes y proyectos** — creado, en espera sin instrucciones (`session_01WWCD8jrKeyB7BU9m9RcgWX`).
+- ⏳ Por crear (en espera, sin instrucciones): **F2 Motor+clima, F3 Sitio/techo, F4 Diseño FV, F5 Unifilar/reportes, F6 Operación, F7 Producto, F8 iOS**, con títulos `Panelsolar · FN ...` y etiquetas `panelsolar`, `panelsolar:fase-N`.
+
+Reglas de coordinación:
+1. Un sub-chat solo recibe instrucciones cuando sus dependencias (tabla en `docs/producto/fases.md`) están integradas en la rama base; así no hay conflictos de código.
+2. Al terminar una fase: el principal revisa su rama, abre PR hacia la rama base (con permiso del dueño), verifica CI, integra y actualiza `fases.md`.
+3. Paralelismo permitido tras F0: **F1 y F2** a la vez (F2 es Dart puro en `packages/solar_engine`); luego F3 y F6; luego F4 → F5 → F7 → F8.
+4. Cada sub-chat entrega: resumen, pendientes/bloqueos y `docs/pruebas/fase-N.md` para que el dueño pruebe el APK.
+5. Dudas de producto de un sub-chat se escalan aquí, al principal, para que el dueño decida en un solo lugar.
+
 ## Primer paso tras aprobar
 Escribir este plan dentro del repo como `docs/producto/plan-maestro.md` + ADRs iniciales, y comenzar F0 en la rama `ccr-4f7d63d4-px61ld`.
