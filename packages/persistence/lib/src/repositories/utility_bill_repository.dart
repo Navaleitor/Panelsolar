@@ -18,6 +18,14 @@ class UtilityBillRepository {
     return select.watch();
   }
 
+  /// Recibos activos del cliente en orden cronológico (lectura única).
+  Future<List<UtilityBill>> listByClient(String clientId) {
+    final select = _db.select(_db.utilityBills)
+      ..where((b) => b.clientId.equals(clientId) & b.deletedAt.isNull())
+      ..orderBy([(b) => OrderingTerm.asc(b.periodStart)]);
+    return select.get();
+  }
+
   /// Busca un recibo por `id`.
   Future<UtilityBill?> findById(String id) => (_db.select(
     _db.utilityBills,

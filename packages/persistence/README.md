@@ -36,7 +36,7 @@ Se guardan como texto con el nombre del valor (`prospect`, `bimonthly`...). **Nu
 | `ClientRepository` | Búsqueda (`watchActive(query:)`), alta, edición, borrado lógico (en cascada a proyectos y recibos). |
 | `ProjectRepository` | Lista con cliente (`ProjectWithClient`), filtro por estado/texto, por cliente, alta, edición, borrado lógico. |
 | `SiteRepository` | `save` crea o reemplaza la ubicación del proyecto; valida rangos de lat/lon. |
-| `UtilityBillRepository` | Recibos del cliente en orden cronológico; valida periodo y kWh. |
+| `UtilityBillRepository` | Recibos del cliente en orden cronológico (`watchByClient` / `listByClient`); valida periodo y kWh. |
 | `PhotoRepository` | Fotos por proyecto y etapa; `existsHash` evita duplicados. |
 | `DocumentRepository` | Documentos por proyecto; renombrar y borrado lógico. |
 | `CompanyRepository` | Perfil de la empresa (F0). |

@@ -92,6 +92,8 @@ void main() {
       );
       final bills = await repo.watchByClient(client.id).first;
       expect(bills.map((b) => b.energyKwh), [480, 620]);
+      final listed = await repo.listByClient(client.id);
+      expect(listed.map((b) => b.energyKwh), [480, 620]);
       expect(bills.last.amountCents, 154050);
       expect(bills.last.currency, 'MXN');
     });
