@@ -1,7 +1,9 @@
 {
   "@@locale": "es",
   "appTitle": "Panelsolar",
-  "@appTitle": { "description": "Nombre de la app." },
+  "@appTitle": {
+    "description": "Nombre de la app."
+  },
   "navClients": "Clientes",
   "navProjects": "Proyectos",
   "navCatalog": "Catálogo",
@@ -15,12 +17,212 @@
   "comingInPhase": "Disponible en la fase {phase}.",
   "@comingInPhase": {
     "description": "Aviso en pantallas vacías.",
-    "placeholders": { "phase": { "type": "String", "example": "F1" } }
+    "placeholders": {
+      "phase": {
+        "type": "String",
+        "example": "F1"
+      }
+    }
   },
   "settingsDatabaseTitle": "Base de datos",
   "settingsDatabaseOk": "Funcionando · esquema v{version}",
   "@settingsDatabaseOk": {
-    "placeholders": { "version": { "type": "int", "example": "2" } }
+    "placeholders": {
+      "version": {
+        "type": "int",
+        "example": "2"
+      }
+    }
   },
-  "settingsDatabaseError": "Error al abrir la base de datos"
+  "settingsDatabaseError": "Error al abrir la base de datos",
+  "actionAdd": "Agregar",
+  "actionCancel": "Cancelar",
+  "actionChange": "Cambiar",
+  "actionContinue": "Continuar",
+  "actionCopy": "Copiar",
+  "actionDelete": "Borrar",
+  "actionEdit": "Editar",
+  "actionOpen": "Abrir",
+  "actionPaste": "Pegar",
+  "actionRename": "Renombrar",
+  "actionSave": "Guardar",
+  "actionSearch": "Buscar",
+  "errorGeneric": "Algo salió mal. Intenta de nuevo.",
+  "copied": "Copiado",
+  "filterAll": "Todos",
+  "validationRequired": "Obligatorio",
+  "validationEmail": "Correo no válido",
+  "validationPhone": "Teléfono no válido (mínimo 7 dígitos)",
+  "validationNumber": "Número no válido",
+  "validationPeriod": "El fin del periodo no puede ser antes del inicio",
+  "validationTimeZone": "Zona horaria desconocida (ej. America/Monterrey)",
+  "fieldName": "Nombre",
+  "fieldPhone": "Teléfono",
+  "fieldEmail": "Correo",
+  "fieldAddress": "Dirección",
+  "fieldNotes": "Notas",
+  "fieldClient": "Cliente",
+  "fieldProjectName": "Nombre del proyecto",
+  "fieldStatus": "Estado",
+  "fieldDate": "Fecha",
+  "fieldAltitude": "Altitud (opcional)",
+  "fieldTimeZone": "Zona horaria",
+  "fieldTariff": "Tarifa",
+  "fieldPeriodStart": "Inicio del periodo",
+  "fieldPeriodEnd": "Fin del periodo",
+  "fieldEnergyKwh": "Consumo",
+  "fieldAmount": "Importe (opcional)",
+  "clientsSearchHint": "Buscar por nombre, teléfono, correo o dirección",
+  "clientsEmpty": "Aún no hay clientes. Toca «Nuevo cliente».",
+  "clientsNoMatches": "Ningún cliente coincide con la búsqueda.",
+  "clientNew": "Nuevo cliente",
+  "clientEdit": "Editar cliente",
+  "clientNotFound": "Este cliente ya no existe.",
+  "clientNoContact": "Sin datos de contacto",
+  "clientProjectsTitle": "Proyectos",
+  "clientNoProjects": "Sin proyectos",
+  "clientDeleteTitle": "¿Borrar cliente?",
+  "clientDeleteMessage": "También se ocultarán sus proyectos y recibos. Se puede recuperar desde un respaldo.",
+  "projectsSearchHint": "Buscar por proyecto o cliente",
+  "projectsEmpty": "No hay proyectos.",
+  "projectNew": "Nuevo proyecto",
+  "projectEdit": "Editar proyecto",
+  "projectNotFound": "Este proyecto ya no existe.",
+  "projectNeedsClient": "Primero da de alta un cliente.",
+  "projectDeleteTitle": "¿Borrar proyecto?",
+  "projectDeleteMessage": "Se ocultará junto con sus fotos y documentos. Se puede recuperar desde un respaldo.",
+  "statusProspect": "Prospecto",
+  "statusDesign": "Diseño",
+  "statusQuoted": "Cotizado",
+  "statusInstalled": "Instalado",
+  "statusMaintenance": "Mantenimiento",
+  "locationTitle": "Ubicación",
+  "locationNone": "Sin ubicación",
+  "locationIntro": "Elige cómo obtener las coordenadas del sitio. Solo se guardan latitud y longitud; la app no muestra mapas.",
+  "locationOptionGps": "Usar el GPS del teléfono",
+  "locationOptionGpsHint": "Estando en el sitio",
+  "locationOptionAddress": "Buscar una dirección",
+  "locationOptionAddressHint": "Calle, número, colonia y ciudad",
+  "locationOptionLink": "Pegar un enlace de mapa",
+  "locationOptionLinkHint": "Compartido desde Google Maps o Apple Maps",
+  "locationOptionManual": "Escribir coordenadas",
+  "locationOptionManualHint": "Decimales o grados, minutos y segundos",
+  "locationSourceGps": "GPS",
+  "locationSourceAddress": "Dirección",
+  "locationSourceLink": "Enlace de mapa",
+  "locationSourceManual": "Escritas a mano",
+  "locationConfirmTitle": "¿Es correcta esta ubicación?",
+  "locationConfirmHint": "Revisa las coordenadas. Puedes copiarlas y comprobarlas en tu app de mapas antes de guardar.",
+  "locationConfirmAction": "Sí, guardar ubicación",
+  "locationChooseAnother": "No, elegir otra",
+  "locationSaved": "Ubicación guardada",
+  "timeZoneHelp": "Por defecto, la del teléfono. Formato IANA, p. ej. America/Monterrey o America/Hermosillo.",
+  "coordinatesHelp": "Ej.: 25.6866, -100.3161  o  25°41'11.8\"N 100°18'58.0\"W",
+  "coordinatesInvalid": "No se reconocen las coordenadas.",
+  "addressHint": "Ej.: Av. Constitución 100, Monterrey",
+  "addressNoResults": "Sin resultados. Prueba con menos detalle o agrega la ciudad.",
+  "geocodeErrorNetwork": "Sin conexión. Revisa internet e intenta de nuevo.",
+  "geocodeErrorBusy": "El servicio de búsqueda está ocupado. Espera un momento.",
+  "geocodeErrorService": "El servicio de búsqueda respondió con un error.",
+  "mapLinkInstructions": "En Google Maps o Apple Maps toca «Compartir» → «Copiar», y pégalo aquí.",
+  "mapLinkErrorShort": "No se pudo abrir el enlace corto. Revisa la conexión o usa el enlace completo.",
+  "mapLinkErrorUnrecognized": "No se encontraron coordenadas en ese texto.",
+  "gpsErrorDisabled": "La ubicación del teléfono está apagada. Actívala e intenta de nuevo.",
+  "gpsErrorDenied": "Se necesita permiso de ubicación.",
+  "gpsErrorDeniedForever": "El permiso de ubicación está bloqueado. Actívalo en Ajustes del teléfono → Apps → Panelsolar.",
+  "gpsErrorTimeout": "El GPS no respondió a tiempo. Sal a cielo abierto e intenta de nuevo.",
+  "photosTitle": "Fotos",
+  "photosEmpty": "Sin fotos en esta etapa",
+  "photoAdd": "Agregar foto",
+  "photoFromCamera": "Tomar con la cámara",
+  "photoFromGallery": "Elegir de la galería",
+  "photoCaption": "Descripción",
+  "photoNoGps": "Sin ubicación GPS",
+  "photoDeleteTitle": "¿Borrar foto?",
+  "photoDeleteMessage": "Se ocultará del proyecto.",
+  "stageSurvey": "Levantamiento",
+  "stageInstallation": "Instalación",
+  "stageMaintenance": "Mantenimiento",
+  "documentsTitle": "Documentos",
+  "documentsEmpty": "Sin documentos (PDF o imagen)",
+  "documentAdded": "Documento agregado",
+  "documentUnsupported": "Solo se aceptan PDF o imágenes (JPG, PNG, WEBP).",
+  "documentCannotOpen": "No hay una app para abrir este archivo.",
+  "documentDeleteTitle": "¿Borrar documento?",
+  "billsTitle": "Recibos de luz",
+  "billsEmpty": "Sin recibos. Agrega al menos los del último año.",
+  "billNew": "Nuevo recibo",
+  "billEdit": "Editar recibo",
+  "billDeleteTitle": "¿Borrar recibo?",
+  "billDeleteMessage": "Dejará de contar en el consumo.",
+  "tariffNone": "Sin especificar",
+  "periodMonthly": "Mensual",
+  "periodBimonthly": "Bimestral",
+  "consumptionAnnual": "Consumo anual estimado",
+  "consumptionMonthly": "Promedio mensual",
+  "consumptionDaily": "diario",
+  "consumptionAnnualCost": "Gasto anual estimado",
+  "altitudeValue": "{meters} m s. n. m.",
+  "@altitudeValue": {
+    "placeholders": {
+      "meters": {
+        "type": "String",
+        "example": "540"
+      }
+    }
+  },
+  "gpsAccuracy": "Precisión: ±{meters} m",
+  "@gpsAccuracy": {
+    "placeholders": {
+      "meters": {
+        "type": "String",
+        "example": "8"
+      }
+    }
+  },
+  "projectAdvanceTo": "Pasar a «{status}»",
+  "@projectAdvanceTo": {
+    "placeholders": {
+      "status": {
+        "type": "String",
+        "example": "Diseño"
+      }
+    }
+  },
+  "photosImported": "{saved, plural, =0{Ninguna foto nueva} =1{1 foto guardada} other{{saved} fotos guardadas}}{duplicates, plural, =0{} =1{ · 1 repetida} other{ · {duplicates} repetidas}}{invalid, plural, =0{} =1{ · 1 no válida} other{ · {invalid} no válidas}}",
+  "@photosImported": {
+    "placeholders": {
+      "saved": {
+        "type": "int"
+      },
+      "duplicates": {
+        "type": "int"
+      },
+      "invalid": {
+        "type": "int"
+      }
+    }
+  },
+  "consumptionPartialYear": "Con {days} días de recibos: el anual es una estimación. Agrega el año completo.",
+  "@consumptionPartialYear": {
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "120"
+      }
+    }
+  },
+  "consumptionDacWarning": "El promedio mensual rebasa el límite de la tarifa {tariff} ({limit} kWh/mes): riesgo de pasar a DAC.",
+  "@consumptionDacWarning": {
+    "placeholders": {
+      "tariff": {
+        "type": "String",
+        "example": "1C"
+      },
+      "limit": {
+        "type": "String",
+        "example": "850"
+      }
+    }
+  }
 }
