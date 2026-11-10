@@ -305,6 +305,31 @@ El diseño se guarda como un **grafo** (paneles → strings → caja combinadora
 - Al cerrar F2: reporte de comparación motor vs pvlib/PVWatts/PVGIS para los 6 sitios dentro de tolerancia.
 - En cada fase: lista de aceptación en `docs/pruebas/fase-N.md` revisada por el dueño en su teléfono.
 
+## Revisión de B.4 tras la verificación de licencias de F0 (ADR-004 → decisión del dueño)
+
+**Por qué otras apps "lo hacen con Google":** las demos que recrean ciudades en 3D usan *Google Photorealistic 3D Tiles* o *Google Solar API*. Ambas exigen cuenta de facturación con tarjeta y sus términos permiten **mostrar** la imagen/3D, pero no extraer ni guardar geometría propia de ella fuera de lo que la API entrega. Las apps solares comerciales que muestran techos en 3D pagan la **Solar API**, que entrega legalmente los planos del techo (inclinación, orientación, área, sombras). Muchas demos hechas con IA son personales y no se venden, así que ese riesgo no les importa. Se puede hacer lo mismo; lo único que cambia es la fuente de los datos.
+
+**Nueva estrategia de techo, por capas (todas intercambiables vía `ImageryProvider` / `BuildingSource`):**
+0. **PRINCIPAL — Imagen importada por el usuario + calibración (idea del dueño):** el usuario importa cualquier imagen aérea vista desde arriba: captura de pantalla de su proveedor de mapas, foto de dron o plano. La app no descarga nada; es una herramienta genérica de "medir sobre imagen" y la responsabilidad del uso de la imagen es del usuario. En la tienda se anuncia como "importa cualquier imagen aérea", sin nombrar a Google.
+   - **Calibrar escala:** el usuario traza una línea de referencia y escribe cuánto mide en la realidad: un lado medido con cinta, la barra de escala de la captura o el frente del lote. Con eso se obtienen los metros por píxel. Se recomienda usar la línea más larga y, en sitio, una segunda medida para verificar.
+   - **Orientar al norte:** se asume norte arriba (vista estándar de mapas); el usuario puede girar la flecha de norte y, en sitio, confirmarla con la brújula del teléfono.
+   - **Dibujar:** polígono del techo con la medida en metros de cada lado, el área, los ángulos y el imán a 90°; planos del techo, obstáculos y pasillos. Funciona sin internet.
+   - **Precisión:** ±2–5 % si se calibra con una línea larga. Solo sirven vistas cenitales; las vistas inclinadas o 3D se rechazan con una advertencia.
+   - Fase futura: leer la barra de escala con OCR para calibrar automáticamente.
+1. **Contorno automático con datos abiertos (gratis, uso comercial):** huellas y alturas de edificios de **Google Open Buildings 2.5D** (CC BY 4.0: comercial permitido, cubre México y LATAM), **Overture Maps** y **Microsoft Building Footprints** (ODbL). Se pre‑procesan por zona en archivos estáticos (PMTiles/FlatGeobuf) alojados gratis (GitHub Releases o Source Cooperative). La app descarga solo la zona del proyecto. Así no depende de Overpass. Viabilidad y hosting se validan al inicio de F3.
+2. **Vista satelital Esri** (cuenta gratuita sin tarjeta) solo para **ver y ajustar** ese contorno abierto. El polígono guardado nace de datos abiertos más el ajuste del usuario, no de "calcar Esri". Se envía además el correo a Esri (lo redacta F0) para confirmar por escrito.
+3. **Modo Pro opcional "Google Solar API con tu propia clave" (BYO key):** el instalador que quiera planos 3D automáticos (inclinación, azimut, sombras) pone su clave de Google. El costo y los términos son suyos, y el desarrollador sigue en $0. Los términos de caché de la Solar API se verifican en F3.
+4. **En sitio:** inclinómetro y brújula del teléfono, medición AR (ARCore), foto de dron y modo sin imagen.
+5. **Futuro:** LiDAR abierto por país (USGS 3DEP, PNOA‑LiDAR, AHN, INEGI donde exista) para techos 3D reales gratis.
+
+**Geocodificación y Overpass:** desarrollo con servicios públicos e interfaces intercambiables; la solución comercial se decide en F7 (decisión del dueño).
+
+**Acciones al aprobar:**
+1. Enviar al sub-chat F0 estas decisiones: actualizar ADR-004 a "aceptado" con esta estrategia, añadir ADR-005 (estrategia de techo por capas), redactar el correo a Esri en `docs/legal/` y confirmar CI verde con el APK.
+2. Al terminar F0, abrir PR de `fase-0-cimientos` hacia la rama base, revisar e integrar.
+3. Arrancar F1 (clientes) y F2 (motor solar y clima) en paralelo con sus instrucciones.
+4. Actualizar B.4 del plan maestro en el repo con esta revisión.
+
 ## Orquestación con sub-chats (pedido del dueño)
 Este chat es el **principal (coordinador)**. Cada fase tiene su propio sub-chat (sesión en la nube) con rama `fase-N-...`, partiendo de la rama base `ccr-4f7d63d4-px61ld` (rama por defecto del repo, ya contiene plan, CLAUDE.md, fases.md y ADRs).
 
