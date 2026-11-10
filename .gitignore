@@ -10,3 +10,6 @@ coverage/
 # Python
 __pycache__/
 *.pyc
+
+# Caché local de la validación cruzada (se regenera con red)
+tools/golden_data/out/cache/
