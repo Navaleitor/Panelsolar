@@ -22,7 +22,7 @@ Este documento define: (A) el producto, (B) la parte técnica, (C) la forma de d
 ### A.1 Usuarios y uso
 - **Usuario**: instalador o empresa instaladora (técnico de campo, vendedor/diseñador).
 - **Dónde corre**: teléfono o tableta Android 8+ (API 26+); luego iOS 15+. Todo el cálculo es local.
-- **Conexión**: se usa internet solo para (a) descargar imagen satelital y huella del edificio, (b) descargar clima e irradiancia, (c) respaldo en Drive, (d) compras dentro de la app. Lo descargado se guarda en caché del proyecto → el análisis y su consulta funcionan sin conexión después.
+- **Conexión**: se usa internet solo para (a) convertir dirección o enlace en coordenadas, (b) descargar clima e irradiancia, (c) respaldo en Drive, (d) compras dentro de la app. Lo descargado se guarda en caché del proyecto → el análisis y su consulta funcionan sin conexión después.
 - **Flujo típico**: Cliente → Proyecto → Sitio (ubicación + techo + obstáculos) → Clima → Diseño (paneles, strings, inversor, eléctrico) → Económico → Reporte/Cotización PDF → Instalación (fotos, puesta en marcha) → Mantenimiento y seguimiento de producción.
 
 ### A.2 Módulos funcionales
@@ -110,7 +110,7 @@ panelsolar/
 ├── packages/
 │   ├── solar_engine/         # Dart puro: posición solar, irradiancia, temperatura, potencia, sombras, strings, eléctrico, viento, economía
 │   ├── geo_kit/              # Geometría: polígonos, proyección, empaquetado de paneles, parseo de enlaces de mapas
-│   ├── data_sources/         # Clientes HTTP: NASA POWER, PVGIS, Overpass, teselas; caché
+│   ├── data_sources/         # Clientes HTTP: NASA POWER, PVGIS, geocodificación; caché
 │   ├── regional_packs/       # Normas, tarifas y factores por país (MX primero) como datos JSON + validadores
 │   └── persistence/          # Esquema drift, migraciones, repositorios
 └── tools/
@@ -128,25 +128,16 @@ Reglas de sostenibilidad:
 `Company` (perfil del instalador) · `Client` · `UtilityBill` (periodo, kWh, importe, tarifa) · `Project` (cliente, estado, ubicación, fecha) · `Site` (lat, lon, altitud, zona horaria, declinación magnética) · `RoofPlane` (polígono, inclinación, azimut, material opcional) · `Obstacle` (tipo, polígono/punto, altura) · `HorizonProfile` (azimut→elevación, origen: terreno/manual/cámara) · `WeatherDataset` (fuente, rango, resumen + archivo comprimido de serie horaria) · `PanelModel`, `InverterModel`, `BatteryModel` (catálogo) · `ArrayLayout` (paneles colocados, filas) · `StringConfig` · `ElectricalRun` (tramo, longitud, calibre, material, caída) · `ProtectionDevice` · `SingleLineDiagram` (JSON del grafo) · `SimulationResult` · `Quote` + `QuoteItem` · `Photo` (proyecto, etapa, ruta, hash, GPS) · `Document` · `MaintenancePlan`, `MaintenanceVisit` · `ProductionReading` · `BackupLog`.
 Identificadores UUID (permiten restaurar/fusionar respaldos), `createdAt/updatedAt` en todas las tablas, borrado lógico.
 
-### B.4 Fase Sitio — imagen satelital y techo ($0, uso comercial, mundial)
-**Realidad importante:** Google Maps/Solar API exige tarjeta y prohíbe trazar/derivar datos de su imagen → descartado. Bing Maps para cuentas gratuitas fue retirado. Por eso se usa una **interfaz `ImageryProvider` intercambiable**:
+### B.4 Fase Sitio — techo a partir de imágenes del usuario (decisión final, ADR-005)
+**La app no obtiene, descarga ni muestra imágenes ni geometría de ningún proveedor** (ni Google, ni Esri, ni huellas de edificios). Así se evitan temas legales y costos.
 
-| Prioridad | Proveedor | Por qué | Condición |
-|---|---|---|---|
-| 1 | **Esri World Imagery** vía cuenta gratuita *ArcGIS Location Platform* | Cobertura mundial, alta resolución (≈0.3–0.5 m urbano), cuota gratuita amplia, uso en apps permitido con atribución | Cada instalador (o la app) usa una API key gratuita. **Verificar en F0** si la cuenta pide tarjeta y si los términos permiten digitalizar techos. |
-| 2 | **Ortofotos abiertas nacionales** (WMS): PNOA (España), IGN (Francia), PDOK (Países Bajos), USGS NAIP (EE. UU.), INEGI (México, donde exista) | Licencia abierta (CC‑BY / dominio público), excelente para trazar | Cobertura por país; se agregan como configuración en `regional_packs`. |
-| 3 | **Foto de dron / imagen propia** | Licencia del propio usuario, máxima resolución | El usuario georreferencia con 2 puntos o mide una referencia. |
-| 4 | **Modo sin imagen** | Trazado por medidas (cinta/AR) | Siempre disponible. |
-
-Modelo de cobro sostenible: la app trae la key del desarrollador para la capa gratuita; si crece el uso, el plan Pro permite que cada instalador ponga su propia key gratuita ("BYO key") → el costo nunca recae en el desarrollador.
-
-**Flujo semiautomático:**
-1. Ubicación por GPS, dirección (geocodificación con Nominatim/Photon — gratuitas con límite de uso) o **enlace compartido** de Google Maps / Apple Maps (se extraen lat/lon del URL; enlaces cortos `maps.app.goo.gl` se expanden siguiendo la redirección).
-2. Se consulta la **huella del edificio** en OpenStreetMap (API Overpass, ODbL, gratuita) → se propone como polígono inicial del techo. Si no existe, el usuario toca las esquinas.
-3. El usuario ajusta vértices (con imán a ángulos de 90°), divide el techo en **planos** y asigna inclinación (medida en sitio con el inclinómetro del teléfono, o por tipo de techo) y orientación (auto desde el borde del polígono).
-4. Agrega **obstáculos** (tinaco, antena, domo, pretil, AC, árbol, edificio vecino) con altura, y **zonas de exclusión/pasillos** de mantenimiento y retiros de borde.
-5. Todo se guarda en coordenadas locales en metros (proyección ENU sobre el sitio).
-Futuro: segmentación automática del techo con modelo ML en el dispositivo (MobileSAM/TFLite).
+1. **Ubicación:** GPS, dirección o enlace compartido de Google Maps / Apple Maps. De ahí solo se extraen latitud y longitud, que alimentan el clima y la posición del sol. No hay mapa satelital dentro de la app.
+2. **Importar imagen:** el usuario consigue y sube su imagen vista desde arriba: captura, foto aérea, dron o plano. Al importar se muestra el aviso "Usa solo imágenes que tengas derecho a usar".
+3. **Calibrar escala:** traza una línea de longitud conocida (cinta, barra de escala o frente del lote) y obtiene los metros por píxel.
+4. **Orientar:** norte arriba por defecto, flecha girable y confirmación con la brújula en sitio.
+5. **Trazar:** techo con la medida de cada lado, el área y los ángulos; imán a 90°. Planos del techo con inclinación (inclinómetro) y orientación; obstáculos con altura; pasillos y retiros.
+6. **Alternativas:** medición en sitio (inclinómetro, brújula, AR) y modo sin imagen (medidas con cinta).
+7. Todo se guarda en metros, en coordenadas locales. Precisión ±2–5 %; las vistas inclinadas se rechazan. A futuro: OCR de la barra de escala.
 
 ### B.5 Fuentes de clima e irradiancia (gratuitas, mundiales, uso comercial)
 | Fuente | Uso | Datos | Licencia |
@@ -292,7 +283,7 @@ El diseño se guarda como un **grafo** (paneles → strings → caja combinadora
 | **F0 Cimientos** | Repo y APK vacío navegable | Estructura de paquetes, CLAUDE.md, CI, tema/UI base, i18n es/en, BD + migraciones, verificación de licencias (Esri, Drive scopes), ADRs |
 | **F1 Clientes y proyectos** | App útil desde el día 1 | CRUD clientes/proyectos, ubicación (GPS/dirección/enlace), fotos, documentos, recibos y gráfica de consumo |
 | **F2 Motor solar + clima** | Producción estimada | `solar_engine` (B.6 1–10, 18 parcial), NASA POWER + PVGIS, caché, estadísticas por estación, validación golden |
-| **F3 Sitio y techo** | Plano del techo | Mapa satelital, huella OSM, trazado de planos, inclinómetro, obstáculos, horizonte (B.7 A–C) |
+| **F3 Sitio y techo** | Plano del techo | Importar imagen del usuario, calibración, trazado con medidas, inclinómetro, obstáculos, horizonte (B.7 A–C) |
 | **F4 Diseño FV** | Arreglo completo | Máximo de paneles, separación de filas, sombras, catálogo de equipos (+ importación CEC), strings, DC/AC, cableado, protecciones, viento |
 | **F5 Unifilar y reportes** | PDF profesional | Unifilar automático, reporte técnico, cotización, ROI/escenarios con baterías, paquete regional México (CFE/NOM) |
 | **F6 Operación** | Postventa | Puesta en marcha IEC 62446‑1, plan y calendario de mantenimiento, seguimiento de producción/PR, respaldo Drive + exportar .zip |
@@ -305,30 +296,15 @@ El diseño se guarda como un **grafo** (paneles → strings → caja combinadora
 - Al cerrar F2: reporte de comparación motor vs pvlib/PVWatts/PVGIS para los 6 sitios dentro de tolerancia.
 - En cada fase: lista de aceptación en `docs/pruebas/fase-N.md` revisada por el dueño en su teléfono.
 
-## Revisión de B.4 tras la verificación de licencias de F0 (ADR-004 → decisión del dueño)
+## Siguiente paso (F0 terminada, 2026-11-10)
+F0 reporta: CI #3 en verde y APK debug generado como artefacto (GitHub Actions run 42879103454); ADR-004 aceptado; ADR-005 (techo) reescrito: solo imágenes del usuario. Solo `docs/producto/fases.md` choca al integrar, y es un conflicto trivial.
 
-**Por qué otras apps "lo hacen con Google":** las demos que recrean ciudades en 3D usan *Google Photorealistic 3D Tiles* o *Google Solar API*. Ambas exigen cuenta de facturación con tarjeta y sus términos permiten **mostrar** la imagen/3D, pero no extraer ni guardar geometría propia de ella fuera de lo que la API entrega. Las apps solares comerciales que muestran techos en 3D pagan la **Solar API**, que entrega legalmente los planos del techo (inclinación, orientación, área, sombras). Muchas demos hechas con IA son personales y no se venden, así que ese riesgo no les importa. Se puede hacer lo mismo; lo único que cambia es la fuente de los datos.
-
-**Nueva estrategia de techo, por capas (todas intercambiables vía `ImageryProvider` / `BuildingSource`):**
-0. **PRINCIPAL — Imagen importada por el usuario + calibración (idea del dueño):** el usuario importa cualquier imagen aérea vista desde arriba: captura de pantalla de su proveedor de mapas, foto de dron o plano. La app no descarga nada; es una herramienta genérica de "medir sobre imagen" y la responsabilidad del uso de la imagen es del usuario. En la tienda se anuncia como "importa cualquier imagen aérea", sin nombrar a Google.
-   - **Calibrar escala:** el usuario traza una línea de referencia y escribe cuánto mide en la realidad: un lado medido con cinta, la barra de escala de la captura o el frente del lote. Con eso se obtienen los metros por píxel. Se recomienda usar la línea más larga y, en sitio, una segunda medida para verificar.
-   - **Orientar al norte:** se asume norte arriba (vista estándar de mapas); el usuario puede girar la flecha de norte y, en sitio, confirmarla con la brújula del teléfono.
-   - **Dibujar:** polígono del techo con la medida en metros de cada lado, el área, los ángulos y el imán a 90°; planos del techo, obstáculos y pasillos. Funciona sin internet.
-   - **Precisión:** ±2–5 % si se calibra con una línea larga. Solo sirven vistas cenitales; las vistas inclinadas o 3D se rechazan con una advertencia.
-   - Fase futura: leer la barra de escala con OCR para calibrar automáticamente.
-1. **Contorno automático con datos abiertos (gratis, uso comercial):** huellas y alturas de edificios de **Google Open Buildings 2.5D** (CC BY 4.0: comercial permitido, cubre México y LATAM), **Overture Maps** y **Microsoft Building Footprints** (ODbL). Se pre‑procesan por zona en archivos estáticos (PMTiles/FlatGeobuf) alojados gratis (GitHub Releases o Source Cooperative). La app descarga solo la zona del proyecto. Así no depende de Overpass. Viabilidad y hosting se validan al inicio de F3.
-2. **Vista satelital Esri** (cuenta gratuita sin tarjeta) solo para **ver y ajustar** ese contorno abierto. El polígono guardado nace de datos abiertos más el ajuste del usuario, no de "calcar Esri". Se envía además el correo a Esri (lo redacta F0) para confirmar por escrito.
-3. **Modo Pro opcional "Google Solar API con tu propia clave" (BYO key):** el instalador que quiera planos 3D automáticos (inclinación, azimut, sombras) pone su clave de Google. El costo y los términos son suyos, y el desarrollador sigue en $0. Los términos de caché de la Solar API se verifican en F3.
-4. **En sitio:** inclinómetro y brújula del teléfono, medición AR (ARCore), foto de dron y modo sin imagen.
-5. **Futuro:** LiDAR abierto por país (USGS 3DEP, PNOA‑LiDAR, AHN, INEGI donde exista) para techos 3D reales gratis.
-
-**Geocodificación y Overpass:** desarrollo con servicios públicos e interfaces intercambiables; la solución comercial se decide en F7 (decisión del dueño).
-
-**Acciones al aprobar:**
-1. Enviar al sub-chat F0 estas decisiones: actualizar ADR-004 a "aceptado" con esta estrategia, añadir ADR-005 (estrategia de techo por capas), redactar el correo a Esri en `docs/legal/` y confirmar CI verde con el APK.
-2. Al terminar F0, abrir PR de `fase-0-cimientos` hacia la rama base, revisar e integrar.
-3. Arrancar F1 (clientes) y F2 (motor solar y clima) en paralelo con sus instrucciones.
-4. Actualizar B.4 del plan maestro en el repo con esta revisión.
+1. **Integrar F0** en la rama base `ccr-4f7d63d4-px61ld` con un merge commit. En `fases.md` se conserva el estado de F0 ("Completada" + enlaces ADR) y la tabla de sesiones. Después: push y comprobar que el CI de la rama base siga en verde.
+2. **Usar el entorno "panelsolar"** (`env_015diKV1Yhry9yDrttR8GdpE`, con Flutter 3.47.9 y Android SDK) para las fases que programan. Los sub-chats F1 a F8 se crearon en el entorno por defecto, sin Flutter, y nunca recibieron instrucciones. Por eso se crean de nuevo F1 y F2 en "panelsolar", se archivan los F1/F2 vacíos, y F3 a F8 se recrean igual cuando les toque. Se actualiza la tabla de sesiones en `fases.md`.
+3. **Arrancar F1 y F2 en paralelo** con instrucciones completas:
+   - F1: clientes, proyectos, ubicación (GPS, dirección, enlace de Google o Apple Maps), fotos, documentos, recibos y gráfica de consumo.
+   - F2: `solar_engine` (B.6 1–10), NASA POWER + PVGIS, caché y validación golden con pvlib.
+4. **Pendiente del dueño:** instalar el APK de F0 y revisar `docs/pruebas/fase-0.md`.
 
 ## Orquestación con sub-chats (pedido del dueño)
 Este chat es el **principal (coordinador)**. Cada fase tiene su propio sub-chat (sesión en la nube) con rama `fase-N-...`, partiendo de la rama base `ccr-4f7d63d4-px61ld` (rama por defecto del repo, ya contiene plan, CLAUDE.md, fases.md y ADRs).

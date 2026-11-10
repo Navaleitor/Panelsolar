@@ -1,0 +1,13 @@
+name: regional_packs
+description: "Normas, tarifas y factores por país (México primero) como datos JSON + validadores."
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.13.0
+
+resolution: workspace
+
+dev_dependencies:
+  test: ^1.31.1
+  very_good_analysis: ^11.0.0

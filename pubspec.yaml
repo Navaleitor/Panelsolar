@@ -1,0 +1,15 @@
+# Raíz del monorepo: Dart pub workspace (ver docs/adr/ADR-003-monorepo-pub-workspaces.md).
+# Un solo `flutter pub get` en la raíz resuelve todos los paquetes.
+name: panelsolar_workspace
+publish_to: none
+
+environment:
+  sdk: ^3.13.0
+
+workspace:
+  - app
+  - packages/solar_engine
+  - packages/geo_kit
+  - packages/data_sources
+  - packages/regional_packs
+  - packages/persistence

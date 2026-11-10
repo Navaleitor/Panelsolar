@@ -1,0 +1,18 @@
+{
+  "@@locale": "en",
+  "appTitle": "Panelsolar",
+  "navClients": "Clients",
+  "navProjects": "Projects",
+  "navCatalog": "Catalog",
+  "navMaintenance": "Maintenance",
+  "navSettings": "Settings",
+  "clientsDescription": "Contact details, utility bills and consumption for each client.",
+  "projectsDescription": "Site, roof, weather, design and reports for each installation.",
+  "catalogDescription": "Panels, inverters, batteries and mounting structures.",
+  "maintenanceDescription": "Service plans, reminders and visit log.",
+  "settingsDescription": "Company profile, language, units and backup.",
+  "comingInPhase": "Available in phase {phase}.",
+  "settingsDatabaseTitle": "Database",
+  "settingsDatabaseOk": "Working · schema v{version}",
+  "settingsDatabaseError": "Could not open the database"
+}

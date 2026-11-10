@@ -1,0 +1,26 @@
+{
+  "@@locale": "es",
+  "appTitle": "Panelsolar",
+  "@appTitle": { "description": "Nombre de la app." },
+  "navClients": "Clientes",
+  "navProjects": "Proyectos",
+  "navCatalog": "Catálogo",
+  "navMaintenance": "Mantenimiento",
+  "navSettings": "Ajustes",
+  "clientsDescription": "Datos de contacto, recibos de luz y consumo de cada cliente.",
+  "projectsDescription": "Sitio, techo, clima, diseño y reportes de cada instalación.",
+  "catalogDescription": "Paneles, inversores, baterías y estructuras.",
+  "maintenanceDescription": "Plan de servicios, recordatorios y bitácora de visitas.",
+  "settingsDescription": "Perfil de empresa, idioma, unidades y respaldo.",
+  "comingInPhase": "Disponible en la fase {phase}.",
+  "@comingInPhase": {
+    "description": "Aviso en pantallas vacías.",
+    "placeholders": { "phase": { "type": "String", "example": "F1" } }
+  },
+  "settingsDatabaseTitle": "Base de datos",
+  "settingsDatabaseOk": "Funcionando · esquema v{version}",
+  "@settingsDatabaseOk": {
+    "placeholders": { "version": { "type": "int", "example": "2" } }
+  },
+  "settingsDatabaseError": "Error al abrir la base de datos"
+}
