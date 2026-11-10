@@ -1,0 +1,13 @@
+name: data_sources
+description: "Clientes HTTP para NASA POWER, PVGIS, Overpass, Nominatim y teselas, con caché."
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.13.0
+
+resolution: workspace
+
+dev_dependencies:
+  test: ^1.31.1
+  very_good_analysis: ^11.0.0

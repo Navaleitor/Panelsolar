@@ -1,0 +1,8 @@
+# Dart / Flutter (raíz del workspace)
+.dart_tool/
+build/
+coverage/
+*.iml
+.idea/
+.vscode/
+.DS_Store
