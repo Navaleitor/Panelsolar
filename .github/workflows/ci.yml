@@ -1,0 +1,99 @@
+# CI de Panelsolar: formato, análisis, pruebas de todos los paquetes y APK debug.
+# Se ejecuta en cada push y en cada Pull Request. Debe quedar en verde antes de
+# integrar cualquier cambio (plan C).
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Mantener alineado con docs/adr/ADR-003-monorepo-pub-workspaces.md.
+  FLUTTER_VERSION: "3.47.9"
+
+jobs:
+  analyze-test:
+    name: Formato, análisis y pruebas
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - name: Dependencias (todo el workspace)
+        run: flutter pub get
+
+      - name: Formato (dart format)
+        run: dart format --output=none --set-exit-if-changed app packages
+
+      - name: Código generado al día (drift + l10n)
+        run: |
+          (cd packages/persistence && dart run build_runner build)
+          git diff --exit-code -- app packages
+
+      - name: Análisis de paquetes Dart
+        run: |
+          for pkg in packages/*/; do
+            echo "::group::analyze $pkg"
+            (cd "$pkg" && dart analyze --fatal-infos)
+            echo "::endgroup::"
+          done
+
+      - name: Análisis de la app
+        working-directory: app
+        run: flutter analyze --fatal-infos
+
+      - name: Pruebas de paquetes Dart
+        run: |
+          for pkg in packages/*/; do
+            echo "::group::test $pkg"
+            (cd "$pkg" && dart test)
+            echo "::endgroup::"
+          done
+
+      - name: Pruebas de la app
+        working-directory: app
+        run: flutter test
+
+  build-apk:
+    name: APK debug
+    needs: analyze-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - name: Dependencias
+        run: flutter pub get
+
+      - name: Compilar APK debug
+        working-directory: app
+        run: flutter build apk --debug
+
+      - name: Subir APK como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: panelsolar-debug-${{ github.sha }}
+          path: app/build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 30
