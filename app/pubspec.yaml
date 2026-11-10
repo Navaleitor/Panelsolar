@@ -1,0 +1,40 @@
+name: panelsolar
+description: "Panelsolar: análisis y diseño de instalaciones fotovoltaicas para instaladores."
+publish_to: none
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.13.0
+  flutter: ">=3.44.0"
+
+resolution: workspace
+
+dependencies:
+  data_sources:
+    path: ../packages/data_sources
+  drift: ^2.35.4
+  drift_flutter: ^0.3.1
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^3.5.0
+  geo_kit:
+    path: ../packages/geo_kit
+  go_router: ^18.1.4
+  intl: any
+  persistence:
+    path: ../packages/persistence
+  regional_packs:
+    path: ../packages/regional_packs
+  solar_engine:
+    path: ../packages/solar_engine
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^11.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true

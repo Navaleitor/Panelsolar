@@ -1,0 +1,13 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - "lib/core/l10n/gen/**"
+    - "**/*.g.dart"
+    - build/**
+    - android/**
+
+linter:
+  rules:
+    # La app no es una librería pública: no exigimos doc en cada miembro.
+    public_member_api_docs: false
