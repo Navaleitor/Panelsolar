@@ -9,6 +9,7 @@ import 'package:test/test.dart';
 import 'generated/schema.dart';
 import 'generated/schema_v1.dart' as v1;
 import 'generated/schema_v2.dart' as v2;
+import 'generated/schema_v3.dart' as v3;
 
 void main() {
   driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
@@ -70,5 +71,62 @@ void main() {
         ]);
       },
     );
+  });
+
+  test('v2 → v3 conserva la empresa y crea las tablas de F1', () async {
+    const id = '1c2d3e4f-5a6b-4c7d-8e9f-0a1b2c3d4e5f';
+    const created = '2026-03-01T00:00:00.000Z';
+    const company = v2.CompaniesData(
+      id: id,
+      createdAt: created,
+      updatedAt: created,
+      name: 'Solar del Norte',
+      taxId: 'SNO010101AAA',
+      logoPath: 'logo.png',
+    );
+
+    await verifier.testWithDataIntegrity(
+      oldVersion: 2,
+      newVersion: 3,
+      createOld: v2.DatabaseAtV2.new,
+      createNew: v3.DatabaseAtV3.new,
+      openTestedDatabase: AppDatabase.new,
+      createItems: (batch, oldDb) {
+        batch.insertAll(oldDb.companies, const [company]);
+      },
+      validateItems: (newDb) async {
+        expect(await newDb.select(newDb.companies).get(), const [
+          v3.CompaniesData(
+            id: id,
+            createdAt: created,
+            updatedAt: created,
+            name: 'Solar del Norte',
+            taxId: 'SNO010101AAA',
+            logoPath: 'logo.png',
+          ),
+        ]);
+        expect(await newDb.select(newDb.clients).get(), isEmpty);
+        expect(await newDb.select(newDb.projects).get(), isEmpty);
+        expect(await newDb.select(newDb.sites).get(), isEmpty);
+        expect(await newDb.select(newDb.utilityBills).get(), isEmpty);
+        expect(await newDb.select(newDb.photos).get(), isEmpty);
+        expect(await newDb.select(newDb.documents).get(), isEmpty);
+      },
+    );
+  });
+
+  test('tras migrar a v3 se pueden guardar clientes y proyectos', () async {
+    final schema = await verifier.schemaAt(2);
+    final db = AppDatabase(schema.newConnection());
+    await verifier.migrateAndValidate(db, 3);
+
+    final client = await ClientRepository(db).create(name: 'Ana López');
+    final project = await ProjectRepository(db).create(
+      clientId: client.id,
+      name: 'Casa Cumbres',
+      projectDate: DateTime.utc(2026, 11, 10),
+    );
+    expect(project.status, ProjectStatus.prospect);
+    await db.close();
   });
 }
