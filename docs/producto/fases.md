@@ -5,7 +5,7 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 | Fase | Rama | Depende de | Estado |
 |---|---|---|---|
 | F0 Cimientos | `fase-0-cimientos` | — | Completada (2026-11-10) — lista de aceptación: [`docs/pruebas/fase-0.md`](../pruebas/fase-0.md) |
-| F1 Clientes y proyectos | `fase-1-clientes` | F0 | Pendiente |
+| F1 Clientes y proyectos | `fase-1-clientes` | F0 | Lista para revisión (2026-11-10) — aceptación: [`docs/pruebas/fase-1.md`](../pruebas/fase-1.md) |
 | F2 Motor solar + clima | `fase-2-motor-clima` | F0 | Pendiente |
 | F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Pendiente |
 | F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | Pendiente |
@@ -19,6 +19,13 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 - CI en `.github/workflows/ci.yml`: formato, análisis, pruebas y APK debug como artefacto.
 - Verificación de licencias: [`docs/fuentes-de-datos.md`](../fuentes-de-datos.md). [ADR-004](../adr/ADR-004-licencias-fuentes-verificacion-f0.md) **aceptado**: geocodificación y Overpass públicos detrás de interfaces; la solución comercial se decide en F7.
 - Techo: [ADR-005](../adr/ADR-005-estrategia-techo-por-capas.md) **aceptado**: solo imágenes que importa el usuario + calibración + trazado. La app no obtiene imágenes de ningún proveedor.
+
+## Notas de F1
+- Esquema de base **v3** (migración v2→v3 con prueba): `clients`, `projects`, `sites`, `utility_bills`, `photos`, `documents`.
+- Ubicación solo por coordenadas (GPS, dirección con Nominatim detrás de `Geocoder`, enlace de Google/Apple Maps con `MapLinkParser` en `geo_kit`, o a mano), siempre con confirmación. Sin mapa (ADR-005).
+- Geocodificación en `packages/data_sources/lib/geocoding.dart` (biblioteca aparte para no chocar con F2).
+- Tarifas CFE 1–1F, DAC y PDBT en `regional_packs` (solo identificación y límite DAC; precios en F5).
+- Fotos comprimidas a 1600 px / JPEG 80 % con SHA-256 y GPS del EXIF; documentos PDF/imagen detectados por firma.
 
 ## Sub-chats (sesiones) por fase
 Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.
