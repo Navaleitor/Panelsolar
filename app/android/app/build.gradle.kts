@@ -30,6 +30,18 @@ android {
         versionName = flutter.versionName
     }
 
+    // Llave debug fija versionada en el repo (ADR-006): todos los APK de prueba
+    // quedan firmados igual y se instalan uno encima del otro sin perder datos.
+    // No cambiarla. Para Google Play (F7) se usará otra llave en GitHub Secrets.
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("../keystore/panelsolar-debug.jks")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

@@ -6,7 +6,7 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 |---|---|---|---|
 | F0 Cimientos | `fase-0-cimientos` | — | Completada (2026-11-10) — lista de aceptación: [`docs/pruebas/fase-0.md`](../pruebas/fase-0.md) |
 | F1 Clientes y proyectos | `fase-1-clientes` | F0 | Lista para revisión (2026-11-10) — aceptación: [`docs/pruebas/fase-1.md`](../pruebas/fase-1.md) |
-| F2 Motor solar + clima | `fase-2-motor-clima` | F0 | Pendiente |
+| F2 Motor solar + clima | `fase-2-motor-clima` | F0 | En curso |
 | F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Pendiente |
 | F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | Pendiente |
 | F5 Unifilar y reportes | `fase-5-unifilar-reportes` | F4 | Pendiente |
@@ -33,8 +33,8 @@ Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.
 | Fase | Sesión |
 |---|---|
 | F0 | `session_01WWCD8ktTRhr2b9gZUQfRY8` |
-| F1 | `session_01WWCD8jrKeyB7BU9m9RcgWX` |
-| F2 | `session_01WWCD8kDpEm67NYY4HGHjej` |
+| F1 | `session_01WWCD8k8V1Xc3QPnKzKASNc` (entorno panelsolar) |
+| F2 | `session_01WWCD8oZt4AdV3NdkTVsnwf` (entorno panelsolar) |
 | F3 | `session_01WWCD8mp42zQxhXVJeaCzBP` |
 | F4 | `session_01WWCD8oK1MwbxZThDeSnurd` |
 | F5 | `session_01WWCD8oed4tQwkDPMVeGy2X` |
@@ -48,3 +48,4 @@ Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.
 3. Paralelismo tras F0: F1 + F2; luego F3 + F6; luego F4 → F5 → F7 → F8.
 4. Cada sub-chat entrega resumen, bloqueos y `docs/pruebas/fase-N.md`.
 5. Las decisiones de producto se escalan al chat principal.
+6. Las fases que programan usan el entorno cloud "panelsolar" (Flutter + Android SDK). F3–F8 se recrean en ese entorno cuando les toque.

@@ -3,11 +3,12 @@
 Lista para el dueño. Marca cada casilla en tu teléfono Android (8.0 o superior). Si algo falla, abre un *issue* con la plantilla **Error (bug)** y pon el número de la ejecución de GitHub Actions.
 
 ## 1. Descargar e instalar el APK
-1. En GitHub abre el repositorio → pestaña **Actions** → flujo **CI**.
-2. Entra a la ejecución más reciente de la rama `fase-0-cimientos` (o de `main` tras integrar) con marca verde ✅.
-3. Abajo, en **Artifacts**, descarga `panelsolar-debug-<código>` (es un .zip). Ábrelo: dentro está `app-debug.apk`.
-4. Pásalo al teléfono (correo, Drive, cable) y ábrelo. Android pedirá permitir "instalar apps de origen desconocido" para esa app: acéptalo.
-5. Es una versión *debug*: es normal que pese ~100 MB y que arranque un poco lento.
+1. En el teléfono abre este **enlace fijo** (siempre baja la versión más reciente):
+   **https://github.com/Navaleitor/Panelsolar/releases/latest/download/panelsolar.apk**
+   Si te pide iniciar sesión en GitHub, hazlo: el repositorio es tuyo.
+2. Abre el archivo `panelsolar.apk` descargado. Android pedirá permitir "instalar apps de origen desconocido" para tu navegador: acéptalo.
+3. **Solo la primera vez:** si tenías una versión anterior instalada desde un .zip de Actions, desinstálala antes, porque cambió la llave de firma. De aquí en adelante cada versión nueva se instala encima y **conserva tus datos**.
+4. Es una versión de prueba (*debug*): es normal que pese ~100 MB y que arranque un poco lento. El número de versión (0.1.N) aparece en la página de Releases del repositorio.
 
 - [ ] La app se instala y aparece como **Panelsolar**.
 
