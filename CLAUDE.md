@@ -32,6 +32,10 @@ Flutter estable + Dart 3, Riverpod, go_router, drift (SQLite), flutter_map, fl_c
 - Textos de UI: `app/lib/core/l10n/arb/app_es.arb` + `app_en.arb`.
 - Plantilla de README de módulo: `docs/plantillas/README-feature.md`.
 
+## APK de prueba (ADR-006)
+- Cada push a la rama base publica una Release `build-N` con `panelsolar.apk`; enlace fijo: `https://github.com/Navaleitor/Panelsolar/releases/latest/download/panelsolar.apk`.
+- **No cambiar ni regenerar** `app/android/keystore/panelsolar-debug.jks`: si cambia, el dueño tendría que desinstalar y perdería sus datos. La llave de Google Play (F7) es otra y va en GitHub Secrets.
+
 ## Antes de entregar
 - `flutter analyze` y `flutter test` (o `dart test` en paquetes puros) en verde.
 - Migración de BD nueva ⇒ prueba de migración.

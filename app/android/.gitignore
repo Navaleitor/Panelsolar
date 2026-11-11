@@ -12,3 +12,7 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+
+# Excepción (ADR-006): llave debug fija y pública para que los APK de prueba
+# se instalen uno encima del otro. NO es la llave de Google Play.
+!keystore/panelsolar-debug.jks

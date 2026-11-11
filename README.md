@@ -20,3 +20,8 @@ flutter pub get                       # en la raíz: resuelve todo el workspace
 dart format app packages
 ```
 CI: `.github/workflows/ci.yml` (el APK debug queda como artefacto de cada ejecución).
+
+## Probar la app (Android)
+Descarga siempre la versión más reciente desde este enlace fijo:
+**https://github.com/Navaleitor/Panelsolar/releases/latest/download/panelsolar.apk**
+(se publica automáticamente en cada actualización de la rama principal; ver [ADR-006](docs/adr/ADR-006-apk-de-prueba-releases.md)).
