@@ -49,6 +49,7 @@ void main() {
       expect(back.series.ghi[18].isNaN, d.series.ghi[18].isNaN);
       expect(back.series.tempAir[10], closeTo(d.series.tempAir[10], 0.006));
       expect(back.series.albedo, isNotNull);
+      expect(back.series.sampleOffsetMinutes, 30);
     });
   });
 

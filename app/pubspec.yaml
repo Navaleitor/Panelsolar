@@ -14,6 +14,7 @@ dependencies:
     path: ../packages/data_sources
   drift: ^2.35.4
   drift_flutter: ^0.3.1
+  fl_chart: ^1.3.1
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -22,7 +23,9 @@ dependencies:
   geo_kit:
     path: ../packages/geo_kit
   go_router: ^18.1.4
+  http: ^1.5.0
   intl: any
+  path_provider: ^2.1.6
   persistence:
     path: ../packages/persistence
   regional_packs:

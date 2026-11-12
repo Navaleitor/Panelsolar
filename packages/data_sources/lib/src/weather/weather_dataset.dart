@@ -53,6 +53,7 @@ class WeatherDataset {
         tempAir: col('tempAir'),
         windSpeed: col('windSpeed'),
         albedo: albedo == null ? null : col('albedo'),
+        sampleOffsetMinutes: json['sampleOffsetMinutes'] as int?,
       ),
     );
   }
@@ -104,6 +105,7 @@ class WeatherDataset {
       'radiationDatabase': radiationDatabase,
       'yearStart': yearStart,
       'yearEnd': yearEnd,
+      'sampleOffsetMinutes': series.sampleOffsetMinutes,
       'epoch': series.startEpochSeconds,
       'ghi': col(series.ghi),
       'dni': col(series.dni),

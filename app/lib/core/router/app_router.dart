@@ -8,6 +8,7 @@ import 'package:panelsolar/features/clients/presentation/clients_page.dart';
 import 'package:panelsolar/features/maintenance/presentation/maintenance_page.dart';
 import 'package:panelsolar/features/projects/presentation/projects_page.dart';
 import 'package:panelsolar/features/settings/presentation/settings_page.dart';
+import 'package:panelsolar/features/weather/presentation/weather_page.dart';
 
 /// Navegación de la app. Cada pestaña es una rama con su propia pila, así
 /// al cambiar de pestaña no se pierde dónde estaba el usuario.
@@ -22,7 +23,21 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           _branch(AppRoutes.projects, const ProjectsPage()),
           _branch(AppRoutes.catalog, const CatalogPage()),
           _branch(AppRoutes.maintenance, const MaintenancePage()),
-          _branch(AppRoutes.settings, const SettingsPage()),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.settings,
+                builder: (context, state) => const SettingsPage(),
+                routes: [
+                  // F2: pantalla mínima de clima y producción.
+                  GoRoute(
+                    path: AppRoutes.weatherSegment,
+                    builder: (context, state) => const WeatherPage(),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
     ],

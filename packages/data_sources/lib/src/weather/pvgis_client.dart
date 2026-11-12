@@ -133,6 +133,11 @@ class PvgisClient {
         dhi: dhi,
         tempAir: temp,
         windSpeed: wind,
+        // PVGIS indica en qué minuto de la hora está centrada la irradiancia
+        // (ERA5: 0.5 h; SARAH: ≈ 0.17 h). Ver docs/pruebas/validacion-motor.md.
+        sampleOffsetMinutes:
+            (((location['irradiance_time_offset'] as num?) ?? 0.5) * 60)
+                .round(),
       ),
     );
   }

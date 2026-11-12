@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:data_sources/data_sources.dart';
 import 'package:test/test.dart';
 
@@ -23,7 +25,22 @@ void main() {
         DateTime.utc(2016).millisecondsSinceEpoch ~/ 1000,
       );
       expect(d.series.tempAir.first, closeTo(15.02, 1e-9));
+      expect(d.series.sampleOffsetMinutes, 30); // irradiance_time_offset 0.5
       expect(server.requested.single.path, '/api/v5_3/tmy');
+    });
+
+    test('TMY con SARAH: desfase de 0.1705 h → 10 min', () {
+      final json =
+          jsonDecode(fixture('pvgis_tmy.json')) as Map<String, dynamic>;
+      ((json['inputs'] as Map)['location'] as Map)['irradiance_time_offset'] =
+          0.1705;
+      final d = PvgisClient.parseTmy(
+        json,
+        latitude: 40.4,
+        longitude: -3.7,
+        accessedAt: DateTime.utc(2026),
+      );
+      expect(d.series.sampleOffsetMinutes, 10);
     });
 
     test('horizonte: azimut convertido a desde el norte', () async {
