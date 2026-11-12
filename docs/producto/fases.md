@@ -6,7 +6,7 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 |---|---|---|---|
 | F0 Cimientos | `fase-0-cimientos` | — | Completada (2026-11-10) — lista de aceptación: [`docs/pruebas/fase-0.md`](../pruebas/fase-0.md) |
 | F1 Clientes y proyectos | `fase-1-clientes` | F0 | En curso |
-| F2 Motor solar + clima | `fase-2-motor-clima` | F0 | En curso |
+| F2 Motor solar + clima | `fase-2-motor-clima` | F0 | Lista para revisión (2026-11-12) — aceptación: [`docs/pruebas/fase-2.md`](../pruebas/fase-2.md); validación: [`validacion-motor.md`](../pruebas/validacion-motor.md) |
 | F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Pendiente |
 | F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | Pendiente |
 | F5 Unifilar y reportes | `fase-5-unifilar-reportes` | F4 | Pendiente |
@@ -19,6 +19,13 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 - CI en `.github/workflows/ci.yml`: formato, análisis, pruebas y APK debug como artefacto.
 - Verificación de licencias: [`docs/fuentes-de-datos.md`](../fuentes-de-datos.md). [ADR-004](../adr/ADR-004-licencias-fuentes-verificacion-f0.md) **aceptado**: geocodificación y Overpass públicos detrás de interfaces; la solución comercial se decide en F7.
 - Techo: [ADR-005](../adr/ADR-005-estrategia-techo-por-capas.md) **aceptado**: solo imágenes que importa el usuario + calibración + trazado. La app no obtiene imágenes de ningún proveedor.
+
+## Notas de F2
+- `solar_engine`: plan B.6 puntos 1–10, simulación horaria, estadísticas y carta solar. Fichas 01–14 en [`docs/formulas/`](../formulas/README.md). Cobertura 99.7 % (CI exige ≥ 90 %); 5 años horarios ≈ 0.3 s.
+- Golden con pvlib 0.16.1 en 6 sitios: diferencias < 1×10⁻⁶ %. Validación cruzada contra PVWatts y PVGIS: las 6 ciudades dentro de ±5 %.
+- `data_sources`: NASA POWER y PVGIS 5.3 (TMY y horizonte), caché gzip por proyecto, control de calidad con cierre de componentes, atribuciones.
+- App: pantalla de prueba en Ajustes → "Clima y producción (prueba F2)" (`/settings/weather`).
+- Decisión pendiente del dueño: qué temperatura usar para diseñar strings en F4 (propuesta: la mínima más fría y la máxima más caliente entre NASA y PVGIS).
 
 ## Sub-chats (sesiones) por fase
 Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.

@@ -61,6 +61,12 @@ jobs:
             echo "::endgroup::"
           done
 
+      - name: Cobertura del motor solar (mínimo 90 %)
+        working-directory: packages/solar_engine
+        run: |
+          dart test --coverage-path=coverage/lcov.info
+          python3 ../../tools/ci/check_coverage.py coverage/lcov.info 90
+
       - name: Pruebas de la app
         working-directory: app
         run: flutter test
