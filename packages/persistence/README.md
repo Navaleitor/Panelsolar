@@ -18,8 +18,30 @@ Las fechas se guardan como texto ISO-8601 (`build.yaml`).
 | Tabla | Clase de fila | Desde | Notas |
 |---|---|---|---|
 | `companies` | `Company` | v1 | Perfil del instalador. v2 agregó `taxId`, `logoPath`. |
+| `clients` | `Client` | v3 | Contacto: nombre, teléfono, correo, dirección, notas. |
+| `projects` | `Project` | v3 | Cliente, nombre, estado (`ProjectStatus`), fecha, notas. |
+| `sites` | `Site` | v3 | Uno por proyecto: lat, lon, altitud, zona horaria IANA, origen (`LocationSource`). |
+| `utility_bills` | `UtilityBill` | v3 | Recibo: periodo, `BillingPeriod`, kWh, importe en **centavos**, moneda, código de tarifa. |
+| `photos` | `Photo` | v3 | Proyecto, etapa (`PhotoStage`), ruta relativa, SHA-256, tamaño, GPS, fecha. |
+| `documents` | `Document` | v3 | Proyecto, título, `DocumentKind` (pdf/imagen), ruta relativa, MIME, tamaño, SHA-256. |
 
-Versión de esquema actual: **2**.
+Versión de esquema actual: **3**.
+
+### Enumeraciones (`lib/src/model/enums.dart`)
+Se guardan como texto con el nombre del valor (`prospect`, `bimonthly`...). **Nunca renombrar un valor** sin migración; agregar al final sí es seguro.
+
+### Repositorios
+| Clase | Qué hace |
+|---|---|
+| `ClientRepository` | Búsqueda (`watchActive(query:)`), alta, edición, borrado lógico (en cascada a proyectos y recibos). |
+| `ProjectRepository` | Lista con cliente (`ProjectWithClient`), filtro por estado/texto, por cliente, alta, edición, borrado lógico. |
+| `SiteRepository` | `save` crea o reemplaza la ubicación del proyecto; valida rangos de lat/lon. |
+| `UtilityBillRepository` | Recibos del cliente en orden cronológico (`watchByClient` / `listByClient`); valida periodo y kWh. |
+| `PhotoRepository` | Fotos por proyecto y etapa; `existsHash` evita duplicados. |
+| `DocumentRepository` | Documentos por proyecto; renombrar y borrado lógico. |
+| `CompanyRepository` | Perfil de la empresa (F0). |
+
+Las rutas de fotos y documentos son **relativas** al directorio de archivos de la app (así sobreviven a un respaldo/restauración en otro teléfono).
 
 ## Archivos clave
 - `lib/src/tables/` — una tabla por archivo.

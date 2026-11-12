@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- F2: descarga de clima (NASA POWER y PVGIS). -->
+    <!-- F1: geocodificación, expandir enlaces cortos de mapas y clima (F2). -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- F1: ubicación del sitio por GPS y GPS de las fotos. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <application
         android:label="Panelsolar"
         android:name="${applicationName}"
@@ -42,6 +45,18 @@
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
+        </intent>
+        <!-- F1: tomar fotos con la app de cámara y abrir documentos. -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:mimeType="application/pdf"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:mimeType="image/*"/>
         </intent>
     </queries>
 </manifest>

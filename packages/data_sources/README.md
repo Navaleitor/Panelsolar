@@ -26,6 +26,21 @@ cd packages/data_sources
 dart analyze --fatal-infos
 dart test        # sin red: usa respuestas grabadas en test/fixtures/
 ```
+
+## Geocodificación (F1)
+Biblioteca aparte: `import 'package:data_sources/geocoding.dart';` (código en `lib/src/geocoding/`, sin tocar el resto del paquete).
+
+| Pieza | Qué hace |
+|---|---|
+| `Geocoder` | Interfaz intercambiable: `search(dirección) → List<GeocodeResult>` + `attribution`. |
+| `NominatimGeocoder` | Implementación con Nominatim. URL configurable, `User-Agent` propio (`Panelsolar/<versión>`), máximo 1 petición/s (`RateLimiter`), errores tipados (`GeocodingException`: `network`, `rateLimited`, `badResponse`). Usa `dart:io`, sin dependencias extra. |
+| `CachedGeocoder` + `JsonFileGeocodeCache` | La misma búsqueda no se repide; caché persistente en JSON (máx. 500 búsquedas). |
+
+Reglas (ADR-004): sin autocompletar (solo se busca al tocar "Buscar"), atribución "© OpenStreetMap contributors" visible. El servicio comercial definitivo se decide en F7: basta con otra clase que implemente `Geocoder` o cambiar la URL.
+
+Pruebas: `test/geocoding/` (sin red: el HTTP se inyecta).
+
+
 Prueba con red (opcional): `dart run tool/cross_validation.dart` (requiere `tools/golden_data/out/cross_reference.csv`).
 
 ## Notas

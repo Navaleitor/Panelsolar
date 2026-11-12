@@ -5,12 +5,21 @@ import 'package:http/http.dart' as http;
 import 'package:panelsolar/features/weather/domain/weather_analysis.dart';
 import 'package:solar_engine/solar_engine.dart';
 
-/// Proyecto de prueba de F2. Cuando F1 integre proyectos, la caché usará el
-/// id real del proyecto.
-const String weatherDemoProjectId = 'f2_demo';
+/// Carpeta de caché para coordenadas escritas a mano (sin proyecto).
+const String weatherManualCacheId = 'sin_proyecto';
 
 /// Petición de análisis de clima.
-typedef WeatherJob = ({double latitude, double longitude, bool forceRefresh});
+///
+/// - `projectId`: proyecto dueño de la caché (o [weatherManualCacheId]).
+/// - `elevation`: altitud conocida del sitio (m); si es nula se usa la de
+///   PVGIS o NASA.
+typedef WeatherJob = ({
+  String projectId,
+  double latitude,
+  double longitude,
+  double? elevation,
+  bool forceRefresh,
+});
 
 /// Trabajo completo: descarga (o lee de la caché en [cacheDir]), control
 /// de calidad y análisis. Todo es Dart puro, así que la app lo ejecuta
@@ -31,15 +40,19 @@ Future<WeatherAnalysis> runWeatherJob(
       cache: ProjectCache(Directory(cacheDir)),
     );
     final climate = await repo.load(
-      projectId: weatherDemoProjectId,
+      projectId: job.projectId,
       site: Site(latitude: job.latitude, longitude: job.longitude),
       forceRefresh: job.forceRefresh,
     );
-    // La altitud del punto la da PVGIS (modelo de terreno) o NASA.
+    // Altitud: la del proyecto; si no, la de PVGIS (modelo de terreno) o NASA.
     final site = Site(
       latitude: job.latitude,
       longitude: job.longitude,
-      elevation: climate.tmy?.elevation ?? climate.primary.elevation ?? 0,
+      elevation:
+          job.elevation ??
+          climate.tmy?.elevation ??
+          climate.primary.elevation ??
+          0,
     );
     return analyzeClimate(climate, site, year: year);
   } finally {
