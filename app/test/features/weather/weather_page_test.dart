@@ -51,6 +51,16 @@ void main() {
     }
   }
 
+  Future<void> openProjectWeather(WidgetTester tester) async {
+    await openProject(tester);
+    await tester.dragUntilVisible(
+      find.byKey(const Key('project-weather')),
+      find.byType(ListView).first,
+      const Offset(0, -300),
+    );
+    await tester.tapKey('project-weather');
+  }
+
   Finder list() => find
       .descendant(
         of: find.byKey(const Key('weatherList')),
@@ -112,8 +122,7 @@ void main() {
       received = job;
       return canned;
     }, env: env);
-    await openProject(tester);
-    await tester.tapKey('project-weather');
+    await openProjectWeather(tester);
 
     expect(find.text('Ubicación guardada del proyecto:'), findsOneWidget);
     expect(find.widgetWithText(TextFormField, '40.4168'), findsOneWidget);
@@ -134,8 +143,7 @@ void main() {
       received = job;
       return canned;
     }, env: env);
-    await openProject(tester);
-    await tester.tapKey('project-weather');
+    await openProjectWeather(tester);
 
     expect(find.textContaining('todavía no tiene ubicación'), findsOneWidget);
     await tester.enterText(find.byKey(const Key('weatherLat')), '19.43');

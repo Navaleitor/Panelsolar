@@ -81,9 +81,9 @@ class ProjectDetailPage extends ConsumerWidget {
             children: [
               _header(context, ref, p),
               SiteSummaryCard(projectId: projectId),
-              WeatherEntryCard(projectId: projectId),
               PhotosSummaryCard(projectId: projectId),
               DocumentsSection(projectId: projectId),
+              WeatherEntryCard(projectId: projectId),
             ],
           );
         },

@@ -9,9 +9,10 @@ Lista para el dueño. Marca cada casilla en tu teléfono Android. Si algo falla,
 ## 1. Pantalla de clima y producción
 Necesitas conexión a Internet la primera vez.
 
-1. Abre **Ajustes** → toca **Clima y producción (prueba F2)**.
-2. Vienen escritas las coordenadas del centro de Monterrey (25.6866, −100.3161). Toca **Descargar clima y calcular**.
-   - [ ] Aparece una barra de progreso con "Descargando clima y simulando…" y **la pantalla no se congela** (puedes desplazarte).
+1. Abre **Proyectos** → un proyecto que ya tenga ubicación (si no tienes, crea uno y en **Ubicación** escribe a mano `25.6866, -100.3161`, el centro de Monterrey).
+2. En la ficha del proyecto baja hasta el final y toca **Clima y producción**.
+   - [ ] Arriba dice "Ubicación guardada del proyecto:" con sus coordenadas (no se pueden editar aquí).
+   - [ ] Toca **Descargar clima y calcular**: aparece una barra con "Descargando clima y simulando…" y **la pantalla no se congela** (puedes desplazarte).
    - [ ] En menos de ~30 s (depende de la red) aparecen los resultados.
 3. Revisa los resultados de Monterrey (valores esperados con datos 2021–2025):
    - [ ] **Serie:** "NASA POWER 2021–2025".
@@ -23,14 +24,15 @@ Necesitas conexión a Internet la primera vez.
    - [ ] **Trayectoria solar:** tres curvas: la roja (junio) más alta y larga, la verde (equinoccios) en medio y la azul (diciembre) más baja y corta.
    - [ ] **Advertencias:** puede decir que se ajustó la irradiancia directa en varias horas; es normal (ver ficha 14).
    - [ ] **Fuentes de datos:** aparecen los textos de NASA POWER (con versión y fecha de hoy) y "PVGIS © Unión Europea… (CC BY 4.0)".
-4. Sin datos: activa el **modo avión**, vuelve a tocar **Descargar clima y calcular**.
-   - [ ] Los resultados aparecen igual, porque el clima quedó guardado en el teléfono.
-5. Prueba otra ciudad (con datos móviles o Wi-Fi), por ejemplo **Madrid: 40.4168, −3.7038**.
+4. Sin datos: activa el **modo avión**, sal de la pantalla, vuelve a entrar y toca **Descargar clima y calcular**.
+   - [ ] Los resultados aparecen igual, porque el clima quedó guardado en el teléfono para ese proyecto.
+5. Proyecto **sin** ubicación: abre otro proyecto que no tenga ubicación → **Clima y producción**.
+   - [ ] Aparece el aviso "Este proyecto todavía no tiene ubicación…" y puedes escribir las coordenadas. Prueba **Madrid: 40.4168, −3.7038**.
    - [ ] Producción ≈ 1 600 kWh/kWp; inclinación óptima ≈ 36°; julio el mes más alto y diciembre el más bajo.
-6. Prueba **Bogotá: 4.7110, −74.0721**.
+6. Sin proyecto: **Ajustes** → **Clima y producción (prueba F2)** permite probar cualquier coordenada. Prueba **Bogotá: 4.7110, −74.0721**.
    - [ ] Aparece una advertencia de que la temperatura de NASA difiere varios °C de la de PVGIS (esperado; ver la sección 3).
 7. Escribe una latitud de **95**.
-   - [ ] Aparece "Escriba un número válido" y no descarga nada.
+   - [ ] Aparece "Escribe un número válido" y no descarga nada.
 8. En inglés (idioma del teléfono): los textos de la pantalla están traducidos.
 
 ## 2. Validación del motor (revisión en GitHub)
@@ -47,6 +49,6 @@ Necesitas conexión a Internet la primera vez.
 - La producción es para **1 kWp** (por ejemplo, 2 paneles de 500 W) con pérdidas típicas (11.4 %), sin sombras. Las sombras reales y el equipo específico llegan en F3 y F4.
 - Cerca del ecuador (Bogotá) el azimut óptimo casi no importa porque la inclinación es baja (≈ 10°): puede salir hacia el suroeste sin que cambie la producción.
 - La orientación óptima se busca con el año típico de PVGIS y la producción se calcula con los 5 años de NASA; por eso "inclinación = latitud" a veces da unos kWh más (menos de 1 %).
-- La pantalla es temporal (prueba de F2). En F3/F4 el clima se mostrará dentro de cada proyecto.
+- El acceso de Ajustes es solo para pruebas; el uso normal es desde la ficha de cada proyecto. En F4 el diseño completo usará este mismo clima.
 
 Firma / fecha: ____________________

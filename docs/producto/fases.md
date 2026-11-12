@@ -31,7 +31,7 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 - `solar_engine`: plan B.6 puntos 1–10, simulación horaria, estadísticas y carta solar. Fichas 01–14 en [`docs/formulas/`](../formulas/README.md). Cobertura 99.7 % (CI exige ≥ 90 %); 5 años horarios ≈ 0.3 s.
 - Golden con pvlib 0.16.1 en 6 sitios: diferencias < 1×10⁻⁶ %. Validación cruzada contra PVWatts y PVGIS: las 6 ciudades dentro de ±5 %.
 - `data_sources`: NASA POWER y PVGIS 5.3 (TMY y horizonte), caché gzip por proyecto, control de calidad con cierre de componentes, atribuciones.
-- App: pantalla de prueba en Ajustes → "Clima y producción (prueba F2)" (`/settings/weather`).
+- App: "Clima y producción" desde la ficha del proyecto (`/projects/:id/weather`, usa su ubicación y altitud) y, para pruebas, desde Ajustes (`/settings/weather`).
 - Decisión pendiente del dueño: qué temperatura usar para diseñar strings en F4 (propuesta: la mínima más fría y la máxima más caliente entre NASA y PVGIS).
 
 ## Sub-chats (sesiones) por fase
