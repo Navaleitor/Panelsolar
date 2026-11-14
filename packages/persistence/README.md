@@ -24,8 +24,12 @@ Las fechas se guardan como texto ISO-8601 (`build.yaml`).
 | `utility_bills` | `UtilityBill` | v3 | Recibo: periodo, `BillingPeriod`, kWh, importe en **centavos**, moneda, código de tarifa. |
 | `photos` | `Photo` | v3 | Proyecto, etapa (`PhotoStage`), ruta relativa, SHA-256, tamaño, GPS, fecha. |
 | `documents` | `Document` | v3 | Proyecto, título, `DocumentKind` (pdf/imagen), ruta relativa, MIME, tamaño, SHA-256. |
+| `roof_images` | `RoofImage` | v5 | Uno por proyecto: modo (`RoofMode` imagen/croquis), imagen importada por el usuario, metros por píxel, líneas de calibración y verificación (JSON en píxeles), norte (`NorthSource`) y declinación usada. |
+| `roof_planes` | `RoofPlane` | v5 | Polígono en **metros locales** (JSON `[[x,y],...]`, x = este, y = norte), inclinación (`TiltSource`), azimut, arista del alero, retiro de borde y pasillos (JSON). |
+| `obstacles` | `Obstacle` | v5 | `ObstacleKind`, `ObstacleOutline`, centro/medidas/giro o puntos (m), altura sobre el techo (`HeightSource`), litros del tinaco. |
+| `horizon_profiles` | `HorizonProfileRecord` | v5 | `HorizonSource` (terreno PVGIS / manual / cámara), nombre y puntos `[[azimut, elevación], ...]`. La clase no se llama `HorizonProfile` para no chocar con la del motor. |
 
-Versión de esquema actual: **3**.
+Versión de esquema actual: **5**. La **v4 está reservada para F6** (instalación, mantenimiento y respaldo, en paralelo): en esta rama `from3To4` no cambia nada y su foto `drift_schema_v4.json` es igual a la v3. Al integrar F6, el chat principal pone su v4 y vuelve a generar la foto de la v5 (receta de abajo).
 
 ### Enumeraciones (`lib/src/model/enums.dart`)
 Se guardan como texto con el nombre del valor (`prospect`, `bimonthly`...). **Nunca renombrar un valor** sin migración; agregar al final sí es seguro.
@@ -39,6 +43,10 @@ Se guardan como texto con el nombre del valor (`prospect`, `bimonthly`...). **Nu
 | `UtilityBillRepository` | Recibos del cliente en orden cronológico (`watchByClient` / `listByClient`); valida periodo y kWh. |
 | `PhotoRepository` | Fotos por proyecto y etapa; `existsHash` evita duplicados. |
 | `DocumentRepository` | Documentos por proyecto; renombrar y borrado lógico. |
+| `RoofImageRepository` | Base del techo: `saveImage` (borra calibración y norte), `startSketch`, `saveCalibration`, `saveNorth`. |
+| `RoofPlaneRepository` | Planos por proyecto en orden; `update(plane)` con `copyWith`; valida inclinación [0, 90). |
+| `ObstacleRepository` | Obstáculos por proyecto; valida ancho > 0 y altura ≥ 0. |
+| `HorizonProfileRepository` | Un terreno por proyecto (`saveTerrain`) y obstáculos lejanos (`addManual`). |
 | `CompanyRepository` | Perfil de la empresa (F0). |
 
 Las rutas de fotos y documentos son **relativas** al directorio de archivos de la app (así sobreviven a un respaldo/restauración en otro teléfono).
