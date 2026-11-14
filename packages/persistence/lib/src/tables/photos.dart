@@ -7,6 +7,7 @@ import 'package:persistence/src/tables/projects.dart';
 ///
 /// Historial de esquema:
 /// - v3: tabla nueva (F1).
+/// - v4: `linkedRecordId` (F6).
 @DataClassName('Photo')
 class Photos extends Table with BaseColumns {
   /// Proyecto al que pertenece.
@@ -39,4 +40,8 @@ class Photos extends Table with BaseColumns {
 
   /// Descripción opcional.
   TextColumn get caption => text().nullable()();
+
+  /// Registro al que pertenece la foto (visita de mantenimiento o puesta en
+  /// marcha), si aplica.
+  TextColumn get linkedRecordId => text().nullable()();
 }

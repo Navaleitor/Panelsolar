@@ -3371,6 +3371,17 @@ class $PhotosTable extends Photos with TableInfo<$PhotosTable, Photo> {
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _linkedRecordIdMeta = const VerificationMeta(
+    'linkedRecordId',
+  );
+  @override
+  late final GeneratedColumn<String> linkedRecordId = GeneratedColumn<String>(
+    'linked_record_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -3387,6 +3398,7 @@ class $PhotosTable extends Photos with TableInfo<$PhotosTable, Photo> {
     longitude,
     takenAt,
     caption,
+    linkedRecordId,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -3485,6 +3497,15 @@ class $PhotosTable extends Photos with TableInfo<$PhotosTable, Photo> {
         caption.isAcceptableOrUnknown(data['caption']!, _captionMeta),
       );
     }
+    if (data.containsKey('linked_record_id')) {
+      context.handle(
+        _linkedRecordIdMeta,
+        linkedRecordId.isAcceptableOrUnknown(
+          data['linked_record_id']!,
+          _linkedRecordIdMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -3552,6 +3573,10 @@ class $PhotosTable extends Photos with TableInfo<$PhotosTable, Photo> {
         DriftSqlType.string,
         data['${effectivePrefix}caption'],
       ),
+      linkedRecordId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}linked_record_id'],
+      ),
     );
   }
 
@@ -3607,6 +3632,10 @@ class Photo extends DataClass implements Insertable<Photo> {
 
   /// Descripción opcional.
   final String? caption;
+
+  /// Registro al que pertenece la foto (visita de mantenimiento o puesta en
+  /// marcha), si aplica.
+  final String? linkedRecordId;
   const Photo({
     required this.id,
     required this.createdAt,
@@ -3622,6 +3651,7 @@ class Photo extends DataClass implements Insertable<Photo> {
     this.longitude,
     this.takenAt,
     this.caption,
+    this.linkedRecordId,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -3654,6 +3684,9 @@ class Photo extends DataClass implements Insertable<Photo> {
     if (!nullToAbsent || caption != null) {
       map['caption'] = Variable<String>(caption);
     }
+    if (!nullToAbsent || linkedRecordId != null) {
+      map['linked_record_id'] = Variable<String>(linkedRecordId);
+    }
     return map;
   }
 
@@ -3683,6 +3716,9 @@ class Photo extends DataClass implements Insertable<Photo> {
       caption: caption == null && nullToAbsent
           ? const Value.absent()
           : Value(caption),
+      linkedRecordId: linkedRecordId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(linkedRecordId),
     );
   }
 
@@ -3708,6 +3744,7 @@ class Photo extends DataClass implements Insertable<Photo> {
       longitude: serializer.fromJson<double?>(json['longitude']),
       takenAt: serializer.fromJson<DateTime?>(json['takenAt']),
       caption: serializer.fromJson<String?>(json['caption']),
+      linkedRecordId: serializer.fromJson<String?>(json['linkedRecordId']),
     );
   }
   @override
@@ -3730,6 +3767,7 @@ class Photo extends DataClass implements Insertable<Photo> {
       'longitude': serializer.toJson<double?>(longitude),
       'takenAt': serializer.toJson<DateTime?>(takenAt),
       'caption': serializer.toJson<String?>(caption),
+      'linkedRecordId': serializer.toJson<String?>(linkedRecordId),
     };
   }
 
@@ -3748,6 +3786,7 @@ class Photo extends DataClass implements Insertable<Photo> {
     Value<double?> longitude = const Value.absent(),
     Value<DateTime?> takenAt = const Value.absent(),
     Value<String?> caption = const Value.absent(),
+    Value<String?> linkedRecordId = const Value.absent(),
   }) => Photo(
     id: id ?? this.id,
     createdAt: createdAt ?? this.createdAt,
@@ -3763,6 +3802,9 @@ class Photo extends DataClass implements Insertable<Photo> {
     longitude: longitude.present ? longitude.value : this.longitude,
     takenAt: takenAt.present ? takenAt.value : this.takenAt,
     caption: caption.present ? caption.value : this.caption,
+    linkedRecordId: linkedRecordId.present
+        ? linkedRecordId.value
+        : this.linkedRecordId,
   );
   Photo copyWithCompanion(PhotosCompanion data) {
     return Photo(
@@ -3780,6 +3822,9 @@ class Photo extends DataClass implements Insertable<Photo> {
       longitude: data.longitude.present ? data.longitude.value : this.longitude,
       takenAt: data.takenAt.present ? data.takenAt.value : this.takenAt,
       caption: data.caption.present ? data.caption.value : this.caption,
+      linkedRecordId: data.linkedRecordId.present
+          ? data.linkedRecordId.value
+          : this.linkedRecordId,
     );
   }
 
@@ -3799,7 +3844,8 @@ class Photo extends DataClass implements Insertable<Photo> {
           ..write('latitude: $latitude, ')
           ..write('longitude: $longitude, ')
           ..write('takenAt: $takenAt, ')
-          ..write('caption: $caption')
+          ..write('caption: $caption, ')
+          ..write('linkedRecordId: $linkedRecordId')
           ..write(')'))
         .toString();
   }
@@ -3820,6 +3866,7 @@ class Photo extends DataClass implements Insertable<Photo> {
     longitude,
     takenAt,
     caption,
+    linkedRecordId,
   );
   @override
   bool operator ==(Object other) =>
@@ -3838,7 +3885,8 @@ class Photo extends DataClass implements Insertable<Photo> {
           other.latitude == this.latitude &&
           other.longitude == this.longitude &&
           other.takenAt == this.takenAt &&
-          other.caption == this.caption);
+          other.caption == this.caption &&
+          other.linkedRecordId == this.linkedRecordId);
 }
 
 class PhotosCompanion extends UpdateCompanion<Photo> {
@@ -3856,6 +3904,7 @@ class PhotosCompanion extends UpdateCompanion<Photo> {
   final Value<double?> longitude;
   final Value<DateTime?> takenAt;
   final Value<String?> caption;
+  final Value<String?> linkedRecordId;
   final Value<int> rowid;
   const PhotosCompanion({
     this.id = const Value.absent(),
@@ -3872,6 +3921,7 @@ class PhotosCompanion extends UpdateCompanion<Photo> {
     this.longitude = const Value.absent(),
     this.takenAt = const Value.absent(),
     this.caption = const Value.absent(),
+    this.linkedRecordId = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   PhotosCompanion.insert({
@@ -3889,6 +3939,7 @@ class PhotosCompanion extends UpdateCompanion<Photo> {
     this.longitude = const Value.absent(),
     this.takenAt = const Value.absent(),
     this.caption = const Value.absent(),
+    this.linkedRecordId = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : projectId = Value(projectId),
        stage = Value(stage),
@@ -3911,6 +3962,7 @@ class PhotosCompanion extends UpdateCompanion<Photo> {
     Expression<double>? longitude,
     Expression<DateTime>? takenAt,
     Expression<String>? caption,
+    Expression<String>? linkedRecordId,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -3928,6 +3980,7 @@ class PhotosCompanion extends UpdateCompanion<Photo> {
       if (longitude != null) 'longitude': longitude,
       if (takenAt != null) 'taken_at': takenAt,
       if (caption != null) 'caption': caption,
+      if (linkedRecordId != null) 'linked_record_id': linkedRecordId,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -3947,6 +4000,7 @@ class PhotosCompanion extends UpdateCompanion<Photo> {
     Value<double?>? longitude,
     Value<DateTime?>? takenAt,
     Value<String?>? caption,
+    Value<String?>? linkedRecordId,
     Value<int>? rowid,
   }) {
     return PhotosCompanion(
@@ -3964,6 +4018,7 @@ class PhotosCompanion extends UpdateCompanion<Photo> {
       longitude: longitude ?? this.longitude,
       takenAt: takenAt ?? this.takenAt,
       caption: caption ?? this.caption,
+      linkedRecordId: linkedRecordId ?? this.linkedRecordId,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -4015,6 +4070,9 @@ class PhotosCompanion extends UpdateCompanion<Photo> {
     if (caption.present) {
       map['caption'] = Variable<String>(caption.value);
     }
+    if (linkedRecordId.present) {
+      map['linked_record_id'] = Variable<String>(linkedRecordId.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -4038,6 +4096,7 @@ class PhotosCompanion extends UpdateCompanion<Photo> {
           ..write('longitude: $longitude, ')
           ..write('takenAt: $takenAt, ')
           ..write('caption: $caption, ')
+          ..write('linkedRecordId: $linkedRecordId, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -4724,6 +4783,6551 @@ class DocumentsCompanion extends UpdateCompanion<Document> {
   }
 }
 
+class $InstalledEquipmentTable extends InstalledEquipment
+    with TableInfo<$InstalledEquipmentTable, InstalledEquipmentItem> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $InstalledEquipmentTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<EquipmentKind, String> kind =
+      GeneratedColumn<String>(
+        'kind',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<EquipmentKind>($InstalledEquipmentTable.$converterkind);
+  static const VerificationMeta _brandMeta = const VerificationMeta('brand');
+  @override
+  late final GeneratedColumn<String> brand = GeneratedColumn<String>(
+    'brand',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 120,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _modelMeta = const VerificationMeta('model');
+  @override
+  late final GeneratedColumn<String> model = GeneratedColumn<String>(
+    'model',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _serialNumberMeta = const VerificationMeta(
+    'serialNumber',
+  );
+  @override
+  late final GeneratedColumn<String> serialNumber = GeneratedColumn<String>(
+    'serial_number',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _installedAtMeta = const VerificationMeta(
+    'installedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> installedAt = GeneratedColumn<DateTime>(
+    'installed_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _warrantyUntilMeta = const VerificationMeta(
+    'warrantyUntil',
+  );
+  @override
+  late final GeneratedColumn<DateTime> warrantyUntil =
+      GeneratedColumn<DateTime>(
+        'warranty_until',
+        aliasedName,
+        true,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    kind,
+    brand,
+    model,
+    serialNumber,
+    installedAt,
+    warrantyUntil,
+    notes,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'installed_equipment';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<InstalledEquipmentItem> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('brand')) {
+      context.handle(
+        _brandMeta,
+        brand.isAcceptableOrUnknown(data['brand']!, _brandMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_brandMeta);
+    }
+    if (data.containsKey('model')) {
+      context.handle(
+        _modelMeta,
+        model.isAcceptableOrUnknown(data['model']!, _modelMeta),
+      );
+    }
+    if (data.containsKey('serial_number')) {
+      context.handle(
+        _serialNumberMeta,
+        serialNumber.isAcceptableOrUnknown(
+          data['serial_number']!,
+          _serialNumberMeta,
+        ),
+      );
+    }
+    if (data.containsKey('installed_at')) {
+      context.handle(
+        _installedAtMeta,
+        installedAt.isAcceptableOrUnknown(
+          data['installed_at']!,
+          _installedAtMeta,
+        ),
+      );
+    }
+    if (data.containsKey('warranty_until')) {
+      context.handle(
+        _warrantyUntilMeta,
+        warrantyUntil.isAcceptableOrUnknown(
+          data['warranty_until']!,
+          _warrantyUntilMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  InstalledEquipmentItem map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return InstalledEquipmentItem(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      kind: $InstalledEquipmentTable.$converterkind.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}kind'],
+        )!,
+      ),
+      brand: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}brand'],
+      )!,
+      model: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}model'],
+      ),
+      serialNumber: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}serial_number'],
+      ),
+      installedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}installed_at'],
+      ),
+      warrantyUntil: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}warranty_until'],
+      ),
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+    );
+  }
+
+  @override
+  $InstalledEquipmentTable createAlias(String alias) {
+    return $InstalledEquipmentTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<EquipmentKind, String, String> $converterkind =
+      const EnumNameConverter<EquipmentKind>(EquipmentKind.values);
+}
+
+class InstalledEquipmentItem extends DataClass
+    implements Insertable<InstalledEquipmentItem> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto al que pertenece.
+  final String projectId;
+
+  /// Tipo de equipo.
+  final EquipmentKind kind;
+
+  /// Marca.
+  final String brand;
+
+  /// Modelo.
+  final String? model;
+
+  /// Número de serie.
+  final String? serialNumber;
+
+  /// Fecha de instalación (UTC, día calendario).
+  final DateTime? installedAt;
+
+  /// Fin de la garantía (UTC, día calendario).
+  final DateTime? warrantyUntil;
+
+  /// Notas.
+  final String? notes;
+  const InstalledEquipmentItem({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.kind,
+    required this.brand,
+    this.model,
+    this.serialNumber,
+    this.installedAt,
+    this.warrantyUntil,
+    this.notes,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    {
+      map['kind'] = Variable<String>(
+        $InstalledEquipmentTable.$converterkind.toSql(kind),
+      );
+    }
+    map['brand'] = Variable<String>(brand);
+    if (!nullToAbsent || model != null) {
+      map['model'] = Variable<String>(model);
+    }
+    if (!nullToAbsent || serialNumber != null) {
+      map['serial_number'] = Variable<String>(serialNumber);
+    }
+    if (!nullToAbsent || installedAt != null) {
+      map['installed_at'] = Variable<DateTime>(installedAt);
+    }
+    if (!nullToAbsent || warrantyUntil != null) {
+      map['warranty_until'] = Variable<DateTime>(warrantyUntil);
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    return map;
+  }
+
+  InstalledEquipmentCompanion toCompanion(bool nullToAbsent) {
+    return InstalledEquipmentCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      kind: Value(kind),
+      brand: Value(brand),
+      model: model == null && nullToAbsent
+          ? const Value.absent()
+          : Value(model),
+      serialNumber: serialNumber == null && nullToAbsent
+          ? const Value.absent()
+          : Value(serialNumber),
+      installedAt: installedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(installedAt),
+      warrantyUntil: warrantyUntil == null && nullToAbsent
+          ? const Value.absent()
+          : Value(warrantyUntil),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+    );
+  }
+
+  factory InstalledEquipmentItem.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return InstalledEquipmentItem(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      kind: $InstalledEquipmentTable.$converterkind.fromJson(
+        serializer.fromJson<String>(json['kind']),
+      ),
+      brand: serializer.fromJson<String>(json['brand']),
+      model: serializer.fromJson<String?>(json['model']),
+      serialNumber: serializer.fromJson<String?>(json['serialNumber']),
+      installedAt: serializer.fromJson<DateTime?>(json['installedAt']),
+      warrantyUntil: serializer.fromJson<DateTime?>(json['warrantyUntil']),
+      notes: serializer.fromJson<String?>(json['notes']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'kind': serializer.toJson<String>(
+        $InstalledEquipmentTable.$converterkind.toJson(kind),
+      ),
+      'brand': serializer.toJson<String>(brand),
+      'model': serializer.toJson<String?>(model),
+      'serialNumber': serializer.toJson<String?>(serialNumber),
+      'installedAt': serializer.toJson<DateTime?>(installedAt),
+      'warrantyUntil': serializer.toJson<DateTime?>(warrantyUntil),
+      'notes': serializer.toJson<String?>(notes),
+    };
+  }
+
+  InstalledEquipmentItem copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    EquipmentKind? kind,
+    String? brand,
+    Value<String?> model = const Value.absent(),
+    Value<String?> serialNumber = const Value.absent(),
+    Value<DateTime?> installedAt = const Value.absent(),
+    Value<DateTime?> warrantyUntil = const Value.absent(),
+    Value<String?> notes = const Value.absent(),
+  }) => InstalledEquipmentItem(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    kind: kind ?? this.kind,
+    brand: brand ?? this.brand,
+    model: model.present ? model.value : this.model,
+    serialNumber: serialNumber.present ? serialNumber.value : this.serialNumber,
+    installedAt: installedAt.present ? installedAt.value : this.installedAt,
+    warrantyUntil: warrantyUntil.present
+        ? warrantyUntil.value
+        : this.warrantyUntil,
+    notes: notes.present ? notes.value : this.notes,
+  );
+  InstalledEquipmentItem copyWithCompanion(InstalledEquipmentCompanion data) {
+    return InstalledEquipmentItem(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      brand: data.brand.present ? data.brand.value : this.brand,
+      model: data.model.present ? data.model.value : this.model,
+      serialNumber: data.serialNumber.present
+          ? data.serialNumber.value
+          : this.serialNumber,
+      installedAt: data.installedAt.present
+          ? data.installedAt.value
+          : this.installedAt,
+      warrantyUntil: data.warrantyUntil.present
+          ? data.warrantyUntil.value
+          : this.warrantyUntil,
+      notes: data.notes.present ? data.notes.value : this.notes,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('InstalledEquipmentItem(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('kind: $kind, ')
+          ..write('brand: $brand, ')
+          ..write('model: $model, ')
+          ..write('serialNumber: $serialNumber, ')
+          ..write('installedAt: $installedAt, ')
+          ..write('warrantyUntil: $warrantyUntil, ')
+          ..write('notes: $notes')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    kind,
+    brand,
+    model,
+    serialNumber,
+    installedAt,
+    warrantyUntil,
+    notes,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is InstalledEquipmentItem &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.kind == this.kind &&
+          other.brand == this.brand &&
+          other.model == this.model &&
+          other.serialNumber == this.serialNumber &&
+          other.installedAt == this.installedAt &&
+          other.warrantyUntil == this.warrantyUntil &&
+          other.notes == this.notes);
+}
+
+class InstalledEquipmentCompanion
+    extends UpdateCompanion<InstalledEquipmentItem> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<EquipmentKind> kind;
+  final Value<String> brand;
+  final Value<String?> model;
+  final Value<String?> serialNumber;
+  final Value<DateTime?> installedAt;
+  final Value<DateTime?> warrantyUntil;
+  final Value<String?> notes;
+  final Value<int> rowid;
+  const InstalledEquipmentCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.brand = const Value.absent(),
+    this.model = const Value.absent(),
+    this.serialNumber = const Value.absent(),
+    this.installedAt = const Value.absent(),
+    this.warrantyUntil = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  InstalledEquipmentCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required EquipmentKind kind,
+    required String brand,
+    this.model = const Value.absent(),
+    this.serialNumber = const Value.absent(),
+    this.installedAt = const Value.absent(),
+    this.warrantyUntil = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       kind = Value(kind),
+       brand = Value(brand);
+  static Insertable<InstalledEquipmentItem> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<String>? kind,
+    Expression<String>? brand,
+    Expression<String>? model,
+    Expression<String>? serialNumber,
+    Expression<DateTime>? installedAt,
+    Expression<DateTime>? warrantyUntil,
+    Expression<String>? notes,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (kind != null) 'kind': kind,
+      if (brand != null) 'brand': brand,
+      if (model != null) 'model': model,
+      if (serialNumber != null) 'serial_number': serialNumber,
+      if (installedAt != null) 'installed_at': installedAt,
+      if (warrantyUntil != null) 'warranty_until': warrantyUntil,
+      if (notes != null) 'notes': notes,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  InstalledEquipmentCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<EquipmentKind>? kind,
+    Value<String>? brand,
+    Value<String?>? model,
+    Value<String?>? serialNumber,
+    Value<DateTime?>? installedAt,
+    Value<DateTime?>? warrantyUntil,
+    Value<String?>? notes,
+    Value<int>? rowid,
+  }) {
+    return InstalledEquipmentCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      kind: kind ?? this.kind,
+      brand: brand ?? this.brand,
+      model: model ?? this.model,
+      serialNumber: serialNumber ?? this.serialNumber,
+      installedAt: installedAt ?? this.installedAt,
+      warrantyUntil: warrantyUntil ?? this.warrantyUntil,
+      notes: notes ?? this.notes,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(
+        $InstalledEquipmentTable.$converterkind.toSql(kind.value),
+      );
+    }
+    if (brand.present) {
+      map['brand'] = Variable<String>(brand.value);
+    }
+    if (model.present) {
+      map['model'] = Variable<String>(model.value);
+    }
+    if (serialNumber.present) {
+      map['serial_number'] = Variable<String>(serialNumber.value);
+    }
+    if (installedAt.present) {
+      map['installed_at'] = Variable<DateTime>(installedAt.value);
+    }
+    if (warrantyUntil.present) {
+      map['warranty_until'] = Variable<DateTime>(warrantyUntil.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('InstalledEquipmentCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('kind: $kind, ')
+          ..write('brand: $brand, ')
+          ..write('model: $model, ')
+          ..write('serialNumber: $serialNumber, ')
+          ..write('installedAt: $installedAt, ')
+          ..write('warrantyUntil: $warrantyUntil, ')
+          ..write('notes: $notes, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $CommissioningRecordsTable extends CommissioningRecords
+    with TableInfo<$CommissioningRecordsTable, CommissioningRecord> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CommissioningRecordsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'UNIQUE REFERENCES projects (id)',
+    ),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<CommissioningStatus, String>
+  status =
+      GeneratedColumn<String>(
+        'status',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<CommissioningStatus>(
+        $CommissioningRecordsTable.$converterstatus,
+      );
+  static const VerificationMeta _testedAtMeta = const VerificationMeta(
+    'testedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> testedAt = GeneratedColumn<DateTime>(
+    'tested_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _technicianMeta = const VerificationMeta(
+    'technician',
+  );
+  @override
+  late final GeneratedColumn<String> technician = GeneratedColumn<String>(
+    'technician',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _polarityOkMeta = const VerificationMeta(
+    'polarityOk',
+  );
+  @override
+  late final GeneratedColumn<bool> polarityOk = GeneratedColumn<bool>(
+    'polarity_ok',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("polarity_ok" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _insulationMohmMeta = const VerificationMeta(
+    'insulationMohm',
+  );
+  @override
+  late final GeneratedColumn<double> insulationMohm = GeneratedColumn<double>(
+    'insulation_mohm',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _insulationTestVoltageVMeta =
+      const VerificationMeta('insulationTestVoltageV');
+  @override
+  late final GeneratedColumn<double> insulationTestVoltageV =
+      GeneratedColumn<double>(
+        'insulation_test_voltage_v',
+        aliasedName,
+        true,
+        type: DriftSqlType.double,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _groundingOkMeta = const VerificationMeta(
+    'groundingOk',
+  );
+  @override
+  late final GeneratedColumn<bool> groundingOk = GeneratedColumn<bool>(
+    'grounding_ok',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("grounding_ok" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _groundingOhmMeta = const VerificationMeta(
+    'groundingOhm',
+  );
+  @override
+  late final GeneratedColumn<double> groundingOhm = GeneratedColumn<double>(
+    'grounding_ohm',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _labelingOkMeta = const VerificationMeta(
+    'labelingOk',
+  );
+  @override
+  late final GeneratedColumn<bool> labelingOk = GeneratedColumn<bool>(
+    'labeling_ok',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("labeling_ok" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    status,
+    testedAt,
+    technician,
+    polarityOk,
+    insulationMohm,
+    insulationTestVoltageV,
+    groundingOk,
+    groundingOhm,
+    labelingOk,
+    notes,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'commissioning_records';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<CommissioningRecord> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('tested_at')) {
+      context.handle(
+        _testedAtMeta,
+        testedAt.isAcceptableOrUnknown(data['tested_at']!, _testedAtMeta),
+      );
+    }
+    if (data.containsKey('technician')) {
+      context.handle(
+        _technicianMeta,
+        technician.isAcceptableOrUnknown(data['technician']!, _technicianMeta),
+      );
+    }
+    if (data.containsKey('polarity_ok')) {
+      context.handle(
+        _polarityOkMeta,
+        polarityOk.isAcceptableOrUnknown(data['polarity_ok']!, _polarityOkMeta),
+      );
+    }
+    if (data.containsKey('insulation_mohm')) {
+      context.handle(
+        _insulationMohmMeta,
+        insulationMohm.isAcceptableOrUnknown(
+          data['insulation_mohm']!,
+          _insulationMohmMeta,
+        ),
+      );
+    }
+    if (data.containsKey('insulation_test_voltage_v')) {
+      context.handle(
+        _insulationTestVoltageVMeta,
+        insulationTestVoltageV.isAcceptableOrUnknown(
+          data['insulation_test_voltage_v']!,
+          _insulationTestVoltageVMeta,
+        ),
+      );
+    }
+    if (data.containsKey('grounding_ok')) {
+      context.handle(
+        _groundingOkMeta,
+        groundingOk.isAcceptableOrUnknown(
+          data['grounding_ok']!,
+          _groundingOkMeta,
+        ),
+      );
+    }
+    if (data.containsKey('grounding_ohm')) {
+      context.handle(
+        _groundingOhmMeta,
+        groundingOhm.isAcceptableOrUnknown(
+          data['grounding_ohm']!,
+          _groundingOhmMeta,
+        ),
+      );
+    }
+    if (data.containsKey('labeling_ok')) {
+      context.handle(
+        _labelingOkMeta,
+        labelingOk.isAcceptableOrUnknown(data['labeling_ok']!, _labelingOkMeta),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  CommissioningRecord map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CommissioningRecord(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      status: $CommissioningRecordsTable.$converterstatus.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}status'],
+        )!,
+      ),
+      testedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}tested_at'],
+      ),
+      technician: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}technician'],
+      ),
+      polarityOk: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}polarity_ok'],
+      ),
+      insulationMohm: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}insulation_mohm'],
+      ),
+      insulationTestVoltageV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}insulation_test_voltage_v'],
+      ),
+      groundingOk: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}grounding_ok'],
+      ),
+      groundingOhm: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}grounding_ohm'],
+      ),
+      labelingOk: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}labeling_ok'],
+      ),
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+    );
+  }
+
+  @override
+  $CommissioningRecordsTable createAlias(String alias) {
+    return $CommissioningRecordsTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<CommissioningStatus, String, String>
+  $converterstatus = const EnumNameConverter<CommissioningStatus>(
+    CommissioningStatus.values,
+  );
+}
+
+class CommissioningRecord extends DataClass
+    implements Insertable<CommissioningRecord> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto (único).
+  final String projectId;
+
+  /// Pendiente, aprobado u observaciones.
+  final CommissioningStatus status;
+
+  /// Fecha de la prueba.
+  final DateTime? testedAt;
+
+  /// Quién hizo la prueba.
+  final String? technician;
+
+  /// Polaridad de todos los strings correcta.
+  final bool? polarityOk;
+
+  /// Resistencia de aislamiento medida (MΩ).
+  final double? insulationMohm;
+
+  /// Tensión de prueba del megóhmetro (V).
+  final double? insulationTestVoltageV;
+
+  /// Continuidad de la puesta a tierra correcta.
+  final bool? groundingOk;
+
+  /// Resistencia de puesta a tierra medida (Ω), si se midió.
+  final double? groundingOhm;
+
+  /// Etiquetado y señalización completos.
+  final bool? labelingOk;
+
+  /// Observaciones.
+  final String? notes;
+  const CommissioningRecord({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.status,
+    this.testedAt,
+    this.technician,
+    this.polarityOk,
+    this.insulationMohm,
+    this.insulationTestVoltageV,
+    this.groundingOk,
+    this.groundingOhm,
+    this.labelingOk,
+    this.notes,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    {
+      map['status'] = Variable<String>(
+        $CommissioningRecordsTable.$converterstatus.toSql(status),
+      );
+    }
+    if (!nullToAbsent || testedAt != null) {
+      map['tested_at'] = Variable<DateTime>(testedAt);
+    }
+    if (!nullToAbsent || technician != null) {
+      map['technician'] = Variable<String>(technician);
+    }
+    if (!nullToAbsent || polarityOk != null) {
+      map['polarity_ok'] = Variable<bool>(polarityOk);
+    }
+    if (!nullToAbsent || insulationMohm != null) {
+      map['insulation_mohm'] = Variable<double>(insulationMohm);
+    }
+    if (!nullToAbsent || insulationTestVoltageV != null) {
+      map['insulation_test_voltage_v'] = Variable<double>(
+        insulationTestVoltageV,
+      );
+    }
+    if (!nullToAbsent || groundingOk != null) {
+      map['grounding_ok'] = Variable<bool>(groundingOk);
+    }
+    if (!nullToAbsent || groundingOhm != null) {
+      map['grounding_ohm'] = Variable<double>(groundingOhm);
+    }
+    if (!nullToAbsent || labelingOk != null) {
+      map['labeling_ok'] = Variable<bool>(labelingOk);
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    return map;
+  }
+
+  CommissioningRecordsCompanion toCompanion(bool nullToAbsent) {
+    return CommissioningRecordsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      status: Value(status),
+      testedAt: testedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(testedAt),
+      technician: technician == null && nullToAbsent
+          ? const Value.absent()
+          : Value(technician),
+      polarityOk: polarityOk == null && nullToAbsent
+          ? const Value.absent()
+          : Value(polarityOk),
+      insulationMohm: insulationMohm == null && nullToAbsent
+          ? const Value.absent()
+          : Value(insulationMohm),
+      insulationTestVoltageV: insulationTestVoltageV == null && nullToAbsent
+          ? const Value.absent()
+          : Value(insulationTestVoltageV),
+      groundingOk: groundingOk == null && nullToAbsent
+          ? const Value.absent()
+          : Value(groundingOk),
+      groundingOhm: groundingOhm == null && nullToAbsent
+          ? const Value.absent()
+          : Value(groundingOhm),
+      labelingOk: labelingOk == null && nullToAbsent
+          ? const Value.absent()
+          : Value(labelingOk),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+    );
+  }
+
+  factory CommissioningRecord.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return CommissioningRecord(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      status: $CommissioningRecordsTable.$converterstatus.fromJson(
+        serializer.fromJson<String>(json['status']),
+      ),
+      testedAt: serializer.fromJson<DateTime?>(json['testedAt']),
+      technician: serializer.fromJson<String?>(json['technician']),
+      polarityOk: serializer.fromJson<bool?>(json['polarityOk']),
+      insulationMohm: serializer.fromJson<double?>(json['insulationMohm']),
+      insulationTestVoltageV: serializer.fromJson<double?>(
+        json['insulationTestVoltageV'],
+      ),
+      groundingOk: serializer.fromJson<bool?>(json['groundingOk']),
+      groundingOhm: serializer.fromJson<double?>(json['groundingOhm']),
+      labelingOk: serializer.fromJson<bool?>(json['labelingOk']),
+      notes: serializer.fromJson<String?>(json['notes']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'status': serializer.toJson<String>(
+        $CommissioningRecordsTable.$converterstatus.toJson(status),
+      ),
+      'testedAt': serializer.toJson<DateTime?>(testedAt),
+      'technician': serializer.toJson<String?>(technician),
+      'polarityOk': serializer.toJson<bool?>(polarityOk),
+      'insulationMohm': serializer.toJson<double?>(insulationMohm),
+      'insulationTestVoltageV': serializer.toJson<double?>(
+        insulationTestVoltageV,
+      ),
+      'groundingOk': serializer.toJson<bool?>(groundingOk),
+      'groundingOhm': serializer.toJson<double?>(groundingOhm),
+      'labelingOk': serializer.toJson<bool?>(labelingOk),
+      'notes': serializer.toJson<String?>(notes),
+    };
+  }
+
+  CommissioningRecord copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    CommissioningStatus? status,
+    Value<DateTime?> testedAt = const Value.absent(),
+    Value<String?> technician = const Value.absent(),
+    Value<bool?> polarityOk = const Value.absent(),
+    Value<double?> insulationMohm = const Value.absent(),
+    Value<double?> insulationTestVoltageV = const Value.absent(),
+    Value<bool?> groundingOk = const Value.absent(),
+    Value<double?> groundingOhm = const Value.absent(),
+    Value<bool?> labelingOk = const Value.absent(),
+    Value<String?> notes = const Value.absent(),
+  }) => CommissioningRecord(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    status: status ?? this.status,
+    testedAt: testedAt.present ? testedAt.value : this.testedAt,
+    technician: technician.present ? technician.value : this.technician,
+    polarityOk: polarityOk.present ? polarityOk.value : this.polarityOk,
+    insulationMohm: insulationMohm.present
+        ? insulationMohm.value
+        : this.insulationMohm,
+    insulationTestVoltageV: insulationTestVoltageV.present
+        ? insulationTestVoltageV.value
+        : this.insulationTestVoltageV,
+    groundingOk: groundingOk.present ? groundingOk.value : this.groundingOk,
+    groundingOhm: groundingOhm.present ? groundingOhm.value : this.groundingOhm,
+    labelingOk: labelingOk.present ? labelingOk.value : this.labelingOk,
+    notes: notes.present ? notes.value : this.notes,
+  );
+  CommissioningRecord copyWithCompanion(CommissioningRecordsCompanion data) {
+    return CommissioningRecord(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      status: data.status.present ? data.status.value : this.status,
+      testedAt: data.testedAt.present ? data.testedAt.value : this.testedAt,
+      technician: data.technician.present
+          ? data.technician.value
+          : this.technician,
+      polarityOk: data.polarityOk.present
+          ? data.polarityOk.value
+          : this.polarityOk,
+      insulationMohm: data.insulationMohm.present
+          ? data.insulationMohm.value
+          : this.insulationMohm,
+      insulationTestVoltageV: data.insulationTestVoltageV.present
+          ? data.insulationTestVoltageV.value
+          : this.insulationTestVoltageV,
+      groundingOk: data.groundingOk.present
+          ? data.groundingOk.value
+          : this.groundingOk,
+      groundingOhm: data.groundingOhm.present
+          ? data.groundingOhm.value
+          : this.groundingOhm,
+      labelingOk: data.labelingOk.present
+          ? data.labelingOk.value
+          : this.labelingOk,
+      notes: data.notes.present ? data.notes.value : this.notes,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CommissioningRecord(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('status: $status, ')
+          ..write('testedAt: $testedAt, ')
+          ..write('technician: $technician, ')
+          ..write('polarityOk: $polarityOk, ')
+          ..write('insulationMohm: $insulationMohm, ')
+          ..write('insulationTestVoltageV: $insulationTestVoltageV, ')
+          ..write('groundingOk: $groundingOk, ')
+          ..write('groundingOhm: $groundingOhm, ')
+          ..write('labelingOk: $labelingOk, ')
+          ..write('notes: $notes')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    status,
+    testedAt,
+    technician,
+    polarityOk,
+    insulationMohm,
+    insulationTestVoltageV,
+    groundingOk,
+    groundingOhm,
+    labelingOk,
+    notes,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CommissioningRecord &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.status == this.status &&
+          other.testedAt == this.testedAt &&
+          other.technician == this.technician &&
+          other.polarityOk == this.polarityOk &&
+          other.insulationMohm == this.insulationMohm &&
+          other.insulationTestVoltageV == this.insulationTestVoltageV &&
+          other.groundingOk == this.groundingOk &&
+          other.groundingOhm == this.groundingOhm &&
+          other.labelingOk == this.labelingOk &&
+          other.notes == this.notes);
+}
+
+class CommissioningRecordsCompanion
+    extends UpdateCompanion<CommissioningRecord> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<CommissioningStatus> status;
+  final Value<DateTime?> testedAt;
+  final Value<String?> technician;
+  final Value<bool?> polarityOk;
+  final Value<double?> insulationMohm;
+  final Value<double?> insulationTestVoltageV;
+  final Value<bool?> groundingOk;
+  final Value<double?> groundingOhm;
+  final Value<bool?> labelingOk;
+  final Value<String?> notes;
+  final Value<int> rowid;
+  const CommissioningRecordsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.status = const Value.absent(),
+    this.testedAt = const Value.absent(),
+    this.technician = const Value.absent(),
+    this.polarityOk = const Value.absent(),
+    this.insulationMohm = const Value.absent(),
+    this.insulationTestVoltageV = const Value.absent(),
+    this.groundingOk = const Value.absent(),
+    this.groundingOhm = const Value.absent(),
+    this.labelingOk = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  CommissioningRecordsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required CommissioningStatus status,
+    this.testedAt = const Value.absent(),
+    this.technician = const Value.absent(),
+    this.polarityOk = const Value.absent(),
+    this.insulationMohm = const Value.absent(),
+    this.insulationTestVoltageV = const Value.absent(),
+    this.groundingOk = const Value.absent(),
+    this.groundingOhm = const Value.absent(),
+    this.labelingOk = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       status = Value(status);
+  static Insertable<CommissioningRecord> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<String>? status,
+    Expression<DateTime>? testedAt,
+    Expression<String>? technician,
+    Expression<bool>? polarityOk,
+    Expression<double>? insulationMohm,
+    Expression<double>? insulationTestVoltageV,
+    Expression<bool>? groundingOk,
+    Expression<double>? groundingOhm,
+    Expression<bool>? labelingOk,
+    Expression<String>? notes,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (status != null) 'status': status,
+      if (testedAt != null) 'tested_at': testedAt,
+      if (technician != null) 'technician': technician,
+      if (polarityOk != null) 'polarity_ok': polarityOk,
+      if (insulationMohm != null) 'insulation_mohm': insulationMohm,
+      if (insulationTestVoltageV != null)
+        'insulation_test_voltage_v': insulationTestVoltageV,
+      if (groundingOk != null) 'grounding_ok': groundingOk,
+      if (groundingOhm != null) 'grounding_ohm': groundingOhm,
+      if (labelingOk != null) 'labeling_ok': labelingOk,
+      if (notes != null) 'notes': notes,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  CommissioningRecordsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<CommissioningStatus>? status,
+    Value<DateTime?>? testedAt,
+    Value<String?>? technician,
+    Value<bool?>? polarityOk,
+    Value<double?>? insulationMohm,
+    Value<double?>? insulationTestVoltageV,
+    Value<bool?>? groundingOk,
+    Value<double?>? groundingOhm,
+    Value<bool?>? labelingOk,
+    Value<String?>? notes,
+    Value<int>? rowid,
+  }) {
+    return CommissioningRecordsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      status: status ?? this.status,
+      testedAt: testedAt ?? this.testedAt,
+      technician: technician ?? this.technician,
+      polarityOk: polarityOk ?? this.polarityOk,
+      insulationMohm: insulationMohm ?? this.insulationMohm,
+      insulationTestVoltageV:
+          insulationTestVoltageV ?? this.insulationTestVoltageV,
+      groundingOk: groundingOk ?? this.groundingOk,
+      groundingOhm: groundingOhm ?? this.groundingOhm,
+      labelingOk: labelingOk ?? this.labelingOk,
+      notes: notes ?? this.notes,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(
+        $CommissioningRecordsTable.$converterstatus.toSql(status.value),
+      );
+    }
+    if (testedAt.present) {
+      map['tested_at'] = Variable<DateTime>(testedAt.value);
+    }
+    if (technician.present) {
+      map['technician'] = Variable<String>(technician.value);
+    }
+    if (polarityOk.present) {
+      map['polarity_ok'] = Variable<bool>(polarityOk.value);
+    }
+    if (insulationMohm.present) {
+      map['insulation_mohm'] = Variable<double>(insulationMohm.value);
+    }
+    if (insulationTestVoltageV.present) {
+      map['insulation_test_voltage_v'] = Variable<double>(
+        insulationTestVoltageV.value,
+      );
+    }
+    if (groundingOk.present) {
+      map['grounding_ok'] = Variable<bool>(groundingOk.value);
+    }
+    if (groundingOhm.present) {
+      map['grounding_ohm'] = Variable<double>(groundingOhm.value);
+    }
+    if (labelingOk.present) {
+      map['labeling_ok'] = Variable<bool>(labelingOk.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CommissioningRecordsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('status: $status, ')
+          ..write('testedAt: $testedAt, ')
+          ..write('technician: $technician, ')
+          ..write('polarityOk: $polarityOk, ')
+          ..write('insulationMohm: $insulationMohm, ')
+          ..write('insulationTestVoltageV: $insulationTestVoltageV, ')
+          ..write('groundingOk: $groundingOk, ')
+          ..write('groundingOhm: $groundingOhm, ')
+          ..write('labelingOk: $labelingOk, ')
+          ..write('notes: $notes, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $StringTestsTable extends StringTests
+    with TableInfo<$StringTestsTable, StringTest> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $StringTestsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  static const VerificationMeta _labelMeta = const VerificationMeta('label');
+  @override
+  late final GeneratedColumn<String> label = GeneratedColumn<String>(
+    'label',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 40,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _expectedVocVMeta = const VerificationMeta(
+    'expectedVocV',
+  );
+  @override
+  late final GeneratedColumn<double> expectedVocV = GeneratedColumn<double>(
+    'expected_voc_v',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _measuredVocVMeta = const VerificationMeta(
+    'measuredVocV',
+  );
+  @override
+  late final GeneratedColumn<double> measuredVocV = GeneratedColumn<double>(
+    'measured_voc_v',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _expectedIscAMeta = const VerificationMeta(
+    'expectedIscA',
+  );
+  @override
+  late final GeneratedColumn<double> expectedIscA = GeneratedColumn<double>(
+    'expected_isc_a',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _measuredIscAMeta = const VerificationMeta(
+    'measuredIscA',
+  );
+  @override
+  late final GeneratedColumn<double> measuredIscA = GeneratedColumn<double>(
+    'measured_isc_a',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _polarityOkMeta = const VerificationMeta(
+    'polarityOk',
+  );
+  @override
+  late final GeneratedColumn<bool> polarityOk = GeneratedColumn<bool>(
+    'polarity_ok',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("polarity_ok" IN (0, 1))',
+    ),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    label,
+    sortOrder,
+    expectedVocV,
+    measuredVocV,
+    expectedIscA,
+    measuredIscA,
+    polarityOk,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'string_tests';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<StringTest> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('label')) {
+      context.handle(
+        _labelMeta,
+        label.isAcceptableOrUnknown(data['label']!, _labelMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_labelMeta);
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    }
+    if (data.containsKey('expected_voc_v')) {
+      context.handle(
+        _expectedVocVMeta,
+        expectedVocV.isAcceptableOrUnknown(
+          data['expected_voc_v']!,
+          _expectedVocVMeta,
+        ),
+      );
+    }
+    if (data.containsKey('measured_voc_v')) {
+      context.handle(
+        _measuredVocVMeta,
+        measuredVocV.isAcceptableOrUnknown(
+          data['measured_voc_v']!,
+          _measuredVocVMeta,
+        ),
+      );
+    }
+    if (data.containsKey('expected_isc_a')) {
+      context.handle(
+        _expectedIscAMeta,
+        expectedIscA.isAcceptableOrUnknown(
+          data['expected_isc_a']!,
+          _expectedIscAMeta,
+        ),
+      );
+    }
+    if (data.containsKey('measured_isc_a')) {
+      context.handle(
+        _measuredIscAMeta,
+        measuredIscA.isAcceptableOrUnknown(
+          data['measured_isc_a']!,
+          _measuredIscAMeta,
+        ),
+      );
+    }
+    if (data.containsKey('polarity_ok')) {
+      context.handle(
+        _polarityOkMeta,
+        polarityOk.isAcceptableOrUnknown(data['polarity_ok']!, _polarityOkMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  StringTest map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return StringTest(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      label: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}label'],
+      )!,
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sort_order'],
+      )!,
+      expectedVocV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}expected_voc_v'],
+      ),
+      measuredVocV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}measured_voc_v'],
+      ),
+      expectedIscA: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}expected_isc_a'],
+      ),
+      measuredIscA: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}measured_isc_a'],
+      ),
+      polarityOk: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}polarity_ok'],
+      ),
+    );
+  }
+
+  @override
+  $StringTestsTable createAlias(String alias) {
+    return $StringTestsTable(attachedDatabase, alias);
+  }
+}
+
+class StringTest extends DataClass implements Insertable<StringTest> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto al que pertenece.
+  final String projectId;
+
+  /// Nombre del string (p. ej. "S1").
+  final String label;
+
+  /// Orden en la lista.
+  final int sortOrder;
+
+  /// Voc esperado (V).
+  final double? expectedVocV;
+
+  /// Voc medido (V).
+  final double? measuredVocV;
+
+  /// Isc esperado (A).
+  final double? expectedIscA;
+
+  /// Isc medido (A).
+  final double? measuredIscA;
+
+  /// Polaridad correcta (`null` = sin revisar).
+  final bool? polarityOk;
+  const StringTest({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.label,
+    required this.sortOrder,
+    this.expectedVocV,
+    this.measuredVocV,
+    this.expectedIscA,
+    this.measuredIscA,
+    this.polarityOk,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    map['label'] = Variable<String>(label);
+    map['sort_order'] = Variable<int>(sortOrder);
+    if (!nullToAbsent || expectedVocV != null) {
+      map['expected_voc_v'] = Variable<double>(expectedVocV);
+    }
+    if (!nullToAbsent || measuredVocV != null) {
+      map['measured_voc_v'] = Variable<double>(measuredVocV);
+    }
+    if (!nullToAbsent || expectedIscA != null) {
+      map['expected_isc_a'] = Variable<double>(expectedIscA);
+    }
+    if (!nullToAbsent || measuredIscA != null) {
+      map['measured_isc_a'] = Variable<double>(measuredIscA);
+    }
+    if (!nullToAbsent || polarityOk != null) {
+      map['polarity_ok'] = Variable<bool>(polarityOk);
+    }
+    return map;
+  }
+
+  StringTestsCompanion toCompanion(bool nullToAbsent) {
+    return StringTestsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      label: Value(label),
+      sortOrder: Value(sortOrder),
+      expectedVocV: expectedVocV == null && nullToAbsent
+          ? const Value.absent()
+          : Value(expectedVocV),
+      measuredVocV: measuredVocV == null && nullToAbsent
+          ? const Value.absent()
+          : Value(measuredVocV),
+      expectedIscA: expectedIscA == null && nullToAbsent
+          ? const Value.absent()
+          : Value(expectedIscA),
+      measuredIscA: measuredIscA == null && nullToAbsent
+          ? const Value.absent()
+          : Value(measuredIscA),
+      polarityOk: polarityOk == null && nullToAbsent
+          ? const Value.absent()
+          : Value(polarityOk),
+    );
+  }
+
+  factory StringTest.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return StringTest(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      label: serializer.fromJson<String>(json['label']),
+      sortOrder: serializer.fromJson<int>(json['sortOrder']),
+      expectedVocV: serializer.fromJson<double?>(json['expectedVocV']),
+      measuredVocV: serializer.fromJson<double?>(json['measuredVocV']),
+      expectedIscA: serializer.fromJson<double?>(json['expectedIscA']),
+      measuredIscA: serializer.fromJson<double?>(json['measuredIscA']),
+      polarityOk: serializer.fromJson<bool?>(json['polarityOk']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'label': serializer.toJson<String>(label),
+      'sortOrder': serializer.toJson<int>(sortOrder),
+      'expectedVocV': serializer.toJson<double?>(expectedVocV),
+      'measuredVocV': serializer.toJson<double?>(measuredVocV),
+      'expectedIscA': serializer.toJson<double?>(expectedIscA),
+      'measuredIscA': serializer.toJson<double?>(measuredIscA),
+      'polarityOk': serializer.toJson<bool?>(polarityOk),
+    };
+  }
+
+  StringTest copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    String? label,
+    int? sortOrder,
+    Value<double?> expectedVocV = const Value.absent(),
+    Value<double?> measuredVocV = const Value.absent(),
+    Value<double?> expectedIscA = const Value.absent(),
+    Value<double?> measuredIscA = const Value.absent(),
+    Value<bool?> polarityOk = const Value.absent(),
+  }) => StringTest(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    label: label ?? this.label,
+    sortOrder: sortOrder ?? this.sortOrder,
+    expectedVocV: expectedVocV.present ? expectedVocV.value : this.expectedVocV,
+    measuredVocV: measuredVocV.present ? measuredVocV.value : this.measuredVocV,
+    expectedIscA: expectedIscA.present ? expectedIscA.value : this.expectedIscA,
+    measuredIscA: measuredIscA.present ? measuredIscA.value : this.measuredIscA,
+    polarityOk: polarityOk.present ? polarityOk.value : this.polarityOk,
+  );
+  StringTest copyWithCompanion(StringTestsCompanion data) {
+    return StringTest(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      label: data.label.present ? data.label.value : this.label,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+      expectedVocV: data.expectedVocV.present
+          ? data.expectedVocV.value
+          : this.expectedVocV,
+      measuredVocV: data.measuredVocV.present
+          ? data.measuredVocV.value
+          : this.measuredVocV,
+      expectedIscA: data.expectedIscA.present
+          ? data.expectedIscA.value
+          : this.expectedIscA,
+      measuredIscA: data.measuredIscA.present
+          ? data.measuredIscA.value
+          : this.measuredIscA,
+      polarityOk: data.polarityOk.present
+          ? data.polarityOk.value
+          : this.polarityOk,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('StringTest(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('label: $label, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('expectedVocV: $expectedVocV, ')
+          ..write('measuredVocV: $measuredVocV, ')
+          ..write('expectedIscA: $expectedIscA, ')
+          ..write('measuredIscA: $measuredIscA, ')
+          ..write('polarityOk: $polarityOk')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    label,
+    sortOrder,
+    expectedVocV,
+    measuredVocV,
+    expectedIscA,
+    measuredIscA,
+    polarityOk,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is StringTest &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.label == this.label &&
+          other.sortOrder == this.sortOrder &&
+          other.expectedVocV == this.expectedVocV &&
+          other.measuredVocV == this.measuredVocV &&
+          other.expectedIscA == this.expectedIscA &&
+          other.measuredIscA == this.measuredIscA &&
+          other.polarityOk == this.polarityOk);
+}
+
+class StringTestsCompanion extends UpdateCompanion<StringTest> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<String> label;
+  final Value<int> sortOrder;
+  final Value<double?> expectedVocV;
+  final Value<double?> measuredVocV;
+  final Value<double?> expectedIscA;
+  final Value<double?> measuredIscA;
+  final Value<bool?> polarityOk;
+  final Value<int> rowid;
+  const StringTestsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.label = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.expectedVocV = const Value.absent(),
+    this.measuredVocV = const Value.absent(),
+    this.expectedIscA = const Value.absent(),
+    this.measuredIscA = const Value.absent(),
+    this.polarityOk = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  StringTestsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required String label,
+    this.sortOrder = const Value.absent(),
+    this.expectedVocV = const Value.absent(),
+    this.measuredVocV = const Value.absent(),
+    this.expectedIscA = const Value.absent(),
+    this.measuredIscA = const Value.absent(),
+    this.polarityOk = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       label = Value(label);
+  static Insertable<StringTest> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<String>? label,
+    Expression<int>? sortOrder,
+    Expression<double>? expectedVocV,
+    Expression<double>? measuredVocV,
+    Expression<double>? expectedIscA,
+    Expression<double>? measuredIscA,
+    Expression<bool>? polarityOk,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (label != null) 'label': label,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (expectedVocV != null) 'expected_voc_v': expectedVocV,
+      if (measuredVocV != null) 'measured_voc_v': measuredVocV,
+      if (expectedIscA != null) 'expected_isc_a': expectedIscA,
+      if (measuredIscA != null) 'measured_isc_a': measuredIscA,
+      if (polarityOk != null) 'polarity_ok': polarityOk,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  StringTestsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<String>? label,
+    Value<int>? sortOrder,
+    Value<double?>? expectedVocV,
+    Value<double?>? measuredVocV,
+    Value<double?>? expectedIscA,
+    Value<double?>? measuredIscA,
+    Value<bool?>? polarityOk,
+    Value<int>? rowid,
+  }) {
+    return StringTestsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      label: label ?? this.label,
+      sortOrder: sortOrder ?? this.sortOrder,
+      expectedVocV: expectedVocV ?? this.expectedVocV,
+      measuredVocV: measuredVocV ?? this.measuredVocV,
+      expectedIscA: expectedIscA ?? this.expectedIscA,
+      measuredIscA: measuredIscA ?? this.measuredIscA,
+      polarityOk: polarityOk ?? this.polarityOk,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (label.present) {
+      map['label'] = Variable<String>(label.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<int>(sortOrder.value);
+    }
+    if (expectedVocV.present) {
+      map['expected_voc_v'] = Variable<double>(expectedVocV.value);
+    }
+    if (measuredVocV.present) {
+      map['measured_voc_v'] = Variable<double>(measuredVocV.value);
+    }
+    if (expectedIscA.present) {
+      map['expected_isc_a'] = Variable<double>(expectedIscA.value);
+    }
+    if (measuredIscA.present) {
+      map['measured_isc_a'] = Variable<double>(measuredIscA.value);
+    }
+    if (polarityOk.present) {
+      map['polarity_ok'] = Variable<bool>(polarityOk.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('StringTestsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('label: $label, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('expectedVocV: $expectedVocV, ')
+          ..write('measuredVocV: $measuredVocV, ')
+          ..write('expectedIscA: $expectedIscA, ')
+          ..write('measuredIscA: $measuredIscA, ')
+          ..write('polarityOk: $polarityOk, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $MaintenanceTemplateItemsTable extends MaintenanceTemplateItems
+    with TableInfo<$MaintenanceTemplateItemsTable, MaintenanceTemplateItem> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $MaintenanceTemplateItemsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<MaintenanceServiceKind, String>
+  kind =
+      GeneratedColumn<String>(
+        'kind',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<MaintenanceServiceKind>(
+        $MaintenanceTemplateItemsTable.$converterkind,
+      );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _intervalMonthsMeta = const VerificationMeta(
+    'intervalMonths',
+  );
+  @override
+  late final GeneratedColumn<int> intervalMonths = GeneratedColumn<int>(
+    'interval_months',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _enabledMeta = const VerificationMeta(
+    'enabled',
+  );
+  @override
+  late final GeneratedColumn<bool> enabled = GeneratedColumn<bool>(
+    'enabled',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("enabled" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    kind,
+    title,
+    intervalMonths,
+    enabled,
+    sortOrder,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'maintenance_template_items';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<MaintenanceTemplateItem> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
+    }
+    if (data.containsKey('interval_months')) {
+      context.handle(
+        _intervalMonthsMeta,
+        intervalMonths.isAcceptableOrUnknown(
+          data['interval_months']!,
+          _intervalMonthsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_intervalMonthsMeta);
+    }
+    if (data.containsKey('enabled')) {
+      context.handle(
+        _enabledMeta,
+        enabled.isAcceptableOrUnknown(data['enabled']!, _enabledMeta),
+      );
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  MaintenanceTemplateItem map(
+    Map<String, dynamic> data, {
+    String? tablePrefix,
+  }) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return MaintenanceTemplateItem(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      kind: $MaintenanceTemplateItemsTable.$converterkind.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}kind'],
+        )!,
+      ),
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      ),
+      intervalMonths: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}interval_months'],
+      )!,
+      enabled: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}enabled'],
+      )!,
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sort_order'],
+      )!,
+    );
+  }
+
+  @override
+  $MaintenanceTemplateItemsTable createAlias(String alias) {
+    return $MaintenanceTemplateItemsTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<MaintenanceServiceKind, String, String>
+  $converterkind = const EnumNameConverter<MaintenanceServiceKind>(
+    MaintenanceServiceKind.values,
+  );
+}
+
+class MaintenanceTemplateItem extends DataClass
+    implements Insertable<MaintenanceTemplateItem> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Tipo de servicio.
+  final MaintenanceServiceKind kind;
+
+  /// Nombre personalizado (vacío = nombre del tipo).
+  final String? title;
+
+  /// Cada cuántos meses se hace.
+  final int intervalMonths;
+
+  /// Si se incluye al crear un plan.
+  final bool enabled;
+
+  /// Orden en la lista.
+  final int sortOrder;
+  const MaintenanceTemplateItem({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.kind,
+    this.title,
+    required this.intervalMonths,
+    required this.enabled,
+    required this.sortOrder,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    {
+      map['kind'] = Variable<String>(
+        $MaintenanceTemplateItemsTable.$converterkind.toSql(kind),
+      );
+    }
+    if (!nullToAbsent || title != null) {
+      map['title'] = Variable<String>(title);
+    }
+    map['interval_months'] = Variable<int>(intervalMonths);
+    map['enabled'] = Variable<bool>(enabled);
+    map['sort_order'] = Variable<int>(sortOrder);
+    return map;
+  }
+
+  MaintenanceTemplateItemsCompanion toCompanion(bool nullToAbsent) {
+    return MaintenanceTemplateItemsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      kind: Value(kind),
+      title: title == null && nullToAbsent
+          ? const Value.absent()
+          : Value(title),
+      intervalMonths: Value(intervalMonths),
+      enabled: Value(enabled),
+      sortOrder: Value(sortOrder),
+    );
+  }
+
+  factory MaintenanceTemplateItem.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return MaintenanceTemplateItem(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      kind: $MaintenanceTemplateItemsTable.$converterkind.fromJson(
+        serializer.fromJson<String>(json['kind']),
+      ),
+      title: serializer.fromJson<String?>(json['title']),
+      intervalMonths: serializer.fromJson<int>(json['intervalMonths']),
+      enabled: serializer.fromJson<bool>(json['enabled']),
+      sortOrder: serializer.fromJson<int>(json['sortOrder']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'kind': serializer.toJson<String>(
+        $MaintenanceTemplateItemsTable.$converterkind.toJson(kind),
+      ),
+      'title': serializer.toJson<String?>(title),
+      'intervalMonths': serializer.toJson<int>(intervalMonths),
+      'enabled': serializer.toJson<bool>(enabled),
+      'sortOrder': serializer.toJson<int>(sortOrder),
+    };
+  }
+
+  MaintenanceTemplateItem copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    MaintenanceServiceKind? kind,
+    Value<String?> title = const Value.absent(),
+    int? intervalMonths,
+    bool? enabled,
+    int? sortOrder,
+  }) => MaintenanceTemplateItem(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    kind: kind ?? this.kind,
+    title: title.present ? title.value : this.title,
+    intervalMonths: intervalMonths ?? this.intervalMonths,
+    enabled: enabled ?? this.enabled,
+    sortOrder: sortOrder ?? this.sortOrder,
+  );
+  MaintenanceTemplateItem copyWithCompanion(
+    MaintenanceTemplateItemsCompanion data,
+  ) {
+    return MaintenanceTemplateItem(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      title: data.title.present ? data.title.value : this.title,
+      intervalMonths: data.intervalMonths.present
+          ? data.intervalMonths.value
+          : this.intervalMonths,
+      enabled: data.enabled.present ? data.enabled.value : this.enabled,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MaintenanceTemplateItem(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('kind: $kind, ')
+          ..write('title: $title, ')
+          ..write('intervalMonths: $intervalMonths, ')
+          ..write('enabled: $enabled, ')
+          ..write('sortOrder: $sortOrder')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    kind,
+    title,
+    intervalMonths,
+    enabled,
+    sortOrder,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is MaintenanceTemplateItem &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.kind == this.kind &&
+          other.title == this.title &&
+          other.intervalMonths == this.intervalMonths &&
+          other.enabled == this.enabled &&
+          other.sortOrder == this.sortOrder);
+}
+
+class MaintenanceTemplateItemsCompanion
+    extends UpdateCompanion<MaintenanceTemplateItem> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<MaintenanceServiceKind> kind;
+  final Value<String?> title;
+  final Value<int> intervalMonths;
+  final Value<bool> enabled;
+  final Value<int> sortOrder;
+  final Value<int> rowid;
+  const MaintenanceTemplateItemsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.title = const Value.absent(),
+    this.intervalMonths = const Value.absent(),
+    this.enabled = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  MaintenanceTemplateItemsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required MaintenanceServiceKind kind,
+    this.title = const Value.absent(),
+    required int intervalMonths,
+    this.enabled = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : kind = Value(kind),
+       intervalMonths = Value(intervalMonths);
+  static Insertable<MaintenanceTemplateItem> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? kind,
+    Expression<String>? title,
+    Expression<int>? intervalMonths,
+    Expression<bool>? enabled,
+    Expression<int>? sortOrder,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (kind != null) 'kind': kind,
+      if (title != null) 'title': title,
+      if (intervalMonths != null) 'interval_months': intervalMonths,
+      if (enabled != null) 'enabled': enabled,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  MaintenanceTemplateItemsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<MaintenanceServiceKind>? kind,
+    Value<String?>? title,
+    Value<int>? intervalMonths,
+    Value<bool>? enabled,
+    Value<int>? sortOrder,
+    Value<int>? rowid,
+  }) {
+    return MaintenanceTemplateItemsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      kind: kind ?? this.kind,
+      title: title ?? this.title,
+      intervalMonths: intervalMonths ?? this.intervalMonths,
+      enabled: enabled ?? this.enabled,
+      sortOrder: sortOrder ?? this.sortOrder,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(
+        $MaintenanceTemplateItemsTable.$converterkind.toSql(kind.value),
+      );
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (intervalMonths.present) {
+      map['interval_months'] = Variable<int>(intervalMonths.value);
+    }
+    if (enabled.present) {
+      map['enabled'] = Variable<bool>(enabled.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<int>(sortOrder.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MaintenanceTemplateItemsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('kind: $kind, ')
+          ..write('title: $title, ')
+          ..write('intervalMonths: $intervalMonths, ')
+          ..write('enabled: $enabled, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $MaintenancePlanItemsTable extends MaintenancePlanItems
+    with TableInfo<$MaintenancePlanItemsTable, MaintenancePlanItem> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $MaintenancePlanItemsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<MaintenanceServiceKind, String>
+  kind =
+      GeneratedColumn<String>(
+        'kind',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<MaintenanceServiceKind>(
+        $MaintenancePlanItemsTable.$converterkind,
+      );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _intervalMonthsMeta = const VerificationMeta(
+    'intervalMonths',
+  );
+  @override
+  late final GeneratedColumn<int> intervalMonths = GeneratedColumn<int>(
+    'interval_months',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _lastDoneAtMeta = const VerificationMeta(
+    'lastDoneAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> lastDoneAt = GeneratedColumn<DateTime>(
+    'last_done_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _nextDueAtMeta = const VerificationMeta(
+    'nextDueAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> nextDueAt = GeneratedColumn<DateTime>(
+    'next_due_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    kind,
+    title,
+    intervalMonths,
+    lastDoneAt,
+    nextDueAt,
+    sortOrder,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'maintenance_plan_items';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<MaintenancePlanItem> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
+    }
+    if (data.containsKey('interval_months')) {
+      context.handle(
+        _intervalMonthsMeta,
+        intervalMonths.isAcceptableOrUnknown(
+          data['interval_months']!,
+          _intervalMonthsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_intervalMonthsMeta);
+    }
+    if (data.containsKey('last_done_at')) {
+      context.handle(
+        _lastDoneAtMeta,
+        lastDoneAt.isAcceptableOrUnknown(
+          data['last_done_at']!,
+          _lastDoneAtMeta,
+        ),
+      );
+    }
+    if (data.containsKey('next_due_at')) {
+      context.handle(
+        _nextDueAtMeta,
+        nextDueAt.isAcceptableOrUnknown(data['next_due_at']!, _nextDueAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nextDueAtMeta);
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  MaintenancePlanItem map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return MaintenancePlanItem(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      kind: $MaintenancePlanItemsTable.$converterkind.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}kind'],
+        )!,
+      ),
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      ),
+      intervalMonths: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}interval_months'],
+      )!,
+      lastDoneAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}last_done_at'],
+      ),
+      nextDueAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}next_due_at'],
+      )!,
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sort_order'],
+      )!,
+    );
+  }
+
+  @override
+  $MaintenancePlanItemsTable createAlias(String alias) {
+    return $MaintenancePlanItemsTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<MaintenanceServiceKind, String, String>
+  $converterkind = const EnumNameConverter<MaintenanceServiceKind>(
+    MaintenanceServiceKind.values,
+  );
+}
+
+class MaintenancePlanItem extends DataClass
+    implements Insertable<MaintenancePlanItem> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto al que pertenece.
+  final String projectId;
+
+  /// Tipo de servicio.
+  final MaintenanceServiceKind kind;
+
+  /// Nombre personalizado (vacío = nombre del tipo).
+  final String? title;
+
+  /// Cada cuántos meses se hace.
+  final int intervalMonths;
+
+  /// Última vez que se hizo (UTC, día calendario).
+  final DateTime? lastDoneAt;
+
+  /// Próxima fecha programada (UTC, día calendario).
+  final DateTime nextDueAt;
+
+  /// Orden en la lista.
+  final int sortOrder;
+  const MaintenancePlanItem({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.kind,
+    this.title,
+    required this.intervalMonths,
+    this.lastDoneAt,
+    required this.nextDueAt,
+    required this.sortOrder,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    {
+      map['kind'] = Variable<String>(
+        $MaintenancePlanItemsTable.$converterkind.toSql(kind),
+      );
+    }
+    if (!nullToAbsent || title != null) {
+      map['title'] = Variable<String>(title);
+    }
+    map['interval_months'] = Variable<int>(intervalMonths);
+    if (!nullToAbsent || lastDoneAt != null) {
+      map['last_done_at'] = Variable<DateTime>(lastDoneAt);
+    }
+    map['next_due_at'] = Variable<DateTime>(nextDueAt);
+    map['sort_order'] = Variable<int>(sortOrder);
+    return map;
+  }
+
+  MaintenancePlanItemsCompanion toCompanion(bool nullToAbsent) {
+    return MaintenancePlanItemsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      kind: Value(kind),
+      title: title == null && nullToAbsent
+          ? const Value.absent()
+          : Value(title),
+      intervalMonths: Value(intervalMonths),
+      lastDoneAt: lastDoneAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(lastDoneAt),
+      nextDueAt: Value(nextDueAt),
+      sortOrder: Value(sortOrder),
+    );
+  }
+
+  factory MaintenancePlanItem.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return MaintenancePlanItem(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      kind: $MaintenancePlanItemsTable.$converterkind.fromJson(
+        serializer.fromJson<String>(json['kind']),
+      ),
+      title: serializer.fromJson<String?>(json['title']),
+      intervalMonths: serializer.fromJson<int>(json['intervalMonths']),
+      lastDoneAt: serializer.fromJson<DateTime?>(json['lastDoneAt']),
+      nextDueAt: serializer.fromJson<DateTime>(json['nextDueAt']),
+      sortOrder: serializer.fromJson<int>(json['sortOrder']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'kind': serializer.toJson<String>(
+        $MaintenancePlanItemsTable.$converterkind.toJson(kind),
+      ),
+      'title': serializer.toJson<String?>(title),
+      'intervalMonths': serializer.toJson<int>(intervalMonths),
+      'lastDoneAt': serializer.toJson<DateTime?>(lastDoneAt),
+      'nextDueAt': serializer.toJson<DateTime>(nextDueAt),
+      'sortOrder': serializer.toJson<int>(sortOrder),
+    };
+  }
+
+  MaintenancePlanItem copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    MaintenanceServiceKind? kind,
+    Value<String?> title = const Value.absent(),
+    int? intervalMonths,
+    Value<DateTime?> lastDoneAt = const Value.absent(),
+    DateTime? nextDueAt,
+    int? sortOrder,
+  }) => MaintenancePlanItem(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    kind: kind ?? this.kind,
+    title: title.present ? title.value : this.title,
+    intervalMonths: intervalMonths ?? this.intervalMonths,
+    lastDoneAt: lastDoneAt.present ? lastDoneAt.value : this.lastDoneAt,
+    nextDueAt: nextDueAt ?? this.nextDueAt,
+    sortOrder: sortOrder ?? this.sortOrder,
+  );
+  MaintenancePlanItem copyWithCompanion(MaintenancePlanItemsCompanion data) {
+    return MaintenancePlanItem(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      title: data.title.present ? data.title.value : this.title,
+      intervalMonths: data.intervalMonths.present
+          ? data.intervalMonths.value
+          : this.intervalMonths,
+      lastDoneAt: data.lastDoneAt.present
+          ? data.lastDoneAt.value
+          : this.lastDoneAt,
+      nextDueAt: data.nextDueAt.present ? data.nextDueAt.value : this.nextDueAt,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MaintenancePlanItem(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('kind: $kind, ')
+          ..write('title: $title, ')
+          ..write('intervalMonths: $intervalMonths, ')
+          ..write('lastDoneAt: $lastDoneAt, ')
+          ..write('nextDueAt: $nextDueAt, ')
+          ..write('sortOrder: $sortOrder')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    kind,
+    title,
+    intervalMonths,
+    lastDoneAt,
+    nextDueAt,
+    sortOrder,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is MaintenancePlanItem &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.kind == this.kind &&
+          other.title == this.title &&
+          other.intervalMonths == this.intervalMonths &&
+          other.lastDoneAt == this.lastDoneAt &&
+          other.nextDueAt == this.nextDueAt &&
+          other.sortOrder == this.sortOrder);
+}
+
+class MaintenancePlanItemsCompanion
+    extends UpdateCompanion<MaintenancePlanItem> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<MaintenanceServiceKind> kind;
+  final Value<String?> title;
+  final Value<int> intervalMonths;
+  final Value<DateTime?> lastDoneAt;
+  final Value<DateTime> nextDueAt;
+  final Value<int> sortOrder;
+  final Value<int> rowid;
+  const MaintenancePlanItemsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.title = const Value.absent(),
+    this.intervalMonths = const Value.absent(),
+    this.lastDoneAt = const Value.absent(),
+    this.nextDueAt = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  MaintenancePlanItemsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required MaintenanceServiceKind kind,
+    this.title = const Value.absent(),
+    required int intervalMonths,
+    this.lastDoneAt = const Value.absent(),
+    required DateTime nextDueAt,
+    this.sortOrder = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       kind = Value(kind),
+       intervalMonths = Value(intervalMonths),
+       nextDueAt = Value(nextDueAt);
+  static Insertable<MaintenancePlanItem> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<String>? kind,
+    Expression<String>? title,
+    Expression<int>? intervalMonths,
+    Expression<DateTime>? lastDoneAt,
+    Expression<DateTime>? nextDueAt,
+    Expression<int>? sortOrder,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (kind != null) 'kind': kind,
+      if (title != null) 'title': title,
+      if (intervalMonths != null) 'interval_months': intervalMonths,
+      if (lastDoneAt != null) 'last_done_at': lastDoneAt,
+      if (nextDueAt != null) 'next_due_at': nextDueAt,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  MaintenancePlanItemsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<MaintenanceServiceKind>? kind,
+    Value<String?>? title,
+    Value<int>? intervalMonths,
+    Value<DateTime?>? lastDoneAt,
+    Value<DateTime>? nextDueAt,
+    Value<int>? sortOrder,
+    Value<int>? rowid,
+  }) {
+    return MaintenancePlanItemsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      kind: kind ?? this.kind,
+      title: title ?? this.title,
+      intervalMonths: intervalMonths ?? this.intervalMonths,
+      lastDoneAt: lastDoneAt ?? this.lastDoneAt,
+      nextDueAt: nextDueAt ?? this.nextDueAt,
+      sortOrder: sortOrder ?? this.sortOrder,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(
+        $MaintenancePlanItemsTable.$converterkind.toSql(kind.value),
+      );
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (intervalMonths.present) {
+      map['interval_months'] = Variable<int>(intervalMonths.value);
+    }
+    if (lastDoneAt.present) {
+      map['last_done_at'] = Variable<DateTime>(lastDoneAt.value);
+    }
+    if (nextDueAt.present) {
+      map['next_due_at'] = Variable<DateTime>(nextDueAt.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<int>(sortOrder.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MaintenancePlanItemsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('kind: $kind, ')
+          ..write('title: $title, ')
+          ..write('intervalMonths: $intervalMonths, ')
+          ..write('lastDoneAt: $lastDoneAt, ')
+          ..write('nextDueAt: $nextDueAt, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $MaintenanceVisitsTable extends MaintenanceVisits
+    with TableInfo<$MaintenanceVisitsTable, MaintenanceVisit> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $MaintenanceVisitsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  static const VerificationMeta _visitDateMeta = const VerificationMeta(
+    'visitDate',
+  );
+  @override
+  late final GeneratedColumn<DateTime> visitDate = GeneratedColumn<DateTime>(
+    'visit_date',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _technicianMeta = const VerificationMeta(
+    'technician',
+  );
+  @override
+  late final GeneratedColumn<String> technician = GeneratedColumn<String>(
+    'technician',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _doneItemIdsMeta = const VerificationMeta(
+    'doneItemIds',
+  );
+  @override
+  late final GeneratedColumn<String> doneItemIds = GeneratedColumn<String>(
+    'done_item_ids',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    visitDate,
+    technician,
+    doneItemIds,
+    notes,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'maintenance_visits';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<MaintenanceVisit> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('visit_date')) {
+      context.handle(
+        _visitDateMeta,
+        visitDate.isAcceptableOrUnknown(data['visit_date']!, _visitDateMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_visitDateMeta);
+    }
+    if (data.containsKey('technician')) {
+      context.handle(
+        _technicianMeta,
+        technician.isAcceptableOrUnknown(data['technician']!, _technicianMeta),
+      );
+    }
+    if (data.containsKey('done_item_ids')) {
+      context.handle(
+        _doneItemIdsMeta,
+        doneItemIds.isAcceptableOrUnknown(
+          data['done_item_ids']!,
+          _doneItemIdsMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  MaintenanceVisit map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return MaintenanceVisit(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      visitDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}visit_date'],
+      )!,
+      technician: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}technician'],
+      ),
+      doneItemIds: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}done_item_ids'],
+      )!,
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+    );
+  }
+
+  @override
+  $MaintenanceVisitsTable createAlias(String alias) {
+    return $MaintenanceVisitsTable(attachedDatabase, alias);
+  }
+}
+
+class MaintenanceVisit extends DataClass
+    implements Insertable<MaintenanceVisit> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto al que pertenece.
+  final String projectId;
+
+  /// Fecha de la visita (UTC, día calendario).
+  final DateTime visitDate;
+
+  /// Quién la hizo.
+  final String? technician;
+
+  /// Ids de los servicios del plan hechos en la visita, separados por coma.
+  final String doneItemIds;
+
+  /// Notas.
+  final String? notes;
+  const MaintenanceVisit({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.visitDate,
+    this.technician,
+    required this.doneItemIds,
+    this.notes,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    map['visit_date'] = Variable<DateTime>(visitDate);
+    if (!nullToAbsent || technician != null) {
+      map['technician'] = Variable<String>(technician);
+    }
+    map['done_item_ids'] = Variable<String>(doneItemIds);
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    return map;
+  }
+
+  MaintenanceVisitsCompanion toCompanion(bool nullToAbsent) {
+    return MaintenanceVisitsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      visitDate: Value(visitDate),
+      technician: technician == null && nullToAbsent
+          ? const Value.absent()
+          : Value(technician),
+      doneItemIds: Value(doneItemIds),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+    );
+  }
+
+  factory MaintenanceVisit.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return MaintenanceVisit(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      visitDate: serializer.fromJson<DateTime>(json['visitDate']),
+      technician: serializer.fromJson<String?>(json['technician']),
+      doneItemIds: serializer.fromJson<String>(json['doneItemIds']),
+      notes: serializer.fromJson<String?>(json['notes']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'visitDate': serializer.toJson<DateTime>(visitDate),
+      'technician': serializer.toJson<String?>(technician),
+      'doneItemIds': serializer.toJson<String>(doneItemIds),
+      'notes': serializer.toJson<String?>(notes),
+    };
+  }
+
+  MaintenanceVisit copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    DateTime? visitDate,
+    Value<String?> technician = const Value.absent(),
+    String? doneItemIds,
+    Value<String?> notes = const Value.absent(),
+  }) => MaintenanceVisit(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    visitDate: visitDate ?? this.visitDate,
+    technician: technician.present ? technician.value : this.technician,
+    doneItemIds: doneItemIds ?? this.doneItemIds,
+    notes: notes.present ? notes.value : this.notes,
+  );
+  MaintenanceVisit copyWithCompanion(MaintenanceVisitsCompanion data) {
+    return MaintenanceVisit(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      visitDate: data.visitDate.present ? data.visitDate.value : this.visitDate,
+      technician: data.technician.present
+          ? data.technician.value
+          : this.technician,
+      doneItemIds: data.doneItemIds.present
+          ? data.doneItemIds.value
+          : this.doneItemIds,
+      notes: data.notes.present ? data.notes.value : this.notes,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MaintenanceVisit(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('visitDate: $visitDate, ')
+          ..write('technician: $technician, ')
+          ..write('doneItemIds: $doneItemIds, ')
+          ..write('notes: $notes')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    visitDate,
+    technician,
+    doneItemIds,
+    notes,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is MaintenanceVisit &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.visitDate == this.visitDate &&
+          other.technician == this.technician &&
+          other.doneItemIds == this.doneItemIds &&
+          other.notes == this.notes);
+}
+
+class MaintenanceVisitsCompanion extends UpdateCompanion<MaintenanceVisit> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<DateTime> visitDate;
+  final Value<String?> technician;
+  final Value<String> doneItemIds;
+  final Value<String?> notes;
+  final Value<int> rowid;
+  const MaintenanceVisitsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.visitDate = const Value.absent(),
+    this.technician = const Value.absent(),
+    this.doneItemIds = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  MaintenanceVisitsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required DateTime visitDate,
+    this.technician = const Value.absent(),
+    this.doneItemIds = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       visitDate = Value(visitDate);
+  static Insertable<MaintenanceVisit> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<DateTime>? visitDate,
+    Expression<String>? technician,
+    Expression<String>? doneItemIds,
+    Expression<String>? notes,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (visitDate != null) 'visit_date': visitDate,
+      if (technician != null) 'technician': technician,
+      if (doneItemIds != null) 'done_item_ids': doneItemIds,
+      if (notes != null) 'notes': notes,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  MaintenanceVisitsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<DateTime>? visitDate,
+    Value<String?>? technician,
+    Value<String>? doneItemIds,
+    Value<String?>? notes,
+    Value<int>? rowid,
+  }) {
+    return MaintenanceVisitsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      visitDate: visitDate ?? this.visitDate,
+      technician: technician ?? this.technician,
+      doneItemIds: doneItemIds ?? this.doneItemIds,
+      notes: notes ?? this.notes,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (visitDate.present) {
+      map['visit_date'] = Variable<DateTime>(visitDate.value);
+    }
+    if (technician.present) {
+      map['technician'] = Variable<String>(technician.value);
+    }
+    if (doneItemIds.present) {
+      map['done_item_ids'] = Variable<String>(doneItemIds.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MaintenanceVisitsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('visitDate: $visitDate, ')
+          ..write('technician: $technician, ')
+          ..write('doneItemIds: $doneItemIds, ')
+          ..write('notes: $notes, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ProductionReadingsTable extends ProductionReadings
+    with TableInfo<$ProductionReadingsTable, ProductionReading> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ProductionReadingsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  static const VerificationMeta _monthMeta = const VerificationMeta('month');
+  @override
+  late final GeneratedColumn<DateTime> month = GeneratedColumn<DateTime>(
+    'month',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _actualKwhMeta = const VerificationMeta(
+    'actualKwh',
+  );
+  @override
+  late final GeneratedColumn<double> actualKwh = GeneratedColumn<double>(
+    'actual_kwh',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _expectedKwhMeta = const VerificationMeta(
+    'expectedKwh',
+  );
+  @override
+  late final GeneratedColumn<double> expectedKwh = GeneratedColumn<double>(
+    'expected_kwh',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _poaIrradiationKwhM2Meta =
+      const VerificationMeta('poaIrradiationKwhM2');
+  @override
+  late final GeneratedColumn<double> poaIrradiationKwhM2 =
+      GeneratedColumn<double>(
+        'poa_irradiation_kwh_m2',
+        aliasedName,
+        true,
+        type: DriftSqlType.double,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    month,
+    actualKwh,
+    expectedKwh,
+    poaIrradiationKwhM2,
+    notes,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'production_readings';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ProductionReading> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('month')) {
+      context.handle(
+        _monthMeta,
+        month.isAcceptableOrUnknown(data['month']!, _monthMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_monthMeta);
+    }
+    if (data.containsKey('actual_kwh')) {
+      context.handle(
+        _actualKwhMeta,
+        actualKwh.isAcceptableOrUnknown(data['actual_kwh']!, _actualKwhMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_actualKwhMeta);
+    }
+    if (data.containsKey('expected_kwh')) {
+      context.handle(
+        _expectedKwhMeta,
+        expectedKwh.isAcceptableOrUnknown(
+          data['expected_kwh']!,
+          _expectedKwhMeta,
+        ),
+      );
+    }
+    if (data.containsKey('poa_irradiation_kwh_m2')) {
+      context.handle(
+        _poaIrradiationKwhM2Meta,
+        poaIrradiationKwhM2.isAcceptableOrUnknown(
+          data['poa_irradiation_kwh_m2']!,
+          _poaIrradiationKwhM2Meta,
+        ),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ProductionReading map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ProductionReading(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      month: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}month'],
+      )!,
+      actualKwh: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}actual_kwh'],
+      )!,
+      expectedKwh: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}expected_kwh'],
+      ),
+      poaIrradiationKwhM2: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}poa_irradiation_kwh_m2'],
+      ),
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+    );
+  }
+
+  @override
+  $ProductionReadingsTable createAlias(String alias) {
+    return $ProductionReadingsTable(attachedDatabase, alias);
+  }
+}
+
+class ProductionReading extends DataClass
+    implements Insertable<ProductionReading> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto al que pertenece.
+  final String projectId;
+
+  /// Mes (día 1 del mes, UTC).
+  final DateTime month;
+
+  /// Energía real del mes (kWh).
+  final double actualKwh;
+
+  /// Energía esperada del mes (kWh): a mano ahora; del motor (F2) después.
+  final double? expectedKwh;
+
+  /// Irradiación en el plano de los paneles del mes (kWh/m²), para el PR.
+  final double? poaIrradiationKwhM2;
+
+  /// Notas.
+  final String? notes;
+  const ProductionReading({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.month,
+    required this.actualKwh,
+    this.expectedKwh,
+    this.poaIrradiationKwhM2,
+    this.notes,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    map['month'] = Variable<DateTime>(month);
+    map['actual_kwh'] = Variable<double>(actualKwh);
+    if (!nullToAbsent || expectedKwh != null) {
+      map['expected_kwh'] = Variable<double>(expectedKwh);
+    }
+    if (!nullToAbsent || poaIrradiationKwhM2 != null) {
+      map['poa_irradiation_kwh_m2'] = Variable<double>(poaIrradiationKwhM2);
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    return map;
+  }
+
+  ProductionReadingsCompanion toCompanion(bool nullToAbsent) {
+    return ProductionReadingsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      month: Value(month),
+      actualKwh: Value(actualKwh),
+      expectedKwh: expectedKwh == null && nullToAbsent
+          ? const Value.absent()
+          : Value(expectedKwh),
+      poaIrradiationKwhM2: poaIrradiationKwhM2 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(poaIrradiationKwhM2),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+    );
+  }
+
+  factory ProductionReading.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ProductionReading(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      month: serializer.fromJson<DateTime>(json['month']),
+      actualKwh: serializer.fromJson<double>(json['actualKwh']),
+      expectedKwh: serializer.fromJson<double?>(json['expectedKwh']),
+      poaIrradiationKwhM2: serializer.fromJson<double?>(
+        json['poaIrradiationKwhM2'],
+      ),
+      notes: serializer.fromJson<String?>(json['notes']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'month': serializer.toJson<DateTime>(month),
+      'actualKwh': serializer.toJson<double>(actualKwh),
+      'expectedKwh': serializer.toJson<double?>(expectedKwh),
+      'poaIrradiationKwhM2': serializer.toJson<double?>(poaIrradiationKwhM2),
+      'notes': serializer.toJson<String?>(notes),
+    };
+  }
+
+  ProductionReading copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    DateTime? month,
+    double? actualKwh,
+    Value<double?> expectedKwh = const Value.absent(),
+    Value<double?> poaIrradiationKwhM2 = const Value.absent(),
+    Value<String?> notes = const Value.absent(),
+  }) => ProductionReading(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    month: month ?? this.month,
+    actualKwh: actualKwh ?? this.actualKwh,
+    expectedKwh: expectedKwh.present ? expectedKwh.value : this.expectedKwh,
+    poaIrradiationKwhM2: poaIrradiationKwhM2.present
+        ? poaIrradiationKwhM2.value
+        : this.poaIrradiationKwhM2,
+    notes: notes.present ? notes.value : this.notes,
+  );
+  ProductionReading copyWithCompanion(ProductionReadingsCompanion data) {
+    return ProductionReading(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      month: data.month.present ? data.month.value : this.month,
+      actualKwh: data.actualKwh.present ? data.actualKwh.value : this.actualKwh,
+      expectedKwh: data.expectedKwh.present
+          ? data.expectedKwh.value
+          : this.expectedKwh,
+      poaIrradiationKwhM2: data.poaIrradiationKwhM2.present
+          ? data.poaIrradiationKwhM2.value
+          : this.poaIrradiationKwhM2,
+      notes: data.notes.present ? data.notes.value : this.notes,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProductionReading(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('month: $month, ')
+          ..write('actualKwh: $actualKwh, ')
+          ..write('expectedKwh: $expectedKwh, ')
+          ..write('poaIrradiationKwhM2: $poaIrradiationKwhM2, ')
+          ..write('notes: $notes')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    month,
+    actualKwh,
+    expectedKwh,
+    poaIrradiationKwhM2,
+    notes,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ProductionReading &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.month == this.month &&
+          other.actualKwh == this.actualKwh &&
+          other.expectedKwh == this.expectedKwh &&
+          other.poaIrradiationKwhM2 == this.poaIrradiationKwhM2 &&
+          other.notes == this.notes);
+}
+
+class ProductionReadingsCompanion extends UpdateCompanion<ProductionReading> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<DateTime> month;
+  final Value<double> actualKwh;
+  final Value<double?> expectedKwh;
+  final Value<double?> poaIrradiationKwhM2;
+  final Value<String?> notes;
+  final Value<int> rowid;
+  const ProductionReadingsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.month = const Value.absent(),
+    this.actualKwh = const Value.absent(),
+    this.expectedKwh = const Value.absent(),
+    this.poaIrradiationKwhM2 = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ProductionReadingsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required DateTime month,
+    required double actualKwh,
+    this.expectedKwh = const Value.absent(),
+    this.poaIrradiationKwhM2 = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       month = Value(month),
+       actualKwh = Value(actualKwh);
+  static Insertable<ProductionReading> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<DateTime>? month,
+    Expression<double>? actualKwh,
+    Expression<double>? expectedKwh,
+    Expression<double>? poaIrradiationKwhM2,
+    Expression<String>? notes,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (month != null) 'month': month,
+      if (actualKwh != null) 'actual_kwh': actualKwh,
+      if (expectedKwh != null) 'expected_kwh': expectedKwh,
+      if (poaIrradiationKwhM2 != null)
+        'poa_irradiation_kwh_m2': poaIrradiationKwhM2,
+      if (notes != null) 'notes': notes,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ProductionReadingsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<DateTime>? month,
+    Value<double>? actualKwh,
+    Value<double?>? expectedKwh,
+    Value<double?>? poaIrradiationKwhM2,
+    Value<String?>? notes,
+    Value<int>? rowid,
+  }) {
+    return ProductionReadingsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      month: month ?? this.month,
+      actualKwh: actualKwh ?? this.actualKwh,
+      expectedKwh: expectedKwh ?? this.expectedKwh,
+      poaIrradiationKwhM2: poaIrradiationKwhM2 ?? this.poaIrradiationKwhM2,
+      notes: notes ?? this.notes,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (month.present) {
+      map['month'] = Variable<DateTime>(month.value);
+    }
+    if (actualKwh.present) {
+      map['actual_kwh'] = Variable<double>(actualKwh.value);
+    }
+    if (expectedKwh.present) {
+      map['expected_kwh'] = Variable<double>(expectedKwh.value);
+    }
+    if (poaIrradiationKwhM2.present) {
+      map['poa_irradiation_kwh_m2'] = Variable<double>(
+        poaIrradiationKwhM2.value,
+      );
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProductionReadingsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('month: $month, ')
+          ..write('actualKwh: $actualKwh, ')
+          ..write('expectedKwh: $expectedKwh, ')
+          ..write('poaIrradiationKwhM2: $poaIrradiationKwhM2, ')
+          ..write('notes: $notes, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ProductionSettingsTable extends ProductionSettings
+    with TableInfo<$ProductionSettingsTable, ProductionSetting> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ProductionSettingsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'UNIQUE REFERENCES projects (id)',
+    ),
+  );
+  static const VerificationMeta _systemKwpMeta = const VerificationMeta(
+    'systemKwp',
+  );
+  @override
+  late final GeneratedColumn<double> systemKwp = GeneratedColumn<double>(
+    'system_kwp',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _alertThresholdPctMeta = const VerificationMeta(
+    'alertThresholdPct',
+  );
+  @override
+  late final GeneratedColumn<double> alertThresholdPct =
+      GeneratedColumn<double>(
+        'alert_threshold_pct',
+        aliasedName,
+        false,
+        type: DriftSqlType.double,
+        requiredDuringInsert: false,
+        defaultValue: const Constant(-15),
+      );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    systemKwp,
+    alertThresholdPct,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'production_settings';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ProductionSetting> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('system_kwp')) {
+      context.handle(
+        _systemKwpMeta,
+        systemKwp.isAcceptableOrUnknown(data['system_kwp']!, _systemKwpMeta),
+      );
+    }
+    if (data.containsKey('alert_threshold_pct')) {
+      context.handle(
+        _alertThresholdPctMeta,
+        alertThresholdPct.isAcceptableOrUnknown(
+          data['alert_threshold_pct']!,
+          _alertThresholdPctMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ProductionSetting map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ProductionSetting(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      systemKwp: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}system_kwp'],
+      ),
+      alertThresholdPct: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}alert_threshold_pct'],
+      )!,
+    );
+  }
+
+  @override
+  $ProductionSettingsTable createAlias(String alias) {
+    return $ProductionSettingsTable(attachedDatabase, alias);
+  }
+}
+
+class ProductionSetting extends DataClass
+    implements Insertable<ProductionSetting> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto (único).
+  final String projectId;
+
+  /// Potencia pico instalada (kWp), para el Performance Ratio.
+  final double? systemKwp;
+
+  /// Umbral de alerta en % (negativo): −15 = avisar si lo real queda 15 %
+  /// por debajo de lo esperado.
+  final double alertThresholdPct;
+  const ProductionSetting({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    this.systemKwp,
+    required this.alertThresholdPct,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    if (!nullToAbsent || systemKwp != null) {
+      map['system_kwp'] = Variable<double>(systemKwp);
+    }
+    map['alert_threshold_pct'] = Variable<double>(alertThresholdPct);
+    return map;
+  }
+
+  ProductionSettingsCompanion toCompanion(bool nullToAbsent) {
+    return ProductionSettingsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      systemKwp: systemKwp == null && nullToAbsent
+          ? const Value.absent()
+          : Value(systemKwp),
+      alertThresholdPct: Value(alertThresholdPct),
+    );
+  }
+
+  factory ProductionSetting.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ProductionSetting(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      systemKwp: serializer.fromJson<double?>(json['systemKwp']),
+      alertThresholdPct: serializer.fromJson<double>(json['alertThresholdPct']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'systemKwp': serializer.toJson<double?>(systemKwp),
+      'alertThresholdPct': serializer.toJson<double>(alertThresholdPct),
+    };
+  }
+
+  ProductionSetting copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    Value<double?> systemKwp = const Value.absent(),
+    double? alertThresholdPct,
+  }) => ProductionSetting(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    systemKwp: systemKwp.present ? systemKwp.value : this.systemKwp,
+    alertThresholdPct: alertThresholdPct ?? this.alertThresholdPct,
+  );
+  ProductionSetting copyWithCompanion(ProductionSettingsCompanion data) {
+    return ProductionSetting(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      systemKwp: data.systemKwp.present ? data.systemKwp.value : this.systemKwp,
+      alertThresholdPct: data.alertThresholdPct.present
+          ? data.alertThresholdPct.value
+          : this.alertThresholdPct,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProductionSetting(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('systemKwp: $systemKwp, ')
+          ..write('alertThresholdPct: $alertThresholdPct')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    systemKwp,
+    alertThresholdPct,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ProductionSetting &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.systemKwp == this.systemKwp &&
+          other.alertThresholdPct == this.alertThresholdPct);
+}
+
+class ProductionSettingsCompanion extends UpdateCompanion<ProductionSetting> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<double?> systemKwp;
+  final Value<double> alertThresholdPct;
+  final Value<int> rowid;
+  const ProductionSettingsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.systemKwp = const Value.absent(),
+    this.alertThresholdPct = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ProductionSettingsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    this.systemKwp = const Value.absent(),
+    this.alertThresholdPct = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId);
+  static Insertable<ProductionSetting> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<double>? systemKwp,
+    Expression<double>? alertThresholdPct,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (systemKwp != null) 'system_kwp': systemKwp,
+      if (alertThresholdPct != null) 'alert_threshold_pct': alertThresholdPct,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ProductionSettingsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<double?>? systemKwp,
+    Value<double>? alertThresholdPct,
+    Value<int>? rowid,
+  }) {
+    return ProductionSettingsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      systemKwp: systemKwp ?? this.systemKwp,
+      alertThresholdPct: alertThresholdPct ?? this.alertThresholdPct,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (systemKwp.present) {
+      map['system_kwp'] = Variable<double>(systemKwp.value);
+    }
+    if (alertThresholdPct.present) {
+      map['alert_threshold_pct'] = Variable<double>(alertThresholdPct.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProductionSettingsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('systemKwp: $systemKwp, ')
+          ..write('alertThresholdPct: $alertThresholdPct, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $BackupLogsTable extends BackupLogs
+    with TableInfo<$BackupLogsTable, BackupLog> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $BackupLogsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<BackupTarget, String> target =
+      GeneratedColumn<String>(
+        'target',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<BackupTarget>($BackupLogsTable.$convertertarget);
+  @override
+  late final GeneratedColumnWithTypeConverter<BackupTrigger, String> trigger =
+      GeneratedColumn<String>(
+        'trigger',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<BackupTrigger>($BackupLogsTable.$convertertrigger);
+  @override
+  late final GeneratedColumnWithTypeConverter<BackupStatus, String> status =
+      GeneratedColumn<String>(
+        'status',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<BackupStatus>($BackupLogsTable.$converterstatus);
+  static const VerificationMeta _fileNameMeta = const VerificationMeta(
+    'fileName',
+  );
+  @override
+  late final GeneratedColumn<String> fileName = GeneratedColumn<String>(
+    'file_name',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sizeBytesMeta = const VerificationMeta(
+    'sizeBytes',
+  );
+  @override
+  late final GeneratedColumn<int> sizeBytes = GeneratedColumn<int>(
+    'size_bytes',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _fileCountMeta = const VerificationMeta(
+    'fileCount',
+  );
+  @override
+  late final GeneratedColumn<int> fileCount = GeneratedColumn<int>(
+    'file_count',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _messageMeta = const VerificationMeta(
+    'message',
+  );
+  @override
+  late final GeneratedColumn<String> message = GeneratedColumn<String>(
+    'message',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    target,
+    trigger,
+    status,
+    fileName,
+    sizeBytes,
+    fileCount,
+    message,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'backup_logs';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<BackupLog> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('file_name')) {
+      context.handle(
+        _fileNameMeta,
+        fileName.isAcceptableOrUnknown(data['file_name']!, _fileNameMeta),
+      );
+    }
+    if (data.containsKey('size_bytes')) {
+      context.handle(
+        _sizeBytesMeta,
+        sizeBytes.isAcceptableOrUnknown(data['size_bytes']!, _sizeBytesMeta),
+      );
+    }
+    if (data.containsKey('file_count')) {
+      context.handle(
+        _fileCountMeta,
+        fileCount.isAcceptableOrUnknown(data['file_count']!, _fileCountMeta),
+      );
+    }
+    if (data.containsKey('message')) {
+      context.handle(
+        _messageMeta,
+        message.isAcceptableOrUnknown(data['message']!, _messageMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  BackupLog map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return BackupLog(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      target: $BackupLogsTable.$convertertarget.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}target'],
+        )!,
+      ),
+      trigger: $BackupLogsTable.$convertertrigger.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}trigger'],
+        )!,
+      ),
+      status: $BackupLogsTable.$converterstatus.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}status'],
+        )!,
+      ),
+      fileName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}file_name'],
+      ),
+      sizeBytes: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}size_bytes'],
+      ),
+      fileCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}file_count'],
+      ),
+      message: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}message'],
+      ),
+    );
+  }
+
+  @override
+  $BackupLogsTable createAlias(String alias) {
+    return $BackupLogsTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<BackupTarget, String, String> $convertertarget =
+      const EnumNameConverter<BackupTarget>(BackupTarget.values);
+  static JsonTypeConverter2<BackupTrigger, String, String> $convertertrigger =
+      const EnumNameConverter<BackupTrigger>(BackupTrigger.values);
+  static JsonTypeConverter2<BackupStatus, String, String> $converterstatus =
+      const EnumNameConverter<BackupStatus>(BackupStatus.values);
+}
+
+class BackupLog extends DataClass implements Insertable<BackupLog> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// .zip o Google Drive.
+  final BackupTarget target;
+
+  /// Qué lo inició.
+  final BackupTrigger trigger;
+
+  /// Resultado.
+  final BackupStatus status;
+
+  /// Nombre del archivo (zip) o del respaldo en Drive.
+  final String? fileName;
+
+  /// Tamaño en bytes.
+  final int? sizeBytes;
+
+  /// Archivos (fotos y documentos) incluidos o subidos.
+  final int? fileCount;
+
+  /// Mensaje de error, si falló.
+  final String? message;
+  const BackupLog({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.target,
+    required this.trigger,
+    required this.status,
+    this.fileName,
+    this.sizeBytes,
+    this.fileCount,
+    this.message,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    {
+      map['target'] = Variable<String>(
+        $BackupLogsTable.$convertertarget.toSql(target),
+      );
+    }
+    {
+      map['trigger'] = Variable<String>(
+        $BackupLogsTable.$convertertrigger.toSql(trigger),
+      );
+    }
+    {
+      map['status'] = Variable<String>(
+        $BackupLogsTable.$converterstatus.toSql(status),
+      );
+    }
+    if (!nullToAbsent || fileName != null) {
+      map['file_name'] = Variable<String>(fileName);
+    }
+    if (!nullToAbsent || sizeBytes != null) {
+      map['size_bytes'] = Variable<int>(sizeBytes);
+    }
+    if (!nullToAbsent || fileCount != null) {
+      map['file_count'] = Variable<int>(fileCount);
+    }
+    if (!nullToAbsent || message != null) {
+      map['message'] = Variable<String>(message);
+    }
+    return map;
+  }
+
+  BackupLogsCompanion toCompanion(bool nullToAbsent) {
+    return BackupLogsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      target: Value(target),
+      trigger: Value(trigger),
+      status: Value(status),
+      fileName: fileName == null && nullToAbsent
+          ? const Value.absent()
+          : Value(fileName),
+      sizeBytes: sizeBytes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sizeBytes),
+      fileCount: fileCount == null && nullToAbsent
+          ? const Value.absent()
+          : Value(fileCount),
+      message: message == null && nullToAbsent
+          ? const Value.absent()
+          : Value(message),
+    );
+  }
+
+  factory BackupLog.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return BackupLog(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      target: $BackupLogsTable.$convertertarget.fromJson(
+        serializer.fromJson<String>(json['target']),
+      ),
+      trigger: $BackupLogsTable.$convertertrigger.fromJson(
+        serializer.fromJson<String>(json['trigger']),
+      ),
+      status: $BackupLogsTable.$converterstatus.fromJson(
+        serializer.fromJson<String>(json['status']),
+      ),
+      fileName: serializer.fromJson<String?>(json['fileName']),
+      sizeBytes: serializer.fromJson<int?>(json['sizeBytes']),
+      fileCount: serializer.fromJson<int?>(json['fileCount']),
+      message: serializer.fromJson<String?>(json['message']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'target': serializer.toJson<String>(
+        $BackupLogsTable.$convertertarget.toJson(target),
+      ),
+      'trigger': serializer.toJson<String>(
+        $BackupLogsTable.$convertertrigger.toJson(trigger),
+      ),
+      'status': serializer.toJson<String>(
+        $BackupLogsTable.$converterstatus.toJson(status),
+      ),
+      'fileName': serializer.toJson<String?>(fileName),
+      'sizeBytes': serializer.toJson<int?>(sizeBytes),
+      'fileCount': serializer.toJson<int?>(fileCount),
+      'message': serializer.toJson<String?>(message),
+    };
+  }
+
+  BackupLog copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    BackupTarget? target,
+    BackupTrigger? trigger,
+    BackupStatus? status,
+    Value<String?> fileName = const Value.absent(),
+    Value<int?> sizeBytes = const Value.absent(),
+    Value<int?> fileCount = const Value.absent(),
+    Value<String?> message = const Value.absent(),
+  }) => BackupLog(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    target: target ?? this.target,
+    trigger: trigger ?? this.trigger,
+    status: status ?? this.status,
+    fileName: fileName.present ? fileName.value : this.fileName,
+    sizeBytes: sizeBytes.present ? sizeBytes.value : this.sizeBytes,
+    fileCount: fileCount.present ? fileCount.value : this.fileCount,
+    message: message.present ? message.value : this.message,
+  );
+  BackupLog copyWithCompanion(BackupLogsCompanion data) {
+    return BackupLog(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      target: data.target.present ? data.target.value : this.target,
+      trigger: data.trigger.present ? data.trigger.value : this.trigger,
+      status: data.status.present ? data.status.value : this.status,
+      fileName: data.fileName.present ? data.fileName.value : this.fileName,
+      sizeBytes: data.sizeBytes.present ? data.sizeBytes.value : this.sizeBytes,
+      fileCount: data.fileCount.present ? data.fileCount.value : this.fileCount,
+      message: data.message.present ? data.message.value : this.message,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BackupLog(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('target: $target, ')
+          ..write('trigger: $trigger, ')
+          ..write('status: $status, ')
+          ..write('fileName: $fileName, ')
+          ..write('sizeBytes: $sizeBytes, ')
+          ..write('fileCount: $fileCount, ')
+          ..write('message: $message')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    target,
+    trigger,
+    status,
+    fileName,
+    sizeBytes,
+    fileCount,
+    message,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is BackupLog &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.target == this.target &&
+          other.trigger == this.trigger &&
+          other.status == this.status &&
+          other.fileName == this.fileName &&
+          other.sizeBytes == this.sizeBytes &&
+          other.fileCount == this.fileCount &&
+          other.message == this.message);
+}
+
+class BackupLogsCompanion extends UpdateCompanion<BackupLog> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<BackupTarget> target;
+  final Value<BackupTrigger> trigger;
+  final Value<BackupStatus> status;
+  final Value<String?> fileName;
+  final Value<int?> sizeBytes;
+  final Value<int?> fileCount;
+  final Value<String?> message;
+  final Value<int> rowid;
+  const BackupLogsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.target = const Value.absent(),
+    this.trigger = const Value.absent(),
+    this.status = const Value.absent(),
+    this.fileName = const Value.absent(),
+    this.sizeBytes = const Value.absent(),
+    this.fileCount = const Value.absent(),
+    this.message = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  BackupLogsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required BackupTarget target,
+    required BackupTrigger trigger,
+    required BackupStatus status,
+    this.fileName = const Value.absent(),
+    this.sizeBytes = const Value.absent(),
+    this.fileCount = const Value.absent(),
+    this.message = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : target = Value(target),
+       trigger = Value(trigger),
+       status = Value(status);
+  static Insertable<BackupLog> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? target,
+    Expression<String>? trigger,
+    Expression<String>? status,
+    Expression<String>? fileName,
+    Expression<int>? sizeBytes,
+    Expression<int>? fileCount,
+    Expression<String>? message,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (target != null) 'target': target,
+      if (trigger != null) 'trigger': trigger,
+      if (status != null) 'status': status,
+      if (fileName != null) 'file_name': fileName,
+      if (sizeBytes != null) 'size_bytes': sizeBytes,
+      if (fileCount != null) 'file_count': fileCount,
+      if (message != null) 'message': message,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  BackupLogsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<BackupTarget>? target,
+    Value<BackupTrigger>? trigger,
+    Value<BackupStatus>? status,
+    Value<String?>? fileName,
+    Value<int?>? sizeBytes,
+    Value<int?>? fileCount,
+    Value<String?>? message,
+    Value<int>? rowid,
+  }) {
+    return BackupLogsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      target: target ?? this.target,
+      trigger: trigger ?? this.trigger,
+      status: status ?? this.status,
+      fileName: fileName ?? this.fileName,
+      sizeBytes: sizeBytes ?? this.sizeBytes,
+      fileCount: fileCount ?? this.fileCount,
+      message: message ?? this.message,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (target.present) {
+      map['target'] = Variable<String>(
+        $BackupLogsTable.$convertertarget.toSql(target.value),
+      );
+    }
+    if (trigger.present) {
+      map['trigger'] = Variable<String>(
+        $BackupLogsTable.$convertertrigger.toSql(trigger.value),
+      );
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(
+        $BackupLogsTable.$converterstatus.toSql(status.value),
+      );
+    }
+    if (fileName.present) {
+      map['file_name'] = Variable<String>(fileName.value);
+    }
+    if (sizeBytes.present) {
+      map['size_bytes'] = Variable<int>(sizeBytes.value);
+    }
+    if (fileCount.present) {
+      map['file_count'] = Variable<int>(fileCount.value);
+    }
+    if (message.present) {
+      map['message'] = Variable<String>(message.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BackupLogsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('target: $target, ')
+          ..write('trigger: $trigger, ')
+          ..write('status: $status, ')
+          ..write('fileName: $fileName, ')
+          ..write('sizeBytes: $sizeBytes, ')
+          ..write('fileCount: $fileCount, ')
+          ..write('message: $message, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $AppSettingsTable extends AppSettings
+    with TableInfo<$AppSettingsTable, AppSetting> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $AppSettingsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _keyMeta = const VerificationMeta('key');
+  @override
+  late final GeneratedColumn<String> key = GeneratedColumn<String>(
+    'key',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'),
+  );
+  static const VerificationMeta _valueMeta = const VerificationMeta('value');
+  @override
+  late final GeneratedColumn<String> value = GeneratedColumn<String>(
+    'value',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    key,
+    value,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'app_settings';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<AppSetting> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('key')) {
+      context.handle(
+        _keyMeta,
+        key.isAcceptableOrUnknown(data['key']!, _keyMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_keyMeta);
+    }
+    if (data.containsKey('value')) {
+      context.handle(
+        _valueMeta,
+        value.isAcceptableOrUnknown(data['value']!, _valueMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_valueMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  AppSetting map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return AppSetting(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      key: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}key'],
+      )!,
+      value: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}value'],
+      )!,
+    );
+  }
+
+  @override
+  $AppSettingsTable createAlias(String alias) {
+    return $AppSettingsTable(attachedDatabase, alias);
+  }
+}
+
+class AppSetting extends DataClass implements Insertable<AppSetting> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Clave única (p. ej. `backup.drive.enabled`).
+  final String key;
+
+  /// Valor en texto.
+  final String value;
+  const AppSetting({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.key,
+    required this.value,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['key'] = Variable<String>(key);
+    map['value'] = Variable<String>(value);
+    return map;
+  }
+
+  AppSettingsCompanion toCompanion(bool nullToAbsent) {
+    return AppSettingsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      key: Value(key),
+      value: Value(value),
+    );
+  }
+
+  factory AppSetting.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return AppSetting(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      key: serializer.fromJson<String>(json['key']),
+      value: serializer.fromJson<String>(json['value']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'key': serializer.toJson<String>(key),
+      'value': serializer.toJson<String>(value),
+    };
+  }
+
+  AppSetting copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? key,
+    String? value,
+  }) => AppSetting(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    key: key ?? this.key,
+    value: value ?? this.value,
+  );
+  AppSetting copyWithCompanion(AppSettingsCompanion data) {
+    return AppSetting(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      key: data.key.present ? data.key.value : this.key,
+      value: data.value.present ? data.value.value : this.value,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AppSetting(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('key: $key, ')
+          ..write('value: $value')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, createdAt, updatedAt, deletedAt, key, value);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is AppSetting &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.key == this.key &&
+          other.value == this.value);
+}
+
+class AppSettingsCompanion extends UpdateCompanion<AppSetting> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> key;
+  final Value<String> value;
+  final Value<int> rowid;
+  const AppSettingsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.key = const Value.absent(),
+    this.value = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  AppSettingsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String key,
+    required String value,
+    this.rowid = const Value.absent(),
+  }) : key = Value(key),
+       value = Value(value);
+  static Insertable<AppSetting> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? key,
+    Expression<String>? value,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  AppSettingsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? key,
+    Value<String>? value,
+    Value<int>? rowid,
+  }) {
+    return AppSettingsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      key: key ?? this.key,
+      value: value ?? this.value,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (key.present) {
+      map['key'] = Variable<String>(key.value);
+    }
+    if (value.present) {
+      map['value'] = Variable<String>(value.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AppSettingsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('key: $key, ')
+          ..write('value: $value, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -4734,6 +11338,23 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $UtilityBillsTable utilityBills = $UtilityBillsTable(this);
   late final $PhotosTable photos = $PhotosTable(this);
   late final $DocumentsTable documents = $DocumentsTable(this);
+  late final $InstalledEquipmentTable installedEquipment =
+      $InstalledEquipmentTable(this);
+  late final $CommissioningRecordsTable commissioningRecords =
+      $CommissioningRecordsTable(this);
+  late final $StringTestsTable stringTests = $StringTestsTable(this);
+  late final $MaintenanceTemplateItemsTable maintenanceTemplateItems =
+      $MaintenanceTemplateItemsTable(this);
+  late final $MaintenancePlanItemsTable maintenancePlanItems =
+      $MaintenancePlanItemsTable(this);
+  late final $MaintenanceVisitsTable maintenanceVisits =
+      $MaintenanceVisitsTable(this);
+  late final $ProductionReadingsTable productionReadings =
+      $ProductionReadingsTable(this);
+  late final $ProductionSettingsTable productionSettings =
+      $ProductionSettingsTable(this);
+  late final $BackupLogsTable backupLogs = $BackupLogsTable(this);
+  late final $AppSettingsTable appSettings = $AppSettingsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -4746,6 +11367,16 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     utilityBills,
     photos,
     documents,
+    installedEquipment,
+    commissioningRecords,
+    stringTests,
+    maintenanceTemplateItems,
+    maintenancePlanItems,
+    maintenanceVisits,
+    productionReadings,
+    productionSettings,
+    backupLogs,
+    appSettings,
   ];
   @override
   DriftDatabaseOptions get options =>
@@ -5599,6 +12230,161 @@ final class $$ProjectsTableReferences
       manager.$state.copyWith(prefetchedData: cache),
     );
   }
+
+  static MultiTypedResultKey<
+    $InstalledEquipmentTable,
+    List<InstalledEquipmentItem>
+  >
+  _installedEquipmentRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.installedEquipment,
+        aliasName: 'projects__id__installed_equipment__project_id',
+      );
+
+  $$InstalledEquipmentTableProcessedTableManager get installedEquipmentRefs {
+    final manager = $$InstalledEquipmentTableTableManager(
+      $_db,
+      $_db.installedEquipment,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _installedEquipmentRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<
+    $CommissioningRecordsTable,
+    List<CommissioningRecord>
+  >
+  _commissioningRecordsRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.commissioningRecords,
+        aliasName: 'projects__id__commissioning_records__project_id',
+      );
+
+  $$CommissioningRecordsTableProcessedTableManager
+  get commissioningRecordsRefs {
+    final manager = $$CommissioningRecordsTableTableManager(
+      $_db,
+      $_db.commissioningRecords,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _commissioningRecordsRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$StringTestsTable, List<StringTest>>
+  _stringTestsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.stringTests,
+    aliasName: 'projects__id__string_tests__project_id',
+  );
+
+  $$StringTestsTableProcessedTableManager get stringTestsRefs {
+    final manager = $$StringTestsTableTableManager(
+      $_db,
+      $_db.stringTests,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_stringTestsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<
+    $MaintenancePlanItemsTable,
+    List<MaintenancePlanItem>
+  >
+  _maintenancePlanItemsRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.maintenancePlanItems,
+        aliasName: 'projects__id__maintenance_plan_items__project_id',
+      );
+
+  $$MaintenancePlanItemsTableProcessedTableManager
+  get maintenancePlanItemsRefs {
+    final manager = $$MaintenancePlanItemsTableTableManager(
+      $_db,
+      $_db.maintenancePlanItems,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _maintenancePlanItemsRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$MaintenanceVisitsTable, List<MaintenanceVisit>>
+  _maintenanceVisitsRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.maintenanceVisits,
+        aliasName: 'projects__id__maintenance_visits__project_id',
+      );
+
+  $$MaintenanceVisitsTableProcessedTableManager get maintenanceVisitsRefs {
+    final manager = $$MaintenanceVisitsTableTableManager(
+      $_db,
+      $_db.maintenanceVisits,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _maintenanceVisitsRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$ProductionReadingsTable, List<ProductionReading>>
+  _productionReadingsRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.productionReadings,
+        aliasName: 'projects__id__production_readings__project_id',
+      );
+
+  $$ProductionReadingsTableProcessedTableManager get productionReadingsRefs {
+    final manager = $$ProductionReadingsTableTableManager(
+      $_db,
+      $_db.productionReadings,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _productionReadingsRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$ProductionSettingsTable, List<ProductionSetting>>
+  _productionSettingsRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.productionSettings,
+        aliasName: 'projects__id__production_settings__project_id',
+      );
+
+  $$ProductionSettingsTableProcessedTableManager get productionSettingsRefs {
+    final manager = $$ProductionSettingsTableTableManager(
+      $_db,
+      $_db.productionSettings,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _productionSettingsRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$ProjectsTableFilterComposer
@@ -5740,6 +12526,181 @@ class $$ProjectsTableFilterComposer
           }) => $$DocumentsTableFilterComposer(
             $db: $db,
             $table: $db.documents,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> installedEquipmentRefs(
+    Expression<bool> Function($$InstalledEquipmentTableFilterComposer f) f,
+  ) {
+    final $$InstalledEquipmentTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.installedEquipment,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$InstalledEquipmentTableFilterComposer(
+            $db: $db,
+            $table: $db.installedEquipment,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> commissioningRecordsRefs(
+    Expression<bool> Function($$CommissioningRecordsTableFilterComposer f) f,
+  ) {
+    final $$CommissioningRecordsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.commissioningRecords,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$CommissioningRecordsTableFilterComposer(
+            $db: $db,
+            $table: $db.commissioningRecords,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> stringTestsRefs(
+    Expression<bool> Function($$StringTestsTableFilterComposer f) f,
+  ) {
+    final $$StringTestsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.stringTests,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$StringTestsTableFilterComposer(
+            $db: $db,
+            $table: $db.stringTests,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> maintenancePlanItemsRefs(
+    Expression<bool> Function($$MaintenancePlanItemsTableFilterComposer f) f,
+  ) {
+    final $$MaintenancePlanItemsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.maintenancePlanItems,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MaintenancePlanItemsTableFilterComposer(
+            $db: $db,
+            $table: $db.maintenancePlanItems,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> maintenanceVisitsRefs(
+    Expression<bool> Function($$MaintenanceVisitsTableFilterComposer f) f,
+  ) {
+    final $$MaintenanceVisitsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.maintenanceVisits,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MaintenanceVisitsTableFilterComposer(
+            $db: $db,
+            $table: $db.maintenanceVisits,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> productionReadingsRefs(
+    Expression<bool> Function($$ProductionReadingsTableFilterComposer f) f,
+  ) {
+    final $$ProductionReadingsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.productionReadings,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProductionReadingsTableFilterComposer(
+            $db: $db,
+            $table: $db.productionReadings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> productionSettingsRefs(
+    Expression<bool> Function($$ProductionSettingsTableFilterComposer f) f,
+  ) {
+    final $$ProductionSettingsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.productionSettings,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProductionSettingsTableFilterComposer(
+            $db: $db,
+            $table: $db.productionSettings,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -5955,6 +12916,187 @@ class $$ProjectsTableAnnotationComposer
     );
     return f(composer);
   }
+
+  Expression<T> installedEquipmentRefs<T extends Object>(
+    Expression<T> Function($$InstalledEquipmentTableAnnotationComposer a) f,
+  ) {
+    final $$InstalledEquipmentTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.installedEquipment,
+          getReferencedColumn: (t) => t.projectId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$InstalledEquipmentTableAnnotationComposer(
+                $db: $db,
+                $table: $db.installedEquipment,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+
+  Expression<T> commissioningRecordsRefs<T extends Object>(
+    Expression<T> Function($$CommissioningRecordsTableAnnotationComposer a) f,
+  ) {
+    final $$CommissioningRecordsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.commissioningRecords,
+          getReferencedColumn: (t) => t.projectId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$CommissioningRecordsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.commissioningRecords,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+
+  Expression<T> stringTestsRefs<T extends Object>(
+    Expression<T> Function($$StringTestsTableAnnotationComposer a) f,
+  ) {
+    final $$StringTestsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.stringTests,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$StringTestsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.stringTests,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> maintenancePlanItemsRefs<T extends Object>(
+    Expression<T> Function($$MaintenancePlanItemsTableAnnotationComposer a) f,
+  ) {
+    final $$MaintenancePlanItemsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.maintenancePlanItems,
+          getReferencedColumn: (t) => t.projectId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$MaintenancePlanItemsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.maintenancePlanItems,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+
+  Expression<T> maintenanceVisitsRefs<T extends Object>(
+    Expression<T> Function($$MaintenanceVisitsTableAnnotationComposer a) f,
+  ) {
+    final $$MaintenanceVisitsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.maintenanceVisits,
+          getReferencedColumn: (t) => t.projectId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$MaintenanceVisitsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.maintenanceVisits,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+
+  Expression<T> productionReadingsRefs<T extends Object>(
+    Expression<T> Function($$ProductionReadingsTableAnnotationComposer a) f,
+  ) {
+    final $$ProductionReadingsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.productionReadings,
+          getReferencedColumn: (t) => t.projectId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$ProductionReadingsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.productionReadings,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+
+  Expression<T> productionSettingsRefs<T extends Object>(
+    Expression<T> Function($$ProductionSettingsTableAnnotationComposer a) f,
+  ) {
+    final $$ProductionSettingsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.productionSettings,
+          getReferencedColumn: (t) => t.projectId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$ProductionSettingsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.productionSettings,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
 }
 
 class $$ProjectsTableTableManager
@@ -5975,6 +13117,13 @@ class $$ProjectsTableTableManager
             bool sitesRefs,
             bool photosRefs,
             bool documentsRefs,
+            bool installedEquipmentRefs,
+            bool commissioningRecordsRefs,
+            bool stringTestsRefs,
+            bool maintenancePlanItemsRefs,
+            bool maintenanceVisitsRefs,
+            bool productionReadingsRefs,
+            bool productionSettingsRefs,
           })
         > {
   $$ProjectsTableTableManager(_$AppDatabase db, $ProjectsTable table)
@@ -6050,6 +13199,13 @@ class $$ProjectsTableTableManager
                 sitesRefs = false,
                 photosRefs = false,
                 documentsRefs = false,
+                installedEquipmentRefs = false,
+                commissioningRecordsRefs = false,
+                stringTestsRefs = false,
+                maintenancePlanItemsRefs = false,
+                maintenanceVisitsRefs = false,
+                productionReadingsRefs = false,
+                productionSettingsRefs = false,
               }) {
                 return PrefetchHooks(
                   db: db,
@@ -6057,6 +13213,13 @@ class $$ProjectsTableTableManager
                     if (sitesRefs) db.sites,
                     if (photosRefs) db.photos,
                     if (documentsRefs) db.documents,
+                    if (installedEquipmentRefs) db.installedEquipment,
+                    if (commissioningRecordsRefs) db.commissioningRecords,
+                    if (stringTestsRefs) db.stringTests,
+                    if (maintenancePlanItemsRefs) db.maintenancePlanItems,
+                    if (maintenanceVisitsRefs) db.maintenanceVisits,
+                    if (productionReadingsRefs) db.productionReadings,
+                    if (productionSettingsRefs) db.productionSettings,
                   ],
                   addJoins:
                       <
@@ -6150,6 +13313,146 @@ class $$ProjectsTableTableManager
                           referencedColumn: 'project_id',
                           typedResults: items,
                         ),
+                      if (installedEquipmentRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          InstalledEquipmentItem,
+                          $InstalledEquipmentTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._installedEquipmentRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).installedEquipmentRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (commissioningRecordsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          CommissioningRecord,
+                          $CommissioningRecordsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._commissioningRecordsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).commissioningRecordsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (stringTestsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          StringTest,
+                          $StringTestsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._stringTestsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).stringTestsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (maintenancePlanItemsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          MaintenancePlanItem,
+                          $MaintenancePlanItemsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._maintenancePlanItemsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).maintenancePlanItemsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (maintenanceVisitsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          MaintenanceVisit,
+                          $MaintenanceVisitsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._maintenanceVisitsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).maintenanceVisitsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (productionReadingsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          ProductionReading,
+                          $ProductionReadingsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._productionReadingsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).productionReadingsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (productionSettingsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          ProductionSetting,
+                          $ProductionSettingsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._productionSettingsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).productionSettingsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
                     ];
                   },
                 );
@@ -6175,6 +13478,13 @@ typedef $$ProjectsTableProcessedTableManager =
         bool sitesRefs,
         bool photosRefs,
         bool documentsRefs,
+        bool installedEquipmentRefs,
+        bool commissioningRecordsRefs,
+        bool stringTestsRefs,
+        bool maintenancePlanItemsRefs,
+        bool maintenanceVisitsRefs,
+        bool productionReadingsRefs,
+        bool productionSettingsRefs,
       })
     >;
 typedef $$SitesTableCreateCompanionBuilder = SitesCompanion Function({
@@ -7099,6 +14409,7 @@ typedef $$PhotosTableCreateCompanionBuilder = PhotosCompanion Function({
   Value<double?> longitude,
   Value<DateTime?> takenAt,
   Value<String?> caption,
+  Value<String?> linkedRecordId,
   Value<int> rowid,
 });
 typedef $$PhotosTableUpdateCompanionBuilder = PhotosCompanion Function({
@@ -7116,6 +14427,7 @@ typedef $$PhotosTableUpdateCompanionBuilder = PhotosCompanion Function({
   Value<double?> longitude,
   Value<DateTime?> takenAt,
   Value<String?> caption,
+  Value<String?> linkedRecordId,
   Value<int> rowid,
 });
 
@@ -7213,6 +14525,11 @@ class $$PhotosTableFilterComposer
 
   ColumnFilters<String> get caption => $composableBuilder(
     column: $table.caption,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get linkedRecordId => $composableBuilder(
+    column: $table.linkedRecordId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -7314,6 +14631,11 @@ class $$PhotosTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get linkedRecordId => $composableBuilder(
+    column: $table.linkedRecordId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $$ProjectsTableOrderingComposer get projectId {
     final $$ProjectsTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -7386,6 +14708,11 @@ class $$PhotosTableAnnotationComposer
   GeneratedColumn<String> get caption =>
       $composableBuilder(column: $table.caption, builder: (column) => column);
 
+  GeneratedColumn<String> get linkedRecordId => $composableBuilder(
+    column: $table.linkedRecordId,
+    builder: (column) => column,
+  );
+
   $$ProjectsTableAnnotationComposer get projectId {
     final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
       composer: this,
@@ -7452,6 +14779,7 @@ class $$PhotosTableTableManager
                 Value<double?> longitude = const Value.absent(),
                 Value<DateTime?> takenAt = const Value.absent(),
                 Value<String?> caption = const Value.absent(),
+                Value<String?> linkedRecordId = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => PhotosCompanion(
                 id: id,
@@ -7468,6 +14796,7 @@ class $$PhotosTableTableManager
                 longitude: longitude,
                 takenAt: takenAt,
                 caption: caption,
+                linkedRecordId: linkedRecordId,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -7486,6 +14815,7 @@ class $$PhotosTableTableManager
                 Value<double?> longitude = const Value.absent(),
                 Value<DateTime?> takenAt = const Value.absent(),
                 Value<String?> caption = const Value.absent(),
+                Value<String?> linkedRecordId = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => PhotosCompanion.insert(
                 id: id,
@@ -7502,6 +14832,7 @@ class $$PhotosTableTableManager
                 longitude: longitude,
                 takenAt: takenAt,
                 caption: caption,
+                linkedRecordId: linkedRecordId,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
@@ -7997,6 +15328,4008 @@ typedef $$DocumentsTableProcessedTableManager =
       Document,
       PrefetchHooks Function({bool projectId})
     >;
+typedef $$InstalledEquipmentTableCreateCompanionBuilder =
+    InstalledEquipmentCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      required EquipmentKind kind,
+      required String brand,
+      Value<String?> model,
+      Value<String?> serialNumber,
+      Value<DateTime?> installedAt,
+      Value<DateTime?> warrantyUntil,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+typedef $$InstalledEquipmentTableUpdateCompanionBuilder =
+    InstalledEquipmentCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<EquipmentKind> kind,
+      Value<String> brand,
+      Value<String?> model,
+      Value<String?> serialNumber,
+      Value<DateTime?> installedAt,
+      Value<DateTime?> warrantyUntil,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+
+final class $$InstalledEquipmentTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $InstalledEquipmentTable,
+          InstalledEquipmentItem
+        > {
+  $$InstalledEquipmentTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('installed_equipment__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$InstalledEquipmentTableFilterComposer
+    extends Composer<_$AppDatabase, $InstalledEquipmentTable> {
+  $$InstalledEquipmentTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<EquipmentKind, EquipmentKind, String>
+  get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<String> get brand => $composableBuilder(
+    column: $table.brand,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get model => $composableBuilder(
+    column: $table.model,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get serialNumber => $composableBuilder(
+    column: $table.serialNumber,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get installedAt => $composableBuilder(
+    column: $table.installedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get warrantyUntil => $composableBuilder(
+    column: $table.warrantyUntil,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$InstalledEquipmentTableOrderingComposer
+    extends Composer<_$AppDatabase, $InstalledEquipmentTable> {
+  $$InstalledEquipmentTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get brand => $composableBuilder(
+    column: $table.brand,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get model => $composableBuilder(
+    column: $table.model,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get serialNumber => $composableBuilder(
+    column: $table.serialNumber,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get installedAt => $composableBuilder(
+    column: $table.installedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get warrantyUntil => $composableBuilder(
+    column: $table.warrantyUntil,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$InstalledEquipmentTableAnnotationComposer
+    extends Composer<_$AppDatabase, $InstalledEquipmentTable> {
+  $$InstalledEquipmentTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<EquipmentKind, String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get brand =>
+      $composableBuilder(column: $table.brand, builder: (column) => column);
+
+  GeneratedColumn<String> get model =>
+      $composableBuilder(column: $table.model, builder: (column) => column);
+
+  GeneratedColumn<String> get serialNumber => $composableBuilder(
+    column: $table.serialNumber,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get installedAt => $composableBuilder(
+    column: $table.installedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get warrantyUntil => $composableBuilder(
+    column: $table.warrantyUntil,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$InstalledEquipmentTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $InstalledEquipmentTable,
+          InstalledEquipmentItem,
+          $$InstalledEquipmentTableFilterComposer,
+          $$InstalledEquipmentTableOrderingComposer,
+          $$InstalledEquipmentTableAnnotationComposer,
+          $$InstalledEquipmentTableCreateCompanionBuilder,
+          $$InstalledEquipmentTableUpdateCompanionBuilder,
+          (InstalledEquipmentItem, $$InstalledEquipmentTableReferences),
+          InstalledEquipmentItem,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$InstalledEquipmentTableTableManager(
+    _$AppDatabase db,
+    $InstalledEquipmentTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$InstalledEquipmentTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$InstalledEquipmentTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$InstalledEquipmentTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<EquipmentKind> kind = const Value.absent(),
+                Value<String> brand = const Value.absent(),
+                Value<String?> model = const Value.absent(),
+                Value<String?> serialNumber = const Value.absent(),
+                Value<DateTime?> installedAt = const Value.absent(),
+                Value<DateTime?> warrantyUntil = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => InstalledEquipmentCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                kind: kind,
+                brand: brand,
+                model: model,
+                serialNumber: serialNumber,
+                installedAt: installedAt,
+                warrantyUntil: warrantyUntil,
+                notes: notes,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required EquipmentKind kind,
+                required String brand,
+                Value<String?> model = const Value.absent(),
+                Value<String?> serialNumber = const Value.absent(),
+                Value<DateTime?> installedAt = const Value.absent(),
+                Value<DateTime?> warrantyUntil = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => InstalledEquipmentCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                kind: kind,
+                brand: brand,
+                model: model,
+                serialNumber: serialNumber,
+                installedAt: installedAt,
+                warrantyUntil: warrantyUntil,
+                notes: notes,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$InstalledEquipmentTable, InstalledEquipmentItem>(
+                    table,
+                  ),
+                  $$InstalledEquipmentTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$InstalledEquipmentTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$InstalledEquipmentTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$InstalledEquipmentTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $InstalledEquipmentTable,
+      InstalledEquipmentItem,
+      $$InstalledEquipmentTableFilterComposer,
+      $$InstalledEquipmentTableOrderingComposer,
+      $$InstalledEquipmentTableAnnotationComposer,
+      $$InstalledEquipmentTableCreateCompanionBuilder,
+      $$InstalledEquipmentTableUpdateCompanionBuilder,
+      (InstalledEquipmentItem, $$InstalledEquipmentTableReferences),
+      InstalledEquipmentItem,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$CommissioningRecordsTableCreateCompanionBuilder =
+    CommissioningRecordsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      required CommissioningStatus status,
+      Value<DateTime?> testedAt,
+      Value<String?> technician,
+      Value<bool?> polarityOk,
+      Value<double?> insulationMohm,
+      Value<double?> insulationTestVoltageV,
+      Value<bool?> groundingOk,
+      Value<double?> groundingOhm,
+      Value<bool?> labelingOk,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+typedef $$CommissioningRecordsTableUpdateCompanionBuilder =
+    CommissioningRecordsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<CommissioningStatus> status,
+      Value<DateTime?> testedAt,
+      Value<String?> technician,
+      Value<bool?> polarityOk,
+      Value<double?> insulationMohm,
+      Value<double?> insulationTestVoltageV,
+      Value<bool?> groundingOk,
+      Value<double?> groundingOhm,
+      Value<bool?> labelingOk,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+
+final class $$CommissioningRecordsTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $CommissioningRecordsTable,
+          CommissioningRecord
+        > {
+  $$CommissioningRecordsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) => db.projects
+      .createAlias('commissioning_records__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$CommissioningRecordsTableFilterComposer
+    extends Composer<_$AppDatabase, $CommissioningRecordsTable> {
+  $$CommissioningRecordsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<
+    CommissioningStatus,
+    CommissioningStatus,
+    String
+  >
+  get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<DateTime> get testedAt => $composableBuilder(
+    column: $table.testedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get technician => $composableBuilder(
+    column: $table.technician,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get polarityOk => $composableBuilder(
+    column: $table.polarityOk,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get insulationMohm => $composableBuilder(
+    column: $table.insulationMohm,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get insulationTestVoltageV => $composableBuilder(
+    column: $table.insulationTestVoltageV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get groundingOk => $composableBuilder(
+    column: $table.groundingOk,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get groundingOhm => $composableBuilder(
+    column: $table.groundingOhm,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get labelingOk => $composableBuilder(
+    column: $table.labelingOk,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CommissioningRecordsTableOrderingComposer
+    extends Composer<_$AppDatabase, $CommissioningRecordsTable> {
+  $$CommissioningRecordsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get testedAt => $composableBuilder(
+    column: $table.testedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get technician => $composableBuilder(
+    column: $table.technician,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get polarityOk => $composableBuilder(
+    column: $table.polarityOk,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get insulationMohm => $composableBuilder(
+    column: $table.insulationMohm,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get insulationTestVoltageV => $composableBuilder(
+    column: $table.insulationTestVoltageV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get groundingOk => $composableBuilder(
+    column: $table.groundingOk,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get groundingOhm => $composableBuilder(
+    column: $table.groundingOhm,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get labelingOk => $composableBuilder(
+    column: $table.labelingOk,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CommissioningRecordsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $CommissioningRecordsTable> {
+  $$CommissioningRecordsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<CommissioningStatus, String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get testedAt =>
+      $composableBuilder(column: $table.testedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get technician => $composableBuilder(
+    column: $table.technician,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get polarityOk => $composableBuilder(
+    column: $table.polarityOk,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get insulationMohm => $composableBuilder(
+    column: $table.insulationMohm,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get insulationTestVoltageV => $composableBuilder(
+    column: $table.insulationTestVoltageV,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get groundingOk => $composableBuilder(
+    column: $table.groundingOk,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get groundingOhm => $composableBuilder(
+    column: $table.groundingOhm,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get labelingOk => $composableBuilder(
+    column: $table.labelingOk,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$CommissioningRecordsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $CommissioningRecordsTable,
+          CommissioningRecord,
+          $$CommissioningRecordsTableFilterComposer,
+          $$CommissioningRecordsTableOrderingComposer,
+          $$CommissioningRecordsTableAnnotationComposer,
+          $$CommissioningRecordsTableCreateCompanionBuilder,
+          $$CommissioningRecordsTableUpdateCompanionBuilder,
+          (CommissioningRecord, $$CommissioningRecordsTableReferences),
+          CommissioningRecord,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$CommissioningRecordsTableTableManager(
+    _$AppDatabase db,
+    $CommissioningRecordsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$CommissioningRecordsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$CommissioningRecordsTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$CommissioningRecordsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<CommissioningStatus> status = const Value.absent(),
+                Value<DateTime?> testedAt = const Value.absent(),
+                Value<String?> technician = const Value.absent(),
+                Value<bool?> polarityOk = const Value.absent(),
+                Value<double?> insulationMohm = const Value.absent(),
+                Value<double?> insulationTestVoltageV = const Value.absent(),
+                Value<bool?> groundingOk = const Value.absent(),
+                Value<double?> groundingOhm = const Value.absent(),
+                Value<bool?> labelingOk = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CommissioningRecordsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                status: status,
+                testedAt: testedAt,
+                technician: technician,
+                polarityOk: polarityOk,
+                insulationMohm: insulationMohm,
+                insulationTestVoltageV: insulationTestVoltageV,
+                groundingOk: groundingOk,
+                groundingOhm: groundingOhm,
+                labelingOk: labelingOk,
+                notes: notes,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required CommissioningStatus status,
+                Value<DateTime?> testedAt = const Value.absent(),
+                Value<String?> technician = const Value.absent(),
+                Value<bool?> polarityOk = const Value.absent(),
+                Value<double?> insulationMohm = const Value.absent(),
+                Value<double?> insulationTestVoltageV = const Value.absent(),
+                Value<bool?> groundingOk = const Value.absent(),
+                Value<double?> groundingOhm = const Value.absent(),
+                Value<bool?> labelingOk = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CommissioningRecordsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                status: status,
+                testedAt: testedAt,
+                technician: technician,
+                polarityOk: polarityOk,
+                insulationMohm: insulationMohm,
+                insulationTestVoltageV: insulationTestVoltageV,
+                groundingOk: groundingOk,
+                groundingOhm: groundingOhm,
+                labelingOk: labelingOk,
+                notes: notes,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$CommissioningRecordsTable, CommissioningRecord>(
+                    table,
+                  ),
+                  $$CommissioningRecordsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$CommissioningRecordsTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$CommissioningRecordsTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$CommissioningRecordsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $CommissioningRecordsTable,
+      CommissioningRecord,
+      $$CommissioningRecordsTableFilterComposer,
+      $$CommissioningRecordsTableOrderingComposer,
+      $$CommissioningRecordsTableAnnotationComposer,
+      $$CommissioningRecordsTableCreateCompanionBuilder,
+      $$CommissioningRecordsTableUpdateCompanionBuilder,
+      (CommissioningRecord, $$CommissioningRecordsTableReferences),
+      CommissioningRecord,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$StringTestsTableCreateCompanionBuilder =
+    StringTestsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      required String label,
+      Value<int> sortOrder,
+      Value<double?> expectedVocV,
+      Value<double?> measuredVocV,
+      Value<double?> expectedIscA,
+      Value<double?> measuredIscA,
+      Value<bool?> polarityOk,
+      Value<int> rowid,
+    });
+typedef $$StringTestsTableUpdateCompanionBuilder =
+    StringTestsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<String> label,
+      Value<int> sortOrder,
+      Value<double?> expectedVocV,
+      Value<double?> measuredVocV,
+      Value<double?> expectedIscA,
+      Value<double?> measuredIscA,
+      Value<bool?> polarityOk,
+      Value<int> rowid,
+    });
+
+final class $$StringTestsTableReferences
+    extends BaseReferences<_$AppDatabase, $StringTestsTable, StringTest> {
+  $$StringTestsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('string_tests__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$StringTestsTableFilterComposer
+    extends Composer<_$AppDatabase, $StringTestsTable> {
+  $$StringTestsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get label => $composableBuilder(
+    column: $table.label,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get expectedVocV => $composableBuilder(
+    column: $table.expectedVocV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get measuredVocV => $composableBuilder(
+    column: $table.measuredVocV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get expectedIscA => $composableBuilder(
+    column: $table.expectedIscA,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get measuredIscA => $composableBuilder(
+    column: $table.measuredIscA,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get polarityOk => $composableBuilder(
+    column: $table.polarityOk,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$StringTestsTableOrderingComposer
+    extends Composer<_$AppDatabase, $StringTestsTable> {
+  $$StringTestsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get label => $composableBuilder(
+    column: $table.label,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get expectedVocV => $composableBuilder(
+    column: $table.expectedVocV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get measuredVocV => $composableBuilder(
+    column: $table.measuredVocV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get expectedIscA => $composableBuilder(
+    column: $table.expectedIscA,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get measuredIscA => $composableBuilder(
+    column: $table.measuredIscA,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get polarityOk => $composableBuilder(
+    column: $table.polarityOk,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$StringTestsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $StringTestsTable> {
+  $$StringTestsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get label =>
+      $composableBuilder(column: $table.label, builder: (column) => column);
+
+  GeneratedColumn<int> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
+
+  GeneratedColumn<double> get expectedVocV => $composableBuilder(
+    column: $table.expectedVocV,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get measuredVocV => $composableBuilder(
+    column: $table.measuredVocV,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get expectedIscA => $composableBuilder(
+    column: $table.expectedIscA,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get measuredIscA => $composableBuilder(
+    column: $table.measuredIscA,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get polarityOk => $composableBuilder(
+    column: $table.polarityOk,
+    builder: (column) => column,
+  );
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$StringTestsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $StringTestsTable,
+          StringTest,
+          $$StringTestsTableFilterComposer,
+          $$StringTestsTableOrderingComposer,
+          $$StringTestsTableAnnotationComposer,
+          $$StringTestsTableCreateCompanionBuilder,
+          $$StringTestsTableUpdateCompanionBuilder,
+          (StringTest, $$StringTestsTableReferences),
+          StringTest,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$StringTestsTableTableManager(_$AppDatabase db, $StringTestsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$StringTestsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$StringTestsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$StringTestsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<String> label = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<double?> expectedVocV = const Value.absent(),
+                Value<double?> measuredVocV = const Value.absent(),
+                Value<double?> expectedIscA = const Value.absent(),
+                Value<double?> measuredIscA = const Value.absent(),
+                Value<bool?> polarityOk = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => StringTestsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                label: label,
+                sortOrder: sortOrder,
+                expectedVocV: expectedVocV,
+                measuredVocV: measuredVocV,
+                expectedIscA: expectedIscA,
+                measuredIscA: measuredIscA,
+                polarityOk: polarityOk,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required String label,
+                Value<int> sortOrder = const Value.absent(),
+                Value<double?> expectedVocV = const Value.absent(),
+                Value<double?> measuredVocV = const Value.absent(),
+                Value<double?> expectedIscA = const Value.absent(),
+                Value<double?> measuredIscA = const Value.absent(),
+                Value<bool?> polarityOk = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => StringTestsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                label: label,
+                sortOrder: sortOrder,
+                expectedVocV: expectedVocV,
+                measuredVocV: measuredVocV,
+                expectedIscA: expectedIscA,
+                measuredIscA: measuredIscA,
+                polarityOk: polarityOk,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$StringTestsTable, StringTest>(table),
+                  $$StringTestsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$StringTestsTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$StringTestsTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$StringTestsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $StringTestsTable,
+      StringTest,
+      $$StringTestsTableFilterComposer,
+      $$StringTestsTableOrderingComposer,
+      $$StringTestsTableAnnotationComposer,
+      $$StringTestsTableCreateCompanionBuilder,
+      $$StringTestsTableUpdateCompanionBuilder,
+      (StringTest, $$StringTestsTableReferences),
+      StringTest,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$MaintenanceTemplateItemsTableCreateCompanionBuilder =
+    MaintenanceTemplateItemsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required MaintenanceServiceKind kind,
+      Value<String?> title,
+      required int intervalMonths,
+      Value<bool> enabled,
+      Value<int> sortOrder,
+      Value<int> rowid,
+    });
+typedef $$MaintenanceTemplateItemsTableUpdateCompanionBuilder =
+    MaintenanceTemplateItemsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<MaintenanceServiceKind> kind,
+      Value<String?> title,
+      Value<int> intervalMonths,
+      Value<bool> enabled,
+      Value<int> sortOrder,
+      Value<int> rowid,
+    });
+
+class $$MaintenanceTemplateItemsTableFilterComposer
+    extends Composer<_$AppDatabase, $MaintenanceTemplateItemsTable> {
+  $$MaintenanceTemplateItemsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<
+    MaintenanceServiceKind,
+    MaintenanceServiceKind,
+    String
+  >
+  get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get intervalMonths => $composableBuilder(
+    column: $table.intervalMonths,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get enabled => $composableBuilder(
+    column: $table.enabled,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$MaintenanceTemplateItemsTableOrderingComposer
+    extends Composer<_$AppDatabase, $MaintenanceTemplateItemsTable> {
+  $$MaintenanceTemplateItemsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get intervalMonths => $composableBuilder(
+    column: $table.intervalMonths,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get enabled => $composableBuilder(
+    column: $table.enabled,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$MaintenanceTemplateItemsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $MaintenanceTemplateItemsTable> {
+  $$MaintenanceTemplateItemsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<MaintenanceServiceKind, String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<int> get intervalMonths => $composableBuilder(
+    column: $table.intervalMonths,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get enabled =>
+      $composableBuilder(column: $table.enabled, builder: (column) => column);
+
+  GeneratedColumn<int> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
+}
+
+class $$MaintenanceTemplateItemsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $MaintenanceTemplateItemsTable,
+          MaintenanceTemplateItem,
+          $$MaintenanceTemplateItemsTableFilterComposer,
+          $$MaintenanceTemplateItemsTableOrderingComposer,
+          $$MaintenanceTemplateItemsTableAnnotationComposer,
+          $$MaintenanceTemplateItemsTableCreateCompanionBuilder,
+          $$MaintenanceTemplateItemsTableUpdateCompanionBuilder,
+          (
+            MaintenanceTemplateItem,
+            BaseReferences<
+              _$AppDatabase,
+              $MaintenanceTemplateItemsTable,
+              MaintenanceTemplateItem
+            >,
+          ),
+          MaintenanceTemplateItem,
+          PrefetchHooks Function()
+        > {
+  $$MaintenanceTemplateItemsTableTableManager(
+    _$AppDatabase db,
+    $MaintenanceTemplateItemsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$MaintenanceTemplateItemsTableFilterComposer(
+                $db: db,
+                $table: table,
+              ),
+          createOrderingComposer: () =>
+              $$MaintenanceTemplateItemsTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$MaintenanceTemplateItemsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<MaintenanceServiceKind> kind = const Value.absent(),
+                Value<String?> title = const Value.absent(),
+                Value<int> intervalMonths = const Value.absent(),
+                Value<bool> enabled = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MaintenanceTemplateItemsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                kind: kind,
+                title: title,
+                intervalMonths: intervalMonths,
+                enabled: enabled,
+                sortOrder: sortOrder,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required MaintenanceServiceKind kind,
+                Value<String?> title = const Value.absent(),
+                required int intervalMonths,
+                Value<bool> enabled = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MaintenanceTemplateItemsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                kind: kind,
+                title: title,
+                intervalMonths: intervalMonths,
+                enabled: enabled,
+                sortOrder: sortOrder,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<
+                    $MaintenanceTemplateItemsTable,
+                    MaintenanceTemplateItem
+                  >(table),
+                  BaseReferences<
+                    _$AppDatabase,
+                    $MaintenanceTemplateItemsTable,
+                    MaintenanceTemplateItem
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$MaintenanceTemplateItemsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $MaintenanceTemplateItemsTable,
+      MaintenanceTemplateItem,
+      $$MaintenanceTemplateItemsTableFilterComposer,
+      $$MaintenanceTemplateItemsTableOrderingComposer,
+      $$MaintenanceTemplateItemsTableAnnotationComposer,
+      $$MaintenanceTemplateItemsTableCreateCompanionBuilder,
+      $$MaintenanceTemplateItemsTableUpdateCompanionBuilder,
+      (
+        MaintenanceTemplateItem,
+        BaseReferences<
+          _$AppDatabase,
+          $MaintenanceTemplateItemsTable,
+          MaintenanceTemplateItem
+        >,
+      ),
+      MaintenanceTemplateItem,
+      PrefetchHooks Function()
+    >;
+typedef $$MaintenancePlanItemsTableCreateCompanionBuilder =
+    MaintenancePlanItemsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      required MaintenanceServiceKind kind,
+      Value<String?> title,
+      required int intervalMonths,
+      Value<DateTime?> lastDoneAt,
+      required DateTime nextDueAt,
+      Value<int> sortOrder,
+      Value<int> rowid,
+    });
+typedef $$MaintenancePlanItemsTableUpdateCompanionBuilder =
+    MaintenancePlanItemsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<MaintenanceServiceKind> kind,
+      Value<String?> title,
+      Value<int> intervalMonths,
+      Value<DateTime?> lastDoneAt,
+      Value<DateTime> nextDueAt,
+      Value<int> sortOrder,
+      Value<int> rowid,
+    });
+
+final class $$MaintenancePlanItemsTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $MaintenancePlanItemsTable,
+          MaintenancePlanItem
+        > {
+  $$MaintenancePlanItemsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) => db.projects
+      .createAlias('maintenance_plan_items__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$MaintenancePlanItemsTableFilterComposer
+    extends Composer<_$AppDatabase, $MaintenancePlanItemsTable> {
+  $$MaintenancePlanItemsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<
+    MaintenanceServiceKind,
+    MaintenanceServiceKind,
+    String
+  >
+  get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get intervalMonths => $composableBuilder(
+    column: $table.intervalMonths,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get lastDoneAt => $composableBuilder(
+    column: $table.lastDoneAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get nextDueAt => $composableBuilder(
+    column: $table.nextDueAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$MaintenancePlanItemsTableOrderingComposer
+    extends Composer<_$AppDatabase, $MaintenancePlanItemsTable> {
+  $$MaintenancePlanItemsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get intervalMonths => $composableBuilder(
+    column: $table.intervalMonths,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get lastDoneAt => $composableBuilder(
+    column: $table.lastDoneAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get nextDueAt => $composableBuilder(
+    column: $table.nextDueAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$MaintenancePlanItemsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $MaintenancePlanItemsTable> {
+  $$MaintenancePlanItemsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<MaintenanceServiceKind, String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<int> get intervalMonths => $composableBuilder(
+    column: $table.intervalMonths,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get lastDoneAt => $composableBuilder(
+    column: $table.lastDoneAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get nextDueAt =>
+      $composableBuilder(column: $table.nextDueAt, builder: (column) => column);
+
+  GeneratedColumn<int> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$MaintenancePlanItemsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $MaintenancePlanItemsTable,
+          MaintenancePlanItem,
+          $$MaintenancePlanItemsTableFilterComposer,
+          $$MaintenancePlanItemsTableOrderingComposer,
+          $$MaintenancePlanItemsTableAnnotationComposer,
+          $$MaintenancePlanItemsTableCreateCompanionBuilder,
+          $$MaintenancePlanItemsTableUpdateCompanionBuilder,
+          (MaintenancePlanItem, $$MaintenancePlanItemsTableReferences),
+          MaintenancePlanItem,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$MaintenancePlanItemsTableTableManager(
+    _$AppDatabase db,
+    $MaintenancePlanItemsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$MaintenancePlanItemsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$MaintenancePlanItemsTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$MaintenancePlanItemsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<MaintenanceServiceKind> kind = const Value.absent(),
+                Value<String?> title = const Value.absent(),
+                Value<int> intervalMonths = const Value.absent(),
+                Value<DateTime?> lastDoneAt = const Value.absent(),
+                Value<DateTime> nextDueAt = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MaintenancePlanItemsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                kind: kind,
+                title: title,
+                intervalMonths: intervalMonths,
+                lastDoneAt: lastDoneAt,
+                nextDueAt: nextDueAt,
+                sortOrder: sortOrder,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required MaintenanceServiceKind kind,
+                Value<String?> title = const Value.absent(),
+                required int intervalMonths,
+                Value<DateTime?> lastDoneAt = const Value.absent(),
+                required DateTime nextDueAt,
+                Value<int> sortOrder = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MaintenancePlanItemsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                kind: kind,
+                title: title,
+                intervalMonths: intervalMonths,
+                lastDoneAt: lastDoneAt,
+                nextDueAt: nextDueAt,
+                sortOrder: sortOrder,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$MaintenancePlanItemsTable, MaintenancePlanItem>(
+                    table,
+                  ),
+                  $$MaintenancePlanItemsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$MaintenancePlanItemsTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$MaintenancePlanItemsTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$MaintenancePlanItemsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $MaintenancePlanItemsTable,
+      MaintenancePlanItem,
+      $$MaintenancePlanItemsTableFilterComposer,
+      $$MaintenancePlanItemsTableOrderingComposer,
+      $$MaintenancePlanItemsTableAnnotationComposer,
+      $$MaintenancePlanItemsTableCreateCompanionBuilder,
+      $$MaintenancePlanItemsTableUpdateCompanionBuilder,
+      (MaintenancePlanItem, $$MaintenancePlanItemsTableReferences),
+      MaintenancePlanItem,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$MaintenanceVisitsTableCreateCompanionBuilder =
+    MaintenanceVisitsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      required DateTime visitDate,
+      Value<String?> technician,
+      Value<String> doneItemIds,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+typedef $$MaintenanceVisitsTableUpdateCompanionBuilder =
+    MaintenanceVisitsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<DateTime> visitDate,
+      Value<String?> technician,
+      Value<String> doneItemIds,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+
+final class $$MaintenanceVisitsTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $MaintenanceVisitsTable,
+          MaintenanceVisit
+        > {
+  $$MaintenanceVisitsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('maintenance_visits__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$MaintenanceVisitsTableFilterComposer
+    extends Composer<_$AppDatabase, $MaintenanceVisitsTable> {
+  $$MaintenanceVisitsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get visitDate => $composableBuilder(
+    column: $table.visitDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get technician => $composableBuilder(
+    column: $table.technician,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get doneItemIds => $composableBuilder(
+    column: $table.doneItemIds,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$MaintenanceVisitsTableOrderingComposer
+    extends Composer<_$AppDatabase, $MaintenanceVisitsTable> {
+  $$MaintenanceVisitsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get visitDate => $composableBuilder(
+    column: $table.visitDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get technician => $composableBuilder(
+    column: $table.technician,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get doneItemIds => $composableBuilder(
+    column: $table.doneItemIds,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$MaintenanceVisitsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $MaintenanceVisitsTable> {
+  $$MaintenanceVisitsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get visitDate =>
+      $composableBuilder(column: $table.visitDate, builder: (column) => column);
+
+  GeneratedColumn<String> get technician => $composableBuilder(
+    column: $table.technician,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get doneItemIds => $composableBuilder(
+    column: $table.doneItemIds,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$MaintenanceVisitsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $MaintenanceVisitsTable,
+          MaintenanceVisit,
+          $$MaintenanceVisitsTableFilterComposer,
+          $$MaintenanceVisitsTableOrderingComposer,
+          $$MaintenanceVisitsTableAnnotationComposer,
+          $$MaintenanceVisitsTableCreateCompanionBuilder,
+          $$MaintenanceVisitsTableUpdateCompanionBuilder,
+          (MaintenanceVisit, $$MaintenanceVisitsTableReferences),
+          MaintenanceVisit,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$MaintenanceVisitsTableTableManager(
+    _$AppDatabase db,
+    $MaintenanceVisitsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$MaintenanceVisitsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$MaintenanceVisitsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$MaintenanceVisitsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<DateTime> visitDate = const Value.absent(),
+                Value<String?> technician = const Value.absent(),
+                Value<String> doneItemIds = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MaintenanceVisitsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                visitDate: visitDate,
+                technician: technician,
+                doneItemIds: doneItemIds,
+                notes: notes,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required DateTime visitDate,
+                Value<String?> technician = const Value.absent(),
+                Value<String> doneItemIds = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MaintenanceVisitsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                visitDate: visitDate,
+                technician: technician,
+                doneItemIds: doneItemIds,
+                notes: notes,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$MaintenanceVisitsTable, MaintenanceVisit>(table),
+                  $$MaintenanceVisitsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$MaintenanceVisitsTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$MaintenanceVisitsTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$MaintenanceVisitsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $MaintenanceVisitsTable,
+      MaintenanceVisit,
+      $$MaintenanceVisitsTableFilterComposer,
+      $$MaintenanceVisitsTableOrderingComposer,
+      $$MaintenanceVisitsTableAnnotationComposer,
+      $$MaintenanceVisitsTableCreateCompanionBuilder,
+      $$MaintenanceVisitsTableUpdateCompanionBuilder,
+      (MaintenanceVisit, $$MaintenanceVisitsTableReferences),
+      MaintenanceVisit,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$ProductionReadingsTableCreateCompanionBuilder =
+    ProductionReadingsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      required DateTime month,
+      required double actualKwh,
+      Value<double?> expectedKwh,
+      Value<double?> poaIrradiationKwhM2,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+typedef $$ProductionReadingsTableUpdateCompanionBuilder =
+    ProductionReadingsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<DateTime> month,
+      Value<double> actualKwh,
+      Value<double?> expectedKwh,
+      Value<double?> poaIrradiationKwhM2,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+
+final class $$ProductionReadingsTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $ProductionReadingsTable,
+          ProductionReading
+        > {
+  $$ProductionReadingsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('production_readings__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$ProductionReadingsTableFilterComposer
+    extends Composer<_$AppDatabase, $ProductionReadingsTable> {
+  $$ProductionReadingsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get month => $composableBuilder(
+    column: $table.month,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get actualKwh => $composableBuilder(
+    column: $table.actualKwh,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get expectedKwh => $composableBuilder(
+    column: $table.expectedKwh,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get poaIrradiationKwhM2 => $composableBuilder(
+    column: $table.poaIrradiationKwhM2,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ProductionReadingsTableOrderingComposer
+    extends Composer<_$AppDatabase, $ProductionReadingsTable> {
+  $$ProductionReadingsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get month => $composableBuilder(
+    column: $table.month,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get actualKwh => $composableBuilder(
+    column: $table.actualKwh,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get expectedKwh => $composableBuilder(
+    column: $table.expectedKwh,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get poaIrradiationKwhM2 => $composableBuilder(
+    column: $table.poaIrradiationKwhM2,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ProductionReadingsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ProductionReadingsTable> {
+  $$ProductionReadingsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get month =>
+      $composableBuilder(column: $table.month, builder: (column) => column);
+
+  GeneratedColumn<double> get actualKwh =>
+      $composableBuilder(column: $table.actualKwh, builder: (column) => column);
+
+  GeneratedColumn<double> get expectedKwh => $composableBuilder(
+    column: $table.expectedKwh,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get poaIrradiationKwhM2 => $composableBuilder(
+    column: $table.poaIrradiationKwhM2,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ProductionReadingsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ProductionReadingsTable,
+          ProductionReading,
+          $$ProductionReadingsTableFilterComposer,
+          $$ProductionReadingsTableOrderingComposer,
+          $$ProductionReadingsTableAnnotationComposer,
+          $$ProductionReadingsTableCreateCompanionBuilder,
+          $$ProductionReadingsTableUpdateCompanionBuilder,
+          (ProductionReading, $$ProductionReadingsTableReferences),
+          ProductionReading,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$ProductionReadingsTableTableManager(
+    _$AppDatabase db,
+    $ProductionReadingsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ProductionReadingsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ProductionReadingsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ProductionReadingsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<DateTime> month = const Value.absent(),
+                Value<double> actualKwh = const Value.absent(),
+                Value<double?> expectedKwh = const Value.absent(),
+                Value<double?> poaIrradiationKwhM2 = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ProductionReadingsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                month: month,
+                actualKwh: actualKwh,
+                expectedKwh: expectedKwh,
+                poaIrradiationKwhM2: poaIrradiationKwhM2,
+                notes: notes,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required DateTime month,
+                required double actualKwh,
+                Value<double?> expectedKwh = const Value.absent(),
+                Value<double?> poaIrradiationKwhM2 = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ProductionReadingsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                month: month,
+                actualKwh: actualKwh,
+                expectedKwh: expectedKwh,
+                poaIrradiationKwhM2: poaIrradiationKwhM2,
+                notes: notes,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$ProductionReadingsTable, ProductionReading>(
+                    table,
+                  ),
+                  $$ProductionReadingsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$ProductionReadingsTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$ProductionReadingsTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$ProductionReadingsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ProductionReadingsTable,
+      ProductionReading,
+      $$ProductionReadingsTableFilterComposer,
+      $$ProductionReadingsTableOrderingComposer,
+      $$ProductionReadingsTableAnnotationComposer,
+      $$ProductionReadingsTableCreateCompanionBuilder,
+      $$ProductionReadingsTableUpdateCompanionBuilder,
+      (ProductionReading, $$ProductionReadingsTableReferences),
+      ProductionReading,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$ProductionSettingsTableCreateCompanionBuilder =
+    ProductionSettingsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      Value<double?> systemKwp,
+      Value<double> alertThresholdPct,
+      Value<int> rowid,
+    });
+typedef $$ProductionSettingsTableUpdateCompanionBuilder =
+    ProductionSettingsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<double?> systemKwp,
+      Value<double> alertThresholdPct,
+      Value<int> rowid,
+    });
+
+final class $$ProductionSettingsTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $ProductionSettingsTable,
+          ProductionSetting
+        > {
+  $$ProductionSettingsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('production_settings__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$ProductionSettingsTableFilterComposer
+    extends Composer<_$AppDatabase, $ProductionSettingsTable> {
+  $$ProductionSettingsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get systemKwp => $composableBuilder(
+    column: $table.systemKwp,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get alertThresholdPct => $composableBuilder(
+    column: $table.alertThresholdPct,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ProductionSettingsTableOrderingComposer
+    extends Composer<_$AppDatabase, $ProductionSettingsTable> {
+  $$ProductionSettingsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get systemKwp => $composableBuilder(
+    column: $table.systemKwp,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get alertThresholdPct => $composableBuilder(
+    column: $table.alertThresholdPct,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ProductionSettingsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ProductionSettingsTable> {
+  $$ProductionSettingsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<double> get systemKwp =>
+      $composableBuilder(column: $table.systemKwp, builder: (column) => column);
+
+  GeneratedColumn<double> get alertThresholdPct => $composableBuilder(
+    column: $table.alertThresholdPct,
+    builder: (column) => column,
+  );
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ProductionSettingsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ProductionSettingsTable,
+          ProductionSetting,
+          $$ProductionSettingsTableFilterComposer,
+          $$ProductionSettingsTableOrderingComposer,
+          $$ProductionSettingsTableAnnotationComposer,
+          $$ProductionSettingsTableCreateCompanionBuilder,
+          $$ProductionSettingsTableUpdateCompanionBuilder,
+          (ProductionSetting, $$ProductionSettingsTableReferences),
+          ProductionSetting,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$ProductionSettingsTableTableManager(
+    _$AppDatabase db,
+    $ProductionSettingsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ProductionSettingsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ProductionSettingsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ProductionSettingsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<double?> systemKwp = const Value.absent(),
+                Value<double> alertThresholdPct = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ProductionSettingsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                systemKwp: systemKwp,
+                alertThresholdPct: alertThresholdPct,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                Value<double?> systemKwp = const Value.absent(),
+                Value<double> alertThresholdPct = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ProductionSettingsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                systemKwp: systemKwp,
+                alertThresholdPct: alertThresholdPct,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$ProductionSettingsTable, ProductionSetting>(
+                    table,
+                  ),
+                  $$ProductionSettingsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$ProductionSettingsTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$ProductionSettingsTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$ProductionSettingsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ProductionSettingsTable,
+      ProductionSetting,
+      $$ProductionSettingsTableFilterComposer,
+      $$ProductionSettingsTableOrderingComposer,
+      $$ProductionSettingsTableAnnotationComposer,
+      $$ProductionSettingsTableCreateCompanionBuilder,
+      $$ProductionSettingsTableUpdateCompanionBuilder,
+      (ProductionSetting, $$ProductionSettingsTableReferences),
+      ProductionSetting,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$BackupLogsTableCreateCompanionBuilder = BackupLogsCompanion Function({
+  Value<String> id,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<DateTime?> deletedAt,
+  required BackupTarget target,
+  required BackupTrigger trigger,
+  required BackupStatus status,
+  Value<String?> fileName,
+  Value<int?> sizeBytes,
+  Value<int?> fileCount,
+  Value<String?> message,
+  Value<int> rowid,
+});
+typedef $$BackupLogsTableUpdateCompanionBuilder = BackupLogsCompanion Function({
+  Value<String> id,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<DateTime?> deletedAt,
+  Value<BackupTarget> target,
+  Value<BackupTrigger> trigger,
+  Value<BackupStatus> status,
+  Value<String?> fileName,
+  Value<int?> sizeBytes,
+  Value<int?> fileCount,
+  Value<String?> message,
+  Value<int> rowid,
+});
+
+class $$BackupLogsTableFilterComposer
+    extends Composer<_$AppDatabase, $BackupLogsTable> {
+  $$BackupLogsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<BackupTarget, BackupTarget, String>
+  get target => $composableBuilder(
+    column: $table.target,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<BackupTrigger, BackupTrigger, String>
+  get trigger => $composableBuilder(
+    column: $table.trigger,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<BackupStatus, BackupStatus, String>
+  get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<String> get fileName => $composableBuilder(
+    column: $table.fileName,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sizeBytes => $composableBuilder(
+    column: $table.sizeBytes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get fileCount => $composableBuilder(
+    column: $table.fileCount,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get message => $composableBuilder(
+    column: $table.message,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$BackupLogsTableOrderingComposer
+    extends Composer<_$AppDatabase, $BackupLogsTable> {
+  $$BackupLogsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get target => $composableBuilder(
+    column: $table.target,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get trigger => $composableBuilder(
+    column: $table.trigger,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get fileName => $composableBuilder(
+    column: $table.fileName,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sizeBytes => $composableBuilder(
+    column: $table.sizeBytes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get fileCount => $composableBuilder(
+    column: $table.fileCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get message => $composableBuilder(
+    column: $table.message,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$BackupLogsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $BackupLogsTable> {
+  $$BackupLogsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<BackupTarget, String> get target =>
+      $composableBuilder(column: $table.target, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<BackupTrigger, String> get trigger =>
+      $composableBuilder(column: $table.trigger, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<BackupStatus, String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<String> get fileName =>
+      $composableBuilder(column: $table.fileName, builder: (column) => column);
+
+  GeneratedColumn<int> get sizeBytes =>
+      $composableBuilder(column: $table.sizeBytes, builder: (column) => column);
+
+  GeneratedColumn<int> get fileCount =>
+      $composableBuilder(column: $table.fileCount, builder: (column) => column);
+
+  GeneratedColumn<String> get message =>
+      $composableBuilder(column: $table.message, builder: (column) => column);
+}
+
+class $$BackupLogsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $BackupLogsTable,
+          BackupLog,
+          $$BackupLogsTableFilterComposer,
+          $$BackupLogsTableOrderingComposer,
+          $$BackupLogsTableAnnotationComposer,
+          $$BackupLogsTableCreateCompanionBuilder,
+          $$BackupLogsTableUpdateCompanionBuilder,
+          (
+            BackupLog,
+            BaseReferences<_$AppDatabase, $BackupLogsTable, BackupLog>,
+          ),
+          BackupLog,
+          PrefetchHooks Function()
+        > {
+  $$BackupLogsTableTableManager(_$AppDatabase db, $BackupLogsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$BackupLogsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$BackupLogsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$BackupLogsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<BackupTarget> target = const Value.absent(),
+                Value<BackupTrigger> trigger = const Value.absent(),
+                Value<BackupStatus> status = const Value.absent(),
+                Value<String?> fileName = const Value.absent(),
+                Value<int?> sizeBytes = const Value.absent(),
+                Value<int?> fileCount = const Value.absent(),
+                Value<String?> message = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => BackupLogsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                target: target,
+                trigger: trigger,
+                status: status,
+                fileName: fileName,
+                sizeBytes: sizeBytes,
+                fileCount: fileCount,
+                message: message,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required BackupTarget target,
+                required BackupTrigger trigger,
+                required BackupStatus status,
+                Value<String?> fileName = const Value.absent(),
+                Value<int?> sizeBytes = const Value.absent(),
+                Value<int?> fileCount = const Value.absent(),
+                Value<String?> message = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => BackupLogsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                target: target,
+                trigger: trigger,
+                status: status,
+                fileName: fileName,
+                sizeBytes: sizeBytes,
+                fileCount: fileCount,
+                message: message,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$BackupLogsTable, BackupLog>(table),
+                  BaseReferences<_$AppDatabase, $BackupLogsTable, BackupLog>(
+                    db,
+                    table,
+                    e,
+                  ),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$BackupLogsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $BackupLogsTable,
+      BackupLog,
+      $$BackupLogsTableFilterComposer,
+      $$BackupLogsTableOrderingComposer,
+      $$BackupLogsTableAnnotationComposer,
+      $$BackupLogsTableCreateCompanionBuilder,
+      $$BackupLogsTableUpdateCompanionBuilder,
+      (BackupLog, BaseReferences<_$AppDatabase, $BackupLogsTable, BackupLog>),
+      BackupLog,
+      PrefetchHooks Function()
+    >;
+typedef $$AppSettingsTableCreateCompanionBuilder =
+    AppSettingsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String key,
+      required String value,
+      Value<int> rowid,
+    });
+typedef $$AppSettingsTableUpdateCompanionBuilder =
+    AppSettingsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> key,
+      Value<String> value,
+      Value<int> rowid,
+    });
+
+class $$AppSettingsTableFilterComposer
+    extends Composer<_$AppDatabase, $AppSettingsTable> {
+  $$AppSettingsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get key => $composableBuilder(
+    column: $table.key,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get value => $composableBuilder(
+    column: $table.value,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$AppSettingsTableOrderingComposer
+    extends Composer<_$AppDatabase, $AppSettingsTable> {
+  $$AppSettingsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get key => $composableBuilder(
+    column: $table.key,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get value => $composableBuilder(
+    column: $table.value,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$AppSettingsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $AppSettingsTable> {
+  $$AppSettingsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get key =>
+      $composableBuilder(column: $table.key, builder: (column) => column);
+
+  GeneratedColumn<String> get value =>
+      $composableBuilder(column: $table.value, builder: (column) => column);
+}
+
+class $$AppSettingsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $AppSettingsTable,
+          AppSetting,
+          $$AppSettingsTableFilterComposer,
+          $$AppSettingsTableOrderingComposer,
+          $$AppSettingsTableAnnotationComposer,
+          $$AppSettingsTableCreateCompanionBuilder,
+          $$AppSettingsTableUpdateCompanionBuilder,
+          (
+            AppSetting,
+            BaseReferences<_$AppDatabase, $AppSettingsTable, AppSetting>,
+          ),
+          AppSetting,
+          PrefetchHooks Function()
+        > {
+  $$AppSettingsTableTableManager(_$AppDatabase db, $AppSettingsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$AppSettingsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$AppSettingsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$AppSettingsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> key = const Value.absent(),
+                Value<String> value = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => AppSettingsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                key: key,
+                value: value,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String key,
+                required String value,
+                Value<int> rowid = const Value.absent(),
+              }) => AppSettingsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                key: key,
+                value: value,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$AppSettingsTable, AppSetting>(table),
+                  BaseReferences<_$AppDatabase, $AppSettingsTable, AppSetting>(
+                    db,
+                    table,
+                    e,
+                  ),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$AppSettingsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $AppSettingsTable,
+      AppSetting,
+      $$AppSettingsTableFilterComposer,
+      $$AppSettingsTableOrderingComposer,
+      $$AppSettingsTableAnnotationComposer,
+      $$AppSettingsTableCreateCompanionBuilder,
+      $$AppSettingsTableUpdateCompanionBuilder,
+      (
+        AppSetting,
+        BaseReferences<_$AppDatabase, $AppSettingsTable, AppSetting>,
+      ),
+      AppSetting,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -8015,4 +19348,27 @@ class $AppDatabaseManager {
       $$PhotosTableTableManager(_db, _db.photos);
   $$DocumentsTableTableManager get documents =>
       $$DocumentsTableTableManager(_db, _db.documents);
+  $$InstalledEquipmentTableTableManager get installedEquipment =>
+      $$InstalledEquipmentTableTableManager(_db, _db.installedEquipment);
+  $$CommissioningRecordsTableTableManager get commissioningRecords =>
+      $$CommissioningRecordsTableTableManager(_db, _db.commissioningRecords);
+  $$StringTestsTableTableManager get stringTests =>
+      $$StringTestsTableTableManager(_db, _db.stringTests);
+  $$MaintenanceTemplateItemsTableTableManager get maintenanceTemplateItems =>
+      $$MaintenanceTemplateItemsTableTableManager(
+        _db,
+        _db.maintenanceTemplateItems,
+      );
+  $$MaintenancePlanItemsTableTableManager get maintenancePlanItems =>
+      $$MaintenancePlanItemsTableTableManager(_db, _db.maintenancePlanItems);
+  $$MaintenanceVisitsTableTableManager get maintenanceVisits =>
+      $$MaintenanceVisitsTableTableManager(_db, _db.maintenanceVisits);
+  $$ProductionReadingsTableTableManager get productionReadings =>
+      $$ProductionReadingsTableTableManager(_db, _db.productionReadings);
+  $$ProductionSettingsTableTableManager get productionSettings =>
+      $$ProductionSettingsTableTableManager(_db, _db.productionSettings);
+  $$BackupLogsTableTableManager get backupLogs =>
+      $$BackupLogsTableTableManager(_db, _db.backupLogs);
+  $$AppSettingsTableTableManager get appSettings =>
+      $$AppSettingsTableTableManager(_db, _db.appSettings);
 }

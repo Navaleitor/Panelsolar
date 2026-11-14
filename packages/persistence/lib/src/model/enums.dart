@@ -66,3 +66,102 @@ enum BillingPeriod {
   /// Dos meses (residencial CFE).
   bimonthly,
 }
+
+/// Tipo de equipo instalado en un proyecto (F6).
+enum EquipmentKind {
+  /// Panel / módulo fotovoltaico.
+  panel,
+
+  /// Inversor de string o central.
+  inverter,
+
+  /// Microinversor.
+  microinverter,
+
+  /// Optimizador de potencia.
+  optimizer,
+
+  /// Batería.
+  battery,
+
+  /// Medidor.
+  meter,
+
+  /// Protección (interruptor, fusible, DPS...).
+  protection,
+
+  /// Estructura de montaje.
+  structure,
+
+  /// Otro equipo.
+  other,
+}
+
+/// Resultado de la puesta en marcha (IEC 62446-1).
+enum CommissioningStatus {
+  /// Aún no se revisa o falta información.
+  pending,
+
+  /// Sin fallas.
+  approved,
+
+  /// Aprobada con observaciones por corregir.
+  observations,
+}
+
+/// Tipo de servicio de mantenimiento (F6).
+enum MaintenanceServiceKind {
+  /// Limpieza de paneles.
+  cleaning,
+
+  /// Inspección visual.
+  visualInspection,
+
+  /// Apriete de conexiones.
+  connectionTightening,
+
+  /// Revisión del inversor.
+  inverterCheck,
+
+  /// Revisión de protecciones.
+  protectionsCheck,
+
+  /// Termografía (opcional).
+  thermography,
+
+  /// Servicio personalizado.
+  other,
+}
+
+/// Destino de un respaldo.
+enum BackupTarget {
+  /// Archivo .zip local.
+  zip,
+
+  /// Carpeta privada de la app en Google Drive.
+  drive,
+}
+
+/// Qué inició un respaldo.
+enum BackupTrigger {
+  /// Botón "Respaldar ahora" o exportación manual.
+  manual,
+
+  /// Tarea diaria en segundo plano.
+  daily,
+
+  /// Al pasar un proyecto a Instalado.
+  projectFinished,
+
+  /// Restauración (se registra también).
+  restore,
+}
+
+/// Resultado de un respaldo.
+enum BackupStatus {
+  /// Terminó bien.
+  success,
+
+  /// Falló (ver mensaje).
+  failed,
+}
