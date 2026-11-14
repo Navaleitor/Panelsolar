@@ -17,7 +17,8 @@
 10. Energía = Pac × duración del intervalo.
 
 ## Agregación
-- Meses en **hora estándar local** (sin horario de verano). Un mes cuenta si tiene ≥ 90 % de sus horas.
+- Meses en **hora estándar local** (sin horario de verano), con el desfase de la zona IANA del sitio (ficha 15); si no hay zona, se estima como redondeo(longitud/15). Un mes cuenta si tiene ≥ 90 % de sus horas.
+- **Altitud:** la del proyecto si el usuario la escribió; si no, internamente la que informa la fuente de clima (PVGIS o NASA) o 0 m, sin mostrar error. Solo afecta la presión para la refracción.
 - **Mes típico** = promedio de ese mes en todos los años completos; **año típico** = suma de los 12 meses típicos.
 - Rendimiento específico = E_anual/kWp; PR = rendimiento específico / irradiación anual en el plano.
 

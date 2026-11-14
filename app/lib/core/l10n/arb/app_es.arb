@@ -251,8 +251,6 @@
   "weatherLatitudeRule": "Con inclinación = latitud: {value} kWh/kWp ({diff} %)",
   "@weatherLatitudeRule": {"placeholders": {"value": {"type": "String"}, "diff": {"type": "String"}}},
   "weatherTemperaturesTitle": "Temperaturas del sitio",
-  "weatherTemperaturesValue": "Mínima registrada {min} °C · máxima registrada {max} °C",
-  "@weatherTemperaturesValue": {"placeholders": {"min": {"type": "String"}, "max": {"type": "String"}}},
   "weatherSunPathTitle": "Trayectoria solar",
   "weatherSunPathAxis": "Azimut (°) vs. altura solar (°)",
   "weatherJuneSolstice": "Solsticio de junio",
@@ -263,5 +261,14 @@
   "weatherProjectLocation": "Ubicación guardada del proyecto:",
   "weatherNoProjectLocation": "Este proyecto todavía no tiene ubicación. Escribe las coordenadas aquí, o agrégala en la ficha del proyecto.",
   "weatherProjectEntryTitle": "Clima y producción",
-  "weatherProjectEntrySubtitle": "Cuánta energía daría 1 kWp aquí y la mejor inclinación"
+  "weatherProjectEntrySubtitle": "Cuánta energía daría 1 kWp aquí y la mejor inclinación",
+  "weatherTimeZone": "Zona horaria: {zone} ({offset})",
+  "@weatherTimeZone": {"placeholders": {"zone": {"type": "String"}, "offset": {"type": "String"}}},
+  "weatherDesignMin": "Mínima para diseño: {value} °C ({source})",
+  "@weatherDesignMin": {"placeholders": {"value": {"type": "String"}, "source": {"type": "String"}}},
+  "weatherDesignMax": "Máxima para diseño: {value} °C ({source})",
+  "@weatherDesignMax": {"placeholders": {"value": {"type": "String"}, "source": {"type": "String"}}},
+  "weatherDesignHint": "Para diseñar los strings se usa la más extrema de las dos fuentes.",
+  "weatherTemperaturesBySource": "{source}: mínima {min} °C · máxima {max} °C",
+  "@weatherTemperaturesBySource": {"placeholders": {"source": {"type": "String"}, "min": {"type": "String"}, "max": {"type": "String"}}}
 }

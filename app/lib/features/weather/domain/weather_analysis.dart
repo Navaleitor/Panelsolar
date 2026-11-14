@@ -15,10 +15,13 @@ class WeatherAnalysis {
     required this.latitudeTiltEnergy,
     required this.performanceRatio,
     required this.statistics,
+    required this.designTemperatures,
     required this.sunPath,
     required this.warnings,
     required this.attributions,
     required this.sourceLabel,
+    this.timeZone,
+    this.utcOffsetHours,
   });
 
   /// Latitud (grados).
@@ -48,6 +51,16 @@ class WeatherAnalysis {
   /// Estadísticas climáticas (mensuales, por estación y de diseño).
   final ClimateStatistics statistics;
 
+  /// Temperaturas para diseñar strings: la más extrema de NASA y PVGIS
+  /// (decisión del dueño), con los valores de cada fuente.
+  final SiteDesignTemperatures designTemperatures;
+
+  /// Zona horaria IANA usada para los meses (nula = estimada por longitud).
+  final String? timeZone;
+
+  /// Desfase estándar usado (h).
+  final double? utcOffsetHours;
+
   /// Trayectoria solar de los días característicos.
   final Map<SunPathDay, List<SunPathPoint>> sunPath;
 
@@ -70,7 +83,12 @@ PvSystem referenceSystem({required double tilt, required double azimuth}) =>
 ///
 /// La búsqueda de orientación usa el TMY de PVGIS si existe (8760 h, más
 /// rápido); la producción se calcula con la serie principal (5 años).
-WeatherAnalysis analyzeClimate(SiteClimate climate, Site site, {int? year}) {
+WeatherAnalysis analyzeClimate(
+  SiteClimate climate,
+  Site site, {
+  int? year,
+  String? timeZone,
+}) {
   final inputs = SimulationInputs.prepare(
     site: site,
     weather: climate.primary.series,
@@ -103,6 +121,12 @@ WeatherAnalysis analyzeClimate(SiteClimate climate, Site site, {int? year}) {
   final label = primary.source == WeatherSource.nasaPower
       ? 'NASA POWER ${primary.yearStart}–${primary.yearEnd}'
       : 'PVGIS ${primary.radiationDatabase ?? ''} TMY'.trim();
+  final statistics = ClimateStatistics.compute(site, primary.series);
+  final design = SiteDesignTemperatures.mostExtreme({
+    _sourceName(primary): statistics.design,
+    if (tmy != null && tmy.source != primary.source)
+      _sourceName(tmy): ClimateStatistics.compute(site, tmy.series).design,
+  });
   return WeatherAnalysis(
     latitude: site.latitude,
     longitude: site.longitude,
@@ -112,7 +136,10 @@ WeatherAnalysis analyzeClimate(SiteClimate climate, Site site, {int? year}) {
     monthlyEnergy: result.monthlyAcEnergy,
     latitudeTiltEnergy: latitudeResult.annualAcEnergy,
     performanceRatio: result.performanceRatio,
-    statistics: ClimateStatistics.compute(site, primary.series),
+    statistics: statistics,
+    designTemperatures: design,
+    timeZone: timeZone,
+    utcOffsetHours: site.utcOffsetHours,
     sunPath: SunPath.characteristicDays(
       site,
       year ?? DateTime.now().year,
@@ -123,3 +150,8 @@ WeatherAnalysis analyzeClimate(SiteClimate climate, Site site, {int? year}) {
     sourceLabel: label,
   );
 }
+
+String _sourceName(WeatherDataset d) => switch (d.source) {
+  WeatherSource.nasaPower => 'NASA POWER',
+  WeatherSource.pvgisTmy => 'PVGIS',
+};

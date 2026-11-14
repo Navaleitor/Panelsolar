@@ -1106,12 +1106,6 @@ abstract class AppLocalizations {
   /// **'Temperaturas del sitio'**
   String get weatherTemperaturesTitle;
 
-  /// No description provided for @weatherTemperaturesValue.
-  ///
-  /// In es, this message translates to:
-  /// **'Mínima registrada {min} °C · máxima registrada {max} °C'**
-  String weatherTemperaturesValue(String min, String max);
-
   /// No description provided for @weatherSunPathTitle.
   ///
   /// In es, this message translates to:
@@ -1177,6 +1171,36 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Cuánta energía daría 1 kWp aquí y la mejor inclinación'**
   String get weatherProjectEntrySubtitle;
+
+  /// No description provided for @weatherTimeZone.
+  ///
+  /// In es, this message translates to:
+  /// **'Zona horaria: {zone} ({offset})'**
+  String weatherTimeZone(String zone, String offset);
+
+  /// No description provided for @weatherDesignMin.
+  ///
+  /// In es, this message translates to:
+  /// **'Mínima para diseño: {value} °C ({source})'**
+  String weatherDesignMin(String value, String source);
+
+  /// No description provided for @weatherDesignMax.
+  ///
+  /// In es, this message translates to:
+  /// **'Máxima para diseño: {value} °C ({source})'**
+  String weatherDesignMax(String value, String source);
+
+  /// No description provided for @weatherDesignHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Para diseñar los strings se usa la más extrema de las dos fuentes.'**
+  String get weatherDesignHint;
+
+  /// No description provided for @weatherTemperaturesBySource.
+  ///
+  /// In es, this message translates to:
+  /// **'{source}: mínima {min} °C · máxima {max} °C'**
+  String weatherTemperaturesBySource(String source, String min, String max);
 }
 
 class _AppLocalizationsDelegate

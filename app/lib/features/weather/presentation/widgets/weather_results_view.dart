@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geo_kit/geo_kit.dart';
 import 'package:panelsolar/core/l10n/gen/app_localizations.dart';
 import 'package:panelsolar/features/weather/domain/weather_analysis.dart';
 import 'package:panelsolar/features/weather/presentation/widgets/monthly_energy_chart.dart';
@@ -17,11 +18,16 @@ class WeatherResultsView extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final a = analysis;
     final diff = (a.latitudeTiltEnergy - a.annualEnergy) / a.annualEnergy * 100;
-    final design = a.statistics.design;
+    final design = a.designTemperatures;
+    String t(double v) => v.isNaN ? '—' : v.toStringAsFixed(1);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(l10n.weatherSource(a.sourceLabel)),
+        if (a.timeZone != null && a.utcOffsetHours != null)
+          Text(
+            l10n.weatherTimeZone(a.timeZone!, _offsetLabel(a.utcOffsetHours!)),
+          ),
         _Section(
           title: l10n.weatherAnnualTitle,
           children: [
@@ -63,11 +69,22 @@ class WeatherResultsView extends StatelessWidget {
           title: l10n.weatherTemperaturesTitle,
           children: [
             Text(
-              l10n.weatherTemperaturesValue(
-                design.recordMin.toStringAsFixed(1),
-                design.recordMax.toStringAsFixed(1),
-              ),
+              l10n.weatherDesignMin(t(design.min), design.minSource ?? '—'),
+              key: const Key('weatherDesignMin'),
             ),
+            Text(
+              l10n.weatherDesignMax(t(design.max), design.maxSource ?? '—'),
+              key: const Key('weatherDesignMax'),
+            ),
+            Text(l10n.weatherDesignHint),
+            for (final e in design.bySource.entries)
+              Text(
+                l10n.weatherTemperaturesBySource(
+                  e.key,
+                  t(e.value.recordMin),
+                  t(e.value.recordMax),
+                ),
+              ),
           ],
         ),
         _Section(
@@ -85,13 +102,25 @@ class WeatherResultsView extends StatelessWidget {
         _Section(
           title: l10n.weatherAttributionsTitle,
           children: [
-            for (final t in a.attributions)
+            for (final t in [
+              ...a.attributions,
+              if (a.timeZone != null) TimeZoneLocator.attribution,
+            ])
               Text(t, style: Theme.of(context).textTheme.bodySmall),
           ],
         ),
       ],
     );
   }
+}
+
+/// "UTC−7", "UTC+5:30".
+String _offsetLabel(double hours) {
+  final sign = hours < 0 ? '−' : '+';
+  final abs = hours.abs();
+  final h = abs.floor();
+  final m = ((abs - h) * 60).round();
+  return m == 0 ? 'UTC$sign$h' : 'UTC$sign$h:${m.toString().padLeft(2, '0')}';
 }
 
 class _Section extends StatelessWidget {

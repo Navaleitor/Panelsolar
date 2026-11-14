@@ -17,6 +17,7 @@ class WeatherForm extends ConsumerStatefulWidget {
     required this.initialLatitude,
     required this.initialLongitude,
     this.elevation,
+    this.timeZone,
     this.fromProject = false,
     super.key,
   });
@@ -32,6 +33,9 @@ class WeatherForm extends ConsumerStatefulWidget {
 
   /// Altitud conocida (m), si la hay.
   final double? elevation;
+
+  /// Zona IANA guardada del sitio, si la hay.
+  final String? timeZone;
 
   /// Verdadero si las coordenadas son las del proyecto.
   final bool fromProject;
@@ -75,6 +79,7 @@ class _WeatherFormState extends ConsumerState<WeatherForm> {
             latitude: _parse(_lat.text)!,
             longitude: _parse(_lon.text)!,
             elevation: widget.elevation,
+            timeZone: widget.timeZone,
             forceRefresh: refresh,
           ),
     );

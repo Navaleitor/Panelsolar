@@ -39,14 +39,34 @@ WeatherDataset monterreyTmy() {
   );
 }
 
-/// Clima de prueba con el TMY como serie principal.
+/// Clima de prueba: serie principal "NASA POWER" sintética (el mismo TMY
+/// con +2 °C, para que las dos fuentes difieran) y el TMY de PVGIS.
 SiteClimate monterreyClimate() {
   final tmy = monterreyTmy();
-  final qc = WeatherQualityControl.check(tmy.series, monterrey);
+  final s = tmy.series;
+  final nasa = WeatherDataset(
+    source: WeatherSource.nasaPower,
+    latitude: tmy.latitude,
+    longitude: tmy.longitude,
+    elevation: 786,
+    version: 'v2.10.4',
+    accessedAt: tmy.accessedAt,
+    yearStart: 2021,
+    yearEnd: 2025,
+    series: WeatherSeries(
+      startEpochSeconds: s.startEpochSeconds,
+      ghi: s.ghi,
+      dni: s.dni,
+      dhi: s.dhi,
+      tempAir: Float64List.fromList([for (final t in s.tempAir) t + 2]),
+      windSpeed: s.windSpeed,
+    ),
+  );
+  final qc = WeatherQualityControl.check(nasa.series, monterrey);
   return SiteClimate(
-    primary: tmy.withSeries(qc.series),
+    primary: nasa.withSeries(qc.series),
     primaryQuality: qc.report,
-    tmy: tmy.withSeries(qc.series),
+    tmy: tmy.withSeries(WeatherQualityControl.check(s, monterrey).series),
     horizon: HorizonProfile.flat(),
     warnings: const ['Advertencia de prueba'],
   );

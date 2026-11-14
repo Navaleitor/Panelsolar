@@ -28,5 +28,6 @@ export 'src/simulation/simulator.dart';
 export 'src/simulation/site.dart';
 export 'src/simulation/weather_series.dart';
 export 'src/statistics/climate_statistics.dart';
+export 'src/statistics/design_temperatures.dart';
 export 'src/sunpath/sun_path.dart';
 export 'src/thermal/cell_temperature.dart';

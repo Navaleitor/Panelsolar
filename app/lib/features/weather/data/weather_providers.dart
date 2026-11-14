@@ -1,6 +1,7 @@
 import 'dart:isolate';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:panelsolar/features/site/data/site_data_providers.dart';
 import 'package:panelsolar/features/weather/data/weather_job.dart';
 import 'package:panelsolar/features/weather/domain/weather_analysis.dart';
 import 'package:path_provider/path_provider.dart';
@@ -37,16 +38,23 @@ class WeatherAnalysisController extends AsyncNotifier<WeatherAnalysis?> {
     required double latitude,
     required double longitude,
     double? elevation,
+    String? timeZone,
     bool forceRefresh = false,
   }) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final dir = await ref.read(weatherCacheDirProvider.future);
+      // Zona del sitio: la guardada o la deducida de las coordenadas.
+      final zones = ref.read(timeZoneServiceProvider);
+      final zone = timeZone ?? await zones.timeZoneAt(latitude, longitude);
+      final offset = zone == null ? null : zones.standardUtcOffsetHours(zone);
       return await ref.read(weatherRunnerProvider)((
         projectId: projectId,
         latitude: latitude,
         longitude: longitude,
         elevation: elevation,
+        timeZone: offset == null ? null : zone,
+        utcOffsetHours: offset,
         forceRefresh: forceRefresh,
       ), dir);
     });

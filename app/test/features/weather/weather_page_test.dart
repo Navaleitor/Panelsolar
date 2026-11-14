@@ -81,12 +81,31 @@ void main() {
     await tapAndWait(tester, find.byKey(const Key('weatherAnnual')));
     expect(received!.projectId, weatherManualCacheId);
     expect(received!.latitude, closeTo(25.6866, 1e-9));
+    // Sin altitud: el motor usa internamente la de la fuente, sin error.
     expect(received!.elevation, isNull);
+    // El servicio falso no deduce zona: se estima por la longitud.
+    expect(received!.timeZone, isNull);
+    expect(received!.utcOffsetHours, isNull);
     expect(received!.forceRefresh, isFalse);
     final annual = canned.annualEnergy.toStringAsFixed(0);
     expect(find.text('$annual kWh por kWp al año'), findsOneWidget);
     expect(find.byKey(const Key('weatherOptimal')), findsOneWidget);
 
+    final design = canned.designTemperatures;
+    await tester.scrollUntilVisible(
+      find.byKey(const Key('weatherDesignMax')),
+      300,
+      scrollable: list(),
+    );
+    expect(
+      find.text(
+        'Mínima para diseño: ${design.min.toStringAsFixed(1)} °C '
+        '(${design.minSource})',
+      ),
+      findsOneWidget,
+    );
+    expect(find.textContaining('NASA POWER: mínima'), findsOneWidget);
+    expect(find.textContaining('PVGIS: mínima'), findsOneWidget);
     for (final text in ['Solsticio de junio', '• Advertencia de prueba']) {
       await tester.scrollUntilVisible(find.text(text), 300, scrollable: list());
     }
@@ -114,6 +133,7 @@ void main() {
         latitude: 40.4168,
         longitude: -3.7038,
         altitudeM: 667,
+        timeZone: 'America/Hermosillo',
         source: db.LocationSource.manual,
       ),
     );
@@ -131,6 +151,9 @@ void main() {
     expect(received!.latitude, 40.4168);
     expect(received!.longitude, -3.7038);
     expect(received!.elevation, 667);
+    // Zona guardada del proyecto → su desfase estándar (sin horario de verano).
+    expect(received!.timeZone, 'America/Hermosillo');
+    expect(received!.utcOffsetHours, -7);
   });
 
   testWidgets('proyecto sin ubicación: avisa y deja escribirla', (
@@ -214,6 +237,8 @@ void main() {
       latitude: 25.67,
       longitude: -100.31,
       elevation: 540.0,
+      timeZone: 'America/Monterrey',
+      utcOffsetHours: -6.0,
       forceRefresh: false,
     );
     final a = await runWeatherJob(

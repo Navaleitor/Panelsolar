@@ -32,7 +32,7 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 - Golden con pvlib 0.16.1 en 6 sitios: diferencias < 1×10⁻⁶ %. Validación cruzada contra PVWatts y PVGIS: las 6 ciudades dentro de ±5 %.
 - `data_sources`: NASA POWER y PVGIS 5.3 (TMY y horizonte), caché gzip por proyecto, control de calidad con cierre de componentes, atribuciones.
 - App: "Clima y producción" desde la ficha del proyecto (`/projects/:id/weather`, usa su ubicación y altitud) y, para pruebas, desde Ajustes (`/settings/weather`).
-- Decisión pendiente del dueño: qué temperatura usar para diseñar strings en F4 (propuesta: la mínima más fría y la máxima más caliente entre NASA y PVGIS).
+- Decisiones del dueño (2026-11-14) aplicadas: temperaturas de diseño = la más extrema de NASA y PVGIS (`SiteDesignTemperatures`); zona horaria deducida sin conexión (`geo_kit` `TimeZoneLocator`, ≈ 1.2 MB, ODbL) propuesta al confirmar la ubicación y usada por el motor; altitud opcional (sin altitud el motor usa la de la fuente internamente).
 
 ## Sub-chats (sesiones) por fase
 Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.

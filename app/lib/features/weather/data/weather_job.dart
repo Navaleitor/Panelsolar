@@ -11,13 +11,17 @@ const String weatherManualCacheId = 'sin_proyecto';
 /// Petición de análisis de clima.
 ///
 /// - `projectId`: proyecto dueño de la caché (o [weatherManualCacheId]).
-/// - `elevation`: altitud conocida del sitio (m); si es nula se usa la de
-///   PVGIS o NASA.
+/// - `elevation`: altitud conocida del sitio (m); si es nula se usa
+///   internamente la de PVGIS o NASA (o 0 m), sin mostrar error.
+/// - `timeZone` / `utcOffsetHours`: zona IANA del sitio y su desfase
+///   estándar; si faltan, el desfase se estima por la longitud.
 typedef WeatherJob = ({
   String projectId,
   double latitude,
   double longitude,
   double? elevation,
+  String? timeZone,
+  double? utcOffsetHours,
   bool forceRefresh,
 });
 
@@ -53,8 +57,9 @@ Future<WeatherAnalysis> runWeatherJob(
           climate.tmy?.elevation ??
           climate.primary.elevation ??
           0,
+      utcOffsetHours: job.utcOffsetHours,
     );
-    return analyzeClimate(climate, site, year: year);
+    return analyzeClimate(climate, site, year: year, timeZone: job.timeZone);
   } finally {
     if (client == null) c.close();
   }

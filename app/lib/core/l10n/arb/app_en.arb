@@ -168,7 +168,6 @@
   "weatherOptimalValue": "Tilt {tilt}° · azimuth {azimuth}°",
   "weatherLatitudeRule": "With tilt = latitude: {value} kWh/kWp ({diff} %)",
   "weatherTemperaturesTitle": "Site temperatures",
-  "weatherTemperaturesValue": "Recorded minimum {min} °C · recorded maximum {max} °C",
   "weatherSunPathTitle": "Sun path",
   "weatherSunPathAxis": "Azimuth (°) vs. solar elevation (°)",
   "weatherJuneSolstice": "June solstice",
@@ -179,5 +178,10 @@
   "weatherProjectLocation": "Saved project location:",
   "weatherNoProjectLocation": "This project has no location yet. Type the coordinates here, or add it on the project page.",
   "weatherProjectEntryTitle": "Weather and yield",
-  "weatherProjectEntrySubtitle": "How much energy 1 kWp would give here and the best tilt"
+  "weatherProjectEntrySubtitle": "How much energy 1 kWp would give here and the best tilt",
+  "weatherTimeZone": "Time zone: {zone} ({offset})",
+  "weatherDesignMin": "Design minimum: {value} °C ({source})",
+  "weatherDesignMax": "Design maximum: {value} °C ({source})",
+  "weatherDesignHint": "String design uses the most extreme value of the two sources.",
+  "weatherTemperaturesBySource": "{source}: minimum {min} °C · maximum {max} °C"
 }

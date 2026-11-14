@@ -11,6 +11,7 @@
 - **Temperaturas de diseño (para F4):**
   - mínima registrada y máxima registrada (extremos horarios de toda la serie);
   - promedio de las mínimas anuales y de las máximas anuales.
+- **Combinación de fuentes (decisión del dueño, 2026-11-14):** la temperatura de diseño es la **más extrema** de NASA POWER y PVGIS: T_mín,diseño = min(T_mín,NASA, T_mín,PVGIS) y T_máx,diseño = max(T_máx,NASA, T_máx,PVGIS). Se muestran las dos fuentes y se avisa si su temperatura media difiere más de 3 °C (`packages/solar_engine/lib/src/statistics/design_temperatures.dart`).
 
 | Variable | Unidad |
 |---|---|
@@ -27,4 +28,6 @@ Definiciones estándar (OMM, estaciones meteorológicas). Temperaturas extremas 
 - Monterrey (TMY): GHI anual 1600–2200 kWh/m²; junio más soleado que diciembre; verano más caliente que invierno; la suma de las 4 estaciones = el año.
 - Serie sintética del hemisferio sur (temperatura = número de mes): verano (dic-feb) con mín. 1 °C y máx. 12 °C; invierno (jun-ago) media 7.011 °C.
 
-**Prueba:** `test/statistics/climate_statistics_test.dart`.
+- NASA −5.7/37.6 °C y PVGIS −2.1/40.3 °C → diseño **−5.7 °C (NASA)** y **40.3 °C (PVGIS)**.
+
+**Pruebas:** `test/statistics/climate_statistics_test.dart`, `test/statistics/design_temperatures_test.dart`.

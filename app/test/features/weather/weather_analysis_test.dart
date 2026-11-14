@@ -16,9 +16,38 @@ void main() {
     expect(a.performanceRatio, inInclusiveRange(0.7, 0.9));
     expect(a.sunPath.length, 4);
     expect(a.statistics.design.recordMax, greaterThan(30));
-    expect(a.sourceLabel, 'PVGIS PVGIS-ERA5 TMY');
-    expect(a.attributions.single, contains('PVGIS'));
+    expect(a.sourceLabel, 'NASA POWER 2021–2025');
+    expect(a.attributions.length, 3);
+    expect(a.attributions.last, contains('PVGIS'));
     expect(a.warnings, ['Advertencia de prueba']);
+  });
+
+  test('temperaturas de diseño: la más extrema de NASA y PVGIS', () {
+    final a = analyzeClimate(monterreyClimate(), monterrey, year: 2026);
+    final d = a.designTemperatures;
+    final nasa = d.bySource['NASA POWER']!;
+    final pvgis = d.bySource['PVGIS']!;
+    // NASA sintética = PVGIS + 2 °C: la mínima sale de PVGIS y la máxima
+    // de NASA.
+    expect(nasa.recordMax, closeTo(pvgis.recordMax + 2, 1e-9));
+    expect((d.min, d.minSource), (pvgis.recordMin, 'PVGIS'));
+    expect((d.max, d.maxSource), (nasa.recordMax, 'NASA POWER'));
+  });
+
+  test('zona horaria y desfase estándar se reportan', () {
+    const site = Site(
+      latitude: 25.6866,
+      longitude: -100.3161,
+      utcOffsetHours: -6,
+    );
+    final a = analyzeClimate(
+      monterreyClimate(),
+      site,
+      year: 2026,
+      timeZone: 'America/Monterrey',
+    );
+    expect(a.timeZone, 'America/Monterrey');
+    expect(a.utcOffsetHours, -6);
   });
 
   test('sistema de referencia: 1 kWp', () {

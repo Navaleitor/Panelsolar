@@ -41,6 +41,7 @@ class WeatherPage extends ConsumerWidget {
           initialLatitude: value.latitude,
           initialLongitude: value.longitude,
           elevation: value.altitudeM,
+          timeZone: value.timeZone,
           fromProject: true,
         ),
         AsyncData() || AsyncError() => Column(

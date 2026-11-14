@@ -584,11 +584,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get weatherTemperaturesTitle => 'Site temperatures';
 
   @override
-  String weatherTemperaturesValue(String min, String max) {
-    return 'Recorded minimum $min °C · recorded maximum $max °C';
-  }
-
-  @override
   String get weatherSunPathTitle => 'Sun path';
 
   @override
@@ -622,4 +617,28 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get weatherProjectEntrySubtitle =>
       'How much energy 1 kWp would give here and the best tilt';
+
+  @override
+  String weatherTimeZone(String zone, String offset) {
+    return 'Time zone: $zone ($offset)';
+  }
+
+  @override
+  String weatherDesignMin(String value, String source) {
+    return 'Design minimum: $value °C ($source)';
+  }
+
+  @override
+  String weatherDesignMax(String value, String source) {
+    return 'Design maximum: $value °C ($source)';
+  }
+
+  @override
+  String get weatherDesignHint =>
+      'String design uses the most extreme value of the two sources.';
+
+  @override
+  String weatherTemperaturesBySource(String source, String min, String max) {
+    return '$source: minimum $min °C · maximum $max °C';
+  }
 }
