@@ -10,7 +10,7 @@ import 'package:persistence/src/tables/projects.dart';
 /// `false` = con falla.
 ///
 /// Historial de esquema:
-/// - v4: tabla nueva (F6).
+/// - v6: tabla nueva (F6).
 @DataClassName('CommissioningRecord')
 class CommissioningRecords extends Table with BaseColumns {
   /// Proyecto (único).

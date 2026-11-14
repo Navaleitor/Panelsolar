@@ -6,7 +6,7 @@ import 'package:persistence/src/tables/projects.dart';
 /// en `photos` con `linkedRecordId` = id de la visita.
 ///
 /// Historial de esquema:
-/// - v4: tabla nueva (F6).
+/// - v6: tabla nueva (F6).
 @DataClassName('MaintenanceVisit')
 class MaintenanceVisits extends Table with BaseColumns {
   /// Proyecto al que pertenece.

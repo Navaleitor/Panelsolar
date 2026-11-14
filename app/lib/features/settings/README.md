@@ -3,7 +3,7 @@
 Respaldo (.zip y Google Drive), recordatorios de mantenimiento y estado de la base de datos. Perfil de empresa, unidades, idioma y licencia llegan en fases posteriores (F5/F7).
 
 ## Estado
-F6: respaldo y recordatorios. La tarjeta **Base de datos** (`databaseHealthProvider`) enseña la versión de esquema (v4).
+F6: respaldo y recordatorios. La tarjeta **Base de datos** (`databaseHealthProvider`) enseña la versión de esquema (v6).
 
 ## Pantallas
 | Ruta | Archivo | Qué muestra |

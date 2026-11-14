@@ -24,20 +24,26 @@ Las fechas se guardan como texto ISO-8601 (`build.yaml`).
 | `utility_bills` | `UtilityBill` | v3 | Recibo: periodo, `BillingPeriod`, kWh, importe en **centavos**, moneda, código de tarifa. |
 | `photos` | `Photo` | v3 | Proyecto, etapa (`PhotoStage`), ruta relativa, SHA-256, tamaño, GPS, fecha. |
 | `documents` | `Document` | v3 | Proyecto, título, `DocumentKind` (pdf/imagen), ruta relativa, MIME, tamaño, SHA-256. |
-| `installed_equipment` | `InstalledEquipmentItem` | v4 | Equipo instalado: `EquipmentKind`, marca, modelo, serie, instalación, garantía. |
-| `commissioning_records` | `CommissioningRecord` | v4 | Uno por proyecto: `CommissioningStatus`, polaridad, aislamiento (MΩ, V), tierra, etiquetado. `null` = sin revisar. |
-| `string_tests` | `StringTest` | v4 | Voc/Isc esperados y medidos por string, polaridad. |
-| `maintenance_template_items` | `MaintenanceTemplateItem` | v4 | Plantilla editable de servicios (`MaintenanceServiceKind`, meses, incluido). |
-| `maintenance_plan_items` | `MaintenancePlanItem` | v4 | Servicio del plan de un proyecto: meses, última vez, próxima fecha. |
-| `maintenance_visits` | `MaintenanceVisit` | v4 | Bitácora: fecha, técnico, ids de servicios hechos (separados por coma), notas. |
-| `production_readings` | `ProductionReading` | v4 | kWh reales del mes, esperados y POA (kWh/m²). Una activa por mes. |
-| `production_settings` | `ProductionSetting` | v4 | Uno por proyecto: kWp y umbral de alerta (%). |
-| `backup_logs` | `BackupLog` | v4 | Historial: destino, motivo, resultado, tamaño, archivos. |
-| `app_settings` | `AppSetting` | v4 | Ajustes clave → valor (Drive, recordatorios). |
+| `roof_images` | `RoofImage` | v5 | Uno por proyecto: modo (`RoofMode` imagen/croquis), imagen importada por el usuario, metros por píxel, líneas de calibración y verificación (JSON en píxeles), norte (`NorthSource`) y declinación usada. |
+| `roof_planes` | `RoofPlane` | v5 | Polígono en **metros locales** (JSON `[[x,y],...]`, x = este, y = norte), inclinación (`TiltSource`), azimut, arista del alero, retiro de borde y pasillos (JSON). |
+| `obstacles` | `Obstacle` | v5 | `ObstacleKind`, `ObstacleOutline`, centro/medidas/giro o puntos (m), altura sobre el techo (`HeightSource`), litros del tinaco. |
+| `horizon_profiles` | `HorizonProfileRecord` | v5 | `HorizonSource` (terreno PVGIS / manual / cámara), nombre y puntos `[[azimut, elevación], ...]`. La clase no se llama `HorizonProfile` para no chocar con la del motor. |
 
-v4 también agregó `photos.linkedRecordId` (foto de una visita o de la puesta en marcha).
+| `installed_equipment` | `InstalledEquipmentItem` | v6 | Equipo instalado: `EquipmentKind`, marca, modelo, serie, instalación, garantía. |
+| `commissioning_records` | `CommissioningRecord` | v6 | Uno por proyecto: `CommissioningStatus`, polaridad, aislamiento (MΩ, V), tierra, etiquetado. `null` = sin revisar. |
+| `string_tests` | `StringTest` | v6 | Voc/Isc esperados y medidos por string, polaridad. |
+| `maintenance_template_items` | `MaintenanceTemplateItem` | v6 | Plantilla editable de servicios (`MaintenanceServiceKind`, meses, incluido). |
+| `maintenance_plan_items` | `MaintenancePlanItem` | v6 | Servicio del plan de un proyecto: meses, última vez, próxima fecha. |
+| `maintenance_visits` | `MaintenanceVisit` | v6 | Bitácora: fecha, técnico, ids de servicios hechos (separados por coma), notas. |
+| `production_readings` | `ProductionReading` | v6 | kWh reales del mes, esperados y POA (kWh/m²). Una activa por mes. |
+| `production_settings` | `ProductionSetting` | v6 | Uno por proyecto: kWp y umbral de alerta (%). |
+| `backup_logs` | `BackupLog` | v6 | Historial: destino, motivo, resultado, tamaño, archivos. |
+| `app_settings` | `AppSetting` | v6 | Ajustes clave → valor (Drive, recordatorios). |
 
-Versión de esquema actual: **4**.
+v6 también agregó `photos.linkedRecordId` (foto de una visita o de la puesta en marcha).
+
+
+Versión de esquema actual: **6**. La **v4 quedó vacía** (`from3To4` no hace nada: estaba reservada para F6, pero F3 se integró antes con v5). F6 está en v6 (`from5To6`). No cambiar: hay teléfonos con v5.
 
 ### Enumeraciones (`lib/src/model/enums.dart`)
 Se guardan como texto con el nombre del valor (`prospect`, `bimonthly`...). **Nunca renombrar un valor** sin migración; agregar al final sí es seguro.
@@ -51,6 +57,10 @@ Se guardan como texto con el nombre del valor (`prospect`, `bimonthly`...). **Nu
 | `UtilityBillRepository` | Recibos del cliente en orden cronológico (`watchByClient` / `listByClient`); valida periodo y kWh. |
 | `PhotoRepository` | Fotos por proyecto y etapa; `existsHash` evita duplicados. |
 | `DocumentRepository` | Documentos por proyecto; renombrar y borrado lógico. |
+| `RoofImageRepository` | Base del techo: `saveImage` (borra calibración y norte), `startSketch`, `saveCalibration`, `saveNorth`. |
+| `RoofPlaneRepository` | Planos por proyecto en orden; `update(plane)` con `copyWith`; valida inclinación [0, 90). |
+| `ObstacleRepository` | Obstáculos por proyecto; valida ancho > 0 y altura ≥ 0. |
+| `HorizonProfileRepository` | Un terreno por proyecto (`saveTerrain`) y obstáculos lejanos (`addManual`). |
 | `CompanyRepository` | Perfil de la empresa (F0). |
 | `InstalledEquipmentRepository` | Equipos por proyecto. |
 | `CommissioningRepository` | Checklist (crea o reemplaza) y strings. |

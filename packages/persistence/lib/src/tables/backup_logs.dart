@@ -5,7 +5,7 @@ import 'package:persistence/src/tables/base_columns.dart';
 /// Historial de respaldos y restauraciones.
 ///
 /// Historial de esquema:
-/// - v4: tabla nueva (F6).
+/// - v6: tabla nueva (F6).
 @DataClassName('BackupLog')
 class BackupLogs extends Table with BaseColumns {
   /// .zip o Google Drive.

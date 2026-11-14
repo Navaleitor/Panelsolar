@@ -45,7 +45,7 @@ void main() {
       }
       final manifest = await archive.write(zip, encryption: enc);
       expect(manifest.counts['clients'], 1);
-      expect(manifest.files, hasLength(1));
+      expect(manifest.files, hasLength(2));
       await dbA.close();
 
       // "Teléfono nuevo": base vacía (con un ajuste propio) y sin archivos.
@@ -69,7 +69,7 @@ void main() {
         );
       }
       final result = await restorer.restore(zip, password: password);
-      expect(result.filesRestored, 1);
+      expect(result.filesRestored, 2);
       expect(result.filesMissing, 0);
       expect(await dump(dbB), before);
       expect(await AppSettingsRepository(dbB).get('device.only'), 'B');

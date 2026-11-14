@@ -21,7 +21,7 @@ Ficha: [`docs/formulas/performance-ratio.md`](../../../../docs/formulas/performa
 `domain/expected_production_source.dart` define `ExpectedProductionSource`. `data/production_providers.dart` usa `EngineExpectedSource` (`data/engine_expected_source.dart`): energía mensual típica de **1 kWp** en la orientación óptima del sitio (análisis de clima de F2, `features/weather`) × **kWp del proyecto** (⚙ ajustes). Al abrir "Agregar lectura" con el campo vacío lo precarga y avisa "Propuesto por el motor…"; el usuario lo puede cambiar. Sin kWp, sin ubicación o sin red (y sin caché de clima) no propone nada. Cuando F4 tenga el arreglo real (inclinación, orientación, pérdidas) se cambia aquí sin tocar pantallas. La POA para el PR aún se escribe a mano.
 
 ## Datos
-Tablas (persistence v4): `production_readings` (una activa por mes; guardar el mismo mes la reemplaza), `production_settings` (kWp y umbral por proyecto). Repositorio: `ProductionRepository`.
+Tablas (persistence v6): `production_readings` (una activa por mes; guardar el mismo mes la reemplaza), `production_settings` (kWp y umbral por proyecto). Repositorio: `ProductionRepository`.
 
 ## Cómo probar
 ```bash

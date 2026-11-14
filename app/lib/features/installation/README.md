@@ -19,7 +19,7 @@ Equipos instalados por proyecto (marca, modelo, número de serie, garantía) y c
 - El estado final lo elige el instalador; la sugerencia usa lo **guardado**.
 
 ## Datos
-- Tablas (persistence v4): `installed_equipment`, `commissioning_records` (uno por proyecto), `string_tests`.
+- Tablas (persistence v6): `installed_equipment`, `commissioning_records` (uno por proyecto), `string_tests`.
 - Repositorios: `InstalledEquipmentRepository`, `CommissioningRepository`.
 - Fotos de evidencia: tabla `photos` con etapa *Instalación* y `linkedRecordId` = id del checklist (widget `photos/presentation/linked_photos_section.dart`).
 

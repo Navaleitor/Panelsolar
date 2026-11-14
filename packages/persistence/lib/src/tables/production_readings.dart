@@ -5,7 +5,7 @@ import 'package:persistence/src/tables/projects.dart';
 /// Producción mensual real leída del inversor, con lo esperado.
 ///
 /// Historial de esquema:
-/// - v4: tabla nueva (F6).
+/// - v6: tabla nueva (F6).
 @DataClassName('ProductionReading')
 class ProductionReadings extends Table with BaseColumns {
   /// Proyecto al que pertenece.

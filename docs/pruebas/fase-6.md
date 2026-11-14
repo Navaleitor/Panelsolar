@@ -9,7 +9,7 @@ Lista para el dueño. Marca cada casilla en tu teléfono Android (8.0 o superior
 - **Antes de integrar** (opcional): GitHub → **Actions** → **CI** → ejecución de la rama `fase-6-operacion` con ✅ → **Artifacts** → `panelsolar-debug-<código>`.
 
 - [ ] La app abre sin errores y tus clientes y proyectos de antes siguen ahí.
-- [ ] **Ajustes** → abajo, **Base de datos** dice **Funcionando · esquema v4**.
+- [ ] **Ajustes** → abajo, **Base de datos** dice **Funcionando · esquema v6**.
 - [ ] Antes de seguir, haz un respaldo .zip (sección 4.1) y guárdalo: es tu red de seguridad.
 
 ## 1. Instalación y puesta en marcha

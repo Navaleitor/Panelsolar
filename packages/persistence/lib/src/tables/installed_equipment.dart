@@ -6,7 +6,7 @@ import 'package:persistence/src/tables/projects.dart';
 /// Equipo instalado en un proyecto: marca, modelo, serie y garantía.
 ///
 /// Historial de esquema:
-/// - v4: tabla nueva (F6).
+/// - v6: tabla nueva (F6).
 @DataClassName('InstalledEquipmentItem')
 class InstalledEquipment extends Table with BaseColumns {
   /// Proyecto al que pertenece.

@@ -7,7 +7,7 @@ import 'package:persistence/src/tables/projects.dart';
 ///
 /// Historial de esquema:
 /// - v3: tabla nueva (F1).
-/// - v4: `linkedRecordId` (F6).
+/// - v6: `linkedRecordId` (F6).
 @DataClassName('Photo')
 class Photos extends Table with BaseColumns {
   /// Proyecto al que pertenece.

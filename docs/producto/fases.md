@@ -7,8 +7,8 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 | F0 Cimientos | `fase-0-cimientos` | — | Completada (2026-11-10) — lista de aceptación: [`docs/pruebas/fase-0.md`](../pruebas/fase-0.md) |
 | F1 Clientes y proyectos | `fase-1-clientes` | F0 | Integrada (2026-11-12) — aceptación: [`docs/pruebas/fase-1.md`](../pruebas/fase-1.md) |
 | F2 Motor solar + clima | `fase-2-motor-clima` | F0 | Integrada (2026-11-14) — aceptación: [`docs/pruebas/fase-2.md`](../pruebas/fase-2.md); validación: [`validacion-motor.md`](../pruebas/validacion-motor.md) |
-| F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | En curso |
-| F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | Pendiente |
+| F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Integrada (2026-11-14) — aceptación: [`docs/pruebas/fase-3.md`](../pruebas/fase-3.md) |
+| F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | En curso |
 | F5 Unifilar y reportes | `fase-5-unifilar-reportes` | F4 | Pendiente |
 | F6 Operación (mantenimiento, respaldo) | `fase-6-operacion` | F1 | Lista para revisión (2026-11-14) — aceptación: [`docs/pruebas/fase-6.md`](../pruebas/fase-6.md) |
 | F7 Producto (freemium, Play Store) | `fase-7-producto` | F1–F6 | Pendiente |
@@ -34,8 +34,14 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 - App: "Clima y producción" desde la ficha del proyecto (`/projects/:id/weather`, usa su ubicación y altitud) y, para pruebas, desde Ajustes (`/settings/weather`).
 - Decisiones del dueño (2026-11-14) aplicadas: temperaturas de diseño = la más extrema de NASA y PVGIS (`SiteDesignTemperatures`); zona horaria deducida sin conexión (`geo_kit` `TimeZoneLocator`, ≈ 1.2 MB, ODbL) propuesta al confirmar la ubicación y usada por el motor; altitud opcional (sin altitud el motor usa la de la fuente internamente).
 
+## Notas de F3
+- Módulo **Techo** (`app/lib/features/roof`) en la ficha del proyecto: imagen propia (aviso de derechos, sin proveedores, ADR-005) o croquis con cinta; calibración con verificación (% de diferencia); norte con flecha o brújula corregida por declinación **WMM2025**; trazado con imán a 90°/vértices y medidas en vivo; planos con inclinación (manual o inclinómetro), azimut desde el alero, retiros y pasillos; obstáculos de B.7.1 con altura típica, cinta o teléfono.
+- Sombras en `solar_engine/shading` (L = h / tan α, también sobre planos inclinados), deslizador de fecha y hora, mapa de calor anual en un isolate, horizonte PVGIS + obstáculos lejanos. Fichas 16–21.
+- Esquema **v5**: `roof_images`, `roof_planes`, `obstacles`, `horizon_profiles` (metros, coordenadas locales). **v4 queda reservada para F6** (en esta rama `from3To4` no cambia nada); al integrar, el chat principal pone la v4 de F6 y regenera la foto de la v5.
+- Dependencia nueva: `sensors_plus` (BSD-3). Prueba de aceptación automática: techo de 12 × 9 m dentro de ±5 %.
+
 ## Notas de F6
-- Esquema de base **v4** (migración v3→v4 con prueba): `installed_equipment`, `commissioning_records`, `string_tests`, `maintenance_template_items`, `maintenance_plan_items`, `maintenance_visits`, `production_readings`, `production_settings`, `backup_logs`, `app_settings` y `photos.linkedRecordId`. **Ojo al integrar con F2**: si F2 también sube el esquema, el segundo en integrarse renumera su versión y regenera `drift_schemas/`.
+- Esquema de base **v6** (`from5To6`, con pruebas v3→v6 y v5→v6; la v4 quedó vacía): `installed_equipment`, `commissioning_records`, `string_tests`, `maintenance_template_items`, `maintenance_plan_items`, `maintenance_visits`, `production_readings`, `production_settings`, `backup_logs`, `app_settings` y `photos.linkedRecordId`.
 - Módulos nuevos: `installation`, `production`, `backup`; `maintenance` y `settings` dejan de ser pantallas vacías.
 - Puesta en marcha IEC 62446-1: Voc ±5 %, Isc ±10 %, aislamiento ≥ 1 MΩ; la app sugiere el estado y el instalador decide.
 - Recordatorios: `flutter_local_notifications` con alarmas inexactas (7 días antes y el día, 9:00).
@@ -52,7 +58,7 @@ Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.
 | F1 | `session_01WWCD8k8V1Xc3QPnKzKASNc` (entorno panelsolar) |
 | F2 | `session_01WWCD8oZt4AdV3NdkTVsnwf` (entorno panelsolar) |
 | F3 | `session_01WWCD8khQf1erhr86FAi84j` (entorno panelsolar) |
-| F4 | `session_01WWCD8oK1MwbxZThDeSnurd` |
+| F4 | `session_01WWCD8krc3yMiKeizV6YafY` (entorno panelsolar) |
 | F5 | `session_01WWCD8oed4tQwkDPMVeGy2X` |
 | F6 | `session_01WWCD8jvCLJhSBAuszgZwA5` (entorno panelsolar) |
 | F7 | `session_01WWCD8mfSNStprxgu3zS6jr` |
@@ -71,3 +77,7 @@ Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.
 - **Zona horaria:** automática desde las coordenadas, sin conexión (la implementa F2); editable.
 - **Moneda:** solo MXN por ahora; monedas configurables se revisan antes de publicar (F7).
 - **Altitud del sitio:** opcional y manual. Si falta, el motor usa un valor interno por defecto sin mostrar error.
+
+## Numeración del esquema de BD (2026-11-14)
+- v4: vacía (reservada originalmente para F6). v5: techo (F3). **v6: F6** (equipos, puesta en marcha, mantenimiento, producción, respaldo). **v7: F4** (catálogo, arreglo, strings, cableado, simulación).
+- Regla: una versión ya publicada en un APK nunca se reutiliza; la fase que integra después toma el siguiente número.

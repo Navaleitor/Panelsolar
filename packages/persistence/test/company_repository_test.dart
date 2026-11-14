@@ -49,7 +49,7 @@ void main() {
     expect(stillStored!.deletedAt, isNotNull);
   });
 
-  test('el esquema actual es la versión 4', () {
-    expect(db.schemaVersion, 4);
+  test('el esquema actual es la versión 6', () {
+    expect(db.schemaVersion, 6);
   });
 }

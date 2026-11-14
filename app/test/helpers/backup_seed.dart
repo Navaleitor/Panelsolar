@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
-import 'package:drift/drift.dart' show TableInfo;
+import 'package:drift/drift.dart' show TableInfo, Value;
 import 'package:panelsolar/core/files/app_storage.dart';
 import 'package:persistence/persistence.dart';
 
@@ -32,6 +32,21 @@ Future<void> seedEverything(AppDatabase db, AppStorage storage) async {
     widthPx: 10,
     heightPx: 10,
   );
+  // Imagen del techo (F3): también es un archivo que debe viajar.
+  final roof = Uint8List.fromList(List<int>.generate(500, (i) => i % 7));
+  final roofHash = sha256.convert(roof).toString();
+  final roofPath = 'projects/${project.id}/roof/$roofHash.jpg';
+  await storage.writeBytes(roofPath, roof);
+  await db
+      .into(db.roofImages)
+      .insert(
+        RoofImagesCompanion.insert(
+          projectId: project.id,
+          mode: RoofMode.image,
+          filePath: Value(roofPath),
+          sha256: Value(roofHash),
+        ),
+      );
   await InstalledEquipmentRepository(db).create(project.id, (
     kind: EquipmentKind.inverter,
     brand: 'Fronius',

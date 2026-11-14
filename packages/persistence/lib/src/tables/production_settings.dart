@@ -5,7 +5,7 @@ import 'package:persistence/src/tables/projects.dart';
 /// Ajustes del seguimiento de producción de un proyecto.
 ///
 /// Historial de esquema:
-/// - v4: tabla nueva (F6).
+/// - v6: tabla nueva (F6).
 @DataClassName('ProductionSetting')
 class ProductionSettings extends Table with BaseColumns {
   /// Proyecto (único).

@@ -61,11 +61,11 @@ void main() {
       if (password != null) await a.setDrivePassword(password);
 
       final first = await a.backupToDrive(trigger: BackupTrigger.manual);
-      expect(first!.uploadedFiles, 1);
+      expect(first!.uploadedFiles, 2);
       final second = await a.backupToDrive(trigger: BackupTrigger.daily);
       expect(second!.uploadedFiles, 0, reason: 'la foto ya estaba subida');
       final names = (await remote.list()).map((f) => f.name).toList();
-      expect(names.where((n) => n.startsWith('blob-')), hasLength(1));
+      expect(names.where((n) => n.startsWith('blob-')), hasLength(2));
       expect(
         names.where((n) => n.startsWith('snapshot-')),
         hasLength(1),
@@ -84,7 +84,7 @@ void main() {
       expect(manifest.filesIncluded, isFalse);
       expect(manifest.encrypted, password != null);
       final result = await b.restoreDrive(zip, password: password);
-      expect(result.filesRestored, 1);
+      expect(result.filesRestored, 2);
       expect(await dump(dbB), before);
       final logs = await BackupLogRepository(dbB).watchRecent().first;
       expect(logs.first.trigger, BackupTrigger.restore);

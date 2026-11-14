@@ -7,7 +7,7 @@ import 'package:persistence/src/tables/projects.dart';
 /// la fecha de la próxima visita.
 ///
 /// Historial de esquema:
-/// - v4: tabla nueva (F6).
+/// - v6: tabla nueva (F6).
 @DataClassName('MaintenancePlanItem')
 class MaintenancePlanItems extends Table with BaseColumns {
   /// Proyecto al que pertenece.

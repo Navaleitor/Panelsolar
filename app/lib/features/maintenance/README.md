@@ -29,7 +29,7 @@ Plan de servicios por proyecto (con plantilla editable), calendario de próximas
 - Android: receptores y permisos en `android/app/src/main/AndroidManifest.xml`; *desugaring* en `android/app/build.gradle.kts`.
 
 ## Datos
-Tablas (persistence v4): `maintenance_template_items`, `maintenance_plan_items`, `maintenance_visits`. Fotos de la visita: `photos` con etapa *Mantenimiento* y `linkedRecordId` = id de la visita.
+Tablas (persistence v6): `maintenance_template_items`, `maintenance_plan_items`, `maintenance_visits`. Fotos de la visita: `photos` con etapa *Mantenimiento* y `linkedRecordId` = id de la visita.
 
 ## Cómo probar
 ```bash

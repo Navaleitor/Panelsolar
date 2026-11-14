@@ -352,6 +352,408 @@
       }
     }
   },
+  "obstacleWaterTank": "Tinaco",
+  "obstacleAntenna": "Antena",
+  "obstacleParapet": "Pretil",
+  "obstacleGasTank": "Tanque de gas",
+  "obstacleMinisplit": "Minisplit",
+  "obstacleDome": "Domo",
+  "obstacleStairwell": "Cubo de escalera",
+  "obstacleTree": "Árbol",
+  "obstacleNeighborBuilding": "Edificio vecino",
+  "roofTitle": "Techo",
+  "roofEntryEmpty": "Imagen o croquis, planos, obstáculos y sombras",
+  "roofEntrySummary": "{count, plural, =1{1 plano} other{{count} planos}} · {area}",
+  "@roofEntrySummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "roofBaseTitle": "Base del techo",
+  "roofBaseNone": "Importa una imagen vista desde arriba o dibuja un croquis con medidas de cinta.",
+  "roofBaseSketch": "Croquis con medidas de cinta (sin imagen)",
+  "roofBaseImageUncalibrated": "Imagen sin calibrar: traza una línea de medida conocida",
+  "roofBaseImage": "Imagen calibrada · 1 píxel = {scale}",
+  "@roofBaseImage": {
+    "placeholders": {
+      "scale": {
+        "type": "String"
+      }
+    }
+  },
+  "roofImportImage": "Importar imagen",
+  "roofChangeImage": "Cambiar imagen",
+  "roofSketchMode": "Croquis con cinta",
+  "roofImageRightsNotice": "Usa solo imágenes que tengas derecho a usar.",
+  "roofImageTopViewHint": "Vista desde arriba: captura, foto aérea, de dron o plano. Las vistas inclinadas dan medidas falsas.",
+  "roofSourceGallery": "Galería",
+  "roofSourceCamera": "Cámara",
+  "roofImageSaved": "Imagen guardada. Ahora calibra la escala.",
+  "roofImageInvalid": "El archivo no es una imagen válida.",
+  "roofPlanesTitle": "Planos del techo",
+  "roofPlanesEmpty": "Aún no hay planos trazados.",
+  "roofPlaneListItem": "{area} · inclinación {tilt} · azimut {azimuth}",
+  "@roofPlaneListItem": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      },
+      "tilt": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
+  "roofObstaclesTitle": "Obstáculos",
+  "roofObstaclesCount": "{count, plural, =0{Ninguno} =1{1 obstáculo} other{{count} obstáculos}}",
+  "@roofObstaclesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "roofOpenEditor": "Trazar y editar",
+  "roofShadeTitle": "Sombras",
+  "roofShadeSubtitle": "Sombra por fecha y hora y mapa de calor del año",
+  "roofHorizonTitle": "Horizonte",
+  "roofHorizonSubtitle": "Montañas (PVGIS) y {count, plural, =0{ningún obstáculo lejano} =1{1 obstáculo lejano} other{{count} obstáculos lejanos}}",
+  "@roofHorizonSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "roofEditorTitle": "Editor del techo",
+  "roofToolCalibrate": "Calibrar",
+  "roofToolVerify": "Verificar",
+  "roofToolNorth": "Norte",
+  "roofToolDraw": "Trazar",
+  "roofToolObstacle": "Obstáculos",
+  "roofToolWalkway": "Pasillos",
+  "roofToolSelect": "Elegir",
+  "roofCalibrateFirst": "Primero calibra la escala con una medida conocida.",
+  "roofCalibrateHelp": "Toca los dos extremos de algo cuya medida conozcas (un lado del techo, el frente del lote, una barra de escala). Usa zoom para tocar con precisión.",
+  "roofCalibrateDialogTitle": "¿Cuánto mide la línea?",
+  "roofVerifyDialogTitle": "¿Cuánto mide en la realidad?",
+  "roofCalibrateDialogHelp": "Escribe la medida real en metros (con cinta o del plano).",
+  "roofLengthMetersLabel": "Metros",
+  "roofLineTooShort": "La línea es muy corta. Haz zoom y traza una más larga.",
+  "roofScaleNone": "Sin escala todavía.",
+  "roofScaleValue": "Escala: 1 píxel = {perPixel} ({pixelsPerMeter} píxeles por metro)",
+  "@roofScaleValue": {
+    "placeholders": {
+      "perPixel": {
+        "type": "String"
+      },
+      "pixelsPerMeter": {
+        "type": "String"
+      }
+    }
+  },
+  "roofVerifyHelp": "Opcional: traza otra línea de medida conocida para comprobar la escala.",
+  "roofVerifyResult": "Mide {measured} contra {real} reales: {difference}",
+  "@roofVerifyResult": {
+    "placeholders": {
+      "measured": {
+        "type": "String"
+      },
+      "real": {
+        "type": "String"
+      },
+      "difference": {
+        "type": "String"
+      }
+    }
+  },
+  "roofVerifyWarning": "Diferencia mayor a 5 %: la imagen puede estar inclinada o alguna medida está mal. Recalibra.",
+  "roofNorthHelp": "Gira la flecha hasta que apunte al norte, o toca dos puntos de una orilla del techo y confírmala con la brújula en sitio.",
+  "roofNorthValue": "Norte: {angle} · {source}",
+  "@roofNorthValue": {
+    "placeholders": {
+      "angle": {
+        "type": "String"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "roofNorthSourceDefault": "arriba (sin confirmar)",
+  "roofNorthSourceManual": "girado a mano",
+  "roofNorthSourceCompass": "confirmado con brújula",
+  "roofNorthCompass": "Confirmar con brújula",
+  "roofNorthCompassNeedsLine": "Toca 2 puntos de una orilla",
+  "roofNorthArrowTooltip": "Norte",
+  "roofNorthLetter": "N",
+  "roofDrawHelp": "Toca cada esquina del plano. El imán ayuda a hacer esquinas de 90° y a unir vértices. Toca la primera esquina para cerrar.",
+  "roofDrawLive": "Lados: {sides} · Área: {area}",
+  "@roofDrawLive": {
+    "placeholders": {
+      "sides": {
+        "type": "String"
+      },
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "roofSnap": "Imán",
+  "roofUndo": "Deshacer",
+  "roofClosePolygon": "Cerrar plano",
+  "roofPlaneDefaultName": "Plano {number}",
+  "@roofPlaneDefaultName": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "roofObstacleHelp": "Elige el tipo y toca dónde está. Pretil: toca sus dos extremos.",
+  "roofWalkwayHelp": "Toca los dos extremos del pasillo de mantenimiento dentro de un plano.",
+  "roofWalkwayOutside": "El pasillo debe quedar dentro de un plano.",
+  "roofWalkwayWidthTitle": "Ancho del pasillo",
+  "roofWalkwayItem": "Pasillo de {length} × {width}",
+  "@roofWalkwayItem": {
+    "placeholders": {
+      "length": {
+        "type": "String"
+      },
+      "width": {
+        "type": "String"
+      }
+    }
+  },
+  "roofSelectHelp": "Toca un plano para ver sus medidas o un obstáculo para editarlo.",
+  "roofMoveVertexHelp": "Para mover una esquina: tócala y luego toca su nuevo lugar.",
+  "roofPlaneSummary": "Vista desde arriba {horizontal} · real inclinada {sloped} · útil {usable}\nInclinación {tilt} · azimut {azimuth}",
+  "@roofPlaneSummary": {
+    "placeholders": {
+      "horizontal": {
+        "type": "String"
+      },
+      "sloped": {
+        "type": "String"
+      },
+      "usable": {
+        "type": "String"
+      },
+      "tilt": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
+  "roofInvalidNumber": "Escribe un número válido.",
+  "roofPlaneName": "Nombre",
+  "roofPlaneTilt": "Inclinación (grados)",
+  "roofPlaneInclinometer": "Inclinómetro",
+  "roofPlaneEave": "Orilla baja (alero)",
+  "roofPlaneEdgeItem": "Lado {number}: {length} → mira a {azimuth}",
+  "@roofPlaneEdgeItem": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      },
+      "length": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
+  "roofPlaneAzimuth": "Azimut (hacia dónde baja): {azimuth} (180° = sur)",
+  "@roofPlaneAzimuth": {
+    "placeholders": {
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
+  "roofPlaneSetback": "Retiro de borde (m)",
+  "roofSplitHelp": "Dividir en dos planos por una diagonal entre dos esquinas:",
+  "roofSplitVertex": "Esquina",
+  "roofSplit": "Dividir",
+  "roofSplitInvalid": "Esa diagonal no queda dentro del plano.",
+  "roofPlaneDeleteTitle": "¿Borrar el plano?",
+  "roofPlaneDeleteMessage": "Se quitará del techo.",
+  "roofObstacleDiameter": "Diámetro (m)",
+  "roofObstacleWidth": "Ancho (m)",
+  "roofObstacleThickness": "Espesor (m)",
+  "roofObstacleDepth": "Fondo (m)",
+  "roofObstacleRotation": "Giro (grados)",
+  "roofObstacleHeight": "Altura sobre tu techo (m)",
+  "roofObstacleHeightHelp": "Típica del catálogo, medida con cinta o con el teléfono (distancia × tan(ángulo) + altura de ojos).",
+  "roofHeightTypical": "Típica",
+  "roofHeightTape": "Cinta",
+  "roofHeightPhone": "Teléfono",
+  "roofHeightPhoneTitle": "Altura con el teléfono",
+  "roofHeightPhoneHelp": "Párate a una distancia conocida, apunta la cámara al punto más alto y lee el ángulo.",
+  "roofHeightDistance": "Distancia al objeto (m)",
+  "roofHeightAngle": "Ángulo al tope (grados)",
+  "roofHeightEye": "Altura de tus ojos (m)",
+  "roofHeightResult": "Altura: {height}",
+  "@roofHeightResult": {
+    "placeholders": {
+      "height": {
+        "type": "String"
+      }
+    }
+  },
+  "roofSensorTiltTitle": "Inclinómetro",
+  "roofSensorTiltHelp": "Apoya el teléfono sobre el techo, con la pantalla hacia arriba y el lado largo en la dirección de la pendiente.",
+  "roofSensorCompassTitle": "Brújula",
+  "roofSensorCompassHelp": "Acuesta el teléfono sobre la orilla elegida, con la parte de arriba apuntando del primer punto al segundo. Aléjalo de metales.",
+  "roofSensorAimTitle": "Apuntar con la cámara",
+  "roofSensorAimHelp": "Apunta la cámara trasera al punto más alto del objeto.",
+  "roofSensorTiltValue": "Inclinación: {value}",
+  "@roofSensorTiltValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "roofSensorAzimuthValue": "Rumbo: {value}",
+  "@roofSensorAzimuthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "roofSensorElevationValue": "Ángulo: {value}",
+  "@roofSensorElevationValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "roofSensorDeclination": "Corregido al norte verdadero con declinación magnética {value} (modelo WMM).",
+  "@roofSensorDeclination": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "roofSensorWaiting": "Esperando al sensor…",
+  "roofSensorUnavailable": "Este teléfono no tiene el sensor o está apagado. Escribe el valor a mano.",
+  "roofSensorUse": "Usar",
+  "roofTapeTitle": "Croquis con cinta",
+  "roofTapeHelp": "Escribe cada lado en orden. Giro: 90 = esquina normal, −90 = esquina hacia adentro.",
+  "roofTapeSide": "Lado {number} (m)",
+  "@roofTapeSide": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "roofTapeTurn": "Giro (°)",
+  "roofTapeAddSide": "Agregar lado",
+  "roofTapeResult": "Área: {area} · cierre: {error}",
+  "@roofTapeResult": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "roofTapeNotClosed": "Las medidas no cierran: revisa algún lado o giro.",
+  "roofShadeNeedsLocation": "Primero guarda la ubicación del proyecto (se necesita para saber dónde está el sol).",
+  "roofSunPosition": "Sol: {elevation} de altura, azimut {azimuth}",
+  "@roofSunPosition": {
+    "placeholders": {
+      "elevation": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
+  "roofSunHidden": "El sol está abajo o tapado por el horizonte: no hay sombra directa.",
+  "roofShadeTime": "{time} h",
+  "@roofShadeTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "roofShadeCompute": "Mapa de calor anual",
+  "roofShadeHeatmap": "Ver mapa",
+  "roofShadePlaneLoss": "{plane}: pierde {year} del sol directo al año (diciembre {december}, junio {june})",
+  "@roofShadePlaneLoss": {
+    "placeholders": {
+      "plane": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      },
+      "december": {
+        "type": "String"
+      },
+      "june": {
+        "type": "String"
+      }
+    }
+  },
+  "roofShadeLegend": "Verde = sin sombra · amarillo · rojo = 30 % o más de pérdida. Incluye el horizonte.",
+  "roofHorizonHelp": "El horizonte tapa el sol bajo. Se junta el del terreno (montañas, de PVGIS) con los obstáculos lejanos que midas con el teléfono.",
+  "roofTerrainTitle": "Terreno (PVGIS)",
+  "roofTerrainNone": "Sin descargar",
+  "roofTerrainValue": "Descargado · altura máxima {max}",
+  "@roofTerrainValue": {
+    "placeholders": {
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "roofTerrainDownload": "Descargar",
+  "roofHorizonDownloadError": "No se pudo descargar el horizonte. Revisa la conexión.",
+  "roofFarTitle": "Obstáculos lejanos",
+  "roofFarEmpty": "Ninguno. Agrega árboles o edificios cercanos que tapen el sol.",
+  "roofFarItem": "{count, plural, =1{1 punto} other{{count} puntos}} · hasta {max}",
+  "@roofFarItem": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "roofFarAdd": "Obstáculo lejano",
+  "roofFarName": "Nombre (p. ej. árbol del vecino)",
+  "roofFarDefaultName": "Obstáculo lejano",
+  "roofFarHelp": "Desde el techo, apunta la cámara al borde de arriba del obstáculo, de izquierda a derecha, y agrega varios puntos.",
+  "roofFarMeasure": "Medir punto con el teléfono",
+  "roofFarAzimuth": "Azimut (°)",
+  "roofFarElevation": "Altura (°)",
+  "roofCardinalN": "N",
+  "roofCardinalE": "E",
+  "roofCardinalS": "S",
+  "roofCardinalW": "O",
   "actionClear": "Borrar",
   "dateNotSet": "Sin fecha",
   "savedMessage": "Guardado",

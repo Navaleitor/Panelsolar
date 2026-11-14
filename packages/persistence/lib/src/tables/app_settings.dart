@@ -4,7 +4,7 @@ import 'package:persistence/src/tables/base_columns.dart';
 /// Ajustes de la app como pares clave → valor (texto).
 ///
 /// Historial de esquema:
-/// - v4: tabla nueva (F6).
+/// - v6: tabla nueva (F6).
 @DataClassName('AppSetting')
 class AppSettings extends Table with BaseColumns {
   /// Clave única (p. ej. `backup.drive.enabled`).

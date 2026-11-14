@@ -1,6 +1,6 @@
 # Respaldo
 
-Exportar e importar **todo** (base de datos + fotos + documentos) a un archivo **.zip** con cifrado opcional, y respaldo opcional en **Google Drive** (carpeta privada `appDataFolder`, scope `drive.appdata`): diario en segundo plano con Wi-Fi, al finalizar un proyecto y con "Respaldar ahora". Restauración con vista previa. Plan B.9.
+Exportar e importar **todo** (base de datos + fotos + documentos + imagen del techo de F3) a un archivo **.zip** con cifrado opcional, y respaldo opcional en **Google Drive** (carpeta privada `appDataFolder`, scope `drive.appdata`): diario en segundo plano con Wi-Fi, al finalizar un proyecto y con "Respaldar ahora". Restauración con vista previa. Plan B.9.
 
 ## Estado
 **F6 completa.** El .zip funciona sin configuración. Drive necesita el ID de cliente web de Google: guía [`docs/guias/respaldo-google.md`](../../../../docs/guias/respaldo-google.md) (hasta entonces Ajustes muestra "Falta configurar…").

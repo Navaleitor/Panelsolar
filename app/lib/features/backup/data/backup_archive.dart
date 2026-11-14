@@ -60,7 +60,8 @@ class BackupArchive {
   static const _dbEntry = 'database.sqlite';
   static const _encSuffix = '.enc';
 
-  /// Fotos y documentos activos cuyo archivo existe.
+  /// Fotos, documentos e imágenes de techo (F3) activos cuyo archivo
+  /// existe.
   Future<List<BackupFileEntry>> localFiles() async {
     final photos = await (db.select(
       db.photos,
@@ -68,11 +69,16 @@ class BackupArchive {
     final docs = await (db.select(
       db.documents,
     )..where((d) => d.deletedAt.isNull())).get();
+    final roofs = await (db.select(
+      db.roofImages,
+    )..where((r) => r.deletedAt.isNull())).get();
     final seen = <String>{};
     return [
       for (final (path, hash) in [
         for (final f in photos) (f.filePath, f.sha256),
         for (final d in docs) (d.filePath, d.sha256),
+        for (final r in roofs)
+          if (r.filePath != null && r.sha256 != null) (r.filePath!, r.sha256!),
       ])
         if (seen.add(path) && storage.file(path).existsSync())
           BackupFileEntry(

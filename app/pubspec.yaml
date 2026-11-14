@@ -45,6 +45,7 @@ dependencies:
     path: ../packages/persistence
   regional_packs:
     path: ../packages/regional_packs
+  sensors_plus: ^7.1.1
   solar_engine:
     path: ../packages/solar_engine
   timezone: ^0.11.2

@@ -6,7 +6,7 @@ import 'package:persistence/src/tables/base_columns.dart';
 /// un proyecto se copian estos servicios.
 ///
 /// Historial de esquema:
-/// - v4: tabla nueva (F6).
+/// - v6: tabla nueva (F6).
 @DataClassName('MaintenanceTemplateItem')
 class MaintenanceTemplateItems extends Table with BaseColumns {
   /// Tipo de servicio.

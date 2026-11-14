@@ -14,6 +14,11 @@ import 'package:panelsolar/features/photos/presentation/photos_page.dart';
 import 'package:panelsolar/features/production/presentation/production_page.dart';
 import 'package:panelsolar/features/projects/presentation/project_detail_page.dart';
 import 'package:panelsolar/features/projects/presentation/project_form_page.dart';
+import 'package:panelsolar/features/roof/presentation/editor/editor_tool.dart';
+import 'package:panelsolar/features/roof/presentation/editor/roof_editor_page.dart';
+import 'package:panelsolar/features/roof/presentation/horizon_page.dart';
+import 'package:panelsolar/features/roof/presentation/roof_page.dart';
+import 'package:panelsolar/features/roof/presentation/shade_page.dart';
 import 'package:panelsolar/features/site/presentation/location_page.dart';
 import 'package:panelsolar/features/utility_bills/presentation/bill_form_page.dart';
 import 'package:panelsolar/features/weather/presentation/weather_page.dart';
@@ -69,6 +74,31 @@ final List<RouteBase> detailRoutes = [
     path: '/projects/:projectId/weather',
     builder: (context, state) =>
         WeatherPage(projectId: state.pathParameters['projectId']),
+  ),
+  // Techo (F3).
+  GoRoute(
+    path: '/projects/:projectId/roof',
+    builder: (context, state) =>
+        RoofPage(projectId: state.pathParameters['projectId']!),
+  ),
+  GoRoute(
+    path: '/projects/:projectId/roof/editor',
+    builder: (context, state) => RoofEditorPage(
+      projectId: state.pathParameters['projectId']!,
+      initialTool:
+          EditorTool.values.asNameMap()[state.uri.queryParameters['tool']] ??
+          EditorTool.draw,
+    ),
+  ),
+  GoRoute(
+    path: '/projects/:projectId/roof/shade',
+    builder: (context, state) =>
+        ShadePage(projectId: state.pathParameters['projectId']!),
+  ),
+  GoRoute(
+    path: '/projects/:projectId/roof/horizon',
+    builder: (context, state) =>
+        HorizonPage(projectId: state.pathParameters['projectId']!),
   ),
   GoRoute(
     path: '/projects/:projectId/photos',

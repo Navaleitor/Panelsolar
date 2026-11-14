@@ -47,7 +47,7 @@ void main() {
       scrollable: find.byType(Scrollable).first,
     );
 
-    expect(find.text('Funcionando · esquema v4'), findsOneWidget);
+    expect(find.text('Funcionando · esquema v6'), findsOneWidget);
   });
 
   testWidgets('en inglés usa los textos en inglés', (tester) async {

@@ -4783,6 +4783,3341 @@ class DocumentsCompanion extends UpdateCompanion<Document> {
   }
 }
 
+class $RoofImagesTable extends RoofImages
+    with TableInfo<$RoofImagesTable, RoofImage> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $RoofImagesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'UNIQUE REFERENCES projects (id)',
+    ),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<RoofMode, String> mode =
+      GeneratedColumn<String>(
+        'mode',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<RoofMode>($RoofImagesTable.$convertermode);
+  static const VerificationMeta _filePathMeta = const VerificationMeta(
+    'filePath',
+  );
+  @override
+  late final GeneratedColumn<String> filePath = GeneratedColumn<String>(
+    'file_path',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sha256Meta = const VerificationMeta('sha256');
+  @override
+  late final GeneratedColumn<String> sha256 = GeneratedColumn<String>(
+    'sha256',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _widthPxMeta = const VerificationMeta(
+    'widthPx',
+  );
+  @override
+  late final GeneratedColumn<int> widthPx = GeneratedColumn<int>(
+    'width_px',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _heightPxMeta = const VerificationMeta(
+    'heightPx',
+  );
+  @override
+  late final GeneratedColumn<int> heightPx = GeneratedColumn<int>(
+    'height_px',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _metersPerPixelMeta = const VerificationMeta(
+    'metersPerPixel',
+  );
+  @override
+  late final GeneratedColumn<double> metersPerPixel = GeneratedColumn<double>(
+    'meters_per_pixel',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _calibrationLineMeta = const VerificationMeta(
+    'calibrationLine',
+  );
+  @override
+  late final GeneratedColumn<String> calibrationLine = GeneratedColumn<String>(
+    'calibration_line',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _verificationLineMeta = const VerificationMeta(
+    'verificationLine',
+  );
+  @override
+  late final GeneratedColumn<String> verificationLine = GeneratedColumn<String>(
+    'verification_line',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _northAngleDegMeta = const VerificationMeta(
+    'northAngleDeg',
+  );
+  @override
+  late final GeneratedColumn<double> northAngleDeg = GeneratedColumn<double>(
+    'north_angle_deg',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<NorthSource, String> northSource =
+      GeneratedColumn<String>(
+        'north_source',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: Constant(NorthSource.imageUp.name),
+      ).withConverter<NorthSource>($RoofImagesTable.$converternorthSource);
+  static const VerificationMeta _magneticDeclinationDegMeta =
+      const VerificationMeta('magneticDeclinationDeg');
+  @override
+  late final GeneratedColumn<double> magneticDeclinationDeg =
+      GeneratedColumn<double>(
+        'magnetic_declination_deg',
+        aliasedName,
+        true,
+        type: DriftSqlType.double,
+        requiredDuringInsert: false,
+      );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    mode,
+    filePath,
+    sha256,
+    widthPx,
+    heightPx,
+    metersPerPixel,
+    calibrationLine,
+    verificationLine,
+    northAngleDeg,
+    northSource,
+    magneticDeclinationDeg,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'roof_images';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<RoofImage> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('file_path')) {
+      context.handle(
+        _filePathMeta,
+        filePath.isAcceptableOrUnknown(data['file_path']!, _filePathMeta),
+      );
+    }
+    if (data.containsKey('sha256')) {
+      context.handle(
+        _sha256Meta,
+        sha256.isAcceptableOrUnknown(data['sha256']!, _sha256Meta),
+      );
+    }
+    if (data.containsKey('width_px')) {
+      context.handle(
+        _widthPxMeta,
+        widthPx.isAcceptableOrUnknown(data['width_px']!, _widthPxMeta),
+      );
+    }
+    if (data.containsKey('height_px')) {
+      context.handle(
+        _heightPxMeta,
+        heightPx.isAcceptableOrUnknown(data['height_px']!, _heightPxMeta),
+      );
+    }
+    if (data.containsKey('meters_per_pixel')) {
+      context.handle(
+        _metersPerPixelMeta,
+        metersPerPixel.isAcceptableOrUnknown(
+          data['meters_per_pixel']!,
+          _metersPerPixelMeta,
+        ),
+      );
+    }
+    if (data.containsKey('calibration_line')) {
+      context.handle(
+        _calibrationLineMeta,
+        calibrationLine.isAcceptableOrUnknown(
+          data['calibration_line']!,
+          _calibrationLineMeta,
+        ),
+      );
+    }
+    if (data.containsKey('verification_line')) {
+      context.handle(
+        _verificationLineMeta,
+        verificationLine.isAcceptableOrUnknown(
+          data['verification_line']!,
+          _verificationLineMeta,
+        ),
+      );
+    }
+    if (data.containsKey('north_angle_deg')) {
+      context.handle(
+        _northAngleDegMeta,
+        northAngleDeg.isAcceptableOrUnknown(
+          data['north_angle_deg']!,
+          _northAngleDegMeta,
+        ),
+      );
+    }
+    if (data.containsKey('magnetic_declination_deg')) {
+      context.handle(
+        _magneticDeclinationDegMeta,
+        magneticDeclinationDeg.isAcceptableOrUnknown(
+          data['magnetic_declination_deg']!,
+          _magneticDeclinationDegMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  RoofImage map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return RoofImage(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      mode: $RoofImagesTable.$convertermode.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}mode'],
+        )!,
+      ),
+      filePath: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}file_path'],
+      ),
+      sha256: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sha256'],
+      ),
+      widthPx: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}width_px'],
+      ),
+      heightPx: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}height_px'],
+      ),
+      metersPerPixel: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}meters_per_pixel'],
+      ),
+      calibrationLine: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}calibration_line'],
+      ),
+      verificationLine: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}verification_line'],
+      ),
+      northAngleDeg: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}north_angle_deg'],
+      )!,
+      northSource: $RoofImagesTable.$converternorthSource.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}north_source'],
+        )!,
+      ),
+      magneticDeclinationDeg: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}magnetic_declination_deg'],
+      ),
+    );
+  }
+
+  @override
+  $RoofImagesTable createAlias(String alias) {
+    return $RoofImagesTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<RoofMode, String, String> $convertermode =
+      const EnumNameConverter<RoofMode>(RoofMode.values);
+  static JsonTypeConverter2<NorthSource, String, String> $converternorthSource =
+      const EnumNameConverter<NorthSource>(NorthSource.values);
+}
+
+class RoofImage extends DataClass implements Insertable<RoofImage> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto al que pertenece (único).
+  final String projectId;
+
+  /// Imagen calibrada o croquis con cinta.
+  final RoofMode mode;
+
+  /// Ruta relativa de la imagen (vacía en modo croquis).
+  final String? filePath;
+
+  /// SHA-256 de la imagen guardada.
+  final String? sha256;
+
+  /// Ancho de la imagen en píxeles.
+  final int? widthPx;
+
+  /// Alto de la imagen en píxeles.
+  final int? heightPx;
+
+  /// Escala: metros por píxel (vacía hasta calibrar).
+  final double? metersPerPixel;
+
+  /// Línea de calibración en JSON `{"a":[x,y],"b":[x,y],"m":metros}`
+  /// (píxeles de la imagen).
+  final String? calibrationLine;
+
+  /// Segunda línea opcional para verificar la escala (mismo formato).
+  final String? verificationLine;
+
+  /// Ángulo del norte en la imagen (grados, horario desde arriba).
+  final double northAngleDeg;
+
+  /// De dónde salió el norte.
+  final NorthSource northSource;
+
+  /// Declinación magnética usada al confirmar con brújula (grados, WMM).
+  final double? magneticDeclinationDeg;
+  const RoofImage({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.mode,
+    this.filePath,
+    this.sha256,
+    this.widthPx,
+    this.heightPx,
+    this.metersPerPixel,
+    this.calibrationLine,
+    this.verificationLine,
+    required this.northAngleDeg,
+    required this.northSource,
+    this.magneticDeclinationDeg,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    {
+      map['mode'] = Variable<String>(
+        $RoofImagesTable.$convertermode.toSql(mode),
+      );
+    }
+    if (!nullToAbsent || filePath != null) {
+      map['file_path'] = Variable<String>(filePath);
+    }
+    if (!nullToAbsent || sha256 != null) {
+      map['sha256'] = Variable<String>(sha256);
+    }
+    if (!nullToAbsent || widthPx != null) {
+      map['width_px'] = Variable<int>(widthPx);
+    }
+    if (!nullToAbsent || heightPx != null) {
+      map['height_px'] = Variable<int>(heightPx);
+    }
+    if (!nullToAbsent || metersPerPixel != null) {
+      map['meters_per_pixel'] = Variable<double>(metersPerPixel);
+    }
+    if (!nullToAbsent || calibrationLine != null) {
+      map['calibration_line'] = Variable<String>(calibrationLine);
+    }
+    if (!nullToAbsent || verificationLine != null) {
+      map['verification_line'] = Variable<String>(verificationLine);
+    }
+    map['north_angle_deg'] = Variable<double>(northAngleDeg);
+    {
+      map['north_source'] = Variable<String>(
+        $RoofImagesTable.$converternorthSource.toSql(northSource),
+      );
+    }
+    if (!nullToAbsent || magneticDeclinationDeg != null) {
+      map['magnetic_declination_deg'] = Variable<double>(
+        magneticDeclinationDeg,
+      );
+    }
+    return map;
+  }
+
+  RoofImagesCompanion toCompanion(bool nullToAbsent) {
+    return RoofImagesCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      mode: Value(mode),
+      filePath: filePath == null && nullToAbsent
+          ? const Value.absent()
+          : Value(filePath),
+      sha256: sha256 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sha256),
+      widthPx: widthPx == null && nullToAbsent
+          ? const Value.absent()
+          : Value(widthPx),
+      heightPx: heightPx == null && nullToAbsent
+          ? const Value.absent()
+          : Value(heightPx),
+      metersPerPixel: metersPerPixel == null && nullToAbsent
+          ? const Value.absent()
+          : Value(metersPerPixel),
+      calibrationLine: calibrationLine == null && nullToAbsent
+          ? const Value.absent()
+          : Value(calibrationLine),
+      verificationLine: verificationLine == null && nullToAbsent
+          ? const Value.absent()
+          : Value(verificationLine),
+      northAngleDeg: Value(northAngleDeg),
+      northSource: Value(northSource),
+      magneticDeclinationDeg: magneticDeclinationDeg == null && nullToAbsent
+          ? const Value.absent()
+          : Value(magneticDeclinationDeg),
+    );
+  }
+
+  factory RoofImage.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return RoofImage(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      mode: $RoofImagesTable.$convertermode.fromJson(
+        serializer.fromJson<String>(json['mode']),
+      ),
+      filePath: serializer.fromJson<String?>(json['filePath']),
+      sha256: serializer.fromJson<String?>(json['sha256']),
+      widthPx: serializer.fromJson<int?>(json['widthPx']),
+      heightPx: serializer.fromJson<int?>(json['heightPx']),
+      metersPerPixel: serializer.fromJson<double?>(json['metersPerPixel']),
+      calibrationLine: serializer.fromJson<String?>(json['calibrationLine']),
+      verificationLine: serializer.fromJson<String?>(json['verificationLine']),
+      northAngleDeg: serializer.fromJson<double>(json['northAngleDeg']),
+      northSource: $RoofImagesTable.$converternorthSource.fromJson(
+        serializer.fromJson<String>(json['northSource']),
+      ),
+      magneticDeclinationDeg: serializer.fromJson<double?>(
+        json['magneticDeclinationDeg'],
+      ),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'mode': serializer.toJson<String>(
+        $RoofImagesTable.$convertermode.toJson(mode),
+      ),
+      'filePath': serializer.toJson<String?>(filePath),
+      'sha256': serializer.toJson<String?>(sha256),
+      'widthPx': serializer.toJson<int?>(widthPx),
+      'heightPx': serializer.toJson<int?>(heightPx),
+      'metersPerPixel': serializer.toJson<double?>(metersPerPixel),
+      'calibrationLine': serializer.toJson<String?>(calibrationLine),
+      'verificationLine': serializer.toJson<String?>(verificationLine),
+      'northAngleDeg': serializer.toJson<double>(northAngleDeg),
+      'northSource': serializer.toJson<String>(
+        $RoofImagesTable.$converternorthSource.toJson(northSource),
+      ),
+      'magneticDeclinationDeg': serializer.toJson<double?>(
+        magneticDeclinationDeg,
+      ),
+    };
+  }
+
+  RoofImage copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    RoofMode? mode,
+    Value<String?> filePath = const Value.absent(),
+    Value<String?> sha256 = const Value.absent(),
+    Value<int?> widthPx = const Value.absent(),
+    Value<int?> heightPx = const Value.absent(),
+    Value<double?> metersPerPixel = const Value.absent(),
+    Value<String?> calibrationLine = const Value.absent(),
+    Value<String?> verificationLine = const Value.absent(),
+    double? northAngleDeg,
+    NorthSource? northSource,
+    Value<double?> magneticDeclinationDeg = const Value.absent(),
+  }) => RoofImage(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    mode: mode ?? this.mode,
+    filePath: filePath.present ? filePath.value : this.filePath,
+    sha256: sha256.present ? sha256.value : this.sha256,
+    widthPx: widthPx.present ? widthPx.value : this.widthPx,
+    heightPx: heightPx.present ? heightPx.value : this.heightPx,
+    metersPerPixel: metersPerPixel.present
+        ? metersPerPixel.value
+        : this.metersPerPixel,
+    calibrationLine: calibrationLine.present
+        ? calibrationLine.value
+        : this.calibrationLine,
+    verificationLine: verificationLine.present
+        ? verificationLine.value
+        : this.verificationLine,
+    northAngleDeg: northAngleDeg ?? this.northAngleDeg,
+    northSource: northSource ?? this.northSource,
+    magneticDeclinationDeg: magneticDeclinationDeg.present
+        ? magneticDeclinationDeg.value
+        : this.magneticDeclinationDeg,
+  );
+  RoofImage copyWithCompanion(RoofImagesCompanion data) {
+    return RoofImage(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      mode: data.mode.present ? data.mode.value : this.mode,
+      filePath: data.filePath.present ? data.filePath.value : this.filePath,
+      sha256: data.sha256.present ? data.sha256.value : this.sha256,
+      widthPx: data.widthPx.present ? data.widthPx.value : this.widthPx,
+      heightPx: data.heightPx.present ? data.heightPx.value : this.heightPx,
+      metersPerPixel: data.metersPerPixel.present
+          ? data.metersPerPixel.value
+          : this.metersPerPixel,
+      calibrationLine: data.calibrationLine.present
+          ? data.calibrationLine.value
+          : this.calibrationLine,
+      verificationLine: data.verificationLine.present
+          ? data.verificationLine.value
+          : this.verificationLine,
+      northAngleDeg: data.northAngleDeg.present
+          ? data.northAngleDeg.value
+          : this.northAngleDeg,
+      northSource: data.northSource.present
+          ? data.northSource.value
+          : this.northSource,
+      magneticDeclinationDeg: data.magneticDeclinationDeg.present
+          ? data.magneticDeclinationDeg.value
+          : this.magneticDeclinationDeg,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('RoofImage(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('mode: $mode, ')
+          ..write('filePath: $filePath, ')
+          ..write('sha256: $sha256, ')
+          ..write('widthPx: $widthPx, ')
+          ..write('heightPx: $heightPx, ')
+          ..write('metersPerPixel: $metersPerPixel, ')
+          ..write('calibrationLine: $calibrationLine, ')
+          ..write('verificationLine: $verificationLine, ')
+          ..write('northAngleDeg: $northAngleDeg, ')
+          ..write('northSource: $northSource, ')
+          ..write('magneticDeclinationDeg: $magneticDeclinationDeg')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    mode,
+    filePath,
+    sha256,
+    widthPx,
+    heightPx,
+    metersPerPixel,
+    calibrationLine,
+    verificationLine,
+    northAngleDeg,
+    northSource,
+    magneticDeclinationDeg,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is RoofImage &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.mode == this.mode &&
+          other.filePath == this.filePath &&
+          other.sha256 == this.sha256 &&
+          other.widthPx == this.widthPx &&
+          other.heightPx == this.heightPx &&
+          other.metersPerPixel == this.metersPerPixel &&
+          other.calibrationLine == this.calibrationLine &&
+          other.verificationLine == this.verificationLine &&
+          other.northAngleDeg == this.northAngleDeg &&
+          other.northSource == this.northSource &&
+          other.magneticDeclinationDeg == this.magneticDeclinationDeg);
+}
+
+class RoofImagesCompanion extends UpdateCompanion<RoofImage> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<RoofMode> mode;
+  final Value<String?> filePath;
+  final Value<String?> sha256;
+  final Value<int?> widthPx;
+  final Value<int?> heightPx;
+  final Value<double?> metersPerPixel;
+  final Value<String?> calibrationLine;
+  final Value<String?> verificationLine;
+  final Value<double> northAngleDeg;
+  final Value<NorthSource> northSource;
+  final Value<double?> magneticDeclinationDeg;
+  final Value<int> rowid;
+  const RoofImagesCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.mode = const Value.absent(),
+    this.filePath = const Value.absent(),
+    this.sha256 = const Value.absent(),
+    this.widthPx = const Value.absent(),
+    this.heightPx = const Value.absent(),
+    this.metersPerPixel = const Value.absent(),
+    this.calibrationLine = const Value.absent(),
+    this.verificationLine = const Value.absent(),
+    this.northAngleDeg = const Value.absent(),
+    this.northSource = const Value.absent(),
+    this.magneticDeclinationDeg = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  RoofImagesCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required RoofMode mode,
+    this.filePath = const Value.absent(),
+    this.sha256 = const Value.absent(),
+    this.widthPx = const Value.absent(),
+    this.heightPx = const Value.absent(),
+    this.metersPerPixel = const Value.absent(),
+    this.calibrationLine = const Value.absent(),
+    this.verificationLine = const Value.absent(),
+    this.northAngleDeg = const Value.absent(),
+    this.northSource = const Value.absent(),
+    this.magneticDeclinationDeg = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       mode = Value(mode);
+  static Insertable<RoofImage> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<String>? mode,
+    Expression<String>? filePath,
+    Expression<String>? sha256,
+    Expression<int>? widthPx,
+    Expression<int>? heightPx,
+    Expression<double>? metersPerPixel,
+    Expression<String>? calibrationLine,
+    Expression<String>? verificationLine,
+    Expression<double>? northAngleDeg,
+    Expression<String>? northSource,
+    Expression<double>? magneticDeclinationDeg,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (mode != null) 'mode': mode,
+      if (filePath != null) 'file_path': filePath,
+      if (sha256 != null) 'sha256': sha256,
+      if (widthPx != null) 'width_px': widthPx,
+      if (heightPx != null) 'height_px': heightPx,
+      if (metersPerPixel != null) 'meters_per_pixel': metersPerPixel,
+      if (calibrationLine != null) 'calibration_line': calibrationLine,
+      if (verificationLine != null) 'verification_line': verificationLine,
+      if (northAngleDeg != null) 'north_angle_deg': northAngleDeg,
+      if (northSource != null) 'north_source': northSource,
+      if (magneticDeclinationDeg != null)
+        'magnetic_declination_deg': magneticDeclinationDeg,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  RoofImagesCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<RoofMode>? mode,
+    Value<String?>? filePath,
+    Value<String?>? sha256,
+    Value<int?>? widthPx,
+    Value<int?>? heightPx,
+    Value<double?>? metersPerPixel,
+    Value<String?>? calibrationLine,
+    Value<String?>? verificationLine,
+    Value<double>? northAngleDeg,
+    Value<NorthSource>? northSource,
+    Value<double?>? magneticDeclinationDeg,
+    Value<int>? rowid,
+  }) {
+    return RoofImagesCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      mode: mode ?? this.mode,
+      filePath: filePath ?? this.filePath,
+      sha256: sha256 ?? this.sha256,
+      widthPx: widthPx ?? this.widthPx,
+      heightPx: heightPx ?? this.heightPx,
+      metersPerPixel: metersPerPixel ?? this.metersPerPixel,
+      calibrationLine: calibrationLine ?? this.calibrationLine,
+      verificationLine: verificationLine ?? this.verificationLine,
+      northAngleDeg: northAngleDeg ?? this.northAngleDeg,
+      northSource: northSource ?? this.northSource,
+      magneticDeclinationDeg:
+          magneticDeclinationDeg ?? this.magneticDeclinationDeg,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (mode.present) {
+      map['mode'] = Variable<String>(
+        $RoofImagesTable.$convertermode.toSql(mode.value),
+      );
+    }
+    if (filePath.present) {
+      map['file_path'] = Variable<String>(filePath.value);
+    }
+    if (sha256.present) {
+      map['sha256'] = Variable<String>(sha256.value);
+    }
+    if (widthPx.present) {
+      map['width_px'] = Variable<int>(widthPx.value);
+    }
+    if (heightPx.present) {
+      map['height_px'] = Variable<int>(heightPx.value);
+    }
+    if (metersPerPixel.present) {
+      map['meters_per_pixel'] = Variable<double>(metersPerPixel.value);
+    }
+    if (calibrationLine.present) {
+      map['calibration_line'] = Variable<String>(calibrationLine.value);
+    }
+    if (verificationLine.present) {
+      map['verification_line'] = Variable<String>(verificationLine.value);
+    }
+    if (northAngleDeg.present) {
+      map['north_angle_deg'] = Variable<double>(northAngleDeg.value);
+    }
+    if (northSource.present) {
+      map['north_source'] = Variable<String>(
+        $RoofImagesTable.$converternorthSource.toSql(northSource.value),
+      );
+    }
+    if (magneticDeclinationDeg.present) {
+      map['magnetic_declination_deg'] = Variable<double>(
+        magneticDeclinationDeg.value,
+      );
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('RoofImagesCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('mode: $mode, ')
+          ..write('filePath: $filePath, ')
+          ..write('sha256: $sha256, ')
+          ..write('widthPx: $widthPx, ')
+          ..write('heightPx: $heightPx, ')
+          ..write('metersPerPixel: $metersPerPixel, ')
+          ..write('calibrationLine: $calibrationLine, ')
+          ..write('verificationLine: $verificationLine, ')
+          ..write('northAngleDeg: $northAngleDeg, ')
+          ..write('northSource: $northSource, ')
+          ..write('magneticDeclinationDeg: $magneticDeclinationDeg, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $RoofPlanesTable extends RoofPlanes
+    with TableInfo<$RoofPlanesTable, RoofPlane> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $RoofPlanesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _polygonMeta = const VerificationMeta(
+    'polygon',
+  );
+  @override
+  late final GeneratedColumn<String> polygon = GeneratedColumn<String>(
+    'polygon',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _tiltDegMeta = const VerificationMeta(
+    'tiltDeg',
+  );
+  @override
+  late final GeneratedColumn<double> tiltDeg = GeneratedColumn<double>(
+    'tilt_deg',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<TiltSource, String> tiltSource =
+      GeneratedColumn<String>(
+        'tilt_source',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: Constant(TiltSource.manual.name),
+      ).withConverter<TiltSource>($RoofPlanesTable.$convertertiltSource);
+  static const VerificationMeta _azimuthDegMeta = const VerificationMeta(
+    'azimuthDeg',
+  );
+  @override
+  late final GeneratedColumn<double> azimuthDeg = GeneratedColumn<double>(
+    'azimuth_deg',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(180),
+  );
+  static const VerificationMeta _azimuthEdgeIndexMeta = const VerificationMeta(
+    'azimuthEdgeIndex',
+  );
+  @override
+  late final GeneratedColumn<int> azimuthEdgeIndex = GeneratedColumn<int>(
+    'azimuth_edge_index',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _edgeSetbackMMeta = const VerificationMeta(
+    'edgeSetbackM',
+  );
+  @override
+  late final GeneratedColumn<double> edgeSetbackM = GeneratedColumn<double>(
+    'edge_setback_m',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _walkwaysMeta = const VerificationMeta(
+    'walkways',
+  );
+  @override
+  late final GeneratedColumn<String> walkways = GeneratedColumn<String>(
+    'walkways',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('[]'),
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    name,
+    polygon,
+    tiltDeg,
+    tiltSource,
+    azimuthDeg,
+    azimuthEdgeIndex,
+    edgeSetbackM,
+    walkways,
+    sortOrder,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'roof_planes';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<RoofPlane> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('polygon')) {
+      context.handle(
+        _polygonMeta,
+        polygon.isAcceptableOrUnknown(data['polygon']!, _polygonMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_polygonMeta);
+    }
+    if (data.containsKey('tilt_deg')) {
+      context.handle(
+        _tiltDegMeta,
+        tiltDeg.isAcceptableOrUnknown(data['tilt_deg']!, _tiltDegMeta),
+      );
+    }
+    if (data.containsKey('azimuth_deg')) {
+      context.handle(
+        _azimuthDegMeta,
+        azimuthDeg.isAcceptableOrUnknown(data['azimuth_deg']!, _azimuthDegMeta),
+      );
+    }
+    if (data.containsKey('azimuth_edge_index')) {
+      context.handle(
+        _azimuthEdgeIndexMeta,
+        azimuthEdgeIndex.isAcceptableOrUnknown(
+          data['azimuth_edge_index']!,
+          _azimuthEdgeIndexMeta,
+        ),
+      );
+    }
+    if (data.containsKey('edge_setback_m')) {
+      context.handle(
+        _edgeSetbackMMeta,
+        edgeSetbackM.isAcceptableOrUnknown(
+          data['edge_setback_m']!,
+          _edgeSetbackMMeta,
+        ),
+      );
+    }
+    if (data.containsKey('walkways')) {
+      context.handle(
+        _walkwaysMeta,
+        walkways.isAcceptableOrUnknown(data['walkways']!, _walkwaysMeta),
+      );
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  RoofPlane map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return RoofPlane(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      polygon: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}polygon'],
+      )!,
+      tiltDeg: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}tilt_deg'],
+      )!,
+      tiltSource: $RoofPlanesTable.$convertertiltSource.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}tilt_source'],
+        )!,
+      ),
+      azimuthDeg: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}azimuth_deg'],
+      )!,
+      azimuthEdgeIndex: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}azimuth_edge_index'],
+      ),
+      edgeSetbackM: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}edge_setback_m'],
+      )!,
+      walkways: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}walkways'],
+      )!,
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sort_order'],
+      )!,
+    );
+  }
+
+  @override
+  $RoofPlanesTable createAlias(String alias) {
+    return $RoofPlanesTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<TiltSource, String, String> $convertertiltSource =
+      const EnumNameConverter<TiltSource>(TiltSource.values);
+}
+
+class RoofPlane extends DataClass implements Insertable<RoofPlane> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto.
+  final String projectId;
+
+  /// Nombre visible ("Plano 1", "Agua sur"...).
+  final String name;
+
+  /// Vértices en JSON `[[x,y],...]` (metros).
+  final String polygon;
+
+  /// Inclinación (grados, 0 = plano).
+  final double tiltDeg;
+
+  /// De dónde salió la inclinación.
+  final TiltSource tiltSource;
+
+  /// Azimut hacia donde baja el plano (grados, 180 = sur).
+  final double azimuthDeg;
+
+  /// Arista elegida como orilla baja para calcular el azimut, si hay.
+  final int? azimuthEdgeIndex;
+
+  /// Retiro de borde (m) en todo el contorno.
+  final double edgeSetbackM;
+
+  /// Pasillos de mantenimiento en JSON
+  /// `[{"a":[x,y],"b":[x,y],"w":ancho}]` (metros).
+  final String walkways;
+
+  /// Orden en la lista.
+  final int sortOrder;
+  const RoofPlane({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.name,
+    required this.polygon,
+    required this.tiltDeg,
+    required this.tiltSource,
+    required this.azimuthDeg,
+    this.azimuthEdgeIndex,
+    required this.edgeSetbackM,
+    required this.walkways,
+    required this.sortOrder,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    map['name'] = Variable<String>(name);
+    map['polygon'] = Variable<String>(polygon);
+    map['tilt_deg'] = Variable<double>(tiltDeg);
+    {
+      map['tilt_source'] = Variable<String>(
+        $RoofPlanesTable.$convertertiltSource.toSql(tiltSource),
+      );
+    }
+    map['azimuth_deg'] = Variable<double>(azimuthDeg);
+    if (!nullToAbsent || azimuthEdgeIndex != null) {
+      map['azimuth_edge_index'] = Variable<int>(azimuthEdgeIndex);
+    }
+    map['edge_setback_m'] = Variable<double>(edgeSetbackM);
+    map['walkways'] = Variable<String>(walkways);
+    map['sort_order'] = Variable<int>(sortOrder);
+    return map;
+  }
+
+  RoofPlanesCompanion toCompanion(bool nullToAbsent) {
+    return RoofPlanesCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      name: Value(name),
+      polygon: Value(polygon),
+      tiltDeg: Value(tiltDeg),
+      tiltSource: Value(tiltSource),
+      azimuthDeg: Value(azimuthDeg),
+      azimuthEdgeIndex: azimuthEdgeIndex == null && nullToAbsent
+          ? const Value.absent()
+          : Value(azimuthEdgeIndex),
+      edgeSetbackM: Value(edgeSetbackM),
+      walkways: Value(walkways),
+      sortOrder: Value(sortOrder),
+    );
+  }
+
+  factory RoofPlane.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return RoofPlane(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      name: serializer.fromJson<String>(json['name']),
+      polygon: serializer.fromJson<String>(json['polygon']),
+      tiltDeg: serializer.fromJson<double>(json['tiltDeg']),
+      tiltSource: $RoofPlanesTable.$convertertiltSource.fromJson(
+        serializer.fromJson<String>(json['tiltSource']),
+      ),
+      azimuthDeg: serializer.fromJson<double>(json['azimuthDeg']),
+      azimuthEdgeIndex: serializer.fromJson<int?>(json['azimuthEdgeIndex']),
+      edgeSetbackM: serializer.fromJson<double>(json['edgeSetbackM']),
+      walkways: serializer.fromJson<String>(json['walkways']),
+      sortOrder: serializer.fromJson<int>(json['sortOrder']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'name': serializer.toJson<String>(name),
+      'polygon': serializer.toJson<String>(polygon),
+      'tiltDeg': serializer.toJson<double>(tiltDeg),
+      'tiltSource': serializer.toJson<String>(
+        $RoofPlanesTable.$convertertiltSource.toJson(tiltSource),
+      ),
+      'azimuthDeg': serializer.toJson<double>(azimuthDeg),
+      'azimuthEdgeIndex': serializer.toJson<int?>(azimuthEdgeIndex),
+      'edgeSetbackM': serializer.toJson<double>(edgeSetbackM),
+      'walkways': serializer.toJson<String>(walkways),
+      'sortOrder': serializer.toJson<int>(sortOrder),
+    };
+  }
+
+  RoofPlane copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    String? name,
+    String? polygon,
+    double? tiltDeg,
+    TiltSource? tiltSource,
+    double? azimuthDeg,
+    Value<int?> azimuthEdgeIndex = const Value.absent(),
+    double? edgeSetbackM,
+    String? walkways,
+    int? sortOrder,
+  }) => RoofPlane(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    name: name ?? this.name,
+    polygon: polygon ?? this.polygon,
+    tiltDeg: tiltDeg ?? this.tiltDeg,
+    tiltSource: tiltSource ?? this.tiltSource,
+    azimuthDeg: azimuthDeg ?? this.azimuthDeg,
+    azimuthEdgeIndex: azimuthEdgeIndex.present
+        ? azimuthEdgeIndex.value
+        : this.azimuthEdgeIndex,
+    edgeSetbackM: edgeSetbackM ?? this.edgeSetbackM,
+    walkways: walkways ?? this.walkways,
+    sortOrder: sortOrder ?? this.sortOrder,
+  );
+  RoofPlane copyWithCompanion(RoofPlanesCompanion data) {
+    return RoofPlane(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      name: data.name.present ? data.name.value : this.name,
+      polygon: data.polygon.present ? data.polygon.value : this.polygon,
+      tiltDeg: data.tiltDeg.present ? data.tiltDeg.value : this.tiltDeg,
+      tiltSource: data.tiltSource.present
+          ? data.tiltSource.value
+          : this.tiltSource,
+      azimuthDeg: data.azimuthDeg.present
+          ? data.azimuthDeg.value
+          : this.azimuthDeg,
+      azimuthEdgeIndex: data.azimuthEdgeIndex.present
+          ? data.azimuthEdgeIndex.value
+          : this.azimuthEdgeIndex,
+      edgeSetbackM: data.edgeSetbackM.present
+          ? data.edgeSetbackM.value
+          : this.edgeSetbackM,
+      walkways: data.walkways.present ? data.walkways.value : this.walkways,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('RoofPlane(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('name: $name, ')
+          ..write('polygon: $polygon, ')
+          ..write('tiltDeg: $tiltDeg, ')
+          ..write('tiltSource: $tiltSource, ')
+          ..write('azimuthDeg: $azimuthDeg, ')
+          ..write('azimuthEdgeIndex: $azimuthEdgeIndex, ')
+          ..write('edgeSetbackM: $edgeSetbackM, ')
+          ..write('walkways: $walkways, ')
+          ..write('sortOrder: $sortOrder')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    name,
+    polygon,
+    tiltDeg,
+    tiltSource,
+    azimuthDeg,
+    azimuthEdgeIndex,
+    edgeSetbackM,
+    walkways,
+    sortOrder,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is RoofPlane &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.name == this.name &&
+          other.polygon == this.polygon &&
+          other.tiltDeg == this.tiltDeg &&
+          other.tiltSource == this.tiltSource &&
+          other.azimuthDeg == this.azimuthDeg &&
+          other.azimuthEdgeIndex == this.azimuthEdgeIndex &&
+          other.edgeSetbackM == this.edgeSetbackM &&
+          other.walkways == this.walkways &&
+          other.sortOrder == this.sortOrder);
+}
+
+class RoofPlanesCompanion extends UpdateCompanion<RoofPlane> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<String> name;
+  final Value<String> polygon;
+  final Value<double> tiltDeg;
+  final Value<TiltSource> tiltSource;
+  final Value<double> azimuthDeg;
+  final Value<int?> azimuthEdgeIndex;
+  final Value<double> edgeSetbackM;
+  final Value<String> walkways;
+  final Value<int> sortOrder;
+  final Value<int> rowid;
+  const RoofPlanesCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.name = const Value.absent(),
+    this.polygon = const Value.absent(),
+    this.tiltDeg = const Value.absent(),
+    this.tiltSource = const Value.absent(),
+    this.azimuthDeg = const Value.absent(),
+    this.azimuthEdgeIndex = const Value.absent(),
+    this.edgeSetbackM = const Value.absent(),
+    this.walkways = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  RoofPlanesCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required String name,
+    required String polygon,
+    this.tiltDeg = const Value.absent(),
+    this.tiltSource = const Value.absent(),
+    this.azimuthDeg = const Value.absent(),
+    this.azimuthEdgeIndex = const Value.absent(),
+    this.edgeSetbackM = const Value.absent(),
+    this.walkways = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       name = Value(name),
+       polygon = Value(polygon);
+  static Insertable<RoofPlane> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<String>? name,
+    Expression<String>? polygon,
+    Expression<double>? tiltDeg,
+    Expression<String>? tiltSource,
+    Expression<double>? azimuthDeg,
+    Expression<int>? azimuthEdgeIndex,
+    Expression<double>? edgeSetbackM,
+    Expression<String>? walkways,
+    Expression<int>? sortOrder,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (name != null) 'name': name,
+      if (polygon != null) 'polygon': polygon,
+      if (tiltDeg != null) 'tilt_deg': tiltDeg,
+      if (tiltSource != null) 'tilt_source': tiltSource,
+      if (azimuthDeg != null) 'azimuth_deg': azimuthDeg,
+      if (azimuthEdgeIndex != null) 'azimuth_edge_index': azimuthEdgeIndex,
+      if (edgeSetbackM != null) 'edge_setback_m': edgeSetbackM,
+      if (walkways != null) 'walkways': walkways,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  RoofPlanesCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<String>? name,
+    Value<String>? polygon,
+    Value<double>? tiltDeg,
+    Value<TiltSource>? tiltSource,
+    Value<double>? azimuthDeg,
+    Value<int?>? azimuthEdgeIndex,
+    Value<double>? edgeSetbackM,
+    Value<String>? walkways,
+    Value<int>? sortOrder,
+    Value<int>? rowid,
+  }) {
+    return RoofPlanesCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      name: name ?? this.name,
+      polygon: polygon ?? this.polygon,
+      tiltDeg: tiltDeg ?? this.tiltDeg,
+      tiltSource: tiltSource ?? this.tiltSource,
+      azimuthDeg: azimuthDeg ?? this.azimuthDeg,
+      azimuthEdgeIndex: azimuthEdgeIndex ?? this.azimuthEdgeIndex,
+      edgeSetbackM: edgeSetbackM ?? this.edgeSetbackM,
+      walkways: walkways ?? this.walkways,
+      sortOrder: sortOrder ?? this.sortOrder,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (polygon.present) {
+      map['polygon'] = Variable<String>(polygon.value);
+    }
+    if (tiltDeg.present) {
+      map['tilt_deg'] = Variable<double>(tiltDeg.value);
+    }
+    if (tiltSource.present) {
+      map['tilt_source'] = Variable<String>(
+        $RoofPlanesTable.$convertertiltSource.toSql(tiltSource.value),
+      );
+    }
+    if (azimuthDeg.present) {
+      map['azimuth_deg'] = Variable<double>(azimuthDeg.value);
+    }
+    if (azimuthEdgeIndex.present) {
+      map['azimuth_edge_index'] = Variable<int>(azimuthEdgeIndex.value);
+    }
+    if (edgeSetbackM.present) {
+      map['edge_setback_m'] = Variable<double>(edgeSetbackM.value);
+    }
+    if (walkways.present) {
+      map['walkways'] = Variable<String>(walkways.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<int>(sortOrder.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('RoofPlanesCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('name: $name, ')
+          ..write('polygon: $polygon, ')
+          ..write('tiltDeg: $tiltDeg, ')
+          ..write('tiltSource: $tiltSource, ')
+          ..write('azimuthDeg: $azimuthDeg, ')
+          ..write('azimuthEdgeIndex: $azimuthEdgeIndex, ')
+          ..write('edgeSetbackM: $edgeSetbackM, ')
+          ..write('walkways: $walkways, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ObstaclesTable extends Obstacles
+    with TableInfo<$ObstaclesTable, Obstacle> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ObstaclesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<ObstacleKind, String> kind =
+      GeneratedColumn<String>(
+        'kind',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<ObstacleKind>($ObstaclesTable.$converterkind);
+  @override
+  late final GeneratedColumnWithTypeConverter<ObstacleOutline, String> outline =
+      GeneratedColumn<String>(
+        'outline',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<ObstacleOutline>($ObstaclesTable.$converteroutline);
+  static const VerificationMeta _centerXMeta = const VerificationMeta(
+    'centerX',
+  );
+  @override
+  late final GeneratedColumn<double> centerX = GeneratedColumn<double>(
+    'center_x',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _centerYMeta = const VerificationMeta(
+    'centerY',
+  );
+  @override
+  late final GeneratedColumn<double> centerY = GeneratedColumn<double>(
+    'center_y',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _widthMMeta = const VerificationMeta('widthM');
+  @override
+  late final GeneratedColumn<double> widthM = GeneratedColumn<double>(
+    'width_m',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _depthMMeta = const VerificationMeta('depthM');
+  @override
+  late final GeneratedColumn<double> depthM = GeneratedColumn<double>(
+    'depth_m',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _rotationDegMeta = const VerificationMeta(
+    'rotationDeg',
+  );
+  @override
+  late final GeneratedColumn<double> rotationDeg = GeneratedColumn<double>(
+    'rotation_deg',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _pointsMeta = const VerificationMeta('points');
+  @override
+  late final GeneratedColumn<String> points = GeneratedColumn<String>(
+    'points',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _heightMMeta = const VerificationMeta(
+    'heightM',
+  );
+  @override
+  late final GeneratedColumn<double> heightM = GeneratedColumn<double>(
+    'height_m',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<HeightSource, String>
+  heightSource = GeneratedColumn<String>(
+    'height_source',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  ).withConverter<HeightSource>($ObstaclesTable.$converterheightSource);
+  static const VerificationMeta _tankLitersMeta = const VerificationMeta(
+    'tankLiters',
+  );
+  @override
+  late final GeneratedColumn<int> tankLiters = GeneratedColumn<int>(
+    'tank_liters',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _labelMeta = const VerificationMeta('label');
+  @override
+  late final GeneratedColumn<String> label = GeneratedColumn<String>(
+    'label',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    kind,
+    outline,
+    centerX,
+    centerY,
+    widthM,
+    depthM,
+    rotationDeg,
+    points,
+    heightM,
+    heightSource,
+    tankLiters,
+    label,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'obstacles';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<Obstacle> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('center_x')) {
+      context.handle(
+        _centerXMeta,
+        centerX.isAcceptableOrUnknown(data['center_x']!, _centerXMeta),
+      );
+    }
+    if (data.containsKey('center_y')) {
+      context.handle(
+        _centerYMeta,
+        centerY.isAcceptableOrUnknown(data['center_y']!, _centerYMeta),
+      );
+    }
+    if (data.containsKey('width_m')) {
+      context.handle(
+        _widthMMeta,
+        widthM.isAcceptableOrUnknown(data['width_m']!, _widthMMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_widthMMeta);
+    }
+    if (data.containsKey('depth_m')) {
+      context.handle(
+        _depthMMeta,
+        depthM.isAcceptableOrUnknown(data['depth_m']!, _depthMMeta),
+      );
+    }
+    if (data.containsKey('rotation_deg')) {
+      context.handle(
+        _rotationDegMeta,
+        rotationDeg.isAcceptableOrUnknown(
+          data['rotation_deg']!,
+          _rotationDegMeta,
+        ),
+      );
+    }
+    if (data.containsKey('points')) {
+      context.handle(
+        _pointsMeta,
+        points.isAcceptableOrUnknown(data['points']!, _pointsMeta),
+      );
+    }
+    if (data.containsKey('height_m')) {
+      context.handle(
+        _heightMMeta,
+        heightM.isAcceptableOrUnknown(data['height_m']!, _heightMMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_heightMMeta);
+    }
+    if (data.containsKey('tank_liters')) {
+      context.handle(
+        _tankLitersMeta,
+        tankLiters.isAcceptableOrUnknown(data['tank_liters']!, _tankLitersMeta),
+      );
+    }
+    if (data.containsKey('label')) {
+      context.handle(
+        _labelMeta,
+        label.isAcceptableOrUnknown(data['label']!, _labelMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Obstacle map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Obstacle(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      kind: $ObstaclesTable.$converterkind.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}kind'],
+        )!,
+      ),
+      outline: $ObstaclesTable.$converteroutline.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}outline'],
+        )!,
+      ),
+      centerX: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}center_x'],
+      )!,
+      centerY: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}center_y'],
+      )!,
+      widthM: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}width_m'],
+      )!,
+      depthM: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}depth_m'],
+      ),
+      rotationDeg: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}rotation_deg'],
+      )!,
+      points: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}points'],
+      ),
+      heightM: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}height_m'],
+      )!,
+      heightSource: $ObstaclesTable.$converterheightSource.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}height_source'],
+        )!,
+      ),
+      tankLiters: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}tank_liters'],
+      ),
+      label: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}label'],
+      ),
+    );
+  }
+
+  @override
+  $ObstaclesTable createAlias(String alias) {
+    return $ObstaclesTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<ObstacleKind, String, String> $converterkind =
+      const EnumNameConverter<ObstacleKind>(ObstacleKind.values);
+  static JsonTypeConverter2<ObstacleOutline, String, String> $converteroutline =
+      const EnumNameConverter<ObstacleOutline>(ObstacleOutline.values);
+  static JsonTypeConverter2<HeightSource, String, String>
+  $converterheightSource = const EnumNameConverter<HeightSource>(
+    HeightSource.values,
+  );
+}
+
+class Obstacle extends DataClass implements Insertable<Obstacle> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto.
+  final String projectId;
+
+  /// Tipo (tinaco, antena...).
+  final ObstacleKind kind;
+
+  /// Forma de la huella.
+  final ObstacleOutline outline;
+
+  /// Centro, este (m). Círculo, rectángulo y punto.
+  final double centerX;
+
+  /// Centro, norte (m).
+  final double centerY;
+
+  /// Diámetro, ancho o espesor (m).
+  final double widthM;
+
+  /// Fondo del rectángulo (m).
+  final double? depthM;
+
+  /// Giro del rectángulo (grados, antihorario).
+  final double rotationDeg;
+
+  /// Puntos de la línea o del polígono en JSON `[[x,y],...]` (m).
+  final String? points;
+
+  /// Altura sobre el techo (m).
+  final double heightM;
+
+  /// De dónde salió la altura.
+  final HeightSource heightSource;
+
+  /// Capacidad del tinaco (L), si aplica.
+  final int? tankLiters;
+
+  /// Nota opcional.
+  final String? label;
+  const Obstacle({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.kind,
+    required this.outline,
+    required this.centerX,
+    required this.centerY,
+    required this.widthM,
+    this.depthM,
+    required this.rotationDeg,
+    this.points,
+    required this.heightM,
+    required this.heightSource,
+    this.tankLiters,
+    this.label,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    {
+      map['kind'] = Variable<String>(
+        $ObstaclesTable.$converterkind.toSql(kind),
+      );
+    }
+    {
+      map['outline'] = Variable<String>(
+        $ObstaclesTable.$converteroutline.toSql(outline),
+      );
+    }
+    map['center_x'] = Variable<double>(centerX);
+    map['center_y'] = Variable<double>(centerY);
+    map['width_m'] = Variable<double>(widthM);
+    if (!nullToAbsent || depthM != null) {
+      map['depth_m'] = Variable<double>(depthM);
+    }
+    map['rotation_deg'] = Variable<double>(rotationDeg);
+    if (!nullToAbsent || points != null) {
+      map['points'] = Variable<String>(points);
+    }
+    map['height_m'] = Variable<double>(heightM);
+    {
+      map['height_source'] = Variable<String>(
+        $ObstaclesTable.$converterheightSource.toSql(heightSource),
+      );
+    }
+    if (!nullToAbsent || tankLiters != null) {
+      map['tank_liters'] = Variable<int>(tankLiters);
+    }
+    if (!nullToAbsent || label != null) {
+      map['label'] = Variable<String>(label);
+    }
+    return map;
+  }
+
+  ObstaclesCompanion toCompanion(bool nullToAbsent) {
+    return ObstaclesCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      kind: Value(kind),
+      outline: Value(outline),
+      centerX: Value(centerX),
+      centerY: Value(centerY),
+      widthM: Value(widthM),
+      depthM: depthM == null && nullToAbsent
+          ? const Value.absent()
+          : Value(depthM),
+      rotationDeg: Value(rotationDeg),
+      points: points == null && nullToAbsent
+          ? const Value.absent()
+          : Value(points),
+      heightM: Value(heightM),
+      heightSource: Value(heightSource),
+      tankLiters: tankLiters == null && nullToAbsent
+          ? const Value.absent()
+          : Value(tankLiters),
+      label: label == null && nullToAbsent
+          ? const Value.absent()
+          : Value(label),
+    );
+  }
+
+  factory Obstacle.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Obstacle(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      kind: $ObstaclesTable.$converterkind.fromJson(
+        serializer.fromJson<String>(json['kind']),
+      ),
+      outline: $ObstaclesTable.$converteroutline.fromJson(
+        serializer.fromJson<String>(json['outline']),
+      ),
+      centerX: serializer.fromJson<double>(json['centerX']),
+      centerY: serializer.fromJson<double>(json['centerY']),
+      widthM: serializer.fromJson<double>(json['widthM']),
+      depthM: serializer.fromJson<double?>(json['depthM']),
+      rotationDeg: serializer.fromJson<double>(json['rotationDeg']),
+      points: serializer.fromJson<String?>(json['points']),
+      heightM: serializer.fromJson<double>(json['heightM']),
+      heightSource: $ObstaclesTable.$converterheightSource.fromJson(
+        serializer.fromJson<String>(json['heightSource']),
+      ),
+      tankLiters: serializer.fromJson<int?>(json['tankLiters']),
+      label: serializer.fromJson<String?>(json['label']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'kind': serializer.toJson<String>(
+        $ObstaclesTable.$converterkind.toJson(kind),
+      ),
+      'outline': serializer.toJson<String>(
+        $ObstaclesTable.$converteroutline.toJson(outline),
+      ),
+      'centerX': serializer.toJson<double>(centerX),
+      'centerY': serializer.toJson<double>(centerY),
+      'widthM': serializer.toJson<double>(widthM),
+      'depthM': serializer.toJson<double?>(depthM),
+      'rotationDeg': serializer.toJson<double>(rotationDeg),
+      'points': serializer.toJson<String?>(points),
+      'heightM': serializer.toJson<double>(heightM),
+      'heightSource': serializer.toJson<String>(
+        $ObstaclesTable.$converterheightSource.toJson(heightSource),
+      ),
+      'tankLiters': serializer.toJson<int?>(tankLiters),
+      'label': serializer.toJson<String?>(label),
+    };
+  }
+
+  Obstacle copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    ObstacleKind? kind,
+    ObstacleOutline? outline,
+    double? centerX,
+    double? centerY,
+    double? widthM,
+    Value<double?> depthM = const Value.absent(),
+    double? rotationDeg,
+    Value<String?> points = const Value.absent(),
+    double? heightM,
+    HeightSource? heightSource,
+    Value<int?> tankLiters = const Value.absent(),
+    Value<String?> label = const Value.absent(),
+  }) => Obstacle(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    kind: kind ?? this.kind,
+    outline: outline ?? this.outline,
+    centerX: centerX ?? this.centerX,
+    centerY: centerY ?? this.centerY,
+    widthM: widthM ?? this.widthM,
+    depthM: depthM.present ? depthM.value : this.depthM,
+    rotationDeg: rotationDeg ?? this.rotationDeg,
+    points: points.present ? points.value : this.points,
+    heightM: heightM ?? this.heightM,
+    heightSource: heightSource ?? this.heightSource,
+    tankLiters: tankLiters.present ? tankLiters.value : this.tankLiters,
+    label: label.present ? label.value : this.label,
+  );
+  Obstacle copyWithCompanion(ObstaclesCompanion data) {
+    return Obstacle(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      outline: data.outline.present ? data.outline.value : this.outline,
+      centerX: data.centerX.present ? data.centerX.value : this.centerX,
+      centerY: data.centerY.present ? data.centerY.value : this.centerY,
+      widthM: data.widthM.present ? data.widthM.value : this.widthM,
+      depthM: data.depthM.present ? data.depthM.value : this.depthM,
+      rotationDeg: data.rotationDeg.present
+          ? data.rotationDeg.value
+          : this.rotationDeg,
+      points: data.points.present ? data.points.value : this.points,
+      heightM: data.heightM.present ? data.heightM.value : this.heightM,
+      heightSource: data.heightSource.present
+          ? data.heightSource.value
+          : this.heightSource,
+      tankLiters: data.tankLiters.present
+          ? data.tankLiters.value
+          : this.tankLiters,
+      label: data.label.present ? data.label.value : this.label,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Obstacle(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('kind: $kind, ')
+          ..write('outline: $outline, ')
+          ..write('centerX: $centerX, ')
+          ..write('centerY: $centerY, ')
+          ..write('widthM: $widthM, ')
+          ..write('depthM: $depthM, ')
+          ..write('rotationDeg: $rotationDeg, ')
+          ..write('points: $points, ')
+          ..write('heightM: $heightM, ')
+          ..write('heightSource: $heightSource, ')
+          ..write('tankLiters: $tankLiters, ')
+          ..write('label: $label')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    kind,
+    outline,
+    centerX,
+    centerY,
+    widthM,
+    depthM,
+    rotationDeg,
+    points,
+    heightM,
+    heightSource,
+    tankLiters,
+    label,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Obstacle &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.kind == this.kind &&
+          other.outline == this.outline &&
+          other.centerX == this.centerX &&
+          other.centerY == this.centerY &&
+          other.widthM == this.widthM &&
+          other.depthM == this.depthM &&
+          other.rotationDeg == this.rotationDeg &&
+          other.points == this.points &&
+          other.heightM == this.heightM &&
+          other.heightSource == this.heightSource &&
+          other.tankLiters == this.tankLiters &&
+          other.label == this.label);
+}
+
+class ObstaclesCompanion extends UpdateCompanion<Obstacle> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<ObstacleKind> kind;
+  final Value<ObstacleOutline> outline;
+  final Value<double> centerX;
+  final Value<double> centerY;
+  final Value<double> widthM;
+  final Value<double?> depthM;
+  final Value<double> rotationDeg;
+  final Value<String?> points;
+  final Value<double> heightM;
+  final Value<HeightSource> heightSource;
+  final Value<int?> tankLiters;
+  final Value<String?> label;
+  final Value<int> rowid;
+  const ObstaclesCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.outline = const Value.absent(),
+    this.centerX = const Value.absent(),
+    this.centerY = const Value.absent(),
+    this.widthM = const Value.absent(),
+    this.depthM = const Value.absent(),
+    this.rotationDeg = const Value.absent(),
+    this.points = const Value.absent(),
+    this.heightM = const Value.absent(),
+    this.heightSource = const Value.absent(),
+    this.tankLiters = const Value.absent(),
+    this.label = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ObstaclesCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required ObstacleKind kind,
+    required ObstacleOutline outline,
+    this.centerX = const Value.absent(),
+    this.centerY = const Value.absent(),
+    required double widthM,
+    this.depthM = const Value.absent(),
+    this.rotationDeg = const Value.absent(),
+    this.points = const Value.absent(),
+    required double heightM,
+    required HeightSource heightSource,
+    this.tankLiters = const Value.absent(),
+    this.label = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       kind = Value(kind),
+       outline = Value(outline),
+       widthM = Value(widthM),
+       heightM = Value(heightM),
+       heightSource = Value(heightSource);
+  static Insertable<Obstacle> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<String>? kind,
+    Expression<String>? outline,
+    Expression<double>? centerX,
+    Expression<double>? centerY,
+    Expression<double>? widthM,
+    Expression<double>? depthM,
+    Expression<double>? rotationDeg,
+    Expression<String>? points,
+    Expression<double>? heightM,
+    Expression<String>? heightSource,
+    Expression<int>? tankLiters,
+    Expression<String>? label,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (kind != null) 'kind': kind,
+      if (outline != null) 'outline': outline,
+      if (centerX != null) 'center_x': centerX,
+      if (centerY != null) 'center_y': centerY,
+      if (widthM != null) 'width_m': widthM,
+      if (depthM != null) 'depth_m': depthM,
+      if (rotationDeg != null) 'rotation_deg': rotationDeg,
+      if (points != null) 'points': points,
+      if (heightM != null) 'height_m': heightM,
+      if (heightSource != null) 'height_source': heightSource,
+      if (tankLiters != null) 'tank_liters': tankLiters,
+      if (label != null) 'label': label,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ObstaclesCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<ObstacleKind>? kind,
+    Value<ObstacleOutline>? outline,
+    Value<double>? centerX,
+    Value<double>? centerY,
+    Value<double>? widthM,
+    Value<double?>? depthM,
+    Value<double>? rotationDeg,
+    Value<String?>? points,
+    Value<double>? heightM,
+    Value<HeightSource>? heightSource,
+    Value<int?>? tankLiters,
+    Value<String?>? label,
+    Value<int>? rowid,
+  }) {
+    return ObstaclesCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      kind: kind ?? this.kind,
+      outline: outline ?? this.outline,
+      centerX: centerX ?? this.centerX,
+      centerY: centerY ?? this.centerY,
+      widthM: widthM ?? this.widthM,
+      depthM: depthM ?? this.depthM,
+      rotationDeg: rotationDeg ?? this.rotationDeg,
+      points: points ?? this.points,
+      heightM: heightM ?? this.heightM,
+      heightSource: heightSource ?? this.heightSource,
+      tankLiters: tankLiters ?? this.tankLiters,
+      label: label ?? this.label,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(
+        $ObstaclesTable.$converterkind.toSql(kind.value),
+      );
+    }
+    if (outline.present) {
+      map['outline'] = Variable<String>(
+        $ObstaclesTable.$converteroutline.toSql(outline.value),
+      );
+    }
+    if (centerX.present) {
+      map['center_x'] = Variable<double>(centerX.value);
+    }
+    if (centerY.present) {
+      map['center_y'] = Variable<double>(centerY.value);
+    }
+    if (widthM.present) {
+      map['width_m'] = Variable<double>(widthM.value);
+    }
+    if (depthM.present) {
+      map['depth_m'] = Variable<double>(depthM.value);
+    }
+    if (rotationDeg.present) {
+      map['rotation_deg'] = Variable<double>(rotationDeg.value);
+    }
+    if (points.present) {
+      map['points'] = Variable<String>(points.value);
+    }
+    if (heightM.present) {
+      map['height_m'] = Variable<double>(heightM.value);
+    }
+    if (heightSource.present) {
+      map['height_source'] = Variable<String>(
+        $ObstaclesTable.$converterheightSource.toSql(heightSource.value),
+      );
+    }
+    if (tankLiters.present) {
+      map['tank_liters'] = Variable<int>(tankLiters.value);
+    }
+    if (label.present) {
+      map['label'] = Variable<String>(label.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ObstaclesCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('kind: $kind, ')
+          ..write('outline: $outline, ')
+          ..write('centerX: $centerX, ')
+          ..write('centerY: $centerY, ')
+          ..write('widthM: $widthM, ')
+          ..write('depthM: $depthM, ')
+          ..write('rotationDeg: $rotationDeg, ')
+          ..write('points: $points, ')
+          ..write('heightM: $heightM, ')
+          ..write('heightSource: $heightSource, ')
+          ..write('tankLiters: $tankLiters, ')
+          ..write('label: $label, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $HorizonProfilesTable extends HorizonProfiles
+    with TableInfo<$HorizonProfilesTable, HorizonProfileRecord> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $HorizonProfilesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<HorizonSource, String> source =
+      GeneratedColumn<String>(
+        'source',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<HorizonSource>($HorizonProfilesTable.$convertersource);
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _pointsMeta = const VerificationMeta('points');
+  @override
+  late final GeneratedColumn<String> points = GeneratedColumn<String>(
+    'points',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    source,
+    name,
+    points,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'horizon_profiles';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<HorizonProfileRecord> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    }
+    if (data.containsKey('points')) {
+      context.handle(
+        _pointsMeta,
+        points.isAcceptableOrUnknown(data['points']!, _pointsMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_pointsMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  HorizonProfileRecord map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return HorizonProfileRecord(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      source: $HorizonProfilesTable.$convertersource.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}source'],
+        )!,
+      ),
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      ),
+      points: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}points'],
+      )!,
+    );
+  }
+
+  @override
+  $HorizonProfilesTable createAlias(String alias) {
+    return $HorizonProfilesTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<HorizonSource, String, String> $convertersource =
+      const EnumNameConverter<HorizonSource>(HorizonSource.values);
+}
+
+class HorizonProfileRecord extends DataClass
+    implements Insertable<HorizonProfileRecord> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto.
+  final String projectId;
+
+  /// Origen: terreno, manual o cámara.
+  final HorizonSource source;
+
+  /// Nombre visible ("Árbol del vecino").
+  final String? name;
+
+  /// Puntos en JSON `[[azimut, elevación], ...]` (grados).
+  final String points;
+  const HorizonProfileRecord({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.source,
+    this.name,
+    required this.points,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    {
+      map['source'] = Variable<String>(
+        $HorizonProfilesTable.$convertersource.toSql(source),
+      );
+    }
+    if (!nullToAbsent || name != null) {
+      map['name'] = Variable<String>(name);
+    }
+    map['points'] = Variable<String>(points);
+    return map;
+  }
+
+  HorizonProfilesCompanion toCompanion(bool nullToAbsent) {
+    return HorizonProfilesCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      source: Value(source),
+      name: name == null && nullToAbsent ? const Value.absent() : Value(name),
+      points: Value(points),
+    );
+  }
+
+  factory HorizonProfileRecord.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return HorizonProfileRecord(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      source: $HorizonProfilesTable.$convertersource.fromJson(
+        serializer.fromJson<String>(json['source']),
+      ),
+      name: serializer.fromJson<String?>(json['name']),
+      points: serializer.fromJson<String>(json['points']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'source': serializer.toJson<String>(
+        $HorizonProfilesTable.$convertersource.toJson(source),
+      ),
+      'name': serializer.toJson<String?>(name),
+      'points': serializer.toJson<String>(points),
+    };
+  }
+
+  HorizonProfileRecord copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    HorizonSource? source,
+    Value<String?> name = const Value.absent(),
+    String? points,
+  }) => HorizonProfileRecord(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    source: source ?? this.source,
+    name: name.present ? name.value : this.name,
+    points: points ?? this.points,
+  );
+  HorizonProfileRecord copyWithCompanion(HorizonProfilesCompanion data) {
+    return HorizonProfileRecord(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      source: data.source.present ? data.source.value : this.source,
+      name: data.name.present ? data.name.value : this.name,
+      points: data.points.present ? data.points.value : this.points,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('HorizonProfileRecord(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('source: $source, ')
+          ..write('name: $name, ')
+          ..write('points: $points')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    source,
+    name,
+    points,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is HorizonProfileRecord &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.source == this.source &&
+          other.name == this.name &&
+          other.points == this.points);
+}
+
+class HorizonProfilesCompanion extends UpdateCompanion<HorizonProfileRecord> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<HorizonSource> source;
+  final Value<String?> name;
+  final Value<String> points;
+  final Value<int> rowid;
+  const HorizonProfilesCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.source = const Value.absent(),
+    this.name = const Value.absent(),
+    this.points = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  HorizonProfilesCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required HorizonSource source,
+    this.name = const Value.absent(),
+    required String points,
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       source = Value(source),
+       points = Value(points);
+  static Insertable<HorizonProfileRecord> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<String>? source,
+    Expression<String>? name,
+    Expression<String>? points,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (source != null) 'source': source,
+      if (name != null) 'name': name,
+      if (points != null) 'points': points,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  HorizonProfilesCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<HorizonSource>? source,
+    Value<String?>? name,
+    Value<String>? points,
+    Value<int>? rowid,
+  }) {
+    return HorizonProfilesCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      source: source ?? this.source,
+      name: name ?? this.name,
+      points: points ?? this.points,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (source.present) {
+      map['source'] = Variable<String>(
+        $HorizonProfilesTable.$convertersource.toSql(source.value),
+      );
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (points.present) {
+      map['points'] = Variable<String>(points.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('HorizonProfilesCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('source: $source, ')
+          ..write('name: $name, ')
+          ..write('points: $points, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $InstalledEquipmentTable extends InstalledEquipment
     with TableInfo<$InstalledEquipmentTable, InstalledEquipmentItem> {
   @override
@@ -11338,6 +14673,12 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $UtilityBillsTable utilityBills = $UtilityBillsTable(this);
   late final $PhotosTable photos = $PhotosTable(this);
   late final $DocumentsTable documents = $DocumentsTable(this);
+  late final $RoofImagesTable roofImages = $RoofImagesTable(this);
+  late final $RoofPlanesTable roofPlanes = $RoofPlanesTable(this);
+  late final $ObstaclesTable obstacles = $ObstaclesTable(this);
+  late final $HorizonProfilesTable horizonProfiles = $HorizonProfilesTable(
+    this,
+  );
   late final $InstalledEquipmentTable installedEquipment =
       $InstalledEquipmentTable(this);
   late final $CommissioningRecordsTable commissioningRecords =
@@ -11367,6 +14708,10 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     utilityBills,
     photos,
     documents,
+    roofImages,
+    roofPlanes,
+    obstacles,
+    horizonProfiles,
     installedEquipment,
     commissioningRecords,
     stringTests,
@@ -12231,6 +15576,80 @@ final class $$ProjectsTableReferences
     );
   }
 
+  static MultiTypedResultKey<$RoofImagesTable, List<RoofImage>>
+  _roofImagesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.roofImages,
+    aliasName: 'projects__id__roof_images__project_id',
+  );
+
+  $$RoofImagesTableProcessedTableManager get roofImagesRefs {
+    final manager = $$RoofImagesTableTableManager(
+      $_db,
+      $_db.roofImages,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_roofImagesRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$RoofPlanesTable, List<RoofPlane>>
+  _roofPlanesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.roofPlanes,
+    aliasName: 'projects__id__roof_planes__project_id',
+  );
+
+  $$RoofPlanesTableProcessedTableManager get roofPlanesRefs {
+    final manager = $$RoofPlanesTableTableManager(
+      $_db,
+      $_db.roofPlanes,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_roofPlanesRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$ObstaclesTable, List<Obstacle>>
+  _obstaclesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.obstacles,
+    aliasName: 'projects__id__obstacles__project_id',
+  );
+
+  $$ObstaclesTableProcessedTableManager get obstaclesRefs {
+    final manager = $$ObstaclesTableTableManager(
+      $_db,
+      $_db.obstacles,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_obstaclesRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$HorizonProfilesTable, List<HorizonProfileRecord>>
+  _horizonProfilesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.horizonProfiles,
+    aliasName: 'projects__id__horizon_profiles__project_id',
+  );
+
+  $$HorizonProfilesTableProcessedTableManager get horizonProfilesRefs {
+    final manager = $$HorizonProfilesTableTableManager(
+      $_db,
+      $_db.horizonProfiles,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _horizonProfilesRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
   static MultiTypedResultKey<
     $InstalledEquipmentTable,
     List<InstalledEquipmentItem>
@@ -12526,6 +15945,106 @@ class $$ProjectsTableFilterComposer
           }) => $$DocumentsTableFilterComposer(
             $db: $db,
             $table: $db.documents,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> roofImagesRefs(
+    Expression<bool> Function($$RoofImagesTableFilterComposer f) f,
+  ) {
+    final $$RoofImagesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.roofImages,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$RoofImagesTableFilterComposer(
+            $db: $db,
+            $table: $db.roofImages,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> roofPlanesRefs(
+    Expression<bool> Function($$RoofPlanesTableFilterComposer f) f,
+  ) {
+    final $$RoofPlanesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.roofPlanes,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$RoofPlanesTableFilterComposer(
+            $db: $db,
+            $table: $db.roofPlanes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> obstaclesRefs(
+    Expression<bool> Function($$ObstaclesTableFilterComposer f) f,
+  ) {
+    final $$ObstaclesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.obstacles,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ObstaclesTableFilterComposer(
+            $db: $db,
+            $table: $db.obstacles,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> horizonProfilesRefs(
+    Expression<bool> Function($$HorizonProfilesTableFilterComposer f) f,
+  ) {
+    final $$HorizonProfilesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.horizonProfiles,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$HorizonProfilesTableFilterComposer(
+            $db: $db,
+            $table: $db.horizonProfiles,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -12917,6 +16436,106 @@ class $$ProjectsTableAnnotationComposer
     return f(composer);
   }
 
+  Expression<T> roofImagesRefs<T extends Object>(
+    Expression<T> Function($$RoofImagesTableAnnotationComposer a) f,
+  ) {
+    final $$RoofImagesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.roofImages,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$RoofImagesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.roofImages,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> roofPlanesRefs<T extends Object>(
+    Expression<T> Function($$RoofPlanesTableAnnotationComposer a) f,
+  ) {
+    final $$RoofPlanesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.roofPlanes,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$RoofPlanesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.roofPlanes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> obstaclesRefs<T extends Object>(
+    Expression<T> Function($$ObstaclesTableAnnotationComposer a) f,
+  ) {
+    final $$ObstaclesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.obstacles,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ObstaclesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.obstacles,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> horizonProfilesRefs<T extends Object>(
+    Expression<T> Function($$HorizonProfilesTableAnnotationComposer a) f,
+  ) {
+    final $$HorizonProfilesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.horizonProfiles,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$HorizonProfilesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.horizonProfiles,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
   Expression<T> installedEquipmentRefs<T extends Object>(
     Expression<T> Function($$InstalledEquipmentTableAnnotationComposer a) f,
   ) {
@@ -13117,6 +16736,10 @@ class $$ProjectsTableTableManager
             bool sitesRefs,
             bool photosRefs,
             bool documentsRefs,
+            bool roofImagesRefs,
+            bool roofPlanesRefs,
+            bool obstaclesRefs,
+            bool horizonProfilesRefs,
             bool installedEquipmentRefs,
             bool commissioningRecordsRefs,
             bool stringTestsRefs,
@@ -13199,6 +16822,10 @@ class $$ProjectsTableTableManager
                 sitesRefs = false,
                 photosRefs = false,
                 documentsRefs = false,
+                roofImagesRefs = false,
+                roofPlanesRefs = false,
+                obstaclesRefs = false,
+                horizonProfilesRefs = false,
                 installedEquipmentRefs = false,
                 commissioningRecordsRefs = false,
                 stringTestsRefs = false,
@@ -13213,6 +16840,10 @@ class $$ProjectsTableTableManager
                     if (sitesRefs) db.sites,
                     if (photosRefs) db.photos,
                     if (documentsRefs) db.documents,
+                    if (roofImagesRefs) db.roofImages,
+                    if (roofPlanesRefs) db.roofPlanes,
+                    if (obstaclesRefs) db.obstacles,
+                    if (horizonProfilesRefs) db.horizonProfiles,
                     if (installedEquipmentRefs) db.installedEquipment,
                     if (commissioningRecordsRefs) db.commissioningRecords,
                     if (stringTestsRefs) db.stringTests,
@@ -13309,6 +16940,86 @@ class $$ProjectsTableTableManager
                                 table,
                                 p0,
                               ).documentsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (roofImagesRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          RoofImage,
+                          $RoofImagesTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._roofImagesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).roofImagesRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (roofPlanesRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          RoofPlane,
+                          $RoofPlanesTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._roofPlanesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).roofPlanesRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (obstaclesRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          Obstacle,
+                          $ObstaclesTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._obstaclesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).obstaclesRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (horizonProfilesRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          HorizonProfileRecord,
+                          $HorizonProfilesTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._horizonProfilesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).horizonProfilesRefs,
                           currentColumn: 'id',
                           referencedColumn: 'project_id',
                           typedResults: items,
@@ -13478,6 +17189,10 @@ typedef $$ProjectsTableProcessedTableManager =
         bool sitesRefs,
         bool photosRefs,
         bool documentsRefs,
+        bool roofImagesRefs,
+        bool roofPlanesRefs,
+        bool obstaclesRefs,
+        bool horizonProfilesRefs,
         bool installedEquipmentRefs,
         bool commissioningRecordsRefs,
         bool stringTestsRefs,
@@ -15326,6 +19041,1974 @@ typedef $$DocumentsTableProcessedTableManager =
       $$DocumentsTableUpdateCompanionBuilder,
       (Document, $$DocumentsTableReferences),
       Document,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$RoofImagesTableCreateCompanionBuilder = RoofImagesCompanion Function({
+  Value<String> id,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<DateTime?> deletedAt,
+  required String projectId,
+  required RoofMode mode,
+  Value<String?> filePath,
+  Value<String?> sha256,
+  Value<int?> widthPx,
+  Value<int?> heightPx,
+  Value<double?> metersPerPixel,
+  Value<String?> calibrationLine,
+  Value<String?> verificationLine,
+  Value<double> northAngleDeg,
+  Value<NorthSource> northSource,
+  Value<double?> magneticDeclinationDeg,
+  Value<int> rowid,
+});
+typedef $$RoofImagesTableUpdateCompanionBuilder = RoofImagesCompanion Function({
+  Value<String> id,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<DateTime?> deletedAt,
+  Value<String> projectId,
+  Value<RoofMode> mode,
+  Value<String?> filePath,
+  Value<String?> sha256,
+  Value<int?> widthPx,
+  Value<int?> heightPx,
+  Value<double?> metersPerPixel,
+  Value<String?> calibrationLine,
+  Value<String?> verificationLine,
+  Value<double> northAngleDeg,
+  Value<NorthSource> northSource,
+  Value<double?> magneticDeclinationDeg,
+  Value<int> rowid,
+});
+
+final class $$RoofImagesTableReferences
+    extends BaseReferences<_$AppDatabase, $RoofImagesTable, RoofImage> {
+  $$RoofImagesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('roof_images__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$RoofImagesTableFilterComposer
+    extends Composer<_$AppDatabase, $RoofImagesTable> {
+  $$RoofImagesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<RoofMode, RoofMode, String> get mode =>
+      $composableBuilder(
+        column: $table.mode,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
+
+  ColumnFilters<String> get filePath => $composableBuilder(
+    column: $table.filePath,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sha256 => $composableBuilder(
+    column: $table.sha256,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get widthPx => $composableBuilder(
+    column: $table.widthPx,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get heightPx => $composableBuilder(
+    column: $table.heightPx,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get metersPerPixel => $composableBuilder(
+    column: $table.metersPerPixel,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get calibrationLine => $composableBuilder(
+    column: $table.calibrationLine,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get verificationLine => $composableBuilder(
+    column: $table.verificationLine,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get northAngleDeg => $composableBuilder(
+    column: $table.northAngleDeg,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<NorthSource, NorthSource, String>
+  get northSource => $composableBuilder(
+    column: $table.northSource,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<double> get magneticDeclinationDeg => $composableBuilder(
+    column: $table.magneticDeclinationDeg,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$RoofImagesTableOrderingComposer
+    extends Composer<_$AppDatabase, $RoofImagesTable> {
+  $$RoofImagesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get mode => $composableBuilder(
+    column: $table.mode,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get filePath => $composableBuilder(
+    column: $table.filePath,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sha256 => $composableBuilder(
+    column: $table.sha256,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get widthPx => $composableBuilder(
+    column: $table.widthPx,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get heightPx => $composableBuilder(
+    column: $table.heightPx,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get metersPerPixel => $composableBuilder(
+    column: $table.metersPerPixel,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get calibrationLine => $composableBuilder(
+    column: $table.calibrationLine,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get verificationLine => $composableBuilder(
+    column: $table.verificationLine,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get northAngleDeg => $composableBuilder(
+    column: $table.northAngleDeg,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get northSource => $composableBuilder(
+    column: $table.northSource,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get magneticDeclinationDeg => $composableBuilder(
+    column: $table.magneticDeclinationDeg,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$RoofImagesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $RoofImagesTable> {
+  $$RoofImagesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<RoofMode, String> get mode =>
+      $composableBuilder(column: $table.mode, builder: (column) => column);
+
+  GeneratedColumn<String> get filePath =>
+      $composableBuilder(column: $table.filePath, builder: (column) => column);
+
+  GeneratedColumn<String> get sha256 =>
+      $composableBuilder(column: $table.sha256, builder: (column) => column);
+
+  GeneratedColumn<int> get widthPx =>
+      $composableBuilder(column: $table.widthPx, builder: (column) => column);
+
+  GeneratedColumn<int> get heightPx =>
+      $composableBuilder(column: $table.heightPx, builder: (column) => column);
+
+  GeneratedColumn<double> get metersPerPixel => $composableBuilder(
+    column: $table.metersPerPixel,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get calibrationLine => $composableBuilder(
+    column: $table.calibrationLine,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get verificationLine => $composableBuilder(
+    column: $table.verificationLine,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get northAngleDeg => $composableBuilder(
+    column: $table.northAngleDeg,
+    builder: (column) => column,
+  );
+
+  GeneratedColumnWithTypeConverter<NorthSource, String> get northSource =>
+      $composableBuilder(
+        column: $table.northSource,
+        builder: (column) => column,
+      );
+
+  GeneratedColumn<double> get magneticDeclinationDeg => $composableBuilder(
+    column: $table.magneticDeclinationDeg,
+    builder: (column) => column,
+  );
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$RoofImagesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $RoofImagesTable,
+          RoofImage,
+          $$RoofImagesTableFilterComposer,
+          $$RoofImagesTableOrderingComposer,
+          $$RoofImagesTableAnnotationComposer,
+          $$RoofImagesTableCreateCompanionBuilder,
+          $$RoofImagesTableUpdateCompanionBuilder,
+          (RoofImage, $$RoofImagesTableReferences),
+          RoofImage,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$RoofImagesTableTableManager(_$AppDatabase db, $RoofImagesTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$RoofImagesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$RoofImagesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$RoofImagesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<RoofMode> mode = const Value.absent(),
+                Value<String?> filePath = const Value.absent(),
+                Value<String?> sha256 = const Value.absent(),
+                Value<int?> widthPx = const Value.absent(),
+                Value<int?> heightPx = const Value.absent(),
+                Value<double?> metersPerPixel = const Value.absent(),
+                Value<String?> calibrationLine = const Value.absent(),
+                Value<String?> verificationLine = const Value.absent(),
+                Value<double> northAngleDeg = const Value.absent(),
+                Value<NorthSource> northSource = const Value.absent(),
+                Value<double?> magneticDeclinationDeg = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => RoofImagesCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                mode: mode,
+                filePath: filePath,
+                sha256: sha256,
+                widthPx: widthPx,
+                heightPx: heightPx,
+                metersPerPixel: metersPerPixel,
+                calibrationLine: calibrationLine,
+                verificationLine: verificationLine,
+                northAngleDeg: northAngleDeg,
+                northSource: northSource,
+                magneticDeclinationDeg: magneticDeclinationDeg,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required RoofMode mode,
+                Value<String?> filePath = const Value.absent(),
+                Value<String?> sha256 = const Value.absent(),
+                Value<int?> widthPx = const Value.absent(),
+                Value<int?> heightPx = const Value.absent(),
+                Value<double?> metersPerPixel = const Value.absent(),
+                Value<String?> calibrationLine = const Value.absent(),
+                Value<String?> verificationLine = const Value.absent(),
+                Value<double> northAngleDeg = const Value.absent(),
+                Value<NorthSource> northSource = const Value.absent(),
+                Value<double?> magneticDeclinationDeg = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => RoofImagesCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                mode: mode,
+                filePath: filePath,
+                sha256: sha256,
+                widthPx: widthPx,
+                heightPx: heightPx,
+                metersPerPixel: metersPerPixel,
+                calibrationLine: calibrationLine,
+                verificationLine: verificationLine,
+                northAngleDeg: northAngleDeg,
+                northSource: northSource,
+                magneticDeclinationDeg: magneticDeclinationDeg,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$RoofImagesTable, RoofImage>(table),
+                  $$RoofImagesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$RoofImagesTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$RoofImagesTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$RoofImagesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $RoofImagesTable,
+      RoofImage,
+      $$RoofImagesTableFilterComposer,
+      $$RoofImagesTableOrderingComposer,
+      $$RoofImagesTableAnnotationComposer,
+      $$RoofImagesTableCreateCompanionBuilder,
+      $$RoofImagesTableUpdateCompanionBuilder,
+      (RoofImage, $$RoofImagesTableReferences),
+      RoofImage,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$RoofPlanesTableCreateCompanionBuilder = RoofPlanesCompanion Function({
+  Value<String> id,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<DateTime?> deletedAt,
+  required String projectId,
+  required String name,
+  required String polygon,
+  Value<double> tiltDeg,
+  Value<TiltSource> tiltSource,
+  Value<double> azimuthDeg,
+  Value<int?> azimuthEdgeIndex,
+  Value<double> edgeSetbackM,
+  Value<String> walkways,
+  Value<int> sortOrder,
+  Value<int> rowid,
+});
+typedef $$RoofPlanesTableUpdateCompanionBuilder = RoofPlanesCompanion Function({
+  Value<String> id,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<DateTime?> deletedAt,
+  Value<String> projectId,
+  Value<String> name,
+  Value<String> polygon,
+  Value<double> tiltDeg,
+  Value<TiltSource> tiltSource,
+  Value<double> azimuthDeg,
+  Value<int?> azimuthEdgeIndex,
+  Value<double> edgeSetbackM,
+  Value<String> walkways,
+  Value<int> sortOrder,
+  Value<int> rowid,
+});
+
+final class $$RoofPlanesTableReferences
+    extends BaseReferences<_$AppDatabase, $RoofPlanesTable, RoofPlane> {
+  $$RoofPlanesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('roof_planes__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$RoofPlanesTableFilterComposer
+    extends Composer<_$AppDatabase, $RoofPlanesTable> {
+  $$RoofPlanesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get polygon => $composableBuilder(
+    column: $table.polygon,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get tiltDeg => $composableBuilder(
+    column: $table.tiltDeg,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<TiltSource, TiltSource, String>
+  get tiltSource => $composableBuilder(
+    column: $table.tiltSource,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<double> get azimuthDeg => $composableBuilder(
+    column: $table.azimuthDeg,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get azimuthEdgeIndex => $composableBuilder(
+    column: $table.azimuthEdgeIndex,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get edgeSetbackM => $composableBuilder(
+    column: $table.edgeSetbackM,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get walkways => $composableBuilder(
+    column: $table.walkways,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$RoofPlanesTableOrderingComposer
+    extends Composer<_$AppDatabase, $RoofPlanesTable> {
+  $$RoofPlanesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get polygon => $composableBuilder(
+    column: $table.polygon,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get tiltDeg => $composableBuilder(
+    column: $table.tiltDeg,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tiltSource => $composableBuilder(
+    column: $table.tiltSource,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get azimuthDeg => $composableBuilder(
+    column: $table.azimuthDeg,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get azimuthEdgeIndex => $composableBuilder(
+    column: $table.azimuthEdgeIndex,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get edgeSetbackM => $composableBuilder(
+    column: $table.edgeSetbackM,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get walkways => $composableBuilder(
+    column: $table.walkways,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$RoofPlanesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $RoofPlanesTable> {
+  $$RoofPlanesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get polygon =>
+      $composableBuilder(column: $table.polygon, builder: (column) => column);
+
+  GeneratedColumn<double> get tiltDeg =>
+      $composableBuilder(column: $table.tiltDeg, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<TiltSource, String> get tiltSource =>
+      $composableBuilder(
+        column: $table.tiltSource,
+        builder: (column) => column,
+      );
+
+  GeneratedColumn<double> get azimuthDeg => $composableBuilder(
+    column: $table.azimuthDeg,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get azimuthEdgeIndex => $composableBuilder(
+    column: $table.azimuthEdgeIndex,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get edgeSetbackM => $composableBuilder(
+    column: $table.edgeSetbackM,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get walkways =>
+      $composableBuilder(column: $table.walkways, builder: (column) => column);
+
+  GeneratedColumn<int> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$RoofPlanesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $RoofPlanesTable,
+          RoofPlane,
+          $$RoofPlanesTableFilterComposer,
+          $$RoofPlanesTableOrderingComposer,
+          $$RoofPlanesTableAnnotationComposer,
+          $$RoofPlanesTableCreateCompanionBuilder,
+          $$RoofPlanesTableUpdateCompanionBuilder,
+          (RoofPlane, $$RoofPlanesTableReferences),
+          RoofPlane,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$RoofPlanesTableTableManager(_$AppDatabase db, $RoofPlanesTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$RoofPlanesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$RoofPlanesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$RoofPlanesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String> polygon = const Value.absent(),
+                Value<double> tiltDeg = const Value.absent(),
+                Value<TiltSource> tiltSource = const Value.absent(),
+                Value<double> azimuthDeg = const Value.absent(),
+                Value<int?> azimuthEdgeIndex = const Value.absent(),
+                Value<double> edgeSetbackM = const Value.absent(),
+                Value<String> walkways = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => RoofPlanesCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                name: name,
+                polygon: polygon,
+                tiltDeg: tiltDeg,
+                tiltSource: tiltSource,
+                azimuthDeg: azimuthDeg,
+                azimuthEdgeIndex: azimuthEdgeIndex,
+                edgeSetbackM: edgeSetbackM,
+                walkways: walkways,
+                sortOrder: sortOrder,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required String name,
+                required String polygon,
+                Value<double> tiltDeg = const Value.absent(),
+                Value<TiltSource> tiltSource = const Value.absent(),
+                Value<double> azimuthDeg = const Value.absent(),
+                Value<int?> azimuthEdgeIndex = const Value.absent(),
+                Value<double> edgeSetbackM = const Value.absent(),
+                Value<String> walkways = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => RoofPlanesCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                name: name,
+                polygon: polygon,
+                tiltDeg: tiltDeg,
+                tiltSource: tiltSource,
+                azimuthDeg: azimuthDeg,
+                azimuthEdgeIndex: azimuthEdgeIndex,
+                edgeSetbackM: edgeSetbackM,
+                walkways: walkways,
+                sortOrder: sortOrder,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$RoofPlanesTable, RoofPlane>(table),
+                  $$RoofPlanesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$RoofPlanesTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$RoofPlanesTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$RoofPlanesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $RoofPlanesTable,
+      RoofPlane,
+      $$RoofPlanesTableFilterComposer,
+      $$RoofPlanesTableOrderingComposer,
+      $$RoofPlanesTableAnnotationComposer,
+      $$RoofPlanesTableCreateCompanionBuilder,
+      $$RoofPlanesTableUpdateCompanionBuilder,
+      (RoofPlane, $$RoofPlanesTableReferences),
+      RoofPlane,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$ObstaclesTableCreateCompanionBuilder = ObstaclesCompanion Function({
+  Value<String> id,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<DateTime?> deletedAt,
+  required String projectId,
+  required ObstacleKind kind,
+  required ObstacleOutline outline,
+  Value<double> centerX,
+  Value<double> centerY,
+  required double widthM,
+  Value<double?> depthM,
+  Value<double> rotationDeg,
+  Value<String?> points,
+  required double heightM,
+  required HeightSource heightSource,
+  Value<int?> tankLiters,
+  Value<String?> label,
+  Value<int> rowid,
+});
+typedef $$ObstaclesTableUpdateCompanionBuilder = ObstaclesCompanion Function({
+  Value<String> id,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<DateTime?> deletedAt,
+  Value<String> projectId,
+  Value<ObstacleKind> kind,
+  Value<ObstacleOutline> outline,
+  Value<double> centerX,
+  Value<double> centerY,
+  Value<double> widthM,
+  Value<double?> depthM,
+  Value<double> rotationDeg,
+  Value<String?> points,
+  Value<double> heightM,
+  Value<HeightSource> heightSource,
+  Value<int?> tankLiters,
+  Value<String?> label,
+  Value<int> rowid,
+});
+
+final class $$ObstaclesTableReferences
+    extends BaseReferences<_$AppDatabase, $ObstaclesTable, Obstacle> {
+  $$ObstaclesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('obstacles__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$ObstaclesTableFilterComposer
+    extends Composer<_$AppDatabase, $ObstaclesTable> {
+  $$ObstaclesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<ObstacleKind, ObstacleKind, String> get kind =>
+      $composableBuilder(
+        column: $table.kind,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
+
+  ColumnWithTypeConverterFilters<ObstacleOutline, ObstacleOutline, String>
+  get outline => $composableBuilder(
+    column: $table.outline,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<double> get centerX => $composableBuilder(
+    column: $table.centerX,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get centerY => $composableBuilder(
+    column: $table.centerY,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get widthM => $composableBuilder(
+    column: $table.widthM,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get depthM => $composableBuilder(
+    column: $table.depthM,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get rotationDeg => $composableBuilder(
+    column: $table.rotationDeg,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get points => $composableBuilder(
+    column: $table.points,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get heightM => $composableBuilder(
+    column: $table.heightM,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<HeightSource, HeightSource, String>
+  get heightSource => $composableBuilder(
+    column: $table.heightSource,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<int> get tankLiters => $composableBuilder(
+    column: $table.tankLiters,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get label => $composableBuilder(
+    column: $table.label,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ObstaclesTableOrderingComposer
+    extends Composer<_$AppDatabase, $ObstaclesTable> {
+  $$ObstaclesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get outline => $composableBuilder(
+    column: $table.outline,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get centerX => $composableBuilder(
+    column: $table.centerX,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get centerY => $composableBuilder(
+    column: $table.centerY,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get widthM => $composableBuilder(
+    column: $table.widthM,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get depthM => $composableBuilder(
+    column: $table.depthM,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get rotationDeg => $composableBuilder(
+    column: $table.rotationDeg,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get points => $composableBuilder(
+    column: $table.points,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get heightM => $composableBuilder(
+    column: $table.heightM,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get heightSource => $composableBuilder(
+    column: $table.heightSource,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get tankLiters => $composableBuilder(
+    column: $table.tankLiters,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get label => $composableBuilder(
+    column: $table.label,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ObstaclesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ObstaclesTable> {
+  $$ObstaclesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<ObstacleKind, String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<ObstacleOutline, String> get outline =>
+      $composableBuilder(column: $table.outline, builder: (column) => column);
+
+  GeneratedColumn<double> get centerX =>
+      $composableBuilder(column: $table.centerX, builder: (column) => column);
+
+  GeneratedColumn<double> get centerY =>
+      $composableBuilder(column: $table.centerY, builder: (column) => column);
+
+  GeneratedColumn<double> get widthM =>
+      $composableBuilder(column: $table.widthM, builder: (column) => column);
+
+  GeneratedColumn<double> get depthM =>
+      $composableBuilder(column: $table.depthM, builder: (column) => column);
+
+  GeneratedColumn<double> get rotationDeg => $composableBuilder(
+    column: $table.rotationDeg,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get points =>
+      $composableBuilder(column: $table.points, builder: (column) => column);
+
+  GeneratedColumn<double> get heightM =>
+      $composableBuilder(column: $table.heightM, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<HeightSource, String> get heightSource =>
+      $composableBuilder(
+        column: $table.heightSource,
+        builder: (column) => column,
+      );
+
+  GeneratedColumn<int> get tankLiters => $composableBuilder(
+    column: $table.tankLiters,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get label =>
+      $composableBuilder(column: $table.label, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ObstaclesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ObstaclesTable,
+          Obstacle,
+          $$ObstaclesTableFilterComposer,
+          $$ObstaclesTableOrderingComposer,
+          $$ObstaclesTableAnnotationComposer,
+          $$ObstaclesTableCreateCompanionBuilder,
+          $$ObstaclesTableUpdateCompanionBuilder,
+          (Obstacle, $$ObstaclesTableReferences),
+          Obstacle,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$ObstaclesTableTableManager(_$AppDatabase db, $ObstaclesTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ObstaclesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ObstaclesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ObstaclesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<ObstacleKind> kind = const Value.absent(),
+                Value<ObstacleOutline> outline = const Value.absent(),
+                Value<double> centerX = const Value.absent(),
+                Value<double> centerY = const Value.absent(),
+                Value<double> widthM = const Value.absent(),
+                Value<double?> depthM = const Value.absent(),
+                Value<double> rotationDeg = const Value.absent(),
+                Value<String?> points = const Value.absent(),
+                Value<double> heightM = const Value.absent(),
+                Value<HeightSource> heightSource = const Value.absent(),
+                Value<int?> tankLiters = const Value.absent(),
+                Value<String?> label = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ObstaclesCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                kind: kind,
+                outline: outline,
+                centerX: centerX,
+                centerY: centerY,
+                widthM: widthM,
+                depthM: depthM,
+                rotationDeg: rotationDeg,
+                points: points,
+                heightM: heightM,
+                heightSource: heightSource,
+                tankLiters: tankLiters,
+                label: label,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required ObstacleKind kind,
+                required ObstacleOutline outline,
+                Value<double> centerX = const Value.absent(),
+                Value<double> centerY = const Value.absent(),
+                required double widthM,
+                Value<double?> depthM = const Value.absent(),
+                Value<double> rotationDeg = const Value.absent(),
+                Value<String?> points = const Value.absent(),
+                required double heightM,
+                required HeightSource heightSource,
+                Value<int?> tankLiters = const Value.absent(),
+                Value<String?> label = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ObstaclesCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                kind: kind,
+                outline: outline,
+                centerX: centerX,
+                centerY: centerY,
+                widthM: widthM,
+                depthM: depthM,
+                rotationDeg: rotationDeg,
+                points: points,
+                heightM: heightM,
+                heightSource: heightSource,
+                tankLiters: tankLiters,
+                label: label,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$ObstaclesTable, Obstacle>(table),
+                  $$ObstaclesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$ObstaclesTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$ObstaclesTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$ObstaclesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ObstaclesTable,
+      Obstacle,
+      $$ObstaclesTableFilterComposer,
+      $$ObstaclesTableOrderingComposer,
+      $$ObstaclesTableAnnotationComposer,
+      $$ObstaclesTableCreateCompanionBuilder,
+      $$ObstaclesTableUpdateCompanionBuilder,
+      (Obstacle, $$ObstaclesTableReferences),
+      Obstacle,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$HorizonProfilesTableCreateCompanionBuilder =
+    HorizonProfilesCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      required HorizonSource source,
+      Value<String?> name,
+      required String points,
+      Value<int> rowid,
+    });
+typedef $$HorizonProfilesTableUpdateCompanionBuilder =
+    HorizonProfilesCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<HorizonSource> source,
+      Value<String?> name,
+      Value<String> points,
+      Value<int> rowid,
+    });
+
+final class $$HorizonProfilesTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $HorizonProfilesTable,
+          HorizonProfileRecord
+        > {
+  $$HorizonProfilesTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('horizon_profiles__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$HorizonProfilesTableFilterComposer
+    extends Composer<_$AppDatabase, $HorizonProfilesTable> {
+  $$HorizonProfilesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<HorizonSource, HorizonSource, String>
+  get source => $composableBuilder(
+    column: $table.source,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get points => $composableBuilder(
+    column: $table.points,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$HorizonProfilesTableOrderingComposer
+    extends Composer<_$AppDatabase, $HorizonProfilesTable> {
+  $$HorizonProfilesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get source => $composableBuilder(
+    column: $table.source,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get points => $composableBuilder(
+    column: $table.points,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$HorizonProfilesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $HorizonProfilesTable> {
+  $$HorizonProfilesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<HorizonSource, String> get source =>
+      $composableBuilder(column: $table.source, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get points =>
+      $composableBuilder(column: $table.points, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$HorizonProfilesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $HorizonProfilesTable,
+          HorizonProfileRecord,
+          $$HorizonProfilesTableFilterComposer,
+          $$HorizonProfilesTableOrderingComposer,
+          $$HorizonProfilesTableAnnotationComposer,
+          $$HorizonProfilesTableCreateCompanionBuilder,
+          $$HorizonProfilesTableUpdateCompanionBuilder,
+          (HorizonProfileRecord, $$HorizonProfilesTableReferences),
+          HorizonProfileRecord,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$HorizonProfilesTableTableManager(
+    _$AppDatabase db,
+    $HorizonProfilesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$HorizonProfilesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$HorizonProfilesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$HorizonProfilesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<HorizonSource> source = const Value.absent(),
+                Value<String?> name = const Value.absent(),
+                Value<String> points = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => HorizonProfilesCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                source: source,
+                name: name,
+                points: points,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required HorizonSource source,
+                Value<String?> name = const Value.absent(),
+                required String points,
+                Value<int> rowid = const Value.absent(),
+              }) => HorizonProfilesCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                source: source,
+                name: name,
+                points: points,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$HorizonProfilesTable, HorizonProfileRecord>(
+                    table,
+                  ),
+                  $$HorizonProfilesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$HorizonProfilesTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$HorizonProfilesTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$HorizonProfilesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $HorizonProfilesTable,
+      HorizonProfileRecord,
+      $$HorizonProfilesTableFilterComposer,
+      $$HorizonProfilesTableOrderingComposer,
+      $$HorizonProfilesTableAnnotationComposer,
+      $$HorizonProfilesTableCreateCompanionBuilder,
+      $$HorizonProfilesTableUpdateCompanionBuilder,
+      (HorizonProfileRecord, $$HorizonProfilesTableReferences),
+      HorizonProfileRecord,
       PrefetchHooks Function({bool projectId})
     >;
 typedef $$InstalledEquipmentTableCreateCompanionBuilder =
@@ -19348,6 +25031,14 @@ class $AppDatabaseManager {
       $$PhotosTableTableManager(_db, _db.photos);
   $$DocumentsTableTableManager get documents =>
       $$DocumentsTableTableManager(_db, _db.documents);
+  $$RoofImagesTableTableManager get roofImages =>
+      $$RoofImagesTableTableManager(_db, _db.roofImages);
+  $$RoofPlanesTableTableManager get roofPlanes =>
+      $$RoofPlanesTableTableManager(_db, _db.roofPlanes);
+  $$ObstaclesTableTableManager get obstacles =>
+      $$ObstaclesTableTableManager(_db, _db.obstacles);
+  $$HorizonProfilesTableTableManager get horizonProfiles =>
+      $$HorizonProfilesTableTableManager(_db, _db.horizonProfiles);
   $$InstalledEquipmentTableTableManager get installedEquipment =>
       $$InstalledEquipmentTableTableManager(_db, _db.installedEquipment);
   $$CommissioningRecordsTableTableManager get commissioningRecords =>
