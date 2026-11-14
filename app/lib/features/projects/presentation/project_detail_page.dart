@@ -15,11 +15,12 @@ import 'package:panelsolar/features/projects/domain/project_status_flow.dart';
 import 'package:panelsolar/features/projects/presentation/project_providers.dart';
 import 'package:panelsolar/features/projects/presentation/widgets/project_status_chip.dart';
 import 'package:panelsolar/features/projects/presentation/widgets/project_status_label.dart';
+import 'package:panelsolar/features/roof/presentation/widgets/roof_entry_card.dart';
 import 'package:panelsolar/features/site/presentation/site_summary_card.dart';
 import 'package:panelsolar/features/weather/presentation/widgets/weather_entry_card.dart';
 import 'package:persistence/persistence.dart';
 
-/// Ficha del proyecto: datos, ubicación, fotos y documentos.
+/// Ficha del proyecto: datos, ubicación, techo, fotos, documentos y clima.
 class ProjectDetailPage extends ConsumerWidget {
   const new({required this.projectId, super.key});
 
@@ -81,6 +82,7 @@ class ProjectDetailPage extends ConsumerWidget {
             children: [
               _header(context, ref, p),
               SiteSummaryCard(projectId: projectId),
+              RoofEntryCard(projectId: projectId),
               PhotosSummaryCard(projectId: projectId),
               DocumentsSection(projectId: projectId),
               WeatherEntryCard(projectId: projectId),

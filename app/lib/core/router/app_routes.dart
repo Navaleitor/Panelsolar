@@ -24,6 +24,11 @@ abstract final class AppRoutes {
   static String projectLocation(String id) => '/projects/$id/location';
   static String projectPhotos(String id) => '/projects/$id/photos';
   static String projectWeather(String id) => '/projects/$id/weather';
+  static String projectRoof(String id) => '/projects/$id/roof';
+  static String roofEditor(String id, String tool) =>
+      '/projects/$id/roof/editor?tool=$tool';
+  static String roofShade(String id) => '/projects/$id/roof/shade';
+  static String roofHorizon(String id) => '/projects/$id/roof/horizon';
   static String photoView(String projectId, String photoId) =>
       '/projects/$projectId/photos/$photoId';
 

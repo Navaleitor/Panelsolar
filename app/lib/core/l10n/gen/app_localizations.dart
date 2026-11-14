@@ -1201,6 +1201,959 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'{source}: mínima {min} °C · máxima {max} °C'**
   String weatherTemperaturesBySource(String source, String min, String max);
+
+  /// No description provided for @obstacleWaterTank.
+  ///
+  /// In es, this message translates to:
+  /// **'Tinaco'**
+  String get obstacleWaterTank;
+
+  /// No description provided for @obstacleAntenna.
+  ///
+  /// In es, this message translates to:
+  /// **'Antena'**
+  String get obstacleAntenna;
+
+  /// No description provided for @obstacleParapet.
+  ///
+  /// In es, this message translates to:
+  /// **'Pretil'**
+  String get obstacleParapet;
+
+  /// No description provided for @obstacleGasTank.
+  ///
+  /// In es, this message translates to:
+  /// **'Tanque de gas'**
+  String get obstacleGasTank;
+
+  /// No description provided for @obstacleMinisplit.
+  ///
+  /// In es, this message translates to:
+  /// **'Minisplit'**
+  String get obstacleMinisplit;
+
+  /// No description provided for @obstacleDome.
+  ///
+  /// In es, this message translates to:
+  /// **'Domo'**
+  String get obstacleDome;
+
+  /// No description provided for @obstacleStairwell.
+  ///
+  /// In es, this message translates to:
+  /// **'Cubo de escalera'**
+  String get obstacleStairwell;
+
+  /// No description provided for @obstacleTree.
+  ///
+  /// In es, this message translates to:
+  /// **'Árbol'**
+  String get obstacleTree;
+
+  /// No description provided for @obstacleNeighborBuilding.
+  ///
+  /// In es, this message translates to:
+  /// **'Edificio vecino'**
+  String get obstacleNeighborBuilding;
+
+  /// No description provided for @roofTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Techo'**
+  String get roofTitle;
+
+  /// No description provided for @roofEntryEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Imagen o croquis, planos, obstáculos y sombras'**
+  String get roofEntryEmpty;
+
+  /// No description provided for @roofEntrySummary.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 plano} other{{count} planos}} · {area}'**
+  String roofEntrySummary(int count, String area);
+
+  /// No description provided for @roofBaseTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Base del techo'**
+  String get roofBaseTitle;
+
+  /// No description provided for @roofBaseNone.
+  ///
+  /// In es, this message translates to:
+  /// **'Importa una imagen vista desde arriba o dibuja un croquis con medidas de cinta.'**
+  String get roofBaseNone;
+
+  /// No description provided for @roofBaseSketch.
+  ///
+  /// In es, this message translates to:
+  /// **'Croquis con medidas de cinta (sin imagen)'**
+  String get roofBaseSketch;
+
+  /// No description provided for @roofBaseImageUncalibrated.
+  ///
+  /// In es, this message translates to:
+  /// **'Imagen sin calibrar: traza una línea de medida conocida'**
+  String get roofBaseImageUncalibrated;
+
+  /// No description provided for @roofBaseImage.
+  ///
+  /// In es, this message translates to:
+  /// **'Imagen calibrada · 1 píxel = {scale}'**
+  String roofBaseImage(String scale);
+
+  /// No description provided for @roofImportImage.
+  ///
+  /// In es, this message translates to:
+  /// **'Importar imagen'**
+  String get roofImportImage;
+
+  /// No description provided for @roofChangeImage.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar imagen'**
+  String get roofChangeImage;
+
+  /// No description provided for @roofSketchMode.
+  ///
+  /// In es, this message translates to:
+  /// **'Croquis con cinta'**
+  String get roofSketchMode;
+
+  /// No description provided for @roofImageRightsNotice.
+  ///
+  /// In es, this message translates to:
+  /// **'Usa solo imágenes que tengas derecho a usar.'**
+  String get roofImageRightsNotice;
+
+  /// No description provided for @roofImageTopViewHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Vista desde arriba: captura, foto aérea, de dron o plano. Las vistas inclinadas dan medidas falsas.'**
+  String get roofImageTopViewHint;
+
+  /// No description provided for @roofSourceGallery.
+  ///
+  /// In es, this message translates to:
+  /// **'Galería'**
+  String get roofSourceGallery;
+
+  /// No description provided for @roofSourceCamera.
+  ///
+  /// In es, this message translates to:
+  /// **'Cámara'**
+  String get roofSourceCamera;
+
+  /// No description provided for @roofImageSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'Imagen guardada. Ahora calibra la escala.'**
+  String get roofImageSaved;
+
+  /// No description provided for @roofImageInvalid.
+  ///
+  /// In es, this message translates to:
+  /// **'El archivo no es una imagen válida.'**
+  String get roofImageInvalid;
+
+  /// No description provided for @roofPlanesTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Planos del techo'**
+  String get roofPlanesTitle;
+
+  /// No description provided for @roofPlanesEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay planos trazados.'**
+  String get roofPlanesEmpty;
+
+  /// No description provided for @roofPlaneListItem.
+  ///
+  /// In es, this message translates to:
+  /// **'{area} · inclinación {tilt} · azimut {azimuth}'**
+  String roofPlaneListItem(String area, String tilt, String azimuth);
+
+  /// No description provided for @roofObstaclesTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Obstáculos'**
+  String get roofObstaclesTitle;
+
+  /// No description provided for @roofObstaclesCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =0{Ninguno} =1{1 obstáculo} other{{count} obstáculos}}'**
+  String roofObstaclesCount(int count);
+
+  /// No description provided for @roofOpenEditor.
+  ///
+  /// In es, this message translates to:
+  /// **'Trazar y editar'**
+  String get roofOpenEditor;
+
+  /// No description provided for @roofShadeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Sombras'**
+  String get roofShadeTitle;
+
+  /// No description provided for @roofShadeSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Sombra por fecha y hora y mapa de calor del año'**
+  String get roofShadeSubtitle;
+
+  /// No description provided for @roofHorizonTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Horizonte'**
+  String get roofHorizonTitle;
+
+  /// No description provided for @roofHorizonSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Montañas (PVGIS) y {count, plural, =0{ningún obstáculo lejano} =1{1 obstáculo lejano} other{{count} obstáculos lejanos}}'**
+  String roofHorizonSubtitle(int count);
+
+  /// No description provided for @roofEditorTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Editor del techo'**
+  String get roofEditorTitle;
+
+  /// No description provided for @roofToolCalibrate.
+  ///
+  /// In es, this message translates to:
+  /// **'Calibrar'**
+  String get roofToolCalibrate;
+
+  /// No description provided for @roofToolVerify.
+  ///
+  /// In es, this message translates to:
+  /// **'Verificar'**
+  String get roofToolVerify;
+
+  /// No description provided for @roofToolNorth.
+  ///
+  /// In es, this message translates to:
+  /// **'Norte'**
+  String get roofToolNorth;
+
+  /// No description provided for @roofToolDraw.
+  ///
+  /// In es, this message translates to:
+  /// **'Trazar'**
+  String get roofToolDraw;
+
+  /// No description provided for @roofToolObstacle.
+  ///
+  /// In es, this message translates to:
+  /// **'Obstáculos'**
+  String get roofToolObstacle;
+
+  /// No description provided for @roofToolWalkway.
+  ///
+  /// In es, this message translates to:
+  /// **'Pasillos'**
+  String get roofToolWalkway;
+
+  /// No description provided for @roofToolSelect.
+  ///
+  /// In es, this message translates to:
+  /// **'Elegir'**
+  String get roofToolSelect;
+
+  /// No description provided for @roofCalibrateFirst.
+  ///
+  /// In es, this message translates to:
+  /// **'Primero calibra la escala con una medida conocida.'**
+  String get roofCalibrateFirst;
+
+  /// No description provided for @roofCalibrateHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca los dos extremos de algo cuya medida conozcas (un lado del techo, el frente del lote, una barra de escala). Usa zoom para tocar con precisión.'**
+  String get roofCalibrateHelp;
+
+  /// No description provided for @roofCalibrateDialogTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cuánto mide la línea?'**
+  String get roofCalibrateDialogTitle;
+
+  /// No description provided for @roofVerifyDialogTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cuánto mide en la realidad?'**
+  String get roofVerifyDialogTitle;
+
+  /// No description provided for @roofCalibrateDialogHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe la medida real en metros (con cinta o del plano).'**
+  String get roofCalibrateDialogHelp;
+
+  /// No description provided for @roofLengthMetersLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Metros'**
+  String get roofLengthMetersLabel;
+
+  /// No description provided for @roofLineTooShort.
+  ///
+  /// In es, this message translates to:
+  /// **'La línea es muy corta. Haz zoom y traza una más larga.'**
+  String get roofLineTooShort;
+
+  /// No description provided for @roofScaleNone.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin escala todavía.'**
+  String get roofScaleNone;
+
+  /// No description provided for @roofScaleValue.
+  ///
+  /// In es, this message translates to:
+  /// **'Escala: 1 píxel = {perPixel} ({pixelsPerMeter} píxeles por metro)'**
+  String roofScaleValue(String perPixel, String pixelsPerMeter);
+
+  /// No description provided for @roofVerifyHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Opcional: traza otra línea de medida conocida para comprobar la escala.'**
+  String get roofVerifyHelp;
+
+  /// No description provided for @roofVerifyResult.
+  ///
+  /// In es, this message translates to:
+  /// **'Mide {measured} contra {real} reales: {difference}'**
+  String roofVerifyResult(String measured, String real, String difference);
+
+  /// No description provided for @roofVerifyWarning.
+  ///
+  /// In es, this message translates to:
+  /// **'Diferencia mayor a 5 %: la imagen puede estar inclinada o alguna medida está mal. Recalibra.'**
+  String get roofVerifyWarning;
+
+  /// No description provided for @roofNorthHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Gira la flecha hasta que apunte al norte, o toca dos puntos de una orilla del techo y confírmala con la brújula en sitio.'**
+  String get roofNorthHelp;
+
+  /// No description provided for @roofNorthValue.
+  ///
+  /// In es, this message translates to:
+  /// **'Norte: {angle} · {source}'**
+  String roofNorthValue(String angle, String source);
+
+  /// No description provided for @roofNorthSourceDefault.
+  ///
+  /// In es, this message translates to:
+  /// **'arriba (sin confirmar)'**
+  String get roofNorthSourceDefault;
+
+  /// No description provided for @roofNorthSourceManual.
+  ///
+  /// In es, this message translates to:
+  /// **'girado a mano'**
+  String get roofNorthSourceManual;
+
+  /// No description provided for @roofNorthSourceCompass.
+  ///
+  /// In es, this message translates to:
+  /// **'confirmado con brújula'**
+  String get roofNorthSourceCompass;
+
+  /// No description provided for @roofNorthCompass.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar con brújula'**
+  String get roofNorthCompass;
+
+  /// No description provided for @roofNorthCompassNeedsLine.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca 2 puntos de una orilla'**
+  String get roofNorthCompassNeedsLine;
+
+  /// No description provided for @roofNorthArrowTooltip.
+  ///
+  /// In es, this message translates to:
+  /// **'Norte'**
+  String get roofNorthArrowTooltip;
+
+  /// No description provided for @roofNorthLetter.
+  ///
+  /// In es, this message translates to:
+  /// **'N'**
+  String get roofNorthLetter;
+
+  /// No description provided for @roofDrawHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca cada esquina del plano. El imán ayuda a hacer esquinas de 90° y a unir vértices. Toca la primera esquina para cerrar.'**
+  String get roofDrawHelp;
+
+  /// No description provided for @roofDrawLive.
+  ///
+  /// In es, this message translates to:
+  /// **'Lados: {sides} · Área: {area}'**
+  String roofDrawLive(String sides, String area);
+
+  /// No description provided for @roofSnap.
+  ///
+  /// In es, this message translates to:
+  /// **'Imán'**
+  String get roofSnap;
+
+  /// No description provided for @roofUndo.
+  ///
+  /// In es, this message translates to:
+  /// **'Deshacer'**
+  String get roofUndo;
+
+  /// No description provided for @roofClosePolygon.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar plano'**
+  String get roofClosePolygon;
+
+  /// No description provided for @roofPlaneDefaultName.
+  ///
+  /// In es, this message translates to:
+  /// **'Plano {number}'**
+  String roofPlaneDefaultName(int number);
+
+  /// No description provided for @roofObstacleHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige el tipo y toca dónde está. Pretil: toca sus dos extremos.'**
+  String get roofObstacleHelp;
+
+  /// No description provided for @roofWalkwayHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca los dos extremos del pasillo de mantenimiento dentro de un plano.'**
+  String get roofWalkwayHelp;
+
+  /// No description provided for @roofWalkwayOutside.
+  ///
+  /// In es, this message translates to:
+  /// **'El pasillo debe quedar dentro de un plano.'**
+  String get roofWalkwayOutside;
+
+  /// No description provided for @roofWalkwayWidthTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Ancho del pasillo'**
+  String get roofWalkwayWidthTitle;
+
+  /// No description provided for @roofWalkwayItem.
+  ///
+  /// In es, this message translates to:
+  /// **'Pasillo de {length} × {width}'**
+  String roofWalkwayItem(String length, String width);
+
+  /// No description provided for @roofSelectHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca un plano para ver sus medidas o un obstáculo para editarlo.'**
+  String get roofSelectHelp;
+
+  /// No description provided for @roofMoveVertexHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Para mover una esquina: tócala y luego toca su nuevo lugar.'**
+  String get roofMoveVertexHelp;
+
+  /// No description provided for @roofPlaneSummary.
+  ///
+  /// In es, this message translates to:
+  /// **'Vista desde arriba {horizontal} · real inclinada {sloped} · útil {usable}\nInclinación {tilt} · azimut {azimuth}'**
+  String roofPlaneSummary(
+    String horizontal,
+    String sloped,
+    String usable,
+    String tilt,
+    String azimuth,
+  );
+
+  /// No description provided for @roofInvalidNumber.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe un número válido.'**
+  String get roofInvalidNumber;
+
+  /// No description provided for @roofPlaneName.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get roofPlaneName;
+
+  /// No description provided for @roofPlaneTilt.
+  ///
+  /// In es, this message translates to:
+  /// **'Inclinación (grados)'**
+  String get roofPlaneTilt;
+
+  /// No description provided for @roofPlaneInclinometer.
+  ///
+  /// In es, this message translates to:
+  /// **'Inclinómetro'**
+  String get roofPlaneInclinometer;
+
+  /// No description provided for @roofPlaneEave.
+  ///
+  /// In es, this message translates to:
+  /// **'Orilla baja (alero)'**
+  String get roofPlaneEave;
+
+  /// No description provided for @roofPlaneEdgeItem.
+  ///
+  /// In es, this message translates to:
+  /// **'Lado {number}: {length} → mira a {azimuth}'**
+  String roofPlaneEdgeItem(int number, String length, String azimuth);
+
+  /// No description provided for @roofPlaneAzimuth.
+  ///
+  /// In es, this message translates to:
+  /// **'Azimut (hacia dónde baja): {azimuth} (180° = sur)'**
+  String roofPlaneAzimuth(String azimuth);
+
+  /// No description provided for @roofPlaneSetback.
+  ///
+  /// In es, this message translates to:
+  /// **'Retiro de borde (m)'**
+  String get roofPlaneSetback;
+
+  /// No description provided for @roofSplitHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Dividir en dos planos por una diagonal entre dos esquinas:'**
+  String get roofSplitHelp;
+
+  /// No description provided for @roofSplitVertex.
+  ///
+  /// In es, this message translates to:
+  /// **'Esquina'**
+  String get roofSplitVertex;
+
+  /// No description provided for @roofSplit.
+  ///
+  /// In es, this message translates to:
+  /// **'Dividir'**
+  String get roofSplit;
+
+  /// No description provided for @roofSplitInvalid.
+  ///
+  /// In es, this message translates to:
+  /// **'Esa diagonal no queda dentro del plano.'**
+  String get roofSplitInvalid;
+
+  /// No description provided for @roofPlaneDeleteTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Borrar el plano?'**
+  String get roofPlaneDeleteTitle;
+
+  /// No description provided for @roofPlaneDeleteMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Se quitará del techo.'**
+  String get roofPlaneDeleteMessage;
+
+  /// No description provided for @roofObstacleDiameter.
+  ///
+  /// In es, this message translates to:
+  /// **'Diámetro (m)'**
+  String get roofObstacleDiameter;
+
+  /// No description provided for @roofObstacleWidth.
+  ///
+  /// In es, this message translates to:
+  /// **'Ancho (m)'**
+  String get roofObstacleWidth;
+
+  /// No description provided for @roofObstacleThickness.
+  ///
+  /// In es, this message translates to:
+  /// **'Espesor (m)'**
+  String get roofObstacleThickness;
+
+  /// No description provided for @roofObstacleDepth.
+  ///
+  /// In es, this message translates to:
+  /// **'Fondo (m)'**
+  String get roofObstacleDepth;
+
+  /// No description provided for @roofObstacleRotation.
+  ///
+  /// In es, this message translates to:
+  /// **'Giro (grados)'**
+  String get roofObstacleRotation;
+
+  /// No description provided for @roofObstacleHeight.
+  ///
+  /// In es, this message translates to:
+  /// **'Altura sobre tu techo (m)'**
+  String get roofObstacleHeight;
+
+  /// No description provided for @roofObstacleHeightHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Típica del catálogo, medida con cinta o con el teléfono (distancia × tan(ángulo) + altura de ojos).'**
+  String get roofObstacleHeightHelp;
+
+  /// No description provided for @roofHeightTypical.
+  ///
+  /// In es, this message translates to:
+  /// **'Típica'**
+  String get roofHeightTypical;
+
+  /// No description provided for @roofHeightTape.
+  ///
+  /// In es, this message translates to:
+  /// **'Cinta'**
+  String get roofHeightTape;
+
+  /// No description provided for @roofHeightPhone.
+  ///
+  /// In es, this message translates to:
+  /// **'Teléfono'**
+  String get roofHeightPhone;
+
+  /// No description provided for @roofHeightPhoneTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Altura con el teléfono'**
+  String get roofHeightPhoneTitle;
+
+  /// No description provided for @roofHeightPhoneHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Párate a una distancia conocida, apunta la cámara al punto más alto y lee el ángulo.'**
+  String get roofHeightPhoneHelp;
+
+  /// No description provided for @roofHeightDistance.
+  ///
+  /// In es, this message translates to:
+  /// **'Distancia al objeto (m)'**
+  String get roofHeightDistance;
+
+  /// No description provided for @roofHeightAngle.
+  ///
+  /// In es, this message translates to:
+  /// **'Ángulo al tope (grados)'**
+  String get roofHeightAngle;
+
+  /// No description provided for @roofHeightEye.
+  ///
+  /// In es, this message translates to:
+  /// **'Altura de tus ojos (m)'**
+  String get roofHeightEye;
+
+  /// No description provided for @roofHeightResult.
+  ///
+  /// In es, this message translates to:
+  /// **'Altura: {height}'**
+  String roofHeightResult(String height);
+
+  /// No description provided for @roofSensorTiltTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Inclinómetro'**
+  String get roofSensorTiltTitle;
+
+  /// No description provided for @roofSensorTiltHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Apoya el teléfono sobre el techo, con la pantalla hacia arriba y el lado largo en la dirección de la pendiente.'**
+  String get roofSensorTiltHelp;
+
+  /// No description provided for @roofSensorCompassTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Brújula'**
+  String get roofSensorCompassTitle;
+
+  /// No description provided for @roofSensorCompassHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Acuesta el teléfono sobre la orilla elegida, con la parte de arriba apuntando del primer punto al segundo. Aléjalo de metales.'**
+  String get roofSensorCompassHelp;
+
+  /// No description provided for @roofSensorAimTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Apuntar con la cámara'**
+  String get roofSensorAimTitle;
+
+  /// No description provided for @roofSensorAimHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Apunta la cámara trasera al punto más alto del objeto.'**
+  String get roofSensorAimHelp;
+
+  /// No description provided for @roofSensorTiltValue.
+  ///
+  /// In es, this message translates to:
+  /// **'Inclinación: {value}'**
+  String roofSensorTiltValue(String value);
+
+  /// No description provided for @roofSensorAzimuthValue.
+  ///
+  /// In es, this message translates to:
+  /// **'Rumbo: {value}'**
+  String roofSensorAzimuthValue(String value);
+
+  /// No description provided for @roofSensorElevationValue.
+  ///
+  /// In es, this message translates to:
+  /// **'Ángulo: {value}'**
+  String roofSensorElevationValue(String value);
+
+  /// No description provided for @roofSensorDeclination.
+  ///
+  /// In es, this message translates to:
+  /// **'Corregido al norte verdadero con declinación magnética {value} (modelo WMM).'**
+  String roofSensorDeclination(String value);
+
+  /// No description provided for @roofSensorWaiting.
+  ///
+  /// In es, this message translates to:
+  /// **'Esperando al sensor…'**
+  String get roofSensorWaiting;
+
+  /// No description provided for @roofSensorUnavailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Este teléfono no tiene el sensor o está apagado. Escribe el valor a mano.'**
+  String get roofSensorUnavailable;
+
+  /// No description provided for @roofSensorUse.
+  ///
+  /// In es, this message translates to:
+  /// **'Usar'**
+  String get roofSensorUse;
+
+  /// No description provided for @roofTapeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Croquis con cinta'**
+  String get roofTapeTitle;
+
+  /// No description provided for @roofTapeHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe cada lado en orden. Giro: 90 = esquina normal, −90 = esquina hacia adentro.'**
+  String get roofTapeHelp;
+
+  /// No description provided for @roofTapeSide.
+  ///
+  /// In es, this message translates to:
+  /// **'Lado {number} (m)'**
+  String roofTapeSide(int number);
+
+  /// No description provided for @roofTapeTurn.
+  ///
+  /// In es, this message translates to:
+  /// **'Giro (°)'**
+  String get roofTapeTurn;
+
+  /// No description provided for @roofTapeAddSide.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar lado'**
+  String get roofTapeAddSide;
+
+  /// No description provided for @roofTapeResult.
+  ///
+  /// In es, this message translates to:
+  /// **'Área: {area} · cierre: {error}'**
+  String roofTapeResult(String area, String error);
+
+  /// No description provided for @roofTapeNotClosed.
+  ///
+  /// In es, this message translates to:
+  /// **'Las medidas no cierran: revisa algún lado o giro.'**
+  String get roofTapeNotClosed;
+
+  /// No description provided for @roofShadeNeedsLocation.
+  ///
+  /// In es, this message translates to:
+  /// **'Primero guarda la ubicación del proyecto (se necesita para saber dónde está el sol).'**
+  String get roofShadeNeedsLocation;
+
+  /// No description provided for @roofSunPosition.
+  ///
+  /// In es, this message translates to:
+  /// **'Sol: {elevation} de altura, azimut {azimuth}'**
+  String roofSunPosition(String elevation, String azimuth);
+
+  /// No description provided for @roofSunHidden.
+  ///
+  /// In es, this message translates to:
+  /// **'El sol está abajo o tapado por el horizonte: no hay sombra directa.'**
+  String get roofSunHidden;
+
+  /// No description provided for @roofShadeTime.
+  ///
+  /// In es, this message translates to:
+  /// **'{time} h'**
+  String roofShadeTime(String time);
+
+  /// No description provided for @roofShadeCompute.
+  ///
+  /// In es, this message translates to:
+  /// **'Mapa de calor anual'**
+  String get roofShadeCompute;
+
+  /// No description provided for @roofShadeHeatmap.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver mapa'**
+  String get roofShadeHeatmap;
+
+  /// No description provided for @roofShadePlaneLoss.
+  ///
+  /// In es, this message translates to:
+  /// **'{plane}: pierde {year} del sol directo al año (diciembre {december}, junio {june})'**
+  String roofShadePlaneLoss(
+    String plane,
+    String year,
+    String december,
+    String june,
+  );
+
+  /// No description provided for @roofShadeLegend.
+  ///
+  /// In es, this message translates to:
+  /// **'Verde = sin sombra · amarillo · rojo = 30 % o más de pérdida. Incluye el horizonte.'**
+  String get roofShadeLegend;
+
+  /// No description provided for @roofHorizonHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'El horizonte tapa el sol bajo. Se junta el del terreno (montañas, de PVGIS) con los obstáculos lejanos que midas con el teléfono.'**
+  String get roofHorizonHelp;
+
+  /// No description provided for @roofTerrainTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Terreno (PVGIS)'**
+  String get roofTerrainTitle;
+
+  /// No description provided for @roofTerrainNone.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin descargar'**
+  String get roofTerrainNone;
+
+  /// No description provided for @roofTerrainValue.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargado · altura máxima {max}'**
+  String roofTerrainValue(String max);
+
+  /// No description provided for @roofTerrainDownload.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargar'**
+  String get roofTerrainDownload;
+
+  /// No description provided for @roofHorizonDownloadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo descargar el horizonte. Revisa la conexión.'**
+  String get roofHorizonDownloadError;
+
+  /// No description provided for @roofFarTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Obstáculos lejanos'**
+  String get roofFarTitle;
+
+  /// No description provided for @roofFarEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Ninguno. Agrega árboles o edificios cercanos que tapen el sol.'**
+  String get roofFarEmpty;
+
+  /// No description provided for @roofFarItem.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 punto} other{{count} puntos}} · hasta {max}'**
+  String roofFarItem(int count, String max);
+
+  /// No description provided for @roofFarAdd.
+  ///
+  /// In es, this message translates to:
+  /// **'Obstáculo lejano'**
+  String get roofFarAdd;
+
+  /// No description provided for @roofFarName.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre (p. ej. árbol del vecino)'**
+  String get roofFarName;
+
+  /// No description provided for @roofFarDefaultName.
+  ///
+  /// In es, this message translates to:
+  /// **'Obstáculo lejano'**
+  String get roofFarDefaultName;
+
+  /// No description provided for @roofFarHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Desde el techo, apunta la cámara al borde de arriba del obstáculo, de izquierda a derecha, y agrega varios puntos.'**
+  String get roofFarHelp;
+
+  /// No description provided for @roofFarMeasure.
+  ///
+  /// In es, this message translates to:
+  /// **'Medir punto con el teléfono'**
+  String get roofFarMeasure;
+
+  /// No description provided for @roofFarAzimuth.
+  ///
+  /// In es, this message translates to:
+  /// **'Azimut (°)'**
+  String get roofFarAzimuth;
+
+  /// No description provided for @roofFarElevation.
+  ///
+  /// In es, this message translates to:
+  /// **'Altura (°)'**
+  String get roofFarElevation;
+
+  /// No description provided for @roofCardinalN.
+  ///
+  /// In es, this message translates to:
+  /// **'N'**
+  String get roofCardinalN;
+
+  /// No description provided for @roofCardinalE.
+  ///
+  /// In es, this message translates to:
+  /// **'E'**
+  String get roofCardinalE;
+
+  /// No description provided for @roofCardinalS.
+  ///
+  /// In es, this message translates to:
+  /// **'S'**
+  String get roofCardinalS;
+
+  /// No description provided for @roofCardinalW.
+  ///
+  /// In es, this message translates to:
+  /// **'O'**
+  String get roofCardinalW;
 }
 
 class _AppLocalizationsDelegate
