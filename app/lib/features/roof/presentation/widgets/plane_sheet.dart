@@ -172,6 +172,7 @@ class _PlaneSheetState extends ConsumerState<_PlaneSheet> {
             ),
             DropdownButtonFormField<int>(
               key: const Key('plane-edge'),
+              isExpanded: true,
               initialValue: _p.azimuthEdgeIndex,
               decoration: InputDecoration(labelText: l10n.roofPlaneEave),
               items: [
@@ -179,6 +180,7 @@ class _PlaneSheetState extends ConsumerState<_PlaneSheet> {
                   DropdownMenuItem(
                     value: i,
                     child: Text(
+                      overflow: TextOverflow.ellipsis,
                       l10n.roofPlaneEdgeItem(
                         i + 1,
                         RoofFormat.meters(sides[i], locale),

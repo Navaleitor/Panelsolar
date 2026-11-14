@@ -73,10 +73,9 @@ class EditorPanel extends ConsumerWidget {
           children: [
             Text(l10n.roofObstacleHelp),
             const SizedBox(height: 4),
-            SizedBox(
-              height: 44,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
                 children: [
                   for (final t in ObstacleType.values)
                     Padding(

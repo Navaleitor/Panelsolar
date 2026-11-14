@@ -87,11 +87,10 @@ class RoofEditorPageState extends ConsumerState<RoofEditorPage>
           final storage = ref.watch(appStorageProvider);
           return Column(
             children: [
-              SizedBox(
-                height: 56,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
                   children: [
                     for (final (t, icon) in _tools)
                       if (!isSketch ||

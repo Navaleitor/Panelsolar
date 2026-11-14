@@ -7,7 +7,7 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 | F0 Cimientos | `fase-0-cimientos` | — | Completada (2026-11-10) — lista de aceptación: [`docs/pruebas/fase-0.md`](../pruebas/fase-0.md) |
 | F1 Clientes y proyectos | `fase-1-clientes` | F0 | Integrada (2026-11-12) — aceptación: [`docs/pruebas/fase-1.md`](../pruebas/fase-1.md) |
 | F2 Motor solar + clima | `fase-2-motor-clima` | F0 | Integrada (2026-11-14) — aceptación: [`docs/pruebas/fase-2.md`](../pruebas/fase-2.md); validación: [`validacion-motor.md`](../pruebas/validacion-motor.md) |
-| F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Pendiente |
+| F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Lista para revisión (2026-11-14) — aceptación: [`docs/pruebas/fase-3.md`](../pruebas/fase-3.md) |
 | F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | Pendiente |
 | F5 Unifilar y reportes | `fase-5-unifilar-reportes` | F4 | Pendiente |
 | F6 Operación (mantenimiento, respaldo) | `fase-6-operacion` | F1 | En curso |
@@ -33,6 +33,12 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 - `data_sources`: NASA POWER y PVGIS 5.3 (TMY y horizonte), caché gzip por proyecto, control de calidad con cierre de componentes, atribuciones.
 - App: "Clima y producción" desde la ficha del proyecto (`/projects/:id/weather`, usa su ubicación y altitud) y, para pruebas, desde Ajustes (`/settings/weather`).
 - Decisiones del dueño (2026-11-14) aplicadas: temperaturas de diseño = la más extrema de NASA y PVGIS (`SiteDesignTemperatures`); zona horaria deducida sin conexión (`geo_kit` `TimeZoneLocator`, ≈ 1.2 MB, ODbL) propuesta al confirmar la ubicación y usada por el motor; altitud opcional (sin altitud el motor usa la de la fuente internamente).
+
+## Notas de F3
+- Módulo **Techo** (`app/lib/features/roof`) en la ficha del proyecto: imagen propia (aviso de derechos, sin proveedores, ADR-005) o croquis con cinta; calibración con verificación (% de diferencia); norte con flecha o brújula corregida por declinación **WMM2025**; trazado con imán a 90°/vértices y medidas en vivo; planos con inclinación (manual o inclinómetro), azimut desde el alero, retiros y pasillos; obstáculos de B.7.1 con altura típica, cinta o teléfono.
+- Sombras en `solar_engine/shading` (L = h / tan α, también sobre planos inclinados), deslizador de fecha y hora, mapa de calor anual en un isolate, horizonte PVGIS + obstáculos lejanos. Fichas 16–21.
+- Esquema **v5**: `roof_images`, `roof_planes`, `obstacles`, `horizon_profiles` (metros, coordenadas locales). **v4 queda reservada para F6** (en esta rama `from3To4` no cambia nada); al integrar, el chat principal pone la v4 de F6 y regenera la foto de la v5.
+- Dependencia nueva: `sensors_plus` (BSD-3). Prueba de aceptación automática: techo de 12 × 9 m dentro de ±5 %.
 
 ## Sub-chats (sesiones) por fase
 Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.

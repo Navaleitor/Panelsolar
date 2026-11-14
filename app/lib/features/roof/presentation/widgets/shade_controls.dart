@@ -128,7 +128,9 @@ class ShadeControls extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
+              Wrap(
+                alignment: WrapAlignment.end,
+                spacing: 8,
                 children: [
                   if (maps != null)
                     FilterChip(
@@ -137,7 +139,6 @@ class ShadeControls extends StatelessWidget {
                       selected: showHeat,
                       onSelected: onToggleHeat,
                     ),
-                  const Spacer(),
                   FilledButton.icon(
                     key: const Key('shade-compute'),
                     onPressed: computing ? null : onCompute,

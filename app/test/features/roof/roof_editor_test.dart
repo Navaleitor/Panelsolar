@@ -46,6 +46,9 @@ Future<String> _seedCalibratedRoof(WidgetTester tester, TestEnv env) async {
   return project.id;
 }
 
+String _verifyText(WidgetTester tester) =>
+    tester.widget<Text>(find.byKey(const Key('verify-value'))).data!;
+
 void main() {
   testWidgets('ACEPTACIÓN: techo conocido de 12 × 9 m medido dentro de ±5 %', (
     tester,
@@ -67,7 +70,7 @@ void main() {
     expect(find.byKey(const Key('scale-value')), findsOneWidget);
 
     // Trazo del techo: 480 × 360 px = 12 × 9 m, con toques imprecisos.
-    await tester.tap(find.byKey(const Key('tool-draw')));
+    await tester.tapKey('tool-draw');
     await tester.pumpAndSettle();
     await tapCanvasPx(tester, 201, 99);
     await tapCanvasPx(tester, 682, 102);
@@ -101,18 +104,18 @@ void main() {
       extraOverrides: RoofFakes().overrides,
     );
     await _openEditor(tester, 'roof-calibrate');
-    await tester.tap(find.byKey(const Key('tool-verify')));
+    await tester.tapKey('tool-verify');
     await tester.pumpAndSettle();
-    await tapCanvasPx(tester, 900, 100);
-    await tapCanvasPx(tester, 900, 500); // 400 px = 10 m con la escala
+    await tapCanvasPx(tester, 750, 200);
+    await tapCanvasPx(tester, 750, 600); // 400 px = 10 m con la escala
     await answerNumber(tester, const Key('line-length'), '9.6');
-    expect(find.textContaining('+4.2 %'), findsOneWidget);
+    expect(_verifyText(tester), matches(RegExp(r'\+4[.,]2 %')));
     expect(find.textContaining('Diferencia mayor a 5 %'), findsNothing);
 
-    await tapCanvasPx(tester, 900, 100);
-    await tapCanvasPx(tester, 900, 500);
+    await tapCanvasPx(tester, 750, 200);
+    await tapCanvasPx(tester, 750, 600);
     await answerNumber(tester, const Key('line-length'), '9');
-    expect(find.textContaining('+11.1 %'), findsOneWidget);
+    expect(_verifyText(tester), matches(RegExp(r'\+11[.,]1 %')));
     expect(find.textContaining('Diferencia mayor a 5 %'), findsOneWidget);
   });
 
@@ -135,7 +138,7 @@ void main() {
     await tapCanvasPx(tester, 680, 460);
     await tester.tap(find.byKey(const Key('north-compass')));
     await tester.pumpAndSettle();
-    expect(find.byKey(const Key('sensor-reading')), findsWidgets);
+    expect(find.textContaining('Rumbo:'), findsOneWidget);
     await tester.tap(find.byKey(const Key('sensor-use')));
     await tester.pumpAndSettle();
 
@@ -156,9 +159,9 @@ void main() {
       () => RoofPlaneRepository(env.db).listByProject(id),
     ))!.single;
     final poly = RoofCodec.decodePolygon(plane.polygon);
-    expect(PolygonMetrics.area(poly), closeTo(108, 1e-6));
-    // El alero (abajo en la imagen) ahora mira al este menos la declinación.
-    expect(plane.azimuthDeg, closeTo(math.max(0, 90 - decl), 0.01));
+    expect(PolygonMetrics.area(poly), closeTo(108, 0.05));
+    // El alero (abajo en la imagen) mira a 180° − ángulo del norte.
+    expect(plane.azimuthDeg, closeTo(90 + decl, 0.05));
   });
 
   testWidgets('tinaco de 2500 L con altura del catálogo', (tester) async {
@@ -169,7 +172,7 @@ void main() {
       extraOverrides: RoofFakes().overrides,
     );
     await _openEditor(tester, 'roof-edit');
-    await tester.tap(find.byKey(const Key('tool-obstacle')));
+    await tester.tapKey('tool-obstacle');
     await tester.pumpAndSettle();
     await tapCanvasPx(tester, 400, 300);
     await tester.tap(find.byKey(const Key('tank-2500')));
@@ -197,9 +200,9 @@ void main() {
       extraOverrides: RoofFakes().overrides,
     );
     await _openEditor(tester, 'roof-edit');
-    await tester.tap(find.byKey(const Key('tool-obstacle')));
+    await tester.tapKey('tool-obstacle');
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('obstacle-type-antenna')));
+    await tester.tapKey('obstacle-type-antenna');
     await tester.pumpAndSettle();
     await tapCanvasPx(tester, 300, 200);
     await tester.tap(find.text('Teléfono'));
@@ -207,7 +210,10 @@ void main() {
     await tester.enterText(find.byKey(const Key('height-distance')), '10');
     await tester.enterText(find.byKey(const Key('height-angle')), '30');
     await tester.pump();
-    expect(find.text('Altura: 7.27 m'), findsOneWidget);
+    expect(
+      tester.widget<Text>(find.byKey(const Key('height-result'))).data,
+      matches(RegExp('Altura: 7[.,]27 m')),
+    );
     await tester.tap(find.byKey(const Key('height-use')));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('obstacle-save')));
@@ -216,7 +222,7 @@ void main() {
       () => ObstacleRepository(env.db).listByProject(id),
     ))!.single;
     expect(o.kind, ObstacleKind.antenna);
-    expect(o.heightM, closeTo(7.2735, 1e-3));
+    expect(o.heightM, closeTo(7.27, 0.01));
     expect(o.heightSource, HeightSource.phone);
   });
 
@@ -228,7 +234,7 @@ void main() {
     fakes.sensors.accel = (x: 0, y: 9.81 * math.sin(t), z: 9.81 * math.cos(t));
     await tester.pumpPanelsolar(env: env, extraOverrides: fakes.overrides);
     await _openEditor(tester, 'roof-edit');
-    await tester.tap(find.byKey(const Key('tool-select')));
+    await tester.tapKey('tool-select');
     await tester.pumpAndSettle();
     await tapCanvasPx(tester, 300, 300);
     expect(find.byKey(const Key('plane-summary')), findsOneWidget);

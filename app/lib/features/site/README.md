@@ -1,9 +1,9 @@
 # Sitio — ubicación
 
-Obtiene **solo coordenadas** (latitud, longitud, altitud opcional, zona horaria) del sitio del proyecto. No hay mapa ni imagen de ningún proveedor ([ADR-005](../../../../docs/adr/ADR-005-estrategia-techo-por-capas.md)). En F3 se agrega aquí el techo (imagen importada, calibración, trazado).
+Obtiene **solo coordenadas** (latitud, longitud, altitud opcional, zona horaria) del sitio del proyecto. No hay mapa ni imagen de ningún proveedor ([ADR-005](../../../../docs/adr/ADR-005-estrategia-techo-por-capas.md)). El techo (imagen importada, calibración, trazado y sombras) vive en su propio módulo: [`features/roof`](../roof/README.md).
 
 ## Estado
-**F1 completa** (ubicación). Techo: F3.
+**F1 completa** (ubicación). Techo: módulo `roof` (F3).
 
 ## Pantallas
 | Ruta | Archivo | Qué muestra |
