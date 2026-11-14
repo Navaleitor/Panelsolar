@@ -13,6 +13,8 @@ import 'package:panelsolar/core/files/app_storage.dart';
 import 'package:panelsolar/features/backup/data/backup_files.dart';
 import 'package:panelsolar/features/backup/data/backup_providers.dart';
 import 'package:panelsolar/features/maintenance/data/maintenance_providers.dart';
+import 'package:panelsolar/features/production/data/production_providers.dart';
+import 'package:panelsolar/features/production/domain/expected_production_source.dart';
 import 'package:panelsolar/features/site/data/site_data_providers.dart';
 import 'package:persistence/persistence.dart';
 
@@ -34,7 +36,11 @@ class TestEnv {
   final Directory storageDir;
   final location = FakeLocationService();
   final geocoder = FakeGeocoder();
+  final timeZones = FakeTimeZoneService();
   final reminders = FakeReminderScheduler();
+
+  /// Producción esperada (sin red): manual por omisión.
+  ExpectedProductionSource expected = const ManualExpectedSource();
   final driveAuth = FakeDriveAuth();
   final secrets = FakeSecretStore();
   final schedule = FakeBackupSchedule();
@@ -54,8 +60,9 @@ class TestEnv {
     appStorageProvider.overrideWithValue(AppStorage(storageDir)),
     locationServiceProvider.overrideWithValue(location),
     geocoderProvider.overrideWithValue(geocoder),
-    timeZoneServiceProvider.overrideWithValue(FakeTimeZoneService()),
+    timeZoneServiceProvider.overrideWithValue(timeZones),
     reminderSchedulerProvider.overrideWithValue(reminders),
+    expectedProductionSourceProvider.overrideWithValue(expected),
     driveAuthProvider.overrideWithValue(driveAuth),
     secretStoreProvider.overrideWithValue(secrets),
     backupScheduleProvider.overrideWithValue(schedule),

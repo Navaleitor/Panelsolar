@@ -37,6 +37,7 @@ Abre un proyecto. En la ficha aparecen tres tarjetas nuevas: **Instalación**, *
 
 ## 3. Producción
 - [ ] Tarjeta **Producción** → ⚙ (arriba): potencia **5** kWp, umbral **15** %.
+- [ ] Si el proyecto tiene ubicación y kWp, al abrir **Agregar lectura** el campo *kWh esperados* ya trae un número "Propuesto por el motor solar" (requiere red la primera vez o haber abierto antes *Clima y producción*). Se puede cambiar.
 - [ ] **Agregar lectura**: mes pasado, real 600, esperado 650, irradiación 150 → en la lista: "Esperado 650 kWh (-7.7 %) · PR 80 %".
 - [ ] Otra lectura con real 450 y esperado 650 → aparece el aviso rojo "1 mes por debajo de lo esperado" y la barra de ese mes en rojo en la gráfica.
 - [ ] La gráfica muestra barras **Real** junto a **Esperado** por mes.

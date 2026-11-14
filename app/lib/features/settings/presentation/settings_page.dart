@@ -14,7 +14,7 @@ import 'package:panelsolar/features/backup/presentation/widgets/zip_backup_card.
 import 'package:panelsolar/features/maintenance/data/maintenance_providers.dart';
 
 /// Ajustes: respaldo (.zip y Google Drive), recordatorios de
-/// mantenimiento y estado de la base de datos.
+/// mantenimiento, clima de prueba (F2) y estado de la base de datos.
 class SettingsPage extends ConsumerWidget {
   const new({super.key});
 
@@ -60,6 +60,18 @@ class SettingsPage extends ConsumerWidget {
                   onTap: () => context.push(AppRoutes.maintenanceTemplate),
                 ),
               ],
+            ),
+          ),
+          SectionHeader(title: l10n.weatherEntryTitle),
+          Card(
+            margin: const EdgeInsets.symmetric(horizontal: 16),
+            child: ListTile(
+              key: const Key('settingsWeatherEntry'),
+              leading: const Icon(Icons.wb_sunny),
+              title: Text(l10n.weatherEntryTitle),
+              subtitle: Text(l10n.weatherEntrySubtitle),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.go(AppRoutes.weather),
             ),
           ),
           SectionHeader(title: l10n.settingsDatabaseTitle),

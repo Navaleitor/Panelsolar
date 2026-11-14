@@ -26,21 +26,17 @@ class ProductionPage extends ConsumerWidget {
     ProductionReading? initial,
     DateTime? suggested,
   }) async {
+    final source = ref.read(expectedProductionSourceProvider);
     final r = await showReadingDialog(
       context,
       initial: initial,
       suggestedMonth: suggested,
+      suggestExpected: (month) async =>
+          (await source.expectedFor(projectId, month))?.expectedKwh,
     );
     if (r == null) return;
-    var expected = r.expectedKwh;
-    var poa = r.poaKwhM2;
-    if (expected == null) {
-      final auto = await ref
-          .read(expectedProductionSourceProvider)
-          .expectedFor(projectId, r.month);
-      expected = auto?.expectedKwh;
-      poa ??= auto?.poaKwhM2;
-    }
+    final expected = r.expectedKwh;
+    final poa = r.poaKwhM2;
     if (initial != null && initial.month != r.month) {
       await ref
           .read(productionRepositoryProvider)

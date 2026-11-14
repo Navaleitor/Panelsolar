@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:panelsolar/core/formatting/decimal_parser.dart';
@@ -16,23 +18,35 @@ typedef ReadingInput = ({
 
 /// Diálogo de lectura mensual: mes, kWh real (obligatorio), esperado e
 /// irradiación POA (opcionales).
+/// Propone los kWh esperados de un mes (motor de F2) o `null`.
+typedef ExpectedSuggester = Future<double?> Function(DateTime month);
+
+/// Diálogo de lectura. Si el campo "esperado" está vacío, se llena con
+/// [suggestExpected] (editable).
 Future<ReadingInput?> showReadingDialog(
   BuildContext context, {
   ProductionReading? initial,
   DateTime? suggestedMonth,
+  ExpectedSuggester? suggestExpected,
 }) => showDialog<ReadingInput>(
   context: context,
   builder: (context) => _ReadingDialog(
     initial: initial,
     month: initial?.month ?? suggestedMonth ?? DateTime.now().toUtc(),
+    suggestExpected: suggestExpected,
   ),
 );
 
 class _ReadingDialog extends StatefulWidget {
-  const new({required this.initial, required this.month});
+  const new({
+    required this.initial,
+    required this.month,
+    required this.suggestExpected,
+  });
 
   final ProductionReading? initial;
   final DateTime month;
+  final ExpectedSuggester? suggestExpected;
 
   @override
   State<_ReadingDialog> createState() => _ReadingDialogState();
@@ -52,6 +66,31 @@ class _ReadingDialogState extends State<_ReadingDialog> {
   );
   late final _notes = TextEditingController(text: widget.initial?.notes ?? '');
   String? _error;
+
+  /// `true` mientras el valor esperado sea el que propuso el motor.
+  bool _suggested = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (_expected.text.isEmpty) unawaited(_suggest());
+  }
+
+  Future<void> _suggest() async {
+    final suggest = widget.suggestExpected;
+    if (suggest == null) return;
+    final kwh = await suggest(DateTime.utc(_year, _monthNumber));
+    if (!mounted || kwh == null) return;
+    if (_expected.text.isNotEmpty && !_suggested) return;
+    setState(() {
+      _expected.text = kwh.round().toString();
+      _suggested = true;
+    });
+  }
+
+  void _monthChanged() {
+    if (_suggested || _expected.text.isEmpty) unawaited(_suggest());
+  }
 
   @override
   void dispose() {
@@ -102,7 +141,10 @@ class _ReadingDialogState extends State<_ReadingDialog> {
                           child: Text(months.format(DateTime(2000, m))),
                         ),
                     ],
-                    onChanged: (m) => setState(() => _monthNumber = m!),
+                    onChanged: (m) {
+                      setState(() => _monthNumber = m!);
+                      _monthChanged();
+                    },
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -115,7 +157,10 @@ class _ReadingDialogState extends State<_ReadingDialog> {
                       for (var y = now + 1; y >= 2000; y--)
                         DropdownMenuItem(value: y, child: Text('$y')),
                     ],
-                    onChanged: (y) => setState(() => _year = y!),
+                    onChanged: (y) {
+                      setState(() => _year = y!);
+                      _monthChanged();
+                    },
                   ),
                 ),
               ],
@@ -137,7 +182,12 @@ class _ReadingDialogState extends State<_ReadingDialog> {
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
               ),
-              decoration: InputDecoration(labelText: l10n.readingExpected),
+              onChanged: (_) => _suggested = false,
+              decoration: InputDecoration(
+                labelText: l10n.readingExpected,
+                helperText: _suggested ? l10n.readingExpectedFromEngine : null,
+                helperMaxLines: 2,
+              ),
             ),
             TextField(
               key: const Key('reading-poa'),

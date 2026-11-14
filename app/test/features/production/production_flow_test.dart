@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:panelsolar/features/production/domain/expected_production_source.dart';
 
 import '../../helpers/pump_app.dart';
 import '../../helpers/seed.dart';
@@ -43,4 +44,41 @@ void main() {
     await tester.systemBack();
     expect(find.textContaining('Bajo el umbral'), findsOneWidget);
   });
+
+  testWidgets('el valor esperado se precarga del motor y es editable', (
+    tester,
+  ) async {
+    final env = TestEnv()..expected = const _FixedExpected(640);
+    await seedClientWithProject(tester, env);
+    await tester.pumpPanelsolar(env: env);
+    await openProject(tester);
+    await tester.scrollUntilVisible(
+      find.byKey(const Key('production-card')),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.tapKey('production-card');
+    await tester.tapKey('reading-add');
+    final field = tester.widget<TextField>(
+      find.byKey(const Key('reading-expected')),
+    );
+    expect(field.controller!.text, '640');
+    expect(find.textContaining('Propuesto por el motor'), findsOneWidget);
+    await tester.enterKey('reading-expected', '600');
+    await tester.enterKey('reading-actual', '590');
+    await tester.tapKey('reading-save');
+    expect(find.textContaining('Esperado 600 kWh'), findsOneWidget);
+  });
+}
+
+class _FixedExpected implements ExpectedProductionSource {
+  const new(this.kwh);
+
+  final double kwh;
+
+  @override
+  Future<({double expectedKwh, double? poaKwhM2})?> expectedFor(
+    String projectId,
+    DateTime month,
+  ) async => (expectedKwh: kwh, poaKwhM2: null);
 }

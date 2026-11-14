@@ -4,6 +4,7 @@ Geometría: polígonos, proyección ENU, empaquetado de paneles y parseo de enla
 
 ## Estado
 - **F1**: `LatLng` y lectura de enlaces/texto de ubicación (este documento).
+- **F2**: zona horaria IANA a partir de coordenadas, sin conexión (`TimeZoneLocator`).
 - **F3**: polígonos, calibración, proyección ENU (pendiente).
 
 ## Enlaces de mapas (F1)
@@ -25,11 +26,20 @@ Formatos soportados (cada uno tiene prueba en `test/map_link_parser_test.dart`):
 
 `MapLinkResolver(fetchRedirect).resolve(texto)` hace lo mismo y, si el enlace es corto, sigue hasta 5 redirecciones. La función `fetchRedirect` (petición HTTP sin seguir redirecciones) la pone la app (`app/lib/features/site/data/http_redirect_fetcher.dart`), así este paquete no depende de la red.
 
+## Zona horaria sin conexión (F2)
+`TimeZoneLocator.fromGzip(bytes).zoneAt(lat, lon)` → nombre IANA (p. ej. `America/Hermosillo`). En el mar o en un hueco devuelve la zona náutica `Etc/GMT±N`.
+
+- Datos: `assets/timezones.bin.gz` (≈ 1.2 MB): límites de *timezone-boundary-builder* (con océanos), simplificados a ~500 m. **© OpenStreetMap contributors, ODbL 1.0** → mostrar `TimeZoneLocator.attribution`.
+- La app lo carga como asset `packages/geo_kit/assets/timezones.bin.gz` (declarado en `pubspec.yaml`, sección `flutter:`).
+- Regenerar: `python3 tools/timezones/build_timezones.py` y `python3 tools/timezones/sample_points.py` (puntos de prueba).
+- Precisión: las 16 ciudades de referencia exactas y ≥ 99 % de 4 000 puntos al azar igual que los datos completos (`test/time_zone_locator_test.dart`). Ficha: `docs/formulas/15-zona-horaria.md`.
+
 ## Archivos clave
 - `lib/src/lat_lng.dart` — punto WGS84 con validación de rangos.
 - `lib/src/map_links/map_link_parser.dart` — reglas por formato.
 - `lib/src/map_links/coordinate_text.dart` — pares decimales y grados/minutos/segundos.
 - `lib/src/map_links/map_link_resolver.dart` — expansión de enlaces cortos.
+- `lib/src/time_zones/` — lector del índice binario y búsqueda punto-en-polígono.
 
 ## Cómo probar
 ```bash

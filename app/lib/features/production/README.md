@@ -3,7 +3,7 @@
 Captura mensual de kWh reales leídos del inversor, gráfica real contra esperado, Performance Ratio simple y alerta si lo real queda por debajo de un umbral configurable.
 
 ## Estado
-**F6 completa.** Lo esperado se escribe a mano; listo para conectarse al motor de F2 (ver abajo).
+**F6 completa.** Lo esperado se precarga con el motor de F2 (editable).
 
 ## Pantallas
 | Ruta | Archivo | Qué muestra |
@@ -17,8 +17,8 @@ Ficha: [`docs/formulas/performance-ratio.md`](../../../../docs/formulas/performa
 - PR = kWh / (kWp × irradiación POA kWh/m²). Solo si hay kWp y POA.
 - Alerta si la desviación < umbral (por omisión −15 %; en pantalla se escribe "15").
 
-## Conectar el motor de F2
-`domain/expected_production_source.dart` define `ExpectedProductionSource`. Hoy `data/production_providers.dart` usa `ManualExpectedSource` (no propone nada). Para F2: crear una clase que calcule kWh y POA del mes con `solar_engine` y cambiar `expectedProductionSourceProvider`. Al guardar una lectura sin "esperado", la pantalla le pide el valor a esa fuente.
+## Valor esperado desde el motor de F2
+`domain/expected_production_source.dart` define `ExpectedProductionSource`. `data/production_providers.dart` usa `EngineExpectedSource` (`data/engine_expected_source.dart`): energía mensual típica de **1 kWp** en la orientación óptima del sitio (análisis de clima de F2, `features/weather`) × **kWp del proyecto** (⚙ ajustes). Al abrir "Agregar lectura" con el campo vacío lo precarga y avisa "Propuesto por el motor…"; el usuario lo puede cambiar. Sin kWp, sin ubicación o sin red (y sin caché de clima) no propone nada. Cuando F4 tenga el arreglo real (inclinación, orientación, pérdidas) se cambia aquí sin tocar pantallas. La POA para el PR aún se escribe a mano.
 
 ## Datos
 Tablas (persistence v4): `production_readings` (una activa por mes; guardar el mismo mes la reemplaza), `production_settings` (kWp y umbral por proyecto). Repositorio: `ProductionRepository`.

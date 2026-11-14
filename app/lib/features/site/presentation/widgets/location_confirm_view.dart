@@ -43,8 +43,14 @@ class _LocationConfirmViewState extends ConsumerState<LocationConfirmView> {
     unawaited(_loadDeviceTimeZone());
   }
 
+  /// Propone la zona deducida de las coordenadas (sin conexión); si no se
+  /// puede, la del teléfono. El usuario puede editarla.
   Future<void> _loadDeviceTimeZone() async {
-    final tz = await ref.read(timeZoneServiceProvider).deviceTimeZone();
+    final service = ref.read(timeZoneServiceProvider);
+    final c = widget.candidate;
+    final tz =
+        await service.timeZoneAt(c.latitude, c.longitude) ??
+        await service.deviceTimeZone();
     if (mounted && tz != null && _timeZone.text.isEmpty) _timeZone.text = tz;
   }
 

@@ -1,0 +1,7 @@
+site,engine_tmy_kwh,pvwatts_tmy_kwh,engine_nasa_kwh,pvgis_kwh,nasa_vs_pvgis_ghi_pct,nasa_minus_pvgis_temp_c
+monterrey,1744.5,1728.5,1712.5,1639.3,-1.16,-1.68
+cdmx,1740.5,1710.8,1670.3,1714.0,-2.03,-1.35
+hermosillo,1889.0,1882.6,1832.8,1809.8,-0.75,-0.74
+madrid,1635.5,1604.7,1544.4,1617.4,-5.13,-0.39
+bogota,1382.2,1343.9,1335.5,1321.5,-0.02,6.51
+phoenix,1909.3,1901.6,1821.0,1827.4,-1.71,0.21

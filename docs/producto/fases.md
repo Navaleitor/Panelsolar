@@ -6,8 +6,8 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 |---|---|---|---|
 | F0 Cimientos | `fase-0-cimientos` | — | Completada (2026-11-10) — lista de aceptación: [`docs/pruebas/fase-0.md`](../pruebas/fase-0.md) |
 | F1 Clientes y proyectos | `fase-1-clientes` | F0 | Integrada (2026-11-12) — aceptación: [`docs/pruebas/fase-1.md`](../pruebas/fase-1.md) |
-| F2 Motor solar + clima | `fase-2-motor-clima` | F0 | En curso |
-| F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Pendiente |
+| F2 Motor solar + clima | `fase-2-motor-clima` | F0 | Integrada (2026-11-14) — aceptación: [`docs/pruebas/fase-2.md`](../pruebas/fase-2.md); validación: [`validacion-motor.md`](../pruebas/validacion-motor.md) |
+| F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | En curso |
 | F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | Pendiente |
 | F5 Unifilar y reportes | `fase-5-unifilar-reportes` | F4 | Pendiente |
 | F6 Operación (mantenimiento, respaldo) | `fase-6-operacion` | F1 | Lista para revisión (2026-11-14) — aceptación: [`docs/pruebas/fase-6.md`](../pruebas/fase-6.md) |
@@ -27,12 +27,19 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 - Tarifas CFE 1–1F, DAC y PDBT en `regional_packs` (solo identificación y límite DAC; precios en F5).
 - Fotos comprimidas a 1600 px / JPEG 80 % con SHA-256 y GPS del EXIF; documentos PDF/imagen detectados por firma.
 
+## Notas de F2
+- `solar_engine`: plan B.6 puntos 1–10, simulación horaria, estadísticas y carta solar. Fichas 01–14 en [`docs/formulas/`](../formulas/README.md). Cobertura 99.7 % (CI exige ≥ 90 %); 5 años horarios ≈ 0.3 s.
+- Golden con pvlib 0.16.1 en 6 sitios: diferencias < 1×10⁻⁶ %. Validación cruzada contra PVWatts y PVGIS: las 6 ciudades dentro de ±5 %.
+- `data_sources`: NASA POWER y PVGIS 5.3 (TMY y horizonte), caché gzip por proyecto, control de calidad con cierre de componentes, atribuciones.
+- App: "Clima y producción" desde la ficha del proyecto (`/projects/:id/weather`, usa su ubicación y altitud) y, para pruebas, desde Ajustes (`/settings/weather`).
+- Decisiones del dueño (2026-11-14) aplicadas: temperaturas de diseño = la más extrema de NASA y PVGIS (`SiteDesignTemperatures`); zona horaria deducida sin conexión (`geo_kit` `TimeZoneLocator`, ≈ 1.2 MB, ODbL) propuesta al confirmar la ubicación y usada por el motor; altitud opcional (sin altitud el motor usa la de la fuente internamente).
+
 ## Notas de F6
 - Esquema de base **v4** (migración v3→v4 con prueba): `installed_equipment`, `commissioning_records`, `string_tests`, `maintenance_template_items`, `maintenance_plan_items`, `maintenance_visits`, `production_readings`, `production_settings`, `backup_logs`, `app_settings` y `photos.linkedRecordId`. **Ojo al integrar con F2**: si F2 también sube el esquema, el segundo en integrarse renumera su versión y regenera `drift_schemas/`.
 - Módulos nuevos: `installation`, `production`, `backup`; `maintenance` y `settings` dejan de ser pantallas vacías.
 - Puesta en marcha IEC 62446-1: Voc ±5 %, Isc ±10 %, aislamiento ≥ 1 MΩ; la app sugiere el estado y el instalador decide.
 - Recordatorios: `flutter_local_notifications` con alarmas inexactas (7 días antes y el día, 9:00).
-- Producción: lo esperado se captura a mano; `ExpectedProductionSource` queda listo para el motor de F2.
+- Producción: lo esperado se precarga con el motor de F2 (kWh/kWp típico del mes × kWp del proyecto) y es editable; `ExpectedProductionSource` permite cambiar a F4 después.
 - Respaldo .zip con manifiesto sin cifrar (vista previa) y AES-256-GCM por archivo (PBKDF2-SHA256). Restaurar **reemplaza** todo excepto `backup_logs` y `app_settings`; antes guarda automáticamente una copia local para "Deshacer la última restauración".
 - Drive (`drive.appdata`) con blobs por hash y retención 7+4. **Pendiente del dueño**: crear los IDs de OAuth ([`docs/guias/respaldo-google.md`](../guias/respaldo-google.md)) y pasar el ID web a Claude.
 
@@ -44,10 +51,10 @@ Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.
 | F0 | `session_01WWCD8ktTRhr2b9gZUQfRY8` |
 | F1 | `session_01WWCD8k8V1Xc3QPnKzKASNc` (entorno panelsolar) |
 | F2 | `session_01WWCD8oZt4AdV3NdkTVsnwf` (entorno panelsolar) |
-| F3 | `session_01WWCD8mp42zQxhXVJeaCzBP` |
+| F3 | `session_01WWCD8khQf1erhr86FAi84j` (entorno panelsolar) |
 | F4 | `session_01WWCD8oK1MwbxZThDeSnurd` |
 | F5 | `session_01WWCD8oed4tQwkDPMVeGy2X` |
-| F6 | `session_01WWCD8nXxgjE9yPP8tLoaWp` |
+| F6 | `session_01WWCD8jvCLJhSBAuszgZwA5` (entorno panelsolar) |
 | F7 | `session_01WWCD8mfSNStprxgu3zS6jr` |
 | F8 | `session_01WWCD8oNiMADxWpSKng9tBY` |
 
@@ -58,3 +65,9 @@ Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.
 4. Cada sub-chat entrega resumen, bloqueos y `docs/pruebas/fase-N.md`.
 5. Las decisiones de producto se escalan al chat principal.
 6. Las fases que programan usan el entorno cloud "panelsolar" (Flutter + Android SDK). F3–F8 se recrean en ese entorno cuando les toque.
+
+## Decisiones del dueño (2026-11-14)
+- **Temperaturas para strings (F2/F4):** por defecto, la más extrema de NASA y PVGIS (Tmin más fría, Tmax más caliente); ambas visibles.
+- **Zona horaria:** automática desde las coordenadas, sin conexión (la implementa F2); editable.
+- **Moneda:** solo MXN por ahora; monedas configurables se revisan antes de publicar (F7).
+- **Altitud del sitio:** opcional y manual. Si falta, el motor usa un valor interno por defecto sin mostrar error.

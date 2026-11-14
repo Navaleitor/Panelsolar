@@ -14,3 +14,9 @@ dependencies:
 dev_dependencies:
   test: ^1.31.1
   very_good_analysis: ^11.0.0
+
+# Datos de zonas horarias para la app (Flutter los empaqueta como asset
+# `packages/geo_kit/assets/timezones.bin.gz`). `dart` ignora esta sección.
+flutter:
+  assets:
+    - assets/timezones.bin.gz
