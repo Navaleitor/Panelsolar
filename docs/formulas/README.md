@@ -18,5 +18,6 @@ Una ficha por fórmula del motor (`packages/solar_engine`), plan B.6. Cada ficha
 | 12 | [Simulación horaria completa](12-simulacion-horaria.md) | 1–9 |
 | 13 | [Estadísticas climáticas](13-estadisticas-climaticas.md) | B.5 / 14 |
 | 14 | [Control de calidad del clima](14-control-de-calidad-clima.md) | B.5 |
+| 15 | [Zona horaria desde coordenadas](15-zona-horaria.md) | auxiliar (decisión 2026-11-14) |
 
 Validación de conjunto: [`docs/pruebas/validacion-motor.md`](../pruebas/validacion-motor.md).

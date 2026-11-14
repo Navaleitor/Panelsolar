@@ -61,8 +61,23 @@ class FakeTimeZoneService implements TimeZoneService {
     'America/Monterrey',
   ];
 
+  /// Zonas por coordenadas que devuelve [timeZoneAt] (`"lat,lon"` → zona).
+  /// Vacío = no deduce nada y se usa la del teléfono.
+  final byCoordinates = <String, String>{};
+
   @override
   Future<String?> deviceTimeZone() async => 'America/Monterrey';
+
+  @override
+  Future<String?> timeZoneAt(double latitude, double longitude) async =>
+      byCoordinates['$latitude,$longitude'];
+
+  @override
+  double? standardUtcOffsetHours(String name) => switch (name) {
+    'America/Hermosillo' => -7,
+    'America/Mexico_City' || 'America/Monterrey' => -6,
+    _ => null,
+  };
 
   @override
   List<String> allTimeZones() => zones;

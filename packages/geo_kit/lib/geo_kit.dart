@@ -8,3 +8,4 @@ export 'src/map_links/map_link_parser.dart';
 export 'src/map_links/map_link_resolver.dart';
 export 'src/map_links/map_link_result.dart';
 export 'src/package_info.dart';
+export 'src/time_zones/time_zone_locator.dart';
