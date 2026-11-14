@@ -11,6 +11,7 @@ import 'package:panelsolar/features/roof/presentation/editor/editor_tool.dart';
 import 'package:panelsolar/features/roof/presentation/editor/roof_canvas.dart';
 import 'package:panelsolar/features/roof/presentation/editor/roof_painter.dart';
 import 'package:panelsolar/features/roof/presentation/widgets/north_arrow.dart';
+import 'package:panelsolar/features/site/presentation/site_providers.dart';
 import 'package:persistence/persistence.dart';
 
 /// Editor del techo: calibrar, orientar, trazar planos, obstáculos y
@@ -66,6 +67,7 @@ class RoofEditorPageState extends ConsumerState<RoofEditorPage>
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final value = ref.watch(roofLayoutProvider(widget.projectId));
+    ref.watch(siteProvider(widget.projectId));
     return Scaffold(
       appBar: AppBar(title: Text(l10n.roofEditorTitle)),
       body: AsyncValueView(

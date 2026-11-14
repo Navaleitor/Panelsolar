@@ -176,7 +176,7 @@ mixin EditorActions<T extends ConsumerStatefulWidget> on ConsumerState<T> {
     if (frame == null || !drawing.canClose) return;
     final l10n = AppLocalizations.of(context);
     final local = [for (final p in drawing.points) frame.toLocal(p)];
-    final site = await siteFor(ref, projectId);
+    final site = siteFor(ref, projectId);
     await ref
         .read(roofEditingServiceProvider)
         .addPlane(
@@ -296,7 +296,7 @@ mixin EditorActions<T extends ConsumerStatefulWidget> on ConsumerState<T> {
   /// Mide con la brújula el rumbo de la línea de referencia y fija el norte.
   Future<void> confirmNorthWithCompass() async {
     if (linePts.length != 2) return;
-    final decl = await declinationFor(ref, projectId);
+    final decl = declinationFor(ref, projectId);
     if (!mounted) return;
     final r = await showSensorDialog(
       context,

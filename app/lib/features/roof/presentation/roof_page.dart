@@ -16,6 +16,7 @@ import 'package:panelsolar/features/roof/presentation/roof_declination.dart';
 import 'package:panelsolar/features/roof/presentation/roof_format.dart';
 import 'package:panelsolar/features/roof/presentation/widgets/image_source_sheet.dart';
 import 'package:panelsolar/features/roof/presentation/widgets/tape_sketch_dialog.dart';
+import 'package:panelsolar/features/site/presentation/site_providers.dart';
 import 'package:persistence/persistence.dart';
 
 /// Módulo "Techo" del proyecto: base (imagen propia o croquis), escala,
@@ -66,7 +67,7 @@ class _RoofPageState extends ConsumerState<RoofPage> {
     final polygon = await showTapeSketchDialog(context);
     if (polygon == null || !mounted) return;
     final l10n = AppLocalizations.of(context);
-    final site = await siteFor(ref, _id);
+    final site = siteFor(ref, _id);
     await ref
         .read(roofEditingServiceProvider)
         .addPlane(
@@ -82,6 +83,7 @@ class _RoofPageState extends ConsumerState<RoofPage> {
     final l10n = AppLocalizations.of(context);
     final locale = formatLocale(context);
     final value = ref.watch(roofLayoutProvider(_id));
+    ref.watch(siteProvider(_id));
     return Scaffold(
       appBar: AppBar(title: Text(l10n.roofTitle)),
       body: AsyncValueView(

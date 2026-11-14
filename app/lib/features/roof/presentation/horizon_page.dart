@@ -12,6 +12,7 @@ import 'package:panelsolar/features/roof/presentation/roof_declination.dart';
 import 'package:panelsolar/features/roof/presentation/roof_format.dart';
 import 'package:panelsolar/features/roof/presentation/widgets/far_obstacle_dialog.dart';
 import 'package:panelsolar/features/roof/presentation/widgets/horizon_chart.dart';
+import 'package:panelsolar/features/site/presentation/site_providers.dart';
 
 /// Horizonte: terreno de PVGIS (B.7 A) y obstáculos lejanos medidos con
 /// brújula e inclinómetro (B.7 B).
@@ -32,7 +33,7 @@ class _HorizonPageState extends ConsumerState<HorizonPage> {
   Future<void> _downloadTerrain() async {
     final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
-    final site = await siteFor(ref, widget.projectId);
+    final site = siteFor(ref, widget.projectId);
     if (site == null) {
       messenger.showSnackBar(
         SnackBar(content: Text(l10n.roofShadeNeedsLocation)),
@@ -57,7 +58,7 @@ class _HorizonPageState extends ConsumerState<HorizonPage> {
   }
 
   Future<void> _addFar() async {
-    final decl = await declinationFor(ref, widget.projectId);
+    final decl = declinationFor(ref, widget.projectId);
     if (!mounted) return;
     final r = await showFarObstacleDialog(context, declinationDeg: decl);
     if (r == null) return;
@@ -71,6 +72,7 @@ class _HorizonPageState extends ConsumerState<HorizonPage> {
     final l10n = AppLocalizations.of(context);
     final locale = formatLocale(context);
     final value = ref.watch(roofLayoutProvider(widget.projectId));
+    ref.watch(siteProvider(widget.projectId));
     return Scaffold(
       appBar: AppBar(title: Text(l10n.roofHorizonTitle)),
       floatingActionButton: FloatingActionButton.extended(
