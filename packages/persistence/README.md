@@ -28,8 +28,18 @@ Las fechas se guardan como texto ISO-8601 (`build.yaml`).
 | `roof_planes` | `RoofPlane` | v5 | Polígono en **metros locales** (JSON `[[x,y],...]`, x = este, y = norte), inclinación (`TiltSource`), azimut, arista del alero, retiro de borde y pasillos (JSON). |
 | `obstacles` | `Obstacle` | v5 | `ObstacleKind`, `ObstacleOutline`, centro/medidas/giro o puntos (m), altura sobre el techo (`HeightSource`), litros del tinaco. |
 | `horizon_profiles` | `HorizonProfileRecord` | v5 | `HorizonSource` (terreno PVGIS / manual / cámara), nombre y puntos `[[azimut, elevación], ...]`. La clase no se llama `HorizonProfile` para no chocar con la del motor. |
+| `panel_models` | `PanelModel` | v7 | Catálogo: Pmax, Voc, Isc, Vmp, Imp, coeficientes (%/°C), medidas (m), peso, `CellType`, bifacial, fusible máximo, `EquipmentSource` (manual/CEC). |
+| `inverter_models` | `InverterModel` | v7 | `InverterKind` (string/micro/híbrido), Pac, Vdc máx, rango MPPT, número de MPPT, Imax por MPPT, eficiencia, fases, tensión AC. |
+| `optimizer_models` | `OptimizerModel` | v7 | Datos básicos de optimizadores. |
+| `battery_models` | `BatteryModel` | v7 | `BatteryChemistry`, kWh, tensión, potencias, ciclos. |
+| `pv_designs` | `PvDesign` | v7 | Uno por proyecto: equipos elegidos, número de inversores, límite de tensión (600 V), pérdidas (JSON), umbral de sombra, tensión de red, viento (JSON). |
+| `array_layouts` | `ArrayLayout` | v7 | Uno por plano: `LayoutOrientation`, `MountType`, estructura, separaciones y paneles en JSON (esquinas en m, `on`). |
+| `string_configs` | `StringConfig` | v7 | Grupos por inversor y MPPT: serie × paralelo. |
+| `electrical_runs` | `ElectricalRun` | v7 | Tramo `RunKind`, longitud, `CableMaterial`, `RacewayKind`, ambiente, conductores, calibre y caída. |
+| `protection_devices` | `ProtectionDevice` | v7 | `ProtectionDeviceKind`, A, V, cantidad, calibre de tierra. |
+| `simulation_results` | `SimulationResultRecord` | v7 | Pdc, Pac, primer año, vida útil, meses y años (JSON), recorte, sombra, rendimiento, PR. |
 
-Versión de esquema actual: **5**. La **v4 está reservada para F6** (instalación, mantenimiento y respaldo, en paralelo): en esta rama `from3To4` no cambia nada y su foto `drift_schema_v4.json` es igual a la v3. Al integrar F6, el chat principal pone su v4 y vuelve a generar la foto de la v5 (receta de abajo).
+Versión de esquema actual: **7**. La **v4** (F3) y la **v6** (F4) están **reservadas para F6** (instalación, mantenimiento y respaldo, en paralelo): en esta rama `from3To4` y `from5To6` no cambian nada y sus fotos son iguales a la versión anterior. Al integrar F6, el chat principal pone su versión y vuelve a generar las fotos siguientes (receta de abajo).
 
 ### Enumeraciones (`lib/src/model/enums.dart`)
 Se guardan como texto con el nombre del valor (`prospect`, `bimonthly`...). **Nunca renombrar un valor** sin migración; agregar al final sí es seguro.
@@ -47,6 +57,12 @@ Se guardan como texto con el nombre del valor (`prospect`, `bimonthly`...). **Nu
 | `RoofPlaneRepository` | Planos por proyecto en orden; `update(plane)` con `copyWith`; valida inclinación [0, 90). |
 | `ObstacleRepository` | Obstáculos por proyecto; valida ancho > 0 y altura ≥ 0. |
 | `HorizonProfileRepository` | Un terreno por proyecto (`saveTerrain`) y obstáculos lejanos (`addManual`). |
+| `PanelModelRepository`, `InverterModelRepository`, `OptimizerModelRepository`, `BatteryModelRepository` | Catálogo: `watchAll`, `save` (alta o reemplazo, valida), `softDelete`. |
+| `PvDesignRepository` | `save(projectId, cambios)` crea o actualiza el diseño del proyecto. |
+| `ArrayLayoutRepository` | `saveForPlane` (uno por plano). |
+| `StringConfigRepository`, `ProtectionDeviceRepository` | `replaceAll` (los anteriores se borran lógicamente). |
+| `ElectricalRunRepository` | Tramos y `saveResult`. |
+| `SimulationResultRepository` | `add` y `watchLatest`. |
 | `CompanyRepository` | Perfil de la empresa (F0). |
 
 Las rutas de fotos y documentos son **relativas** al directorio de archivos de la app (así sobreviven a un respaldo/restauración en otro teléfono).

@@ -8059,6 +8059,9523 @@ class HorizonProfilesCompanion extends UpdateCompanion<HorizonProfileRecord> {
   }
 }
 
+class $PanelModelsTable extends PanelModels
+    with TableInfo<$PanelModelsTable, PanelModel> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $PanelModelsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _manufacturerMeta = const VerificationMeta(
+    'manufacturer',
+  );
+  @override
+  late final GeneratedColumn<String> manufacturer = GeneratedColumn<String>(
+    'manufacturer',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _modelMeta = const VerificationMeta('model');
+  @override
+  late final GeneratedColumn<String> model = GeneratedColumn<String>(
+    'model',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _pmaxWMeta = const VerificationMeta('pmaxW');
+  @override
+  late final GeneratedColumn<double> pmaxW = GeneratedColumn<double>(
+    'pmax_w',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _vocVMeta = const VerificationMeta('vocV');
+  @override
+  late final GeneratedColumn<double> vocV = GeneratedColumn<double>(
+    'voc_v',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _iscAMeta = const VerificationMeta('iscA');
+  @override
+  late final GeneratedColumn<double> iscA = GeneratedColumn<double>(
+    'isc_a',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _vmpVMeta = const VerificationMeta('vmpV');
+  @override
+  late final GeneratedColumn<double> vmpV = GeneratedColumn<double>(
+    'vmp_v',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _impAMeta = const VerificationMeta('impA');
+  @override
+  late final GeneratedColumn<double> impA = GeneratedColumn<double>(
+    'imp_a',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _gammaPmaxPctMeta = const VerificationMeta(
+    'gammaPmaxPct',
+  );
+  @override
+  late final GeneratedColumn<double> gammaPmaxPct = GeneratedColumn<double>(
+    'gamma_pmax_pct',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(-0.35),
+  );
+  static const VerificationMeta _betaVocPctMeta = const VerificationMeta(
+    'betaVocPct',
+  );
+  @override
+  late final GeneratedColumn<double> betaVocPct = GeneratedColumn<double>(
+    'beta_voc_pct',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(-0.28),
+  );
+  static const VerificationMeta _betaVmpPctMeta = const VerificationMeta(
+    'betaVmpPct',
+  );
+  @override
+  late final GeneratedColumn<double> betaVmpPct = GeneratedColumn<double>(
+    'beta_vmp_pct',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(-0.37),
+  );
+  static const VerificationMeta _lengthMMeta = const VerificationMeta(
+    'lengthM',
+  );
+  @override
+  late final GeneratedColumn<double> lengthM = GeneratedColumn<double>(
+    'length_m',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _widthMMeta = const VerificationMeta('widthM');
+  @override
+  late final GeneratedColumn<double> widthM = GeneratedColumn<double>(
+    'width_m',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _weightKgMeta = const VerificationMeta(
+    'weightKg',
+  );
+  @override
+  late final GeneratedColumn<double> weightKg = GeneratedColumn<double>(
+    'weight_kg',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<CellType, String> cellType =
+      GeneratedColumn<String>(
+        'cell_type',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: Constant(CellType.mono.name),
+      ).withConverter<CellType>($PanelModelsTable.$convertercellType);
+  static const VerificationMeta _cellCountMeta = const VerificationMeta(
+    'cellCount',
+  );
+  @override
+  late final GeneratedColumn<int> cellCount = GeneratedColumn<int>(
+    'cell_count',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _bifacialMeta = const VerificationMeta(
+    'bifacial',
+  );
+  @override
+  late final GeneratedColumn<bool> bifacial = GeneratedColumn<bool>(
+    'bifacial',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("bifacial" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _bifacialityPctMeta = const VerificationMeta(
+    'bifacialityPct',
+  );
+  @override
+  late final GeneratedColumn<double> bifacialityPct = GeneratedColumn<double>(
+    'bifaciality_pct',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _maxSeriesFuseAMeta = const VerificationMeta(
+    'maxSeriesFuseA',
+  );
+  @override
+  late final GeneratedColumn<double> maxSeriesFuseA = GeneratedColumn<double>(
+    'max_series_fuse_a',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _maxSystemVoltageVMeta = const VerificationMeta(
+    'maxSystemVoltageV',
+  );
+  @override
+  late final GeneratedColumn<double> maxSystemVoltageV =
+      GeneratedColumn<double>(
+        'max_system_voltage_v',
+        aliasedName,
+        true,
+        type: DriftSqlType.double,
+        requiredDuringInsert: false,
+      );
+  @override
+  late final GeneratedColumnWithTypeConverter<EquipmentSource, String> source =
+      GeneratedColumn<String>(
+        'source',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: Constant(EquipmentSource.manual.name),
+      ).withConverter<EquipmentSource>($PanelModelsTable.$convertersource);
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    manufacturer,
+    model,
+    pmaxW,
+    vocV,
+    iscA,
+    vmpV,
+    impA,
+    gammaPmaxPct,
+    betaVocPct,
+    betaVmpPct,
+    lengthM,
+    widthM,
+    weightKg,
+    cellType,
+    cellCount,
+    bifacial,
+    bifacialityPct,
+    maxSeriesFuseA,
+    maxSystemVoltageV,
+    source,
+    notes,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'panel_models';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<PanelModel> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('manufacturer')) {
+      context.handle(
+        _manufacturerMeta,
+        manufacturer.isAcceptableOrUnknown(
+          data['manufacturer']!,
+          _manufacturerMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_manufacturerMeta);
+    }
+    if (data.containsKey('model')) {
+      context.handle(
+        _modelMeta,
+        model.isAcceptableOrUnknown(data['model']!, _modelMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_modelMeta);
+    }
+    if (data.containsKey('pmax_w')) {
+      context.handle(
+        _pmaxWMeta,
+        pmaxW.isAcceptableOrUnknown(data['pmax_w']!, _pmaxWMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_pmaxWMeta);
+    }
+    if (data.containsKey('voc_v')) {
+      context.handle(
+        _vocVMeta,
+        vocV.isAcceptableOrUnknown(data['voc_v']!, _vocVMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_vocVMeta);
+    }
+    if (data.containsKey('isc_a')) {
+      context.handle(
+        _iscAMeta,
+        iscA.isAcceptableOrUnknown(data['isc_a']!, _iscAMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_iscAMeta);
+    }
+    if (data.containsKey('vmp_v')) {
+      context.handle(
+        _vmpVMeta,
+        vmpV.isAcceptableOrUnknown(data['vmp_v']!, _vmpVMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_vmpVMeta);
+    }
+    if (data.containsKey('imp_a')) {
+      context.handle(
+        _impAMeta,
+        impA.isAcceptableOrUnknown(data['imp_a']!, _impAMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_impAMeta);
+    }
+    if (data.containsKey('gamma_pmax_pct')) {
+      context.handle(
+        _gammaPmaxPctMeta,
+        gammaPmaxPct.isAcceptableOrUnknown(
+          data['gamma_pmax_pct']!,
+          _gammaPmaxPctMeta,
+        ),
+      );
+    }
+    if (data.containsKey('beta_voc_pct')) {
+      context.handle(
+        _betaVocPctMeta,
+        betaVocPct.isAcceptableOrUnknown(
+          data['beta_voc_pct']!,
+          _betaVocPctMeta,
+        ),
+      );
+    }
+    if (data.containsKey('beta_vmp_pct')) {
+      context.handle(
+        _betaVmpPctMeta,
+        betaVmpPct.isAcceptableOrUnknown(
+          data['beta_vmp_pct']!,
+          _betaVmpPctMeta,
+        ),
+      );
+    }
+    if (data.containsKey('length_m')) {
+      context.handle(
+        _lengthMMeta,
+        lengthM.isAcceptableOrUnknown(data['length_m']!, _lengthMMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_lengthMMeta);
+    }
+    if (data.containsKey('width_m')) {
+      context.handle(
+        _widthMMeta,
+        widthM.isAcceptableOrUnknown(data['width_m']!, _widthMMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_widthMMeta);
+    }
+    if (data.containsKey('weight_kg')) {
+      context.handle(
+        _weightKgMeta,
+        weightKg.isAcceptableOrUnknown(data['weight_kg']!, _weightKgMeta),
+      );
+    }
+    if (data.containsKey('cell_count')) {
+      context.handle(
+        _cellCountMeta,
+        cellCount.isAcceptableOrUnknown(data['cell_count']!, _cellCountMeta),
+      );
+    }
+    if (data.containsKey('bifacial')) {
+      context.handle(
+        _bifacialMeta,
+        bifacial.isAcceptableOrUnknown(data['bifacial']!, _bifacialMeta),
+      );
+    }
+    if (data.containsKey('bifaciality_pct')) {
+      context.handle(
+        _bifacialityPctMeta,
+        bifacialityPct.isAcceptableOrUnknown(
+          data['bifaciality_pct']!,
+          _bifacialityPctMeta,
+        ),
+      );
+    }
+    if (data.containsKey('max_series_fuse_a')) {
+      context.handle(
+        _maxSeriesFuseAMeta,
+        maxSeriesFuseA.isAcceptableOrUnknown(
+          data['max_series_fuse_a']!,
+          _maxSeriesFuseAMeta,
+        ),
+      );
+    }
+    if (data.containsKey('max_system_voltage_v')) {
+      context.handle(
+        _maxSystemVoltageVMeta,
+        maxSystemVoltageV.isAcceptableOrUnknown(
+          data['max_system_voltage_v']!,
+          _maxSystemVoltageVMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  PanelModel map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return PanelModel(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      manufacturer: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}manufacturer'],
+      )!,
+      model: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}model'],
+      )!,
+      pmaxW: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}pmax_w'],
+      )!,
+      vocV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}voc_v'],
+      )!,
+      iscA: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}isc_a'],
+      )!,
+      vmpV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}vmp_v'],
+      )!,
+      impA: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}imp_a'],
+      )!,
+      gammaPmaxPct: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}gamma_pmax_pct'],
+      )!,
+      betaVocPct: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}beta_voc_pct'],
+      )!,
+      betaVmpPct: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}beta_vmp_pct'],
+      )!,
+      lengthM: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}length_m'],
+      )!,
+      widthM: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}width_m'],
+      )!,
+      weightKg: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}weight_kg'],
+      ),
+      cellType: $PanelModelsTable.$convertercellType.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}cell_type'],
+        )!,
+      ),
+      cellCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}cell_count'],
+      ),
+      bifacial: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}bifacial'],
+      )!,
+      bifacialityPct: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}bifaciality_pct'],
+      ),
+      maxSeriesFuseA: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}max_series_fuse_a'],
+      ),
+      maxSystemVoltageV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}max_system_voltage_v'],
+      ),
+      source: $PanelModelsTable.$convertersource.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}source'],
+        )!,
+      ),
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+    );
+  }
+
+  @override
+  $PanelModelsTable createAlias(String alias) {
+    return $PanelModelsTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<CellType, String, String> $convertercellType =
+      const EnumNameConverter<CellType>(CellType.values);
+  static JsonTypeConverter2<EquipmentSource, String, String> $convertersource =
+      const EnumNameConverter<EquipmentSource>(EquipmentSource.values);
+}
+
+class PanelModel extends DataClass implements Insertable<PanelModel> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Fabricante.
+  final String manufacturer;
+
+  /// Modelo.
+  final String model;
+
+  /// Potencia máxima (W).
+  final double pmaxW;
+
+  /// Tensión de circuito abierto (V).
+  final double vocV;
+
+  /// Corriente de cortocircuito (A).
+  final double iscA;
+
+  /// Tensión en máxima potencia (V).
+  final double vmpV;
+
+  /// Corriente en máxima potencia (A).
+  final double impA;
+
+  /// Coeficiente de Pmax (%/°C).
+  final double gammaPmaxPct;
+
+  /// Coeficiente de Voc (%/°C).
+  final double betaVocPct;
+
+  /// Coeficiente de Vmp (%/°C).
+  final double betaVmpPct;
+
+  /// Largo (m).
+  final double lengthM;
+
+  /// Ancho (m).
+  final double widthM;
+
+  /// Peso (kg).
+  final double? weightKg;
+
+  /// Tipo de celda.
+  final CellType cellType;
+
+  /// Número de celdas.
+  final int? cellCount;
+
+  /// Bifacial.
+  final bool bifacial;
+
+  /// Bifacialidad (%), si es bifacial.
+  final double? bifacialityPct;
+
+  /// Fusible máximo en serie (A).
+  final double? maxSeriesFuseA;
+
+  /// Tensión máxima del sistema (V).
+  final double? maxSystemVoltageV;
+
+  /// Origen.
+  final EquipmentSource source;
+
+  /// Notas.
+  final String? notes;
+  const PanelModel({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.manufacturer,
+    required this.model,
+    required this.pmaxW,
+    required this.vocV,
+    required this.iscA,
+    required this.vmpV,
+    required this.impA,
+    required this.gammaPmaxPct,
+    required this.betaVocPct,
+    required this.betaVmpPct,
+    required this.lengthM,
+    required this.widthM,
+    this.weightKg,
+    required this.cellType,
+    this.cellCount,
+    required this.bifacial,
+    this.bifacialityPct,
+    this.maxSeriesFuseA,
+    this.maxSystemVoltageV,
+    required this.source,
+    this.notes,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['manufacturer'] = Variable<String>(manufacturer);
+    map['model'] = Variable<String>(model);
+    map['pmax_w'] = Variable<double>(pmaxW);
+    map['voc_v'] = Variable<double>(vocV);
+    map['isc_a'] = Variable<double>(iscA);
+    map['vmp_v'] = Variable<double>(vmpV);
+    map['imp_a'] = Variable<double>(impA);
+    map['gamma_pmax_pct'] = Variable<double>(gammaPmaxPct);
+    map['beta_voc_pct'] = Variable<double>(betaVocPct);
+    map['beta_vmp_pct'] = Variable<double>(betaVmpPct);
+    map['length_m'] = Variable<double>(lengthM);
+    map['width_m'] = Variable<double>(widthM);
+    if (!nullToAbsent || weightKg != null) {
+      map['weight_kg'] = Variable<double>(weightKg);
+    }
+    {
+      map['cell_type'] = Variable<String>(
+        $PanelModelsTable.$convertercellType.toSql(cellType),
+      );
+    }
+    if (!nullToAbsent || cellCount != null) {
+      map['cell_count'] = Variable<int>(cellCount);
+    }
+    map['bifacial'] = Variable<bool>(bifacial);
+    if (!nullToAbsent || bifacialityPct != null) {
+      map['bifaciality_pct'] = Variable<double>(bifacialityPct);
+    }
+    if (!nullToAbsent || maxSeriesFuseA != null) {
+      map['max_series_fuse_a'] = Variable<double>(maxSeriesFuseA);
+    }
+    if (!nullToAbsent || maxSystemVoltageV != null) {
+      map['max_system_voltage_v'] = Variable<double>(maxSystemVoltageV);
+    }
+    {
+      map['source'] = Variable<String>(
+        $PanelModelsTable.$convertersource.toSql(source),
+      );
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    return map;
+  }
+
+  PanelModelsCompanion toCompanion(bool nullToAbsent) {
+    return PanelModelsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      manufacturer: Value(manufacturer),
+      model: Value(model),
+      pmaxW: Value(pmaxW),
+      vocV: Value(vocV),
+      iscA: Value(iscA),
+      vmpV: Value(vmpV),
+      impA: Value(impA),
+      gammaPmaxPct: Value(gammaPmaxPct),
+      betaVocPct: Value(betaVocPct),
+      betaVmpPct: Value(betaVmpPct),
+      lengthM: Value(lengthM),
+      widthM: Value(widthM),
+      weightKg: weightKg == null && nullToAbsent
+          ? const Value.absent()
+          : Value(weightKg),
+      cellType: Value(cellType),
+      cellCount: cellCount == null && nullToAbsent
+          ? const Value.absent()
+          : Value(cellCount),
+      bifacial: Value(bifacial),
+      bifacialityPct: bifacialityPct == null && nullToAbsent
+          ? const Value.absent()
+          : Value(bifacialityPct),
+      maxSeriesFuseA: maxSeriesFuseA == null && nullToAbsent
+          ? const Value.absent()
+          : Value(maxSeriesFuseA),
+      maxSystemVoltageV: maxSystemVoltageV == null && nullToAbsent
+          ? const Value.absent()
+          : Value(maxSystemVoltageV),
+      source: Value(source),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+    );
+  }
+
+  factory PanelModel.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return PanelModel(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      manufacturer: serializer.fromJson<String>(json['manufacturer']),
+      model: serializer.fromJson<String>(json['model']),
+      pmaxW: serializer.fromJson<double>(json['pmaxW']),
+      vocV: serializer.fromJson<double>(json['vocV']),
+      iscA: serializer.fromJson<double>(json['iscA']),
+      vmpV: serializer.fromJson<double>(json['vmpV']),
+      impA: serializer.fromJson<double>(json['impA']),
+      gammaPmaxPct: serializer.fromJson<double>(json['gammaPmaxPct']),
+      betaVocPct: serializer.fromJson<double>(json['betaVocPct']),
+      betaVmpPct: serializer.fromJson<double>(json['betaVmpPct']),
+      lengthM: serializer.fromJson<double>(json['lengthM']),
+      widthM: serializer.fromJson<double>(json['widthM']),
+      weightKg: serializer.fromJson<double?>(json['weightKg']),
+      cellType: $PanelModelsTable.$convertercellType.fromJson(
+        serializer.fromJson<String>(json['cellType']),
+      ),
+      cellCount: serializer.fromJson<int?>(json['cellCount']),
+      bifacial: serializer.fromJson<bool>(json['bifacial']),
+      bifacialityPct: serializer.fromJson<double?>(json['bifacialityPct']),
+      maxSeriesFuseA: serializer.fromJson<double?>(json['maxSeriesFuseA']),
+      maxSystemVoltageV: serializer.fromJson<double?>(
+        json['maxSystemVoltageV'],
+      ),
+      source: $PanelModelsTable.$convertersource.fromJson(
+        serializer.fromJson<String>(json['source']),
+      ),
+      notes: serializer.fromJson<String?>(json['notes']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'manufacturer': serializer.toJson<String>(manufacturer),
+      'model': serializer.toJson<String>(model),
+      'pmaxW': serializer.toJson<double>(pmaxW),
+      'vocV': serializer.toJson<double>(vocV),
+      'iscA': serializer.toJson<double>(iscA),
+      'vmpV': serializer.toJson<double>(vmpV),
+      'impA': serializer.toJson<double>(impA),
+      'gammaPmaxPct': serializer.toJson<double>(gammaPmaxPct),
+      'betaVocPct': serializer.toJson<double>(betaVocPct),
+      'betaVmpPct': serializer.toJson<double>(betaVmpPct),
+      'lengthM': serializer.toJson<double>(lengthM),
+      'widthM': serializer.toJson<double>(widthM),
+      'weightKg': serializer.toJson<double?>(weightKg),
+      'cellType': serializer.toJson<String>(
+        $PanelModelsTable.$convertercellType.toJson(cellType),
+      ),
+      'cellCount': serializer.toJson<int?>(cellCount),
+      'bifacial': serializer.toJson<bool>(bifacial),
+      'bifacialityPct': serializer.toJson<double?>(bifacialityPct),
+      'maxSeriesFuseA': serializer.toJson<double?>(maxSeriesFuseA),
+      'maxSystemVoltageV': serializer.toJson<double?>(maxSystemVoltageV),
+      'source': serializer.toJson<String>(
+        $PanelModelsTable.$convertersource.toJson(source),
+      ),
+      'notes': serializer.toJson<String?>(notes),
+    };
+  }
+
+  PanelModel copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? manufacturer,
+    String? model,
+    double? pmaxW,
+    double? vocV,
+    double? iscA,
+    double? vmpV,
+    double? impA,
+    double? gammaPmaxPct,
+    double? betaVocPct,
+    double? betaVmpPct,
+    double? lengthM,
+    double? widthM,
+    Value<double?> weightKg = const Value.absent(),
+    CellType? cellType,
+    Value<int?> cellCount = const Value.absent(),
+    bool? bifacial,
+    Value<double?> bifacialityPct = const Value.absent(),
+    Value<double?> maxSeriesFuseA = const Value.absent(),
+    Value<double?> maxSystemVoltageV = const Value.absent(),
+    EquipmentSource? source,
+    Value<String?> notes = const Value.absent(),
+  }) => PanelModel(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    manufacturer: manufacturer ?? this.manufacturer,
+    model: model ?? this.model,
+    pmaxW: pmaxW ?? this.pmaxW,
+    vocV: vocV ?? this.vocV,
+    iscA: iscA ?? this.iscA,
+    vmpV: vmpV ?? this.vmpV,
+    impA: impA ?? this.impA,
+    gammaPmaxPct: gammaPmaxPct ?? this.gammaPmaxPct,
+    betaVocPct: betaVocPct ?? this.betaVocPct,
+    betaVmpPct: betaVmpPct ?? this.betaVmpPct,
+    lengthM: lengthM ?? this.lengthM,
+    widthM: widthM ?? this.widthM,
+    weightKg: weightKg.present ? weightKg.value : this.weightKg,
+    cellType: cellType ?? this.cellType,
+    cellCount: cellCount.present ? cellCount.value : this.cellCount,
+    bifacial: bifacial ?? this.bifacial,
+    bifacialityPct: bifacialityPct.present
+        ? bifacialityPct.value
+        : this.bifacialityPct,
+    maxSeriesFuseA: maxSeriesFuseA.present
+        ? maxSeriesFuseA.value
+        : this.maxSeriesFuseA,
+    maxSystemVoltageV: maxSystemVoltageV.present
+        ? maxSystemVoltageV.value
+        : this.maxSystemVoltageV,
+    source: source ?? this.source,
+    notes: notes.present ? notes.value : this.notes,
+  );
+  PanelModel copyWithCompanion(PanelModelsCompanion data) {
+    return PanelModel(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      manufacturer: data.manufacturer.present
+          ? data.manufacturer.value
+          : this.manufacturer,
+      model: data.model.present ? data.model.value : this.model,
+      pmaxW: data.pmaxW.present ? data.pmaxW.value : this.pmaxW,
+      vocV: data.vocV.present ? data.vocV.value : this.vocV,
+      iscA: data.iscA.present ? data.iscA.value : this.iscA,
+      vmpV: data.vmpV.present ? data.vmpV.value : this.vmpV,
+      impA: data.impA.present ? data.impA.value : this.impA,
+      gammaPmaxPct: data.gammaPmaxPct.present
+          ? data.gammaPmaxPct.value
+          : this.gammaPmaxPct,
+      betaVocPct: data.betaVocPct.present
+          ? data.betaVocPct.value
+          : this.betaVocPct,
+      betaVmpPct: data.betaVmpPct.present
+          ? data.betaVmpPct.value
+          : this.betaVmpPct,
+      lengthM: data.lengthM.present ? data.lengthM.value : this.lengthM,
+      widthM: data.widthM.present ? data.widthM.value : this.widthM,
+      weightKg: data.weightKg.present ? data.weightKg.value : this.weightKg,
+      cellType: data.cellType.present ? data.cellType.value : this.cellType,
+      cellCount: data.cellCount.present ? data.cellCount.value : this.cellCount,
+      bifacial: data.bifacial.present ? data.bifacial.value : this.bifacial,
+      bifacialityPct: data.bifacialityPct.present
+          ? data.bifacialityPct.value
+          : this.bifacialityPct,
+      maxSeriesFuseA: data.maxSeriesFuseA.present
+          ? data.maxSeriesFuseA.value
+          : this.maxSeriesFuseA,
+      maxSystemVoltageV: data.maxSystemVoltageV.present
+          ? data.maxSystemVoltageV.value
+          : this.maxSystemVoltageV,
+      source: data.source.present ? data.source.value : this.source,
+      notes: data.notes.present ? data.notes.value : this.notes,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PanelModel(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('manufacturer: $manufacturer, ')
+          ..write('model: $model, ')
+          ..write('pmaxW: $pmaxW, ')
+          ..write('vocV: $vocV, ')
+          ..write('iscA: $iscA, ')
+          ..write('vmpV: $vmpV, ')
+          ..write('impA: $impA, ')
+          ..write('gammaPmaxPct: $gammaPmaxPct, ')
+          ..write('betaVocPct: $betaVocPct, ')
+          ..write('betaVmpPct: $betaVmpPct, ')
+          ..write('lengthM: $lengthM, ')
+          ..write('widthM: $widthM, ')
+          ..write('weightKg: $weightKg, ')
+          ..write('cellType: $cellType, ')
+          ..write('cellCount: $cellCount, ')
+          ..write('bifacial: $bifacial, ')
+          ..write('bifacialityPct: $bifacialityPct, ')
+          ..write('maxSeriesFuseA: $maxSeriesFuseA, ')
+          ..write('maxSystemVoltageV: $maxSystemVoltageV, ')
+          ..write('source: $source, ')
+          ..write('notes: $notes')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hashAll([
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    manufacturer,
+    model,
+    pmaxW,
+    vocV,
+    iscA,
+    vmpV,
+    impA,
+    gammaPmaxPct,
+    betaVocPct,
+    betaVmpPct,
+    lengthM,
+    widthM,
+    weightKg,
+    cellType,
+    cellCount,
+    bifacial,
+    bifacialityPct,
+    maxSeriesFuseA,
+    maxSystemVoltageV,
+    source,
+    notes,
+  ]);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is PanelModel &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.manufacturer == this.manufacturer &&
+          other.model == this.model &&
+          other.pmaxW == this.pmaxW &&
+          other.vocV == this.vocV &&
+          other.iscA == this.iscA &&
+          other.vmpV == this.vmpV &&
+          other.impA == this.impA &&
+          other.gammaPmaxPct == this.gammaPmaxPct &&
+          other.betaVocPct == this.betaVocPct &&
+          other.betaVmpPct == this.betaVmpPct &&
+          other.lengthM == this.lengthM &&
+          other.widthM == this.widthM &&
+          other.weightKg == this.weightKg &&
+          other.cellType == this.cellType &&
+          other.cellCount == this.cellCount &&
+          other.bifacial == this.bifacial &&
+          other.bifacialityPct == this.bifacialityPct &&
+          other.maxSeriesFuseA == this.maxSeriesFuseA &&
+          other.maxSystemVoltageV == this.maxSystemVoltageV &&
+          other.source == this.source &&
+          other.notes == this.notes);
+}
+
+class PanelModelsCompanion extends UpdateCompanion<PanelModel> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> manufacturer;
+  final Value<String> model;
+  final Value<double> pmaxW;
+  final Value<double> vocV;
+  final Value<double> iscA;
+  final Value<double> vmpV;
+  final Value<double> impA;
+  final Value<double> gammaPmaxPct;
+  final Value<double> betaVocPct;
+  final Value<double> betaVmpPct;
+  final Value<double> lengthM;
+  final Value<double> widthM;
+  final Value<double?> weightKg;
+  final Value<CellType> cellType;
+  final Value<int?> cellCount;
+  final Value<bool> bifacial;
+  final Value<double?> bifacialityPct;
+  final Value<double?> maxSeriesFuseA;
+  final Value<double?> maxSystemVoltageV;
+  final Value<EquipmentSource> source;
+  final Value<String?> notes;
+  final Value<int> rowid;
+  const PanelModelsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.manufacturer = const Value.absent(),
+    this.model = const Value.absent(),
+    this.pmaxW = const Value.absent(),
+    this.vocV = const Value.absent(),
+    this.iscA = const Value.absent(),
+    this.vmpV = const Value.absent(),
+    this.impA = const Value.absent(),
+    this.gammaPmaxPct = const Value.absent(),
+    this.betaVocPct = const Value.absent(),
+    this.betaVmpPct = const Value.absent(),
+    this.lengthM = const Value.absent(),
+    this.widthM = const Value.absent(),
+    this.weightKg = const Value.absent(),
+    this.cellType = const Value.absent(),
+    this.cellCount = const Value.absent(),
+    this.bifacial = const Value.absent(),
+    this.bifacialityPct = const Value.absent(),
+    this.maxSeriesFuseA = const Value.absent(),
+    this.maxSystemVoltageV = const Value.absent(),
+    this.source = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  PanelModelsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String manufacturer,
+    required String model,
+    required double pmaxW,
+    required double vocV,
+    required double iscA,
+    required double vmpV,
+    required double impA,
+    this.gammaPmaxPct = const Value.absent(),
+    this.betaVocPct = const Value.absent(),
+    this.betaVmpPct = const Value.absent(),
+    required double lengthM,
+    required double widthM,
+    this.weightKg = const Value.absent(),
+    this.cellType = const Value.absent(),
+    this.cellCount = const Value.absent(),
+    this.bifacial = const Value.absent(),
+    this.bifacialityPct = const Value.absent(),
+    this.maxSeriesFuseA = const Value.absent(),
+    this.maxSystemVoltageV = const Value.absent(),
+    this.source = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : manufacturer = Value(manufacturer),
+       model = Value(model),
+       pmaxW = Value(pmaxW),
+       vocV = Value(vocV),
+       iscA = Value(iscA),
+       vmpV = Value(vmpV),
+       impA = Value(impA),
+       lengthM = Value(lengthM),
+       widthM = Value(widthM);
+  static Insertable<PanelModel> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? manufacturer,
+    Expression<String>? model,
+    Expression<double>? pmaxW,
+    Expression<double>? vocV,
+    Expression<double>? iscA,
+    Expression<double>? vmpV,
+    Expression<double>? impA,
+    Expression<double>? gammaPmaxPct,
+    Expression<double>? betaVocPct,
+    Expression<double>? betaVmpPct,
+    Expression<double>? lengthM,
+    Expression<double>? widthM,
+    Expression<double>? weightKg,
+    Expression<String>? cellType,
+    Expression<int>? cellCount,
+    Expression<bool>? bifacial,
+    Expression<double>? bifacialityPct,
+    Expression<double>? maxSeriesFuseA,
+    Expression<double>? maxSystemVoltageV,
+    Expression<String>? source,
+    Expression<String>? notes,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (manufacturer != null) 'manufacturer': manufacturer,
+      if (model != null) 'model': model,
+      if (pmaxW != null) 'pmax_w': pmaxW,
+      if (vocV != null) 'voc_v': vocV,
+      if (iscA != null) 'isc_a': iscA,
+      if (vmpV != null) 'vmp_v': vmpV,
+      if (impA != null) 'imp_a': impA,
+      if (gammaPmaxPct != null) 'gamma_pmax_pct': gammaPmaxPct,
+      if (betaVocPct != null) 'beta_voc_pct': betaVocPct,
+      if (betaVmpPct != null) 'beta_vmp_pct': betaVmpPct,
+      if (lengthM != null) 'length_m': lengthM,
+      if (widthM != null) 'width_m': widthM,
+      if (weightKg != null) 'weight_kg': weightKg,
+      if (cellType != null) 'cell_type': cellType,
+      if (cellCount != null) 'cell_count': cellCount,
+      if (bifacial != null) 'bifacial': bifacial,
+      if (bifacialityPct != null) 'bifaciality_pct': bifacialityPct,
+      if (maxSeriesFuseA != null) 'max_series_fuse_a': maxSeriesFuseA,
+      if (maxSystemVoltageV != null) 'max_system_voltage_v': maxSystemVoltageV,
+      if (source != null) 'source': source,
+      if (notes != null) 'notes': notes,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  PanelModelsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? manufacturer,
+    Value<String>? model,
+    Value<double>? pmaxW,
+    Value<double>? vocV,
+    Value<double>? iscA,
+    Value<double>? vmpV,
+    Value<double>? impA,
+    Value<double>? gammaPmaxPct,
+    Value<double>? betaVocPct,
+    Value<double>? betaVmpPct,
+    Value<double>? lengthM,
+    Value<double>? widthM,
+    Value<double?>? weightKg,
+    Value<CellType>? cellType,
+    Value<int?>? cellCount,
+    Value<bool>? bifacial,
+    Value<double?>? bifacialityPct,
+    Value<double?>? maxSeriesFuseA,
+    Value<double?>? maxSystemVoltageV,
+    Value<EquipmentSource>? source,
+    Value<String?>? notes,
+    Value<int>? rowid,
+  }) {
+    return PanelModelsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      manufacturer: manufacturer ?? this.manufacturer,
+      model: model ?? this.model,
+      pmaxW: pmaxW ?? this.pmaxW,
+      vocV: vocV ?? this.vocV,
+      iscA: iscA ?? this.iscA,
+      vmpV: vmpV ?? this.vmpV,
+      impA: impA ?? this.impA,
+      gammaPmaxPct: gammaPmaxPct ?? this.gammaPmaxPct,
+      betaVocPct: betaVocPct ?? this.betaVocPct,
+      betaVmpPct: betaVmpPct ?? this.betaVmpPct,
+      lengthM: lengthM ?? this.lengthM,
+      widthM: widthM ?? this.widthM,
+      weightKg: weightKg ?? this.weightKg,
+      cellType: cellType ?? this.cellType,
+      cellCount: cellCount ?? this.cellCount,
+      bifacial: bifacial ?? this.bifacial,
+      bifacialityPct: bifacialityPct ?? this.bifacialityPct,
+      maxSeriesFuseA: maxSeriesFuseA ?? this.maxSeriesFuseA,
+      maxSystemVoltageV: maxSystemVoltageV ?? this.maxSystemVoltageV,
+      source: source ?? this.source,
+      notes: notes ?? this.notes,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (manufacturer.present) {
+      map['manufacturer'] = Variable<String>(manufacturer.value);
+    }
+    if (model.present) {
+      map['model'] = Variable<String>(model.value);
+    }
+    if (pmaxW.present) {
+      map['pmax_w'] = Variable<double>(pmaxW.value);
+    }
+    if (vocV.present) {
+      map['voc_v'] = Variable<double>(vocV.value);
+    }
+    if (iscA.present) {
+      map['isc_a'] = Variable<double>(iscA.value);
+    }
+    if (vmpV.present) {
+      map['vmp_v'] = Variable<double>(vmpV.value);
+    }
+    if (impA.present) {
+      map['imp_a'] = Variable<double>(impA.value);
+    }
+    if (gammaPmaxPct.present) {
+      map['gamma_pmax_pct'] = Variable<double>(gammaPmaxPct.value);
+    }
+    if (betaVocPct.present) {
+      map['beta_voc_pct'] = Variable<double>(betaVocPct.value);
+    }
+    if (betaVmpPct.present) {
+      map['beta_vmp_pct'] = Variable<double>(betaVmpPct.value);
+    }
+    if (lengthM.present) {
+      map['length_m'] = Variable<double>(lengthM.value);
+    }
+    if (widthM.present) {
+      map['width_m'] = Variable<double>(widthM.value);
+    }
+    if (weightKg.present) {
+      map['weight_kg'] = Variable<double>(weightKg.value);
+    }
+    if (cellType.present) {
+      map['cell_type'] = Variable<String>(
+        $PanelModelsTable.$convertercellType.toSql(cellType.value),
+      );
+    }
+    if (cellCount.present) {
+      map['cell_count'] = Variable<int>(cellCount.value);
+    }
+    if (bifacial.present) {
+      map['bifacial'] = Variable<bool>(bifacial.value);
+    }
+    if (bifacialityPct.present) {
+      map['bifaciality_pct'] = Variable<double>(bifacialityPct.value);
+    }
+    if (maxSeriesFuseA.present) {
+      map['max_series_fuse_a'] = Variable<double>(maxSeriesFuseA.value);
+    }
+    if (maxSystemVoltageV.present) {
+      map['max_system_voltage_v'] = Variable<double>(maxSystemVoltageV.value);
+    }
+    if (source.present) {
+      map['source'] = Variable<String>(
+        $PanelModelsTable.$convertersource.toSql(source.value),
+      );
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PanelModelsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('manufacturer: $manufacturer, ')
+          ..write('model: $model, ')
+          ..write('pmaxW: $pmaxW, ')
+          ..write('vocV: $vocV, ')
+          ..write('iscA: $iscA, ')
+          ..write('vmpV: $vmpV, ')
+          ..write('impA: $impA, ')
+          ..write('gammaPmaxPct: $gammaPmaxPct, ')
+          ..write('betaVocPct: $betaVocPct, ')
+          ..write('betaVmpPct: $betaVmpPct, ')
+          ..write('lengthM: $lengthM, ')
+          ..write('widthM: $widthM, ')
+          ..write('weightKg: $weightKg, ')
+          ..write('cellType: $cellType, ')
+          ..write('cellCount: $cellCount, ')
+          ..write('bifacial: $bifacial, ')
+          ..write('bifacialityPct: $bifacialityPct, ')
+          ..write('maxSeriesFuseA: $maxSeriesFuseA, ')
+          ..write('maxSystemVoltageV: $maxSystemVoltageV, ')
+          ..write('source: $source, ')
+          ..write('notes: $notes, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $InverterModelsTable extends InverterModels
+    with TableInfo<$InverterModelsTable, InverterModel> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $InverterModelsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _manufacturerMeta = const VerificationMeta(
+    'manufacturer',
+  );
+  @override
+  late final GeneratedColumn<String> manufacturer = GeneratedColumn<String>(
+    'manufacturer',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _modelMeta = const VerificationMeta('model');
+  @override
+  late final GeneratedColumn<String> model = GeneratedColumn<String>(
+    'model',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<InverterKind, String> kind =
+      GeneratedColumn<String>(
+        'kind',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: Constant(InverterKind.string.name),
+      ).withConverter<InverterKind>($InverterModelsTable.$converterkind);
+  static const VerificationMeta _pacWMeta = const VerificationMeta('pacW');
+  @override
+  late final GeneratedColumn<double> pacW = GeneratedColumn<double>(
+    'pac_w',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _vdcMaxVMeta = const VerificationMeta(
+    'vdcMaxV',
+  );
+  @override
+  late final GeneratedColumn<double> vdcMaxV = GeneratedColumn<double>(
+    'vdc_max_v',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _mpptMinVMeta = const VerificationMeta(
+    'mpptMinV',
+  );
+  @override
+  late final GeneratedColumn<double> mpptMinV = GeneratedColumn<double>(
+    'mppt_min_v',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _mpptMaxVMeta = const VerificationMeta(
+    'mpptMaxV',
+  );
+  @override
+  late final GeneratedColumn<double> mpptMaxV = GeneratedColumn<double>(
+    'mppt_max_v',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _mpptCountMeta = const VerificationMeta(
+    'mpptCount',
+  );
+  @override
+  late final GeneratedColumn<int> mpptCount = GeneratedColumn<int>(
+    'mppt_count',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _imaxPerMpptAMeta = const VerificationMeta(
+    'imaxPerMpptA',
+  );
+  @override
+  late final GeneratedColumn<double> imaxPerMpptA = GeneratedColumn<double>(
+    'imax_per_mppt_a',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _iscMaxPerMpptAMeta = const VerificationMeta(
+    'iscMaxPerMpptA',
+  );
+  @override
+  late final GeneratedColumn<double> iscMaxPerMpptA = GeneratedColumn<double>(
+    'isc_max_per_mppt_a',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _efficiencyPctMeta = const VerificationMeta(
+    'efficiencyPct',
+  );
+  @override
+  late final GeneratedColumn<double> efficiencyPct = GeneratedColumn<double>(
+    'efficiency_pct',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(96),
+  );
+  static const VerificationMeta _phasesMeta = const VerificationMeta('phases');
+  @override
+  late final GeneratedColumn<int> phases = GeneratedColumn<int>(
+    'phases',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _acVoltageVMeta = const VerificationMeta(
+    'acVoltageV',
+  );
+  @override
+  late final GeneratedColumn<double> acVoltageV = GeneratedColumn<double>(
+    'ac_voltage_v',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(220),
+  );
+  static const VerificationMeta _iacMaxAMeta = const VerificationMeta(
+    'iacMaxA',
+  );
+  @override
+  late final GeneratedColumn<double> iacMaxA = GeneratedColumn<double>(
+    'iac_max_a',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<EquipmentSource, String> source =
+      GeneratedColumn<String>(
+        'source',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: Constant(EquipmentSource.manual.name),
+      ).withConverter<EquipmentSource>($InverterModelsTable.$convertersource);
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    manufacturer,
+    model,
+    kind,
+    pacW,
+    vdcMaxV,
+    mpptMinV,
+    mpptMaxV,
+    mpptCount,
+    imaxPerMpptA,
+    iscMaxPerMpptA,
+    efficiencyPct,
+    phases,
+    acVoltageV,
+    iacMaxA,
+    source,
+    notes,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'inverter_models';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<InverterModel> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('manufacturer')) {
+      context.handle(
+        _manufacturerMeta,
+        manufacturer.isAcceptableOrUnknown(
+          data['manufacturer']!,
+          _manufacturerMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_manufacturerMeta);
+    }
+    if (data.containsKey('model')) {
+      context.handle(
+        _modelMeta,
+        model.isAcceptableOrUnknown(data['model']!, _modelMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_modelMeta);
+    }
+    if (data.containsKey('pac_w')) {
+      context.handle(
+        _pacWMeta,
+        pacW.isAcceptableOrUnknown(data['pac_w']!, _pacWMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_pacWMeta);
+    }
+    if (data.containsKey('vdc_max_v')) {
+      context.handle(
+        _vdcMaxVMeta,
+        vdcMaxV.isAcceptableOrUnknown(data['vdc_max_v']!, _vdcMaxVMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_vdcMaxVMeta);
+    }
+    if (data.containsKey('mppt_min_v')) {
+      context.handle(
+        _mpptMinVMeta,
+        mpptMinV.isAcceptableOrUnknown(data['mppt_min_v']!, _mpptMinVMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_mpptMinVMeta);
+    }
+    if (data.containsKey('mppt_max_v')) {
+      context.handle(
+        _mpptMaxVMeta,
+        mpptMaxV.isAcceptableOrUnknown(data['mppt_max_v']!, _mpptMaxVMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_mpptMaxVMeta);
+    }
+    if (data.containsKey('mppt_count')) {
+      context.handle(
+        _mpptCountMeta,
+        mpptCount.isAcceptableOrUnknown(data['mppt_count']!, _mpptCountMeta),
+      );
+    }
+    if (data.containsKey('imax_per_mppt_a')) {
+      context.handle(
+        _imaxPerMpptAMeta,
+        imaxPerMpptA.isAcceptableOrUnknown(
+          data['imax_per_mppt_a']!,
+          _imaxPerMpptAMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_imaxPerMpptAMeta);
+    }
+    if (data.containsKey('isc_max_per_mppt_a')) {
+      context.handle(
+        _iscMaxPerMpptAMeta,
+        iscMaxPerMpptA.isAcceptableOrUnknown(
+          data['isc_max_per_mppt_a']!,
+          _iscMaxPerMpptAMeta,
+        ),
+      );
+    }
+    if (data.containsKey('efficiency_pct')) {
+      context.handle(
+        _efficiencyPctMeta,
+        efficiencyPct.isAcceptableOrUnknown(
+          data['efficiency_pct']!,
+          _efficiencyPctMeta,
+        ),
+      );
+    }
+    if (data.containsKey('phases')) {
+      context.handle(
+        _phasesMeta,
+        phases.isAcceptableOrUnknown(data['phases']!, _phasesMeta),
+      );
+    }
+    if (data.containsKey('ac_voltage_v')) {
+      context.handle(
+        _acVoltageVMeta,
+        acVoltageV.isAcceptableOrUnknown(
+          data['ac_voltage_v']!,
+          _acVoltageVMeta,
+        ),
+      );
+    }
+    if (data.containsKey('iac_max_a')) {
+      context.handle(
+        _iacMaxAMeta,
+        iacMaxA.isAcceptableOrUnknown(data['iac_max_a']!, _iacMaxAMeta),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  InverterModel map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return InverterModel(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      manufacturer: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}manufacturer'],
+      )!,
+      model: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}model'],
+      )!,
+      kind: $InverterModelsTable.$converterkind.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}kind'],
+        )!,
+      ),
+      pacW: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}pac_w'],
+      )!,
+      vdcMaxV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}vdc_max_v'],
+      )!,
+      mpptMinV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}mppt_min_v'],
+      )!,
+      mpptMaxV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}mppt_max_v'],
+      )!,
+      mpptCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}mppt_count'],
+      )!,
+      imaxPerMpptA: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}imax_per_mppt_a'],
+      )!,
+      iscMaxPerMpptA: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}isc_max_per_mppt_a'],
+      ),
+      efficiencyPct: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}efficiency_pct'],
+      )!,
+      phases: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}phases'],
+      )!,
+      acVoltageV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}ac_voltage_v'],
+      )!,
+      iacMaxA: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}iac_max_a'],
+      ),
+      source: $InverterModelsTable.$convertersource.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}source'],
+        )!,
+      ),
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+    );
+  }
+
+  @override
+  $InverterModelsTable createAlias(String alias) {
+    return $InverterModelsTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<InverterKind, String, String> $converterkind =
+      const EnumNameConverter<InverterKind>(InverterKind.values);
+  static JsonTypeConverter2<EquipmentSource, String, String> $convertersource =
+      const EnumNameConverter<EquipmentSource>(EquipmentSource.values);
+}
+
+class InverterModel extends DataClass implements Insertable<InverterModel> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Fabricante.
+  final String manufacturer;
+
+  /// Modelo.
+  final String model;
+
+  /// String, micro o híbrido.
+  final InverterKind kind;
+
+  /// Potencia AC nominal (W).
+  final double pacW;
+
+  /// Tensión DC máxima (V).
+  final double vdcMaxV;
+
+  /// Tensión mínima del MPPT (V).
+  final double mpptMinV;
+
+  /// Tensión máxima del MPPT (V).
+  final double mpptMaxV;
+
+  /// Número de MPPT (en micros: entradas de panel).
+  final int mpptCount;
+
+  /// Corriente máxima de entrada por MPPT (A).
+  final double imaxPerMpptA;
+
+  /// Corriente de cortocircuito máxima por MPPT (A).
+  final double? iscMaxPerMpptA;
+
+  /// Eficiencia (%; CEC o europea).
+  final double efficiencyPct;
+
+  /// Fases de salida (1 o 3).
+  final int phases;
+
+  /// Tensión AC nominal (V).
+  final double acVoltageV;
+
+  /// Corriente AC máxima de salida (A).
+  final double? iacMaxA;
+
+  /// Origen.
+  final EquipmentSource source;
+
+  /// Notas.
+  final String? notes;
+  const InverterModel({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.manufacturer,
+    required this.model,
+    required this.kind,
+    required this.pacW,
+    required this.vdcMaxV,
+    required this.mpptMinV,
+    required this.mpptMaxV,
+    required this.mpptCount,
+    required this.imaxPerMpptA,
+    this.iscMaxPerMpptA,
+    required this.efficiencyPct,
+    required this.phases,
+    required this.acVoltageV,
+    this.iacMaxA,
+    required this.source,
+    this.notes,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['manufacturer'] = Variable<String>(manufacturer);
+    map['model'] = Variable<String>(model);
+    {
+      map['kind'] = Variable<String>(
+        $InverterModelsTable.$converterkind.toSql(kind),
+      );
+    }
+    map['pac_w'] = Variable<double>(pacW);
+    map['vdc_max_v'] = Variable<double>(vdcMaxV);
+    map['mppt_min_v'] = Variable<double>(mpptMinV);
+    map['mppt_max_v'] = Variable<double>(mpptMaxV);
+    map['mppt_count'] = Variable<int>(mpptCount);
+    map['imax_per_mppt_a'] = Variable<double>(imaxPerMpptA);
+    if (!nullToAbsent || iscMaxPerMpptA != null) {
+      map['isc_max_per_mppt_a'] = Variable<double>(iscMaxPerMpptA);
+    }
+    map['efficiency_pct'] = Variable<double>(efficiencyPct);
+    map['phases'] = Variable<int>(phases);
+    map['ac_voltage_v'] = Variable<double>(acVoltageV);
+    if (!nullToAbsent || iacMaxA != null) {
+      map['iac_max_a'] = Variable<double>(iacMaxA);
+    }
+    {
+      map['source'] = Variable<String>(
+        $InverterModelsTable.$convertersource.toSql(source),
+      );
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    return map;
+  }
+
+  InverterModelsCompanion toCompanion(bool nullToAbsent) {
+    return InverterModelsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      manufacturer: Value(manufacturer),
+      model: Value(model),
+      kind: Value(kind),
+      pacW: Value(pacW),
+      vdcMaxV: Value(vdcMaxV),
+      mpptMinV: Value(mpptMinV),
+      mpptMaxV: Value(mpptMaxV),
+      mpptCount: Value(mpptCount),
+      imaxPerMpptA: Value(imaxPerMpptA),
+      iscMaxPerMpptA: iscMaxPerMpptA == null && nullToAbsent
+          ? const Value.absent()
+          : Value(iscMaxPerMpptA),
+      efficiencyPct: Value(efficiencyPct),
+      phases: Value(phases),
+      acVoltageV: Value(acVoltageV),
+      iacMaxA: iacMaxA == null && nullToAbsent
+          ? const Value.absent()
+          : Value(iacMaxA),
+      source: Value(source),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+    );
+  }
+
+  factory InverterModel.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return InverterModel(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      manufacturer: serializer.fromJson<String>(json['manufacturer']),
+      model: serializer.fromJson<String>(json['model']),
+      kind: $InverterModelsTable.$converterkind.fromJson(
+        serializer.fromJson<String>(json['kind']),
+      ),
+      pacW: serializer.fromJson<double>(json['pacW']),
+      vdcMaxV: serializer.fromJson<double>(json['vdcMaxV']),
+      mpptMinV: serializer.fromJson<double>(json['mpptMinV']),
+      mpptMaxV: serializer.fromJson<double>(json['mpptMaxV']),
+      mpptCount: serializer.fromJson<int>(json['mpptCount']),
+      imaxPerMpptA: serializer.fromJson<double>(json['imaxPerMpptA']),
+      iscMaxPerMpptA: serializer.fromJson<double?>(json['iscMaxPerMpptA']),
+      efficiencyPct: serializer.fromJson<double>(json['efficiencyPct']),
+      phases: serializer.fromJson<int>(json['phases']),
+      acVoltageV: serializer.fromJson<double>(json['acVoltageV']),
+      iacMaxA: serializer.fromJson<double?>(json['iacMaxA']),
+      source: $InverterModelsTable.$convertersource.fromJson(
+        serializer.fromJson<String>(json['source']),
+      ),
+      notes: serializer.fromJson<String?>(json['notes']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'manufacturer': serializer.toJson<String>(manufacturer),
+      'model': serializer.toJson<String>(model),
+      'kind': serializer.toJson<String>(
+        $InverterModelsTable.$converterkind.toJson(kind),
+      ),
+      'pacW': serializer.toJson<double>(pacW),
+      'vdcMaxV': serializer.toJson<double>(vdcMaxV),
+      'mpptMinV': serializer.toJson<double>(mpptMinV),
+      'mpptMaxV': serializer.toJson<double>(mpptMaxV),
+      'mpptCount': serializer.toJson<int>(mpptCount),
+      'imaxPerMpptA': serializer.toJson<double>(imaxPerMpptA),
+      'iscMaxPerMpptA': serializer.toJson<double?>(iscMaxPerMpptA),
+      'efficiencyPct': serializer.toJson<double>(efficiencyPct),
+      'phases': serializer.toJson<int>(phases),
+      'acVoltageV': serializer.toJson<double>(acVoltageV),
+      'iacMaxA': serializer.toJson<double?>(iacMaxA),
+      'source': serializer.toJson<String>(
+        $InverterModelsTable.$convertersource.toJson(source),
+      ),
+      'notes': serializer.toJson<String?>(notes),
+    };
+  }
+
+  InverterModel copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? manufacturer,
+    String? model,
+    InverterKind? kind,
+    double? pacW,
+    double? vdcMaxV,
+    double? mpptMinV,
+    double? mpptMaxV,
+    int? mpptCount,
+    double? imaxPerMpptA,
+    Value<double?> iscMaxPerMpptA = const Value.absent(),
+    double? efficiencyPct,
+    int? phases,
+    double? acVoltageV,
+    Value<double?> iacMaxA = const Value.absent(),
+    EquipmentSource? source,
+    Value<String?> notes = const Value.absent(),
+  }) => InverterModel(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    manufacturer: manufacturer ?? this.manufacturer,
+    model: model ?? this.model,
+    kind: kind ?? this.kind,
+    pacW: pacW ?? this.pacW,
+    vdcMaxV: vdcMaxV ?? this.vdcMaxV,
+    mpptMinV: mpptMinV ?? this.mpptMinV,
+    mpptMaxV: mpptMaxV ?? this.mpptMaxV,
+    mpptCount: mpptCount ?? this.mpptCount,
+    imaxPerMpptA: imaxPerMpptA ?? this.imaxPerMpptA,
+    iscMaxPerMpptA: iscMaxPerMpptA.present
+        ? iscMaxPerMpptA.value
+        : this.iscMaxPerMpptA,
+    efficiencyPct: efficiencyPct ?? this.efficiencyPct,
+    phases: phases ?? this.phases,
+    acVoltageV: acVoltageV ?? this.acVoltageV,
+    iacMaxA: iacMaxA.present ? iacMaxA.value : this.iacMaxA,
+    source: source ?? this.source,
+    notes: notes.present ? notes.value : this.notes,
+  );
+  InverterModel copyWithCompanion(InverterModelsCompanion data) {
+    return InverterModel(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      manufacturer: data.manufacturer.present
+          ? data.manufacturer.value
+          : this.manufacturer,
+      model: data.model.present ? data.model.value : this.model,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      pacW: data.pacW.present ? data.pacW.value : this.pacW,
+      vdcMaxV: data.vdcMaxV.present ? data.vdcMaxV.value : this.vdcMaxV,
+      mpptMinV: data.mpptMinV.present ? data.mpptMinV.value : this.mpptMinV,
+      mpptMaxV: data.mpptMaxV.present ? data.mpptMaxV.value : this.mpptMaxV,
+      mpptCount: data.mpptCount.present ? data.mpptCount.value : this.mpptCount,
+      imaxPerMpptA: data.imaxPerMpptA.present
+          ? data.imaxPerMpptA.value
+          : this.imaxPerMpptA,
+      iscMaxPerMpptA: data.iscMaxPerMpptA.present
+          ? data.iscMaxPerMpptA.value
+          : this.iscMaxPerMpptA,
+      efficiencyPct: data.efficiencyPct.present
+          ? data.efficiencyPct.value
+          : this.efficiencyPct,
+      phases: data.phases.present ? data.phases.value : this.phases,
+      acVoltageV: data.acVoltageV.present
+          ? data.acVoltageV.value
+          : this.acVoltageV,
+      iacMaxA: data.iacMaxA.present ? data.iacMaxA.value : this.iacMaxA,
+      source: data.source.present ? data.source.value : this.source,
+      notes: data.notes.present ? data.notes.value : this.notes,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('InverterModel(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('manufacturer: $manufacturer, ')
+          ..write('model: $model, ')
+          ..write('kind: $kind, ')
+          ..write('pacW: $pacW, ')
+          ..write('vdcMaxV: $vdcMaxV, ')
+          ..write('mpptMinV: $mpptMinV, ')
+          ..write('mpptMaxV: $mpptMaxV, ')
+          ..write('mpptCount: $mpptCount, ')
+          ..write('imaxPerMpptA: $imaxPerMpptA, ')
+          ..write('iscMaxPerMpptA: $iscMaxPerMpptA, ')
+          ..write('efficiencyPct: $efficiencyPct, ')
+          ..write('phases: $phases, ')
+          ..write('acVoltageV: $acVoltageV, ')
+          ..write('iacMaxA: $iacMaxA, ')
+          ..write('source: $source, ')
+          ..write('notes: $notes')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    manufacturer,
+    model,
+    kind,
+    pacW,
+    vdcMaxV,
+    mpptMinV,
+    mpptMaxV,
+    mpptCount,
+    imaxPerMpptA,
+    iscMaxPerMpptA,
+    efficiencyPct,
+    phases,
+    acVoltageV,
+    iacMaxA,
+    source,
+    notes,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is InverterModel &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.manufacturer == this.manufacturer &&
+          other.model == this.model &&
+          other.kind == this.kind &&
+          other.pacW == this.pacW &&
+          other.vdcMaxV == this.vdcMaxV &&
+          other.mpptMinV == this.mpptMinV &&
+          other.mpptMaxV == this.mpptMaxV &&
+          other.mpptCount == this.mpptCount &&
+          other.imaxPerMpptA == this.imaxPerMpptA &&
+          other.iscMaxPerMpptA == this.iscMaxPerMpptA &&
+          other.efficiencyPct == this.efficiencyPct &&
+          other.phases == this.phases &&
+          other.acVoltageV == this.acVoltageV &&
+          other.iacMaxA == this.iacMaxA &&
+          other.source == this.source &&
+          other.notes == this.notes);
+}
+
+class InverterModelsCompanion extends UpdateCompanion<InverterModel> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> manufacturer;
+  final Value<String> model;
+  final Value<InverterKind> kind;
+  final Value<double> pacW;
+  final Value<double> vdcMaxV;
+  final Value<double> mpptMinV;
+  final Value<double> mpptMaxV;
+  final Value<int> mpptCount;
+  final Value<double> imaxPerMpptA;
+  final Value<double?> iscMaxPerMpptA;
+  final Value<double> efficiencyPct;
+  final Value<int> phases;
+  final Value<double> acVoltageV;
+  final Value<double?> iacMaxA;
+  final Value<EquipmentSource> source;
+  final Value<String?> notes;
+  final Value<int> rowid;
+  const InverterModelsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.manufacturer = const Value.absent(),
+    this.model = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.pacW = const Value.absent(),
+    this.vdcMaxV = const Value.absent(),
+    this.mpptMinV = const Value.absent(),
+    this.mpptMaxV = const Value.absent(),
+    this.mpptCount = const Value.absent(),
+    this.imaxPerMpptA = const Value.absent(),
+    this.iscMaxPerMpptA = const Value.absent(),
+    this.efficiencyPct = const Value.absent(),
+    this.phases = const Value.absent(),
+    this.acVoltageV = const Value.absent(),
+    this.iacMaxA = const Value.absent(),
+    this.source = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  InverterModelsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String manufacturer,
+    required String model,
+    this.kind = const Value.absent(),
+    required double pacW,
+    required double vdcMaxV,
+    required double mpptMinV,
+    required double mpptMaxV,
+    this.mpptCount = const Value.absent(),
+    required double imaxPerMpptA,
+    this.iscMaxPerMpptA = const Value.absent(),
+    this.efficiencyPct = const Value.absent(),
+    this.phases = const Value.absent(),
+    this.acVoltageV = const Value.absent(),
+    this.iacMaxA = const Value.absent(),
+    this.source = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : manufacturer = Value(manufacturer),
+       model = Value(model),
+       pacW = Value(pacW),
+       vdcMaxV = Value(vdcMaxV),
+       mpptMinV = Value(mpptMinV),
+       mpptMaxV = Value(mpptMaxV),
+       imaxPerMpptA = Value(imaxPerMpptA);
+  static Insertable<InverterModel> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? manufacturer,
+    Expression<String>? model,
+    Expression<String>? kind,
+    Expression<double>? pacW,
+    Expression<double>? vdcMaxV,
+    Expression<double>? mpptMinV,
+    Expression<double>? mpptMaxV,
+    Expression<int>? mpptCount,
+    Expression<double>? imaxPerMpptA,
+    Expression<double>? iscMaxPerMpptA,
+    Expression<double>? efficiencyPct,
+    Expression<int>? phases,
+    Expression<double>? acVoltageV,
+    Expression<double>? iacMaxA,
+    Expression<String>? source,
+    Expression<String>? notes,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (manufacturer != null) 'manufacturer': manufacturer,
+      if (model != null) 'model': model,
+      if (kind != null) 'kind': kind,
+      if (pacW != null) 'pac_w': pacW,
+      if (vdcMaxV != null) 'vdc_max_v': vdcMaxV,
+      if (mpptMinV != null) 'mppt_min_v': mpptMinV,
+      if (mpptMaxV != null) 'mppt_max_v': mpptMaxV,
+      if (mpptCount != null) 'mppt_count': mpptCount,
+      if (imaxPerMpptA != null) 'imax_per_mppt_a': imaxPerMpptA,
+      if (iscMaxPerMpptA != null) 'isc_max_per_mppt_a': iscMaxPerMpptA,
+      if (efficiencyPct != null) 'efficiency_pct': efficiencyPct,
+      if (phases != null) 'phases': phases,
+      if (acVoltageV != null) 'ac_voltage_v': acVoltageV,
+      if (iacMaxA != null) 'iac_max_a': iacMaxA,
+      if (source != null) 'source': source,
+      if (notes != null) 'notes': notes,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  InverterModelsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? manufacturer,
+    Value<String>? model,
+    Value<InverterKind>? kind,
+    Value<double>? pacW,
+    Value<double>? vdcMaxV,
+    Value<double>? mpptMinV,
+    Value<double>? mpptMaxV,
+    Value<int>? mpptCount,
+    Value<double>? imaxPerMpptA,
+    Value<double?>? iscMaxPerMpptA,
+    Value<double>? efficiencyPct,
+    Value<int>? phases,
+    Value<double>? acVoltageV,
+    Value<double?>? iacMaxA,
+    Value<EquipmentSource>? source,
+    Value<String?>? notes,
+    Value<int>? rowid,
+  }) {
+    return InverterModelsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      manufacturer: manufacturer ?? this.manufacturer,
+      model: model ?? this.model,
+      kind: kind ?? this.kind,
+      pacW: pacW ?? this.pacW,
+      vdcMaxV: vdcMaxV ?? this.vdcMaxV,
+      mpptMinV: mpptMinV ?? this.mpptMinV,
+      mpptMaxV: mpptMaxV ?? this.mpptMaxV,
+      mpptCount: mpptCount ?? this.mpptCount,
+      imaxPerMpptA: imaxPerMpptA ?? this.imaxPerMpptA,
+      iscMaxPerMpptA: iscMaxPerMpptA ?? this.iscMaxPerMpptA,
+      efficiencyPct: efficiencyPct ?? this.efficiencyPct,
+      phases: phases ?? this.phases,
+      acVoltageV: acVoltageV ?? this.acVoltageV,
+      iacMaxA: iacMaxA ?? this.iacMaxA,
+      source: source ?? this.source,
+      notes: notes ?? this.notes,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (manufacturer.present) {
+      map['manufacturer'] = Variable<String>(manufacturer.value);
+    }
+    if (model.present) {
+      map['model'] = Variable<String>(model.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(
+        $InverterModelsTable.$converterkind.toSql(kind.value),
+      );
+    }
+    if (pacW.present) {
+      map['pac_w'] = Variable<double>(pacW.value);
+    }
+    if (vdcMaxV.present) {
+      map['vdc_max_v'] = Variable<double>(vdcMaxV.value);
+    }
+    if (mpptMinV.present) {
+      map['mppt_min_v'] = Variable<double>(mpptMinV.value);
+    }
+    if (mpptMaxV.present) {
+      map['mppt_max_v'] = Variable<double>(mpptMaxV.value);
+    }
+    if (mpptCount.present) {
+      map['mppt_count'] = Variable<int>(mpptCount.value);
+    }
+    if (imaxPerMpptA.present) {
+      map['imax_per_mppt_a'] = Variable<double>(imaxPerMpptA.value);
+    }
+    if (iscMaxPerMpptA.present) {
+      map['isc_max_per_mppt_a'] = Variable<double>(iscMaxPerMpptA.value);
+    }
+    if (efficiencyPct.present) {
+      map['efficiency_pct'] = Variable<double>(efficiencyPct.value);
+    }
+    if (phases.present) {
+      map['phases'] = Variable<int>(phases.value);
+    }
+    if (acVoltageV.present) {
+      map['ac_voltage_v'] = Variable<double>(acVoltageV.value);
+    }
+    if (iacMaxA.present) {
+      map['iac_max_a'] = Variable<double>(iacMaxA.value);
+    }
+    if (source.present) {
+      map['source'] = Variable<String>(
+        $InverterModelsTable.$convertersource.toSql(source.value),
+      );
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('InverterModelsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('manufacturer: $manufacturer, ')
+          ..write('model: $model, ')
+          ..write('kind: $kind, ')
+          ..write('pacW: $pacW, ')
+          ..write('vdcMaxV: $vdcMaxV, ')
+          ..write('mpptMinV: $mpptMinV, ')
+          ..write('mpptMaxV: $mpptMaxV, ')
+          ..write('mpptCount: $mpptCount, ')
+          ..write('imaxPerMpptA: $imaxPerMpptA, ')
+          ..write('iscMaxPerMpptA: $iscMaxPerMpptA, ')
+          ..write('efficiencyPct: $efficiencyPct, ')
+          ..write('phases: $phases, ')
+          ..write('acVoltageV: $acVoltageV, ')
+          ..write('iacMaxA: $iacMaxA, ')
+          ..write('source: $source, ')
+          ..write('notes: $notes, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $OptimizerModelsTable extends OptimizerModels
+    with TableInfo<$OptimizerModelsTable, OptimizerModel> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $OptimizerModelsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _manufacturerMeta = const VerificationMeta(
+    'manufacturer',
+  );
+  @override
+  late final GeneratedColumn<String> manufacturer = GeneratedColumn<String>(
+    'manufacturer',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _modelMeta = const VerificationMeta('model');
+  @override
+  late final GeneratedColumn<String> model = GeneratedColumn<String>(
+    'model',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _pmaxInWMeta = const VerificationMeta(
+    'pmaxInW',
+  );
+  @override
+  late final GeneratedColumn<double> pmaxInW = GeneratedColumn<double>(
+    'pmax_in_w',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _vinMaxVMeta = const VerificationMeta(
+    'vinMaxV',
+  );
+  @override
+  late final GeneratedColumn<double> vinMaxV = GeneratedColumn<double>(
+    'vin_max_v',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _imaxInAMeta = const VerificationMeta(
+    'imaxInA',
+  );
+  @override
+  late final GeneratedColumn<double> imaxInA = GeneratedColumn<double>(
+    'imax_in_a',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _voutMaxVMeta = const VerificationMeta(
+    'voutMaxV',
+  );
+  @override
+  late final GeneratedColumn<double> voutMaxV = GeneratedColumn<double>(
+    'vout_max_v',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _ioutMaxAMeta = const VerificationMeta(
+    'ioutMaxA',
+  );
+  @override
+  late final GeneratedColumn<double> ioutMaxA = GeneratedColumn<double>(
+    'iout_max_a',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _efficiencyPctMeta = const VerificationMeta(
+    'efficiencyPct',
+  );
+  @override
+  late final GeneratedColumn<double> efficiencyPct = GeneratedColumn<double>(
+    'efficiency_pct',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(99),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<EquipmentSource, String> source =
+      GeneratedColumn<String>(
+        'source',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: Constant(EquipmentSource.manual.name),
+      ).withConverter<EquipmentSource>($OptimizerModelsTable.$convertersource);
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    manufacturer,
+    model,
+    pmaxInW,
+    vinMaxV,
+    imaxInA,
+    voutMaxV,
+    ioutMaxA,
+    efficiencyPct,
+    source,
+    notes,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'optimizer_models';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<OptimizerModel> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('manufacturer')) {
+      context.handle(
+        _manufacturerMeta,
+        manufacturer.isAcceptableOrUnknown(
+          data['manufacturer']!,
+          _manufacturerMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_manufacturerMeta);
+    }
+    if (data.containsKey('model')) {
+      context.handle(
+        _modelMeta,
+        model.isAcceptableOrUnknown(data['model']!, _modelMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_modelMeta);
+    }
+    if (data.containsKey('pmax_in_w')) {
+      context.handle(
+        _pmaxInWMeta,
+        pmaxInW.isAcceptableOrUnknown(data['pmax_in_w']!, _pmaxInWMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_pmaxInWMeta);
+    }
+    if (data.containsKey('vin_max_v')) {
+      context.handle(
+        _vinMaxVMeta,
+        vinMaxV.isAcceptableOrUnknown(data['vin_max_v']!, _vinMaxVMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_vinMaxVMeta);
+    }
+    if (data.containsKey('imax_in_a')) {
+      context.handle(
+        _imaxInAMeta,
+        imaxInA.isAcceptableOrUnknown(data['imax_in_a']!, _imaxInAMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_imaxInAMeta);
+    }
+    if (data.containsKey('vout_max_v')) {
+      context.handle(
+        _voutMaxVMeta,
+        voutMaxV.isAcceptableOrUnknown(data['vout_max_v']!, _voutMaxVMeta),
+      );
+    }
+    if (data.containsKey('iout_max_a')) {
+      context.handle(
+        _ioutMaxAMeta,
+        ioutMaxA.isAcceptableOrUnknown(data['iout_max_a']!, _ioutMaxAMeta),
+      );
+    }
+    if (data.containsKey('efficiency_pct')) {
+      context.handle(
+        _efficiencyPctMeta,
+        efficiencyPct.isAcceptableOrUnknown(
+          data['efficiency_pct']!,
+          _efficiencyPctMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  OptimizerModel map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return OptimizerModel(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      manufacturer: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}manufacturer'],
+      )!,
+      model: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}model'],
+      )!,
+      pmaxInW: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}pmax_in_w'],
+      )!,
+      vinMaxV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}vin_max_v'],
+      )!,
+      imaxInA: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}imax_in_a'],
+      )!,
+      voutMaxV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}vout_max_v'],
+      ),
+      ioutMaxA: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}iout_max_a'],
+      ),
+      efficiencyPct: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}efficiency_pct'],
+      )!,
+      source: $OptimizerModelsTable.$convertersource.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}source'],
+        )!,
+      ),
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+    );
+  }
+
+  @override
+  $OptimizerModelsTable createAlias(String alias) {
+    return $OptimizerModelsTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<EquipmentSource, String, String> $convertersource =
+      const EnumNameConverter<EquipmentSource>(EquipmentSource.values);
+}
+
+class OptimizerModel extends DataClass implements Insertable<OptimizerModel> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Fabricante.
+  final String manufacturer;
+
+  /// Modelo.
+  final String model;
+
+  /// Potencia de entrada máxima (W).
+  final double pmaxInW;
+
+  /// Tensión de entrada máxima (V).
+  final double vinMaxV;
+
+  /// Corriente de entrada máxima (A).
+  final double imaxInA;
+
+  /// Tensión de salida máxima (V).
+  final double? voutMaxV;
+
+  /// Corriente de salida máxima (A).
+  final double? ioutMaxA;
+
+  /// Eficiencia (%).
+  final double efficiencyPct;
+
+  /// Origen.
+  final EquipmentSource source;
+
+  /// Notas.
+  final String? notes;
+  const OptimizerModel({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.manufacturer,
+    required this.model,
+    required this.pmaxInW,
+    required this.vinMaxV,
+    required this.imaxInA,
+    this.voutMaxV,
+    this.ioutMaxA,
+    required this.efficiencyPct,
+    required this.source,
+    this.notes,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['manufacturer'] = Variable<String>(manufacturer);
+    map['model'] = Variable<String>(model);
+    map['pmax_in_w'] = Variable<double>(pmaxInW);
+    map['vin_max_v'] = Variable<double>(vinMaxV);
+    map['imax_in_a'] = Variable<double>(imaxInA);
+    if (!nullToAbsent || voutMaxV != null) {
+      map['vout_max_v'] = Variable<double>(voutMaxV);
+    }
+    if (!nullToAbsent || ioutMaxA != null) {
+      map['iout_max_a'] = Variable<double>(ioutMaxA);
+    }
+    map['efficiency_pct'] = Variable<double>(efficiencyPct);
+    {
+      map['source'] = Variable<String>(
+        $OptimizerModelsTable.$convertersource.toSql(source),
+      );
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    return map;
+  }
+
+  OptimizerModelsCompanion toCompanion(bool nullToAbsent) {
+    return OptimizerModelsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      manufacturer: Value(manufacturer),
+      model: Value(model),
+      pmaxInW: Value(pmaxInW),
+      vinMaxV: Value(vinMaxV),
+      imaxInA: Value(imaxInA),
+      voutMaxV: voutMaxV == null && nullToAbsent
+          ? const Value.absent()
+          : Value(voutMaxV),
+      ioutMaxA: ioutMaxA == null && nullToAbsent
+          ? const Value.absent()
+          : Value(ioutMaxA),
+      efficiencyPct: Value(efficiencyPct),
+      source: Value(source),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+    );
+  }
+
+  factory OptimizerModel.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return OptimizerModel(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      manufacturer: serializer.fromJson<String>(json['manufacturer']),
+      model: serializer.fromJson<String>(json['model']),
+      pmaxInW: serializer.fromJson<double>(json['pmaxInW']),
+      vinMaxV: serializer.fromJson<double>(json['vinMaxV']),
+      imaxInA: serializer.fromJson<double>(json['imaxInA']),
+      voutMaxV: serializer.fromJson<double?>(json['voutMaxV']),
+      ioutMaxA: serializer.fromJson<double?>(json['ioutMaxA']),
+      efficiencyPct: serializer.fromJson<double>(json['efficiencyPct']),
+      source: $OptimizerModelsTable.$convertersource.fromJson(
+        serializer.fromJson<String>(json['source']),
+      ),
+      notes: serializer.fromJson<String?>(json['notes']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'manufacturer': serializer.toJson<String>(manufacturer),
+      'model': serializer.toJson<String>(model),
+      'pmaxInW': serializer.toJson<double>(pmaxInW),
+      'vinMaxV': serializer.toJson<double>(vinMaxV),
+      'imaxInA': serializer.toJson<double>(imaxInA),
+      'voutMaxV': serializer.toJson<double?>(voutMaxV),
+      'ioutMaxA': serializer.toJson<double?>(ioutMaxA),
+      'efficiencyPct': serializer.toJson<double>(efficiencyPct),
+      'source': serializer.toJson<String>(
+        $OptimizerModelsTable.$convertersource.toJson(source),
+      ),
+      'notes': serializer.toJson<String?>(notes),
+    };
+  }
+
+  OptimizerModel copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? manufacturer,
+    String? model,
+    double? pmaxInW,
+    double? vinMaxV,
+    double? imaxInA,
+    Value<double?> voutMaxV = const Value.absent(),
+    Value<double?> ioutMaxA = const Value.absent(),
+    double? efficiencyPct,
+    EquipmentSource? source,
+    Value<String?> notes = const Value.absent(),
+  }) => OptimizerModel(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    manufacturer: manufacturer ?? this.manufacturer,
+    model: model ?? this.model,
+    pmaxInW: pmaxInW ?? this.pmaxInW,
+    vinMaxV: vinMaxV ?? this.vinMaxV,
+    imaxInA: imaxInA ?? this.imaxInA,
+    voutMaxV: voutMaxV.present ? voutMaxV.value : this.voutMaxV,
+    ioutMaxA: ioutMaxA.present ? ioutMaxA.value : this.ioutMaxA,
+    efficiencyPct: efficiencyPct ?? this.efficiencyPct,
+    source: source ?? this.source,
+    notes: notes.present ? notes.value : this.notes,
+  );
+  OptimizerModel copyWithCompanion(OptimizerModelsCompanion data) {
+    return OptimizerModel(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      manufacturer: data.manufacturer.present
+          ? data.manufacturer.value
+          : this.manufacturer,
+      model: data.model.present ? data.model.value : this.model,
+      pmaxInW: data.pmaxInW.present ? data.pmaxInW.value : this.pmaxInW,
+      vinMaxV: data.vinMaxV.present ? data.vinMaxV.value : this.vinMaxV,
+      imaxInA: data.imaxInA.present ? data.imaxInA.value : this.imaxInA,
+      voutMaxV: data.voutMaxV.present ? data.voutMaxV.value : this.voutMaxV,
+      ioutMaxA: data.ioutMaxA.present ? data.ioutMaxA.value : this.ioutMaxA,
+      efficiencyPct: data.efficiencyPct.present
+          ? data.efficiencyPct.value
+          : this.efficiencyPct,
+      source: data.source.present ? data.source.value : this.source,
+      notes: data.notes.present ? data.notes.value : this.notes,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('OptimizerModel(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('manufacturer: $manufacturer, ')
+          ..write('model: $model, ')
+          ..write('pmaxInW: $pmaxInW, ')
+          ..write('vinMaxV: $vinMaxV, ')
+          ..write('imaxInA: $imaxInA, ')
+          ..write('voutMaxV: $voutMaxV, ')
+          ..write('ioutMaxA: $ioutMaxA, ')
+          ..write('efficiencyPct: $efficiencyPct, ')
+          ..write('source: $source, ')
+          ..write('notes: $notes')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    manufacturer,
+    model,
+    pmaxInW,
+    vinMaxV,
+    imaxInA,
+    voutMaxV,
+    ioutMaxA,
+    efficiencyPct,
+    source,
+    notes,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is OptimizerModel &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.manufacturer == this.manufacturer &&
+          other.model == this.model &&
+          other.pmaxInW == this.pmaxInW &&
+          other.vinMaxV == this.vinMaxV &&
+          other.imaxInA == this.imaxInA &&
+          other.voutMaxV == this.voutMaxV &&
+          other.ioutMaxA == this.ioutMaxA &&
+          other.efficiencyPct == this.efficiencyPct &&
+          other.source == this.source &&
+          other.notes == this.notes);
+}
+
+class OptimizerModelsCompanion extends UpdateCompanion<OptimizerModel> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> manufacturer;
+  final Value<String> model;
+  final Value<double> pmaxInW;
+  final Value<double> vinMaxV;
+  final Value<double> imaxInA;
+  final Value<double?> voutMaxV;
+  final Value<double?> ioutMaxA;
+  final Value<double> efficiencyPct;
+  final Value<EquipmentSource> source;
+  final Value<String?> notes;
+  final Value<int> rowid;
+  const OptimizerModelsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.manufacturer = const Value.absent(),
+    this.model = const Value.absent(),
+    this.pmaxInW = const Value.absent(),
+    this.vinMaxV = const Value.absent(),
+    this.imaxInA = const Value.absent(),
+    this.voutMaxV = const Value.absent(),
+    this.ioutMaxA = const Value.absent(),
+    this.efficiencyPct = const Value.absent(),
+    this.source = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  OptimizerModelsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String manufacturer,
+    required String model,
+    required double pmaxInW,
+    required double vinMaxV,
+    required double imaxInA,
+    this.voutMaxV = const Value.absent(),
+    this.ioutMaxA = const Value.absent(),
+    this.efficiencyPct = const Value.absent(),
+    this.source = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : manufacturer = Value(manufacturer),
+       model = Value(model),
+       pmaxInW = Value(pmaxInW),
+       vinMaxV = Value(vinMaxV),
+       imaxInA = Value(imaxInA);
+  static Insertable<OptimizerModel> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? manufacturer,
+    Expression<String>? model,
+    Expression<double>? pmaxInW,
+    Expression<double>? vinMaxV,
+    Expression<double>? imaxInA,
+    Expression<double>? voutMaxV,
+    Expression<double>? ioutMaxA,
+    Expression<double>? efficiencyPct,
+    Expression<String>? source,
+    Expression<String>? notes,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (manufacturer != null) 'manufacturer': manufacturer,
+      if (model != null) 'model': model,
+      if (pmaxInW != null) 'pmax_in_w': pmaxInW,
+      if (vinMaxV != null) 'vin_max_v': vinMaxV,
+      if (imaxInA != null) 'imax_in_a': imaxInA,
+      if (voutMaxV != null) 'vout_max_v': voutMaxV,
+      if (ioutMaxA != null) 'iout_max_a': ioutMaxA,
+      if (efficiencyPct != null) 'efficiency_pct': efficiencyPct,
+      if (source != null) 'source': source,
+      if (notes != null) 'notes': notes,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  OptimizerModelsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? manufacturer,
+    Value<String>? model,
+    Value<double>? pmaxInW,
+    Value<double>? vinMaxV,
+    Value<double>? imaxInA,
+    Value<double?>? voutMaxV,
+    Value<double?>? ioutMaxA,
+    Value<double>? efficiencyPct,
+    Value<EquipmentSource>? source,
+    Value<String?>? notes,
+    Value<int>? rowid,
+  }) {
+    return OptimizerModelsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      manufacturer: manufacturer ?? this.manufacturer,
+      model: model ?? this.model,
+      pmaxInW: pmaxInW ?? this.pmaxInW,
+      vinMaxV: vinMaxV ?? this.vinMaxV,
+      imaxInA: imaxInA ?? this.imaxInA,
+      voutMaxV: voutMaxV ?? this.voutMaxV,
+      ioutMaxA: ioutMaxA ?? this.ioutMaxA,
+      efficiencyPct: efficiencyPct ?? this.efficiencyPct,
+      source: source ?? this.source,
+      notes: notes ?? this.notes,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (manufacturer.present) {
+      map['manufacturer'] = Variable<String>(manufacturer.value);
+    }
+    if (model.present) {
+      map['model'] = Variable<String>(model.value);
+    }
+    if (pmaxInW.present) {
+      map['pmax_in_w'] = Variable<double>(pmaxInW.value);
+    }
+    if (vinMaxV.present) {
+      map['vin_max_v'] = Variable<double>(vinMaxV.value);
+    }
+    if (imaxInA.present) {
+      map['imax_in_a'] = Variable<double>(imaxInA.value);
+    }
+    if (voutMaxV.present) {
+      map['vout_max_v'] = Variable<double>(voutMaxV.value);
+    }
+    if (ioutMaxA.present) {
+      map['iout_max_a'] = Variable<double>(ioutMaxA.value);
+    }
+    if (efficiencyPct.present) {
+      map['efficiency_pct'] = Variable<double>(efficiencyPct.value);
+    }
+    if (source.present) {
+      map['source'] = Variable<String>(
+        $OptimizerModelsTable.$convertersource.toSql(source.value),
+      );
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('OptimizerModelsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('manufacturer: $manufacturer, ')
+          ..write('model: $model, ')
+          ..write('pmaxInW: $pmaxInW, ')
+          ..write('vinMaxV: $vinMaxV, ')
+          ..write('imaxInA: $imaxInA, ')
+          ..write('voutMaxV: $voutMaxV, ')
+          ..write('ioutMaxA: $ioutMaxA, ')
+          ..write('efficiencyPct: $efficiencyPct, ')
+          ..write('source: $source, ')
+          ..write('notes: $notes, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $BatteryModelsTable extends BatteryModels
+    with TableInfo<$BatteryModelsTable, BatteryModel> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $BatteryModelsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _manufacturerMeta = const VerificationMeta(
+    'manufacturer',
+  );
+  @override
+  late final GeneratedColumn<String> manufacturer = GeneratedColumn<String>(
+    'manufacturer',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _modelMeta = const VerificationMeta('model');
+  @override
+  late final GeneratedColumn<String> model = GeneratedColumn<String>(
+    'model',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<BatteryChemistry, String>
+  chemistry = GeneratedColumn<String>(
+    'chemistry',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: Constant(BatteryChemistry.lfp.name),
+  ).withConverter<BatteryChemistry>($BatteryModelsTable.$converterchemistry);
+  static const VerificationMeta _capacityKwhMeta = const VerificationMeta(
+    'capacityKwh',
+  );
+  @override
+  late final GeneratedColumn<double> capacityKwh = GeneratedColumn<double>(
+    'capacity_kwh',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _usableKwhMeta = const VerificationMeta(
+    'usableKwh',
+  );
+  @override
+  late final GeneratedColumn<double> usableKwh = GeneratedColumn<double>(
+    'usable_kwh',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _nominalVoltageVMeta = const VerificationMeta(
+    'nominalVoltageV',
+  );
+  @override
+  late final GeneratedColumn<double> nominalVoltageV = GeneratedColumn<double>(
+    'nominal_voltage_v',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _maxChargeKwMeta = const VerificationMeta(
+    'maxChargeKw',
+  );
+  @override
+  late final GeneratedColumn<double> maxChargeKw = GeneratedColumn<double>(
+    'max_charge_kw',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _maxDischargeKwMeta = const VerificationMeta(
+    'maxDischargeKw',
+  );
+  @override
+  late final GeneratedColumn<double> maxDischargeKw = GeneratedColumn<double>(
+    'max_discharge_kw',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _cyclesMeta = const VerificationMeta('cycles');
+  @override
+  late final GeneratedColumn<int> cycles = GeneratedColumn<int>(
+    'cycles',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<EquipmentSource, String> source =
+      GeneratedColumn<String>(
+        'source',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: Constant(EquipmentSource.manual.name),
+      ).withConverter<EquipmentSource>($BatteryModelsTable.$convertersource);
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    manufacturer,
+    model,
+    chemistry,
+    capacityKwh,
+    usableKwh,
+    nominalVoltageV,
+    maxChargeKw,
+    maxDischargeKw,
+    cycles,
+    source,
+    notes,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'battery_models';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<BatteryModel> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('manufacturer')) {
+      context.handle(
+        _manufacturerMeta,
+        manufacturer.isAcceptableOrUnknown(
+          data['manufacturer']!,
+          _manufacturerMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_manufacturerMeta);
+    }
+    if (data.containsKey('model')) {
+      context.handle(
+        _modelMeta,
+        model.isAcceptableOrUnknown(data['model']!, _modelMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_modelMeta);
+    }
+    if (data.containsKey('capacity_kwh')) {
+      context.handle(
+        _capacityKwhMeta,
+        capacityKwh.isAcceptableOrUnknown(
+          data['capacity_kwh']!,
+          _capacityKwhMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_capacityKwhMeta);
+    }
+    if (data.containsKey('usable_kwh')) {
+      context.handle(
+        _usableKwhMeta,
+        usableKwh.isAcceptableOrUnknown(data['usable_kwh']!, _usableKwhMeta),
+      );
+    }
+    if (data.containsKey('nominal_voltage_v')) {
+      context.handle(
+        _nominalVoltageVMeta,
+        nominalVoltageV.isAcceptableOrUnknown(
+          data['nominal_voltage_v']!,
+          _nominalVoltageVMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_nominalVoltageVMeta);
+    }
+    if (data.containsKey('max_charge_kw')) {
+      context.handle(
+        _maxChargeKwMeta,
+        maxChargeKw.isAcceptableOrUnknown(
+          data['max_charge_kw']!,
+          _maxChargeKwMeta,
+        ),
+      );
+    }
+    if (data.containsKey('max_discharge_kw')) {
+      context.handle(
+        _maxDischargeKwMeta,
+        maxDischargeKw.isAcceptableOrUnknown(
+          data['max_discharge_kw']!,
+          _maxDischargeKwMeta,
+        ),
+      );
+    }
+    if (data.containsKey('cycles')) {
+      context.handle(
+        _cyclesMeta,
+        cycles.isAcceptableOrUnknown(data['cycles']!, _cyclesMeta),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  BatteryModel map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return BatteryModel(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      manufacturer: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}manufacturer'],
+      )!,
+      model: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}model'],
+      )!,
+      chemistry: $BatteryModelsTable.$converterchemistry.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}chemistry'],
+        )!,
+      ),
+      capacityKwh: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}capacity_kwh'],
+      )!,
+      usableKwh: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}usable_kwh'],
+      ),
+      nominalVoltageV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}nominal_voltage_v'],
+      )!,
+      maxChargeKw: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}max_charge_kw'],
+      ),
+      maxDischargeKw: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}max_discharge_kw'],
+      ),
+      cycles: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}cycles'],
+      ),
+      source: $BatteryModelsTable.$convertersource.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}source'],
+        )!,
+      ),
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+    );
+  }
+
+  @override
+  $BatteryModelsTable createAlias(String alias) {
+    return $BatteryModelsTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<BatteryChemistry, String, String>
+  $converterchemistry = const EnumNameConverter<BatteryChemistry>(
+    BatteryChemistry.values,
+  );
+  static JsonTypeConverter2<EquipmentSource, String, String> $convertersource =
+      const EnumNameConverter<EquipmentSource>(EquipmentSource.values);
+}
+
+class BatteryModel extends DataClass implements Insertable<BatteryModel> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Fabricante.
+  final String manufacturer;
+
+  /// Modelo.
+  final String model;
+
+  /// Química.
+  final BatteryChemistry chemistry;
+
+  /// Capacidad nominal (kWh).
+  final double capacityKwh;
+
+  /// Capacidad útil (kWh).
+  final double? usableKwh;
+
+  /// Tensión nominal (V).
+  final double nominalVoltageV;
+
+  /// Potencia máxima de carga (kW).
+  final double? maxChargeKw;
+
+  /// Potencia máxima de descarga (kW).
+  final double? maxDischargeKw;
+
+  /// Ciclos de vida.
+  final int? cycles;
+
+  /// Origen.
+  final EquipmentSource source;
+
+  /// Notas.
+  final String? notes;
+  const BatteryModel({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.manufacturer,
+    required this.model,
+    required this.chemistry,
+    required this.capacityKwh,
+    this.usableKwh,
+    required this.nominalVoltageV,
+    this.maxChargeKw,
+    this.maxDischargeKw,
+    this.cycles,
+    required this.source,
+    this.notes,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['manufacturer'] = Variable<String>(manufacturer);
+    map['model'] = Variable<String>(model);
+    {
+      map['chemistry'] = Variable<String>(
+        $BatteryModelsTable.$converterchemistry.toSql(chemistry),
+      );
+    }
+    map['capacity_kwh'] = Variable<double>(capacityKwh);
+    if (!nullToAbsent || usableKwh != null) {
+      map['usable_kwh'] = Variable<double>(usableKwh);
+    }
+    map['nominal_voltage_v'] = Variable<double>(nominalVoltageV);
+    if (!nullToAbsent || maxChargeKw != null) {
+      map['max_charge_kw'] = Variable<double>(maxChargeKw);
+    }
+    if (!nullToAbsent || maxDischargeKw != null) {
+      map['max_discharge_kw'] = Variable<double>(maxDischargeKw);
+    }
+    if (!nullToAbsent || cycles != null) {
+      map['cycles'] = Variable<int>(cycles);
+    }
+    {
+      map['source'] = Variable<String>(
+        $BatteryModelsTable.$convertersource.toSql(source),
+      );
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    return map;
+  }
+
+  BatteryModelsCompanion toCompanion(bool nullToAbsent) {
+    return BatteryModelsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      manufacturer: Value(manufacturer),
+      model: Value(model),
+      chemistry: Value(chemistry),
+      capacityKwh: Value(capacityKwh),
+      usableKwh: usableKwh == null && nullToAbsent
+          ? const Value.absent()
+          : Value(usableKwh),
+      nominalVoltageV: Value(nominalVoltageV),
+      maxChargeKw: maxChargeKw == null && nullToAbsent
+          ? const Value.absent()
+          : Value(maxChargeKw),
+      maxDischargeKw: maxDischargeKw == null && nullToAbsent
+          ? const Value.absent()
+          : Value(maxDischargeKw),
+      cycles: cycles == null && nullToAbsent
+          ? const Value.absent()
+          : Value(cycles),
+      source: Value(source),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+    );
+  }
+
+  factory BatteryModel.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return BatteryModel(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      manufacturer: serializer.fromJson<String>(json['manufacturer']),
+      model: serializer.fromJson<String>(json['model']),
+      chemistry: $BatteryModelsTable.$converterchemistry.fromJson(
+        serializer.fromJson<String>(json['chemistry']),
+      ),
+      capacityKwh: serializer.fromJson<double>(json['capacityKwh']),
+      usableKwh: serializer.fromJson<double?>(json['usableKwh']),
+      nominalVoltageV: serializer.fromJson<double>(json['nominalVoltageV']),
+      maxChargeKw: serializer.fromJson<double?>(json['maxChargeKw']),
+      maxDischargeKw: serializer.fromJson<double?>(json['maxDischargeKw']),
+      cycles: serializer.fromJson<int?>(json['cycles']),
+      source: $BatteryModelsTable.$convertersource.fromJson(
+        serializer.fromJson<String>(json['source']),
+      ),
+      notes: serializer.fromJson<String?>(json['notes']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'manufacturer': serializer.toJson<String>(manufacturer),
+      'model': serializer.toJson<String>(model),
+      'chemistry': serializer.toJson<String>(
+        $BatteryModelsTable.$converterchemistry.toJson(chemistry),
+      ),
+      'capacityKwh': serializer.toJson<double>(capacityKwh),
+      'usableKwh': serializer.toJson<double?>(usableKwh),
+      'nominalVoltageV': serializer.toJson<double>(nominalVoltageV),
+      'maxChargeKw': serializer.toJson<double?>(maxChargeKw),
+      'maxDischargeKw': serializer.toJson<double?>(maxDischargeKw),
+      'cycles': serializer.toJson<int?>(cycles),
+      'source': serializer.toJson<String>(
+        $BatteryModelsTable.$convertersource.toJson(source),
+      ),
+      'notes': serializer.toJson<String?>(notes),
+    };
+  }
+
+  BatteryModel copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? manufacturer,
+    String? model,
+    BatteryChemistry? chemistry,
+    double? capacityKwh,
+    Value<double?> usableKwh = const Value.absent(),
+    double? nominalVoltageV,
+    Value<double?> maxChargeKw = const Value.absent(),
+    Value<double?> maxDischargeKw = const Value.absent(),
+    Value<int?> cycles = const Value.absent(),
+    EquipmentSource? source,
+    Value<String?> notes = const Value.absent(),
+  }) => BatteryModel(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    manufacturer: manufacturer ?? this.manufacturer,
+    model: model ?? this.model,
+    chemistry: chemistry ?? this.chemistry,
+    capacityKwh: capacityKwh ?? this.capacityKwh,
+    usableKwh: usableKwh.present ? usableKwh.value : this.usableKwh,
+    nominalVoltageV: nominalVoltageV ?? this.nominalVoltageV,
+    maxChargeKw: maxChargeKw.present ? maxChargeKw.value : this.maxChargeKw,
+    maxDischargeKw: maxDischargeKw.present
+        ? maxDischargeKw.value
+        : this.maxDischargeKw,
+    cycles: cycles.present ? cycles.value : this.cycles,
+    source: source ?? this.source,
+    notes: notes.present ? notes.value : this.notes,
+  );
+  BatteryModel copyWithCompanion(BatteryModelsCompanion data) {
+    return BatteryModel(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      manufacturer: data.manufacturer.present
+          ? data.manufacturer.value
+          : this.manufacturer,
+      model: data.model.present ? data.model.value : this.model,
+      chemistry: data.chemistry.present ? data.chemistry.value : this.chemistry,
+      capacityKwh: data.capacityKwh.present
+          ? data.capacityKwh.value
+          : this.capacityKwh,
+      usableKwh: data.usableKwh.present ? data.usableKwh.value : this.usableKwh,
+      nominalVoltageV: data.nominalVoltageV.present
+          ? data.nominalVoltageV.value
+          : this.nominalVoltageV,
+      maxChargeKw: data.maxChargeKw.present
+          ? data.maxChargeKw.value
+          : this.maxChargeKw,
+      maxDischargeKw: data.maxDischargeKw.present
+          ? data.maxDischargeKw.value
+          : this.maxDischargeKw,
+      cycles: data.cycles.present ? data.cycles.value : this.cycles,
+      source: data.source.present ? data.source.value : this.source,
+      notes: data.notes.present ? data.notes.value : this.notes,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BatteryModel(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('manufacturer: $manufacturer, ')
+          ..write('model: $model, ')
+          ..write('chemistry: $chemistry, ')
+          ..write('capacityKwh: $capacityKwh, ')
+          ..write('usableKwh: $usableKwh, ')
+          ..write('nominalVoltageV: $nominalVoltageV, ')
+          ..write('maxChargeKw: $maxChargeKw, ')
+          ..write('maxDischargeKw: $maxDischargeKw, ')
+          ..write('cycles: $cycles, ')
+          ..write('source: $source, ')
+          ..write('notes: $notes')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    manufacturer,
+    model,
+    chemistry,
+    capacityKwh,
+    usableKwh,
+    nominalVoltageV,
+    maxChargeKw,
+    maxDischargeKw,
+    cycles,
+    source,
+    notes,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is BatteryModel &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.manufacturer == this.manufacturer &&
+          other.model == this.model &&
+          other.chemistry == this.chemistry &&
+          other.capacityKwh == this.capacityKwh &&
+          other.usableKwh == this.usableKwh &&
+          other.nominalVoltageV == this.nominalVoltageV &&
+          other.maxChargeKw == this.maxChargeKw &&
+          other.maxDischargeKw == this.maxDischargeKw &&
+          other.cycles == this.cycles &&
+          other.source == this.source &&
+          other.notes == this.notes);
+}
+
+class BatteryModelsCompanion extends UpdateCompanion<BatteryModel> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> manufacturer;
+  final Value<String> model;
+  final Value<BatteryChemistry> chemistry;
+  final Value<double> capacityKwh;
+  final Value<double?> usableKwh;
+  final Value<double> nominalVoltageV;
+  final Value<double?> maxChargeKw;
+  final Value<double?> maxDischargeKw;
+  final Value<int?> cycles;
+  final Value<EquipmentSource> source;
+  final Value<String?> notes;
+  final Value<int> rowid;
+  const BatteryModelsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.manufacturer = const Value.absent(),
+    this.model = const Value.absent(),
+    this.chemistry = const Value.absent(),
+    this.capacityKwh = const Value.absent(),
+    this.usableKwh = const Value.absent(),
+    this.nominalVoltageV = const Value.absent(),
+    this.maxChargeKw = const Value.absent(),
+    this.maxDischargeKw = const Value.absent(),
+    this.cycles = const Value.absent(),
+    this.source = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  BatteryModelsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String manufacturer,
+    required String model,
+    this.chemistry = const Value.absent(),
+    required double capacityKwh,
+    this.usableKwh = const Value.absent(),
+    required double nominalVoltageV,
+    this.maxChargeKw = const Value.absent(),
+    this.maxDischargeKw = const Value.absent(),
+    this.cycles = const Value.absent(),
+    this.source = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : manufacturer = Value(manufacturer),
+       model = Value(model),
+       capacityKwh = Value(capacityKwh),
+       nominalVoltageV = Value(nominalVoltageV);
+  static Insertable<BatteryModel> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? manufacturer,
+    Expression<String>? model,
+    Expression<String>? chemistry,
+    Expression<double>? capacityKwh,
+    Expression<double>? usableKwh,
+    Expression<double>? nominalVoltageV,
+    Expression<double>? maxChargeKw,
+    Expression<double>? maxDischargeKw,
+    Expression<int>? cycles,
+    Expression<String>? source,
+    Expression<String>? notes,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (manufacturer != null) 'manufacturer': manufacturer,
+      if (model != null) 'model': model,
+      if (chemistry != null) 'chemistry': chemistry,
+      if (capacityKwh != null) 'capacity_kwh': capacityKwh,
+      if (usableKwh != null) 'usable_kwh': usableKwh,
+      if (nominalVoltageV != null) 'nominal_voltage_v': nominalVoltageV,
+      if (maxChargeKw != null) 'max_charge_kw': maxChargeKw,
+      if (maxDischargeKw != null) 'max_discharge_kw': maxDischargeKw,
+      if (cycles != null) 'cycles': cycles,
+      if (source != null) 'source': source,
+      if (notes != null) 'notes': notes,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  BatteryModelsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? manufacturer,
+    Value<String>? model,
+    Value<BatteryChemistry>? chemistry,
+    Value<double>? capacityKwh,
+    Value<double?>? usableKwh,
+    Value<double>? nominalVoltageV,
+    Value<double?>? maxChargeKw,
+    Value<double?>? maxDischargeKw,
+    Value<int?>? cycles,
+    Value<EquipmentSource>? source,
+    Value<String?>? notes,
+    Value<int>? rowid,
+  }) {
+    return BatteryModelsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      manufacturer: manufacturer ?? this.manufacturer,
+      model: model ?? this.model,
+      chemistry: chemistry ?? this.chemistry,
+      capacityKwh: capacityKwh ?? this.capacityKwh,
+      usableKwh: usableKwh ?? this.usableKwh,
+      nominalVoltageV: nominalVoltageV ?? this.nominalVoltageV,
+      maxChargeKw: maxChargeKw ?? this.maxChargeKw,
+      maxDischargeKw: maxDischargeKw ?? this.maxDischargeKw,
+      cycles: cycles ?? this.cycles,
+      source: source ?? this.source,
+      notes: notes ?? this.notes,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (manufacturer.present) {
+      map['manufacturer'] = Variable<String>(manufacturer.value);
+    }
+    if (model.present) {
+      map['model'] = Variable<String>(model.value);
+    }
+    if (chemistry.present) {
+      map['chemistry'] = Variable<String>(
+        $BatteryModelsTable.$converterchemistry.toSql(chemistry.value),
+      );
+    }
+    if (capacityKwh.present) {
+      map['capacity_kwh'] = Variable<double>(capacityKwh.value);
+    }
+    if (usableKwh.present) {
+      map['usable_kwh'] = Variable<double>(usableKwh.value);
+    }
+    if (nominalVoltageV.present) {
+      map['nominal_voltage_v'] = Variable<double>(nominalVoltageV.value);
+    }
+    if (maxChargeKw.present) {
+      map['max_charge_kw'] = Variable<double>(maxChargeKw.value);
+    }
+    if (maxDischargeKw.present) {
+      map['max_discharge_kw'] = Variable<double>(maxDischargeKw.value);
+    }
+    if (cycles.present) {
+      map['cycles'] = Variable<int>(cycles.value);
+    }
+    if (source.present) {
+      map['source'] = Variable<String>(
+        $BatteryModelsTable.$convertersource.toSql(source.value),
+      );
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BatteryModelsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('manufacturer: $manufacturer, ')
+          ..write('model: $model, ')
+          ..write('chemistry: $chemistry, ')
+          ..write('capacityKwh: $capacityKwh, ')
+          ..write('usableKwh: $usableKwh, ')
+          ..write('nominalVoltageV: $nominalVoltageV, ')
+          ..write('maxChargeKw: $maxChargeKw, ')
+          ..write('maxDischargeKw: $maxDischargeKw, ')
+          ..write('cycles: $cycles, ')
+          ..write('source: $source, ')
+          ..write('notes: $notes, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $PvDesignsTable extends PvDesigns
+    with TableInfo<$PvDesignsTable, PvDesign> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $PvDesignsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'UNIQUE REFERENCES projects (id)',
+    ),
+  );
+  static const VerificationMeta _panelModelIdMeta = const VerificationMeta(
+    'panelModelId',
+  );
+  @override
+  late final GeneratedColumn<String> panelModelId = GeneratedColumn<String>(
+    'panel_model_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _inverterModelIdMeta = const VerificationMeta(
+    'inverterModelId',
+  );
+  @override
+  late final GeneratedColumn<String> inverterModelId = GeneratedColumn<String>(
+    'inverter_model_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _inverterCountMeta = const VerificationMeta(
+    'inverterCount',
+  );
+  @override
+  late final GeneratedColumn<int> inverterCount = GeneratedColumn<int>(
+    'inverter_count',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _optimizerModelIdMeta = const VerificationMeta(
+    'optimizerModelId',
+  );
+  @override
+  late final GeneratedColumn<String> optimizerModelId = GeneratedColumn<String>(
+    'optimizer_model_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _batteryModelIdMeta = const VerificationMeta(
+    'batteryModelId',
+  );
+  @override
+  late final GeneratedColumn<String> batteryModelId = GeneratedColumn<String>(
+    'battery_model_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _systemVoltageLimitVMeta =
+      const VerificationMeta('systemVoltageLimitV');
+  @override
+  late final GeneratedColumn<double> systemVoltageLimitV =
+      GeneratedColumn<double>(
+        'system_voltage_limit_v',
+        aliasedName,
+        false,
+        type: DriftSqlType.double,
+        requiredDuringInsert: false,
+        defaultValue: const Constant(600),
+      );
+  static const VerificationMeta _lossesMeta = const VerificationMeta('losses');
+  @override
+  late final GeneratedColumn<String> losses = GeneratedColumn<String>(
+    'losses',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('{}'),
+  );
+  static const VerificationMeta _shadeThresholdPctMeta = const VerificationMeta(
+    'shadeThresholdPct',
+  );
+  @override
+  late final GeneratedColumn<double> shadeThresholdPct =
+      GeneratedColumn<double>(
+        'shade_threshold_pct',
+        aliasedName,
+        false,
+        type: DriftSqlType.double,
+        requiredDuringInsert: false,
+        defaultValue: const Constant(10),
+      );
+  static const VerificationMeta _gridVoltageVMeta = const VerificationMeta(
+    'gridVoltageV',
+  );
+  @override
+  late final GeneratedColumn<double> gridVoltageV = GeneratedColumn<double>(
+    'grid_voltage_v',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(220),
+  );
+  static const VerificationMeta _windMeta = const VerificationMeta('wind');
+  @override
+  late final GeneratedColumn<String> wind = GeneratedColumn<String>(
+    'wind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('{}'),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    panelModelId,
+    inverterModelId,
+    inverterCount,
+    optimizerModelId,
+    batteryModelId,
+    systemVoltageLimitV,
+    losses,
+    shadeThresholdPct,
+    gridVoltageV,
+    wind,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'pv_designs';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<PvDesign> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('panel_model_id')) {
+      context.handle(
+        _panelModelIdMeta,
+        panelModelId.isAcceptableOrUnknown(
+          data['panel_model_id']!,
+          _panelModelIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('inverter_model_id')) {
+      context.handle(
+        _inverterModelIdMeta,
+        inverterModelId.isAcceptableOrUnknown(
+          data['inverter_model_id']!,
+          _inverterModelIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('inverter_count')) {
+      context.handle(
+        _inverterCountMeta,
+        inverterCount.isAcceptableOrUnknown(
+          data['inverter_count']!,
+          _inverterCountMeta,
+        ),
+      );
+    }
+    if (data.containsKey('optimizer_model_id')) {
+      context.handle(
+        _optimizerModelIdMeta,
+        optimizerModelId.isAcceptableOrUnknown(
+          data['optimizer_model_id']!,
+          _optimizerModelIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('battery_model_id')) {
+      context.handle(
+        _batteryModelIdMeta,
+        batteryModelId.isAcceptableOrUnknown(
+          data['battery_model_id']!,
+          _batteryModelIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('system_voltage_limit_v')) {
+      context.handle(
+        _systemVoltageLimitVMeta,
+        systemVoltageLimitV.isAcceptableOrUnknown(
+          data['system_voltage_limit_v']!,
+          _systemVoltageLimitVMeta,
+        ),
+      );
+    }
+    if (data.containsKey('losses')) {
+      context.handle(
+        _lossesMeta,
+        losses.isAcceptableOrUnknown(data['losses']!, _lossesMeta),
+      );
+    }
+    if (data.containsKey('shade_threshold_pct')) {
+      context.handle(
+        _shadeThresholdPctMeta,
+        shadeThresholdPct.isAcceptableOrUnknown(
+          data['shade_threshold_pct']!,
+          _shadeThresholdPctMeta,
+        ),
+      );
+    }
+    if (data.containsKey('grid_voltage_v')) {
+      context.handle(
+        _gridVoltageVMeta,
+        gridVoltageV.isAcceptableOrUnknown(
+          data['grid_voltage_v']!,
+          _gridVoltageVMeta,
+        ),
+      );
+    }
+    if (data.containsKey('wind')) {
+      context.handle(
+        _windMeta,
+        wind.isAcceptableOrUnknown(data['wind']!, _windMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  PvDesign map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return PvDesign(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      panelModelId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}panel_model_id'],
+      ),
+      inverterModelId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}inverter_model_id'],
+      ),
+      inverterCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}inverter_count'],
+      )!,
+      optimizerModelId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}optimizer_model_id'],
+      ),
+      batteryModelId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}battery_model_id'],
+      ),
+      systemVoltageLimitV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}system_voltage_limit_v'],
+      )!,
+      losses: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}losses'],
+      )!,
+      shadeThresholdPct: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}shade_threshold_pct'],
+      )!,
+      gridVoltageV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}grid_voltage_v'],
+      )!,
+      wind: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}wind'],
+      )!,
+    );
+  }
+
+  @override
+  $PvDesignsTable createAlias(String alias) {
+    return $PvDesignsTable(attachedDatabase, alias);
+  }
+}
+
+class PvDesign extends DataClass implements Insertable<PvDesign> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto (único).
+  final String projectId;
+
+  /// Panel elegido (`panel_models.id`).
+  final String? panelModelId;
+
+  /// Inversor elegido (`inverter_models.id`).
+  final String? inverterModelId;
+
+  /// Número de inversores (o de microinversores).
+  final int inverterCount;
+
+  /// Optimizador elegido (`optimizer_models.id`), si hay.
+  final String? optimizerModelId;
+
+  /// Batería elegida (`battery_models.id`), si hay.
+  final String? batteryModelId;
+
+  /// Tensión máxima del sistema por norma (V).
+  final double systemVoltageLimitV;
+
+  /// Pérdidas editables en JSON (`{"soiling":2,...}`, %).
+  final String losses;
+
+  /// Umbral de sombra para excluir paneles (%).
+  final double shadeThresholdPct;
+
+  /// Tensión de la red (V).
+  final double gridVoltageV;
+
+  /// Ajustes de viento en JSON (velocidad, exposición, GCrn...).
+  final String wind;
+  const PvDesign({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    this.panelModelId,
+    this.inverterModelId,
+    required this.inverterCount,
+    this.optimizerModelId,
+    this.batteryModelId,
+    required this.systemVoltageLimitV,
+    required this.losses,
+    required this.shadeThresholdPct,
+    required this.gridVoltageV,
+    required this.wind,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    if (!nullToAbsent || panelModelId != null) {
+      map['panel_model_id'] = Variable<String>(panelModelId);
+    }
+    if (!nullToAbsent || inverterModelId != null) {
+      map['inverter_model_id'] = Variable<String>(inverterModelId);
+    }
+    map['inverter_count'] = Variable<int>(inverterCount);
+    if (!nullToAbsent || optimizerModelId != null) {
+      map['optimizer_model_id'] = Variable<String>(optimizerModelId);
+    }
+    if (!nullToAbsent || batteryModelId != null) {
+      map['battery_model_id'] = Variable<String>(batteryModelId);
+    }
+    map['system_voltage_limit_v'] = Variable<double>(systemVoltageLimitV);
+    map['losses'] = Variable<String>(losses);
+    map['shade_threshold_pct'] = Variable<double>(shadeThresholdPct);
+    map['grid_voltage_v'] = Variable<double>(gridVoltageV);
+    map['wind'] = Variable<String>(wind);
+    return map;
+  }
+
+  PvDesignsCompanion toCompanion(bool nullToAbsent) {
+    return PvDesignsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      panelModelId: panelModelId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(panelModelId),
+      inverterModelId: inverterModelId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(inverterModelId),
+      inverterCount: Value(inverterCount),
+      optimizerModelId: optimizerModelId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(optimizerModelId),
+      batteryModelId: batteryModelId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(batteryModelId),
+      systemVoltageLimitV: Value(systemVoltageLimitV),
+      losses: Value(losses),
+      shadeThresholdPct: Value(shadeThresholdPct),
+      gridVoltageV: Value(gridVoltageV),
+      wind: Value(wind),
+    );
+  }
+
+  factory PvDesign.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return PvDesign(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      panelModelId: serializer.fromJson<String?>(json['panelModelId']),
+      inverterModelId: serializer.fromJson<String?>(json['inverterModelId']),
+      inverterCount: serializer.fromJson<int>(json['inverterCount']),
+      optimizerModelId: serializer.fromJson<String?>(json['optimizerModelId']),
+      batteryModelId: serializer.fromJson<String?>(json['batteryModelId']),
+      systemVoltageLimitV: serializer.fromJson<double>(
+        json['systemVoltageLimitV'],
+      ),
+      losses: serializer.fromJson<String>(json['losses']),
+      shadeThresholdPct: serializer.fromJson<double>(json['shadeThresholdPct']),
+      gridVoltageV: serializer.fromJson<double>(json['gridVoltageV']),
+      wind: serializer.fromJson<String>(json['wind']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'panelModelId': serializer.toJson<String?>(panelModelId),
+      'inverterModelId': serializer.toJson<String?>(inverterModelId),
+      'inverterCount': serializer.toJson<int>(inverterCount),
+      'optimizerModelId': serializer.toJson<String?>(optimizerModelId),
+      'batteryModelId': serializer.toJson<String?>(batteryModelId),
+      'systemVoltageLimitV': serializer.toJson<double>(systemVoltageLimitV),
+      'losses': serializer.toJson<String>(losses),
+      'shadeThresholdPct': serializer.toJson<double>(shadeThresholdPct),
+      'gridVoltageV': serializer.toJson<double>(gridVoltageV),
+      'wind': serializer.toJson<String>(wind),
+    };
+  }
+
+  PvDesign copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    Value<String?> panelModelId = const Value.absent(),
+    Value<String?> inverterModelId = const Value.absent(),
+    int? inverterCount,
+    Value<String?> optimizerModelId = const Value.absent(),
+    Value<String?> batteryModelId = const Value.absent(),
+    double? systemVoltageLimitV,
+    String? losses,
+    double? shadeThresholdPct,
+    double? gridVoltageV,
+    String? wind,
+  }) => PvDesign(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    panelModelId: panelModelId.present ? panelModelId.value : this.panelModelId,
+    inverterModelId: inverterModelId.present
+        ? inverterModelId.value
+        : this.inverterModelId,
+    inverterCount: inverterCount ?? this.inverterCount,
+    optimizerModelId: optimizerModelId.present
+        ? optimizerModelId.value
+        : this.optimizerModelId,
+    batteryModelId: batteryModelId.present
+        ? batteryModelId.value
+        : this.batteryModelId,
+    systemVoltageLimitV: systemVoltageLimitV ?? this.systemVoltageLimitV,
+    losses: losses ?? this.losses,
+    shadeThresholdPct: shadeThresholdPct ?? this.shadeThresholdPct,
+    gridVoltageV: gridVoltageV ?? this.gridVoltageV,
+    wind: wind ?? this.wind,
+  );
+  PvDesign copyWithCompanion(PvDesignsCompanion data) {
+    return PvDesign(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      panelModelId: data.panelModelId.present
+          ? data.panelModelId.value
+          : this.panelModelId,
+      inverterModelId: data.inverterModelId.present
+          ? data.inverterModelId.value
+          : this.inverterModelId,
+      inverterCount: data.inverterCount.present
+          ? data.inverterCount.value
+          : this.inverterCount,
+      optimizerModelId: data.optimizerModelId.present
+          ? data.optimizerModelId.value
+          : this.optimizerModelId,
+      batteryModelId: data.batteryModelId.present
+          ? data.batteryModelId.value
+          : this.batteryModelId,
+      systemVoltageLimitV: data.systemVoltageLimitV.present
+          ? data.systemVoltageLimitV.value
+          : this.systemVoltageLimitV,
+      losses: data.losses.present ? data.losses.value : this.losses,
+      shadeThresholdPct: data.shadeThresholdPct.present
+          ? data.shadeThresholdPct.value
+          : this.shadeThresholdPct,
+      gridVoltageV: data.gridVoltageV.present
+          ? data.gridVoltageV.value
+          : this.gridVoltageV,
+      wind: data.wind.present ? data.wind.value : this.wind,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PvDesign(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('panelModelId: $panelModelId, ')
+          ..write('inverterModelId: $inverterModelId, ')
+          ..write('inverterCount: $inverterCount, ')
+          ..write('optimizerModelId: $optimizerModelId, ')
+          ..write('batteryModelId: $batteryModelId, ')
+          ..write('systemVoltageLimitV: $systemVoltageLimitV, ')
+          ..write('losses: $losses, ')
+          ..write('shadeThresholdPct: $shadeThresholdPct, ')
+          ..write('gridVoltageV: $gridVoltageV, ')
+          ..write('wind: $wind')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    panelModelId,
+    inverterModelId,
+    inverterCount,
+    optimizerModelId,
+    batteryModelId,
+    systemVoltageLimitV,
+    losses,
+    shadeThresholdPct,
+    gridVoltageV,
+    wind,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is PvDesign &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.panelModelId == this.panelModelId &&
+          other.inverterModelId == this.inverterModelId &&
+          other.inverterCount == this.inverterCount &&
+          other.optimizerModelId == this.optimizerModelId &&
+          other.batteryModelId == this.batteryModelId &&
+          other.systemVoltageLimitV == this.systemVoltageLimitV &&
+          other.losses == this.losses &&
+          other.shadeThresholdPct == this.shadeThresholdPct &&
+          other.gridVoltageV == this.gridVoltageV &&
+          other.wind == this.wind);
+}
+
+class PvDesignsCompanion extends UpdateCompanion<PvDesign> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<String?> panelModelId;
+  final Value<String?> inverterModelId;
+  final Value<int> inverterCount;
+  final Value<String?> optimizerModelId;
+  final Value<String?> batteryModelId;
+  final Value<double> systemVoltageLimitV;
+  final Value<String> losses;
+  final Value<double> shadeThresholdPct;
+  final Value<double> gridVoltageV;
+  final Value<String> wind;
+  final Value<int> rowid;
+  const PvDesignsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.panelModelId = const Value.absent(),
+    this.inverterModelId = const Value.absent(),
+    this.inverterCount = const Value.absent(),
+    this.optimizerModelId = const Value.absent(),
+    this.batteryModelId = const Value.absent(),
+    this.systemVoltageLimitV = const Value.absent(),
+    this.losses = const Value.absent(),
+    this.shadeThresholdPct = const Value.absent(),
+    this.gridVoltageV = const Value.absent(),
+    this.wind = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  PvDesignsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    this.panelModelId = const Value.absent(),
+    this.inverterModelId = const Value.absent(),
+    this.inverterCount = const Value.absent(),
+    this.optimizerModelId = const Value.absent(),
+    this.batteryModelId = const Value.absent(),
+    this.systemVoltageLimitV = const Value.absent(),
+    this.losses = const Value.absent(),
+    this.shadeThresholdPct = const Value.absent(),
+    this.gridVoltageV = const Value.absent(),
+    this.wind = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId);
+  static Insertable<PvDesign> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<String>? panelModelId,
+    Expression<String>? inverterModelId,
+    Expression<int>? inverterCount,
+    Expression<String>? optimizerModelId,
+    Expression<String>? batteryModelId,
+    Expression<double>? systemVoltageLimitV,
+    Expression<String>? losses,
+    Expression<double>? shadeThresholdPct,
+    Expression<double>? gridVoltageV,
+    Expression<String>? wind,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (panelModelId != null) 'panel_model_id': panelModelId,
+      if (inverterModelId != null) 'inverter_model_id': inverterModelId,
+      if (inverterCount != null) 'inverter_count': inverterCount,
+      if (optimizerModelId != null) 'optimizer_model_id': optimizerModelId,
+      if (batteryModelId != null) 'battery_model_id': batteryModelId,
+      if (systemVoltageLimitV != null)
+        'system_voltage_limit_v': systemVoltageLimitV,
+      if (losses != null) 'losses': losses,
+      if (shadeThresholdPct != null) 'shade_threshold_pct': shadeThresholdPct,
+      if (gridVoltageV != null) 'grid_voltage_v': gridVoltageV,
+      if (wind != null) 'wind': wind,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  PvDesignsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<String?>? panelModelId,
+    Value<String?>? inverterModelId,
+    Value<int>? inverterCount,
+    Value<String?>? optimizerModelId,
+    Value<String?>? batteryModelId,
+    Value<double>? systemVoltageLimitV,
+    Value<String>? losses,
+    Value<double>? shadeThresholdPct,
+    Value<double>? gridVoltageV,
+    Value<String>? wind,
+    Value<int>? rowid,
+  }) {
+    return PvDesignsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      panelModelId: panelModelId ?? this.panelModelId,
+      inverterModelId: inverterModelId ?? this.inverterModelId,
+      inverterCount: inverterCount ?? this.inverterCount,
+      optimizerModelId: optimizerModelId ?? this.optimizerModelId,
+      batteryModelId: batteryModelId ?? this.batteryModelId,
+      systemVoltageLimitV: systemVoltageLimitV ?? this.systemVoltageLimitV,
+      losses: losses ?? this.losses,
+      shadeThresholdPct: shadeThresholdPct ?? this.shadeThresholdPct,
+      gridVoltageV: gridVoltageV ?? this.gridVoltageV,
+      wind: wind ?? this.wind,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (panelModelId.present) {
+      map['panel_model_id'] = Variable<String>(panelModelId.value);
+    }
+    if (inverterModelId.present) {
+      map['inverter_model_id'] = Variable<String>(inverterModelId.value);
+    }
+    if (inverterCount.present) {
+      map['inverter_count'] = Variable<int>(inverterCount.value);
+    }
+    if (optimizerModelId.present) {
+      map['optimizer_model_id'] = Variable<String>(optimizerModelId.value);
+    }
+    if (batteryModelId.present) {
+      map['battery_model_id'] = Variable<String>(batteryModelId.value);
+    }
+    if (systemVoltageLimitV.present) {
+      map['system_voltage_limit_v'] = Variable<double>(
+        systemVoltageLimitV.value,
+      );
+    }
+    if (losses.present) {
+      map['losses'] = Variable<String>(losses.value);
+    }
+    if (shadeThresholdPct.present) {
+      map['shade_threshold_pct'] = Variable<double>(shadeThresholdPct.value);
+    }
+    if (gridVoltageV.present) {
+      map['grid_voltage_v'] = Variable<double>(gridVoltageV.value);
+    }
+    if (wind.present) {
+      map['wind'] = Variable<String>(wind.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PvDesignsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('panelModelId: $panelModelId, ')
+          ..write('inverterModelId: $inverterModelId, ')
+          ..write('inverterCount: $inverterCount, ')
+          ..write('optimizerModelId: $optimizerModelId, ')
+          ..write('batteryModelId: $batteryModelId, ')
+          ..write('systemVoltageLimitV: $systemVoltageLimitV, ')
+          ..write('losses: $losses, ')
+          ..write('shadeThresholdPct: $shadeThresholdPct, ')
+          ..write('gridVoltageV: $gridVoltageV, ')
+          ..write('wind: $wind, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ArrayLayoutsTable extends ArrayLayouts
+    with TableInfo<$ArrayLayoutsTable, ArrayLayout> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ArrayLayoutsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  static const VerificationMeta _roofPlaneIdMeta = const VerificationMeta(
+    'roofPlaneId',
+  );
+  @override
+  late final GeneratedColumn<String> roofPlaneId = GeneratedColumn<String>(
+    'roof_plane_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES roof_planes (id)',
+    ),
+  );
+  static const VerificationMeta _panelModelIdMeta = const VerificationMeta(
+    'panelModelId',
+  );
+  @override
+  late final GeneratedColumn<String> panelModelId = GeneratedColumn<String>(
+    'panel_model_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<LayoutOrientation, String>
+  orientation = GeneratedColumn<String>(
+    'orientation',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: Constant(LayoutOrientation.portrait.name),
+  ).withConverter<LayoutOrientation>($ArrayLayoutsTable.$converterorientation);
+  @override
+  late final GeneratedColumnWithTypeConverter<MountType, String> mount =
+      GeneratedColumn<String>(
+        'mount',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: Constant(MountType.flush.name),
+      ).withConverter<MountType>($ArrayLayoutsTable.$convertermount);
+  static const VerificationMeta _rackTiltDegMeta = const VerificationMeta(
+    'rackTiltDeg',
+  );
+  @override
+  late final GeneratedColumn<double> rackTiltDeg = GeneratedColumn<double>(
+    'rack_tilt_deg',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(15),
+  );
+  static const VerificationMeta _rackAzimuthDegMeta = const VerificationMeta(
+    'rackAzimuthDeg',
+  );
+  @override
+  late final GeneratedColumn<double> rackAzimuthDeg = GeneratedColumn<double>(
+    'rack_azimuth_deg',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(180),
+  );
+  static const VerificationMeta _gapMMeta = const VerificationMeta('gapM');
+  @override
+  late final GeneratedColumn<double> gapM = GeneratedColumn<double>(
+    'gap_m',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0.02),
+  );
+  static const VerificationMeta _rowGapMMeta = const VerificationMeta(
+    'rowGapM',
+  );
+  @override
+  late final GeneratedColumn<double> rowGapM = GeneratedColumn<double>(
+    'row_gap_m',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0.02),
+  );
+  static const VerificationMeta _clearanceMMeta = const VerificationMeta(
+    'clearanceM',
+  );
+  @override
+  late final GeneratedColumn<double> clearanceM = GeneratedColumn<double>(
+    'clearance_m',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0.3),
+  );
+  static const VerificationMeta _rowSpacingMMeta = const VerificationMeta(
+    'rowSpacingM',
+  );
+  @override
+  late final GeneratedColumn<double> rowSpacingM = GeneratedColumn<double>(
+    'row_spacing_m',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _panelsMeta = const VerificationMeta('panels');
+  @override
+  late final GeneratedColumn<String> panels = GeneratedColumn<String>(
+    'panels',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('[]'),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    roofPlaneId,
+    panelModelId,
+    orientation,
+    mount,
+    rackTiltDeg,
+    rackAzimuthDeg,
+    gapM,
+    rowGapM,
+    clearanceM,
+    rowSpacingM,
+    panels,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'array_layouts';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ArrayLayout> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('roof_plane_id')) {
+      context.handle(
+        _roofPlaneIdMeta,
+        roofPlaneId.isAcceptableOrUnknown(
+          data['roof_plane_id']!,
+          _roofPlaneIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_roofPlaneIdMeta);
+    }
+    if (data.containsKey('panel_model_id')) {
+      context.handle(
+        _panelModelIdMeta,
+        panelModelId.isAcceptableOrUnknown(
+          data['panel_model_id']!,
+          _panelModelIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('rack_tilt_deg')) {
+      context.handle(
+        _rackTiltDegMeta,
+        rackTiltDeg.isAcceptableOrUnknown(
+          data['rack_tilt_deg']!,
+          _rackTiltDegMeta,
+        ),
+      );
+    }
+    if (data.containsKey('rack_azimuth_deg')) {
+      context.handle(
+        _rackAzimuthDegMeta,
+        rackAzimuthDeg.isAcceptableOrUnknown(
+          data['rack_azimuth_deg']!,
+          _rackAzimuthDegMeta,
+        ),
+      );
+    }
+    if (data.containsKey('gap_m')) {
+      context.handle(
+        _gapMMeta,
+        gapM.isAcceptableOrUnknown(data['gap_m']!, _gapMMeta),
+      );
+    }
+    if (data.containsKey('row_gap_m')) {
+      context.handle(
+        _rowGapMMeta,
+        rowGapM.isAcceptableOrUnknown(data['row_gap_m']!, _rowGapMMeta),
+      );
+    }
+    if (data.containsKey('clearance_m')) {
+      context.handle(
+        _clearanceMMeta,
+        clearanceM.isAcceptableOrUnknown(data['clearance_m']!, _clearanceMMeta),
+      );
+    }
+    if (data.containsKey('row_spacing_m')) {
+      context.handle(
+        _rowSpacingMMeta,
+        rowSpacingM.isAcceptableOrUnknown(
+          data['row_spacing_m']!,
+          _rowSpacingMMeta,
+        ),
+      );
+    }
+    if (data.containsKey('panels')) {
+      context.handle(
+        _panelsMeta,
+        panels.isAcceptableOrUnknown(data['panels']!, _panelsMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ArrayLayout map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ArrayLayout(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      roofPlaneId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}roof_plane_id'],
+      )!,
+      panelModelId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}panel_model_id'],
+      ),
+      orientation: $ArrayLayoutsTable.$converterorientation.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}orientation'],
+        )!,
+      ),
+      mount: $ArrayLayoutsTable.$convertermount.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}mount'],
+        )!,
+      ),
+      rackTiltDeg: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}rack_tilt_deg'],
+      )!,
+      rackAzimuthDeg: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}rack_azimuth_deg'],
+      )!,
+      gapM: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}gap_m'],
+      )!,
+      rowGapM: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}row_gap_m'],
+      )!,
+      clearanceM: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}clearance_m'],
+      )!,
+      rowSpacingM: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}row_spacing_m'],
+      ),
+      panels: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}panels'],
+      )!,
+    );
+  }
+
+  @override
+  $ArrayLayoutsTable createAlias(String alias) {
+    return $ArrayLayoutsTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<LayoutOrientation, String, String>
+  $converterorientation = const EnumNameConverter<LayoutOrientation>(
+    LayoutOrientation.values,
+  );
+  static JsonTypeConverter2<MountType, String, String> $convertermount =
+      const EnumNameConverter<MountType>(MountType.values);
+}
+
+class ArrayLayout extends DataClass implements Insertable<ArrayLayout> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto.
+  final String projectId;
+
+  /// Plano del techo.
+  final String roofPlaneId;
+
+  /// Panel usado (`panel_models.id`).
+  final String? panelModelId;
+
+  /// Vertical u horizontal.
+  final LayoutOrientation orientation;
+
+  /// Pegado al techo o en estructura inclinada.
+  final MountType mount;
+
+  /// Inclinación de la estructura (grados), solo en techo plano.
+  final double rackTiltDeg;
+
+  /// Azimut de la estructura (grados).
+  final double rackAzimuthDeg;
+
+  /// Separación entre paneles de una fila (m).
+  final double gapM;
+
+  /// Separación entre filas pegadas al techo (m).
+  final double rowGapM;
+
+  /// Holgura alrededor de obstáculos (m).
+  final double clearanceM;
+
+  /// Separación libre entre filas de estructura calculada (m).
+  final double? rowSpacingM;
+
+  /// Paneles en JSON `[{"c":[[x,y],...4],"r":fila,"k":col,"on":true}]`
+  /// (metros locales; `on` = falso si el usuario lo quitó).
+  final String panels;
+  const ArrayLayout({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.roofPlaneId,
+    this.panelModelId,
+    required this.orientation,
+    required this.mount,
+    required this.rackTiltDeg,
+    required this.rackAzimuthDeg,
+    required this.gapM,
+    required this.rowGapM,
+    required this.clearanceM,
+    this.rowSpacingM,
+    required this.panels,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    map['roof_plane_id'] = Variable<String>(roofPlaneId);
+    if (!nullToAbsent || panelModelId != null) {
+      map['panel_model_id'] = Variable<String>(panelModelId);
+    }
+    {
+      map['orientation'] = Variable<String>(
+        $ArrayLayoutsTable.$converterorientation.toSql(orientation),
+      );
+    }
+    {
+      map['mount'] = Variable<String>(
+        $ArrayLayoutsTable.$convertermount.toSql(mount),
+      );
+    }
+    map['rack_tilt_deg'] = Variable<double>(rackTiltDeg);
+    map['rack_azimuth_deg'] = Variable<double>(rackAzimuthDeg);
+    map['gap_m'] = Variable<double>(gapM);
+    map['row_gap_m'] = Variable<double>(rowGapM);
+    map['clearance_m'] = Variable<double>(clearanceM);
+    if (!nullToAbsent || rowSpacingM != null) {
+      map['row_spacing_m'] = Variable<double>(rowSpacingM);
+    }
+    map['panels'] = Variable<String>(panels);
+    return map;
+  }
+
+  ArrayLayoutsCompanion toCompanion(bool nullToAbsent) {
+    return ArrayLayoutsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      roofPlaneId: Value(roofPlaneId),
+      panelModelId: panelModelId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(panelModelId),
+      orientation: Value(orientation),
+      mount: Value(mount),
+      rackTiltDeg: Value(rackTiltDeg),
+      rackAzimuthDeg: Value(rackAzimuthDeg),
+      gapM: Value(gapM),
+      rowGapM: Value(rowGapM),
+      clearanceM: Value(clearanceM),
+      rowSpacingM: rowSpacingM == null && nullToAbsent
+          ? const Value.absent()
+          : Value(rowSpacingM),
+      panels: Value(panels),
+    );
+  }
+
+  factory ArrayLayout.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ArrayLayout(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      roofPlaneId: serializer.fromJson<String>(json['roofPlaneId']),
+      panelModelId: serializer.fromJson<String?>(json['panelModelId']),
+      orientation: $ArrayLayoutsTable.$converterorientation.fromJson(
+        serializer.fromJson<String>(json['orientation']),
+      ),
+      mount: $ArrayLayoutsTable.$convertermount.fromJson(
+        serializer.fromJson<String>(json['mount']),
+      ),
+      rackTiltDeg: serializer.fromJson<double>(json['rackTiltDeg']),
+      rackAzimuthDeg: serializer.fromJson<double>(json['rackAzimuthDeg']),
+      gapM: serializer.fromJson<double>(json['gapM']),
+      rowGapM: serializer.fromJson<double>(json['rowGapM']),
+      clearanceM: serializer.fromJson<double>(json['clearanceM']),
+      rowSpacingM: serializer.fromJson<double?>(json['rowSpacingM']),
+      panels: serializer.fromJson<String>(json['panels']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'roofPlaneId': serializer.toJson<String>(roofPlaneId),
+      'panelModelId': serializer.toJson<String?>(panelModelId),
+      'orientation': serializer.toJson<String>(
+        $ArrayLayoutsTable.$converterorientation.toJson(orientation),
+      ),
+      'mount': serializer.toJson<String>(
+        $ArrayLayoutsTable.$convertermount.toJson(mount),
+      ),
+      'rackTiltDeg': serializer.toJson<double>(rackTiltDeg),
+      'rackAzimuthDeg': serializer.toJson<double>(rackAzimuthDeg),
+      'gapM': serializer.toJson<double>(gapM),
+      'rowGapM': serializer.toJson<double>(rowGapM),
+      'clearanceM': serializer.toJson<double>(clearanceM),
+      'rowSpacingM': serializer.toJson<double?>(rowSpacingM),
+      'panels': serializer.toJson<String>(panels),
+    };
+  }
+
+  ArrayLayout copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    String? roofPlaneId,
+    Value<String?> panelModelId = const Value.absent(),
+    LayoutOrientation? orientation,
+    MountType? mount,
+    double? rackTiltDeg,
+    double? rackAzimuthDeg,
+    double? gapM,
+    double? rowGapM,
+    double? clearanceM,
+    Value<double?> rowSpacingM = const Value.absent(),
+    String? panels,
+  }) => ArrayLayout(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    roofPlaneId: roofPlaneId ?? this.roofPlaneId,
+    panelModelId: panelModelId.present ? panelModelId.value : this.panelModelId,
+    orientation: orientation ?? this.orientation,
+    mount: mount ?? this.mount,
+    rackTiltDeg: rackTiltDeg ?? this.rackTiltDeg,
+    rackAzimuthDeg: rackAzimuthDeg ?? this.rackAzimuthDeg,
+    gapM: gapM ?? this.gapM,
+    rowGapM: rowGapM ?? this.rowGapM,
+    clearanceM: clearanceM ?? this.clearanceM,
+    rowSpacingM: rowSpacingM.present ? rowSpacingM.value : this.rowSpacingM,
+    panels: panels ?? this.panels,
+  );
+  ArrayLayout copyWithCompanion(ArrayLayoutsCompanion data) {
+    return ArrayLayout(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      roofPlaneId: data.roofPlaneId.present
+          ? data.roofPlaneId.value
+          : this.roofPlaneId,
+      panelModelId: data.panelModelId.present
+          ? data.panelModelId.value
+          : this.panelModelId,
+      orientation: data.orientation.present
+          ? data.orientation.value
+          : this.orientation,
+      mount: data.mount.present ? data.mount.value : this.mount,
+      rackTiltDeg: data.rackTiltDeg.present
+          ? data.rackTiltDeg.value
+          : this.rackTiltDeg,
+      rackAzimuthDeg: data.rackAzimuthDeg.present
+          ? data.rackAzimuthDeg.value
+          : this.rackAzimuthDeg,
+      gapM: data.gapM.present ? data.gapM.value : this.gapM,
+      rowGapM: data.rowGapM.present ? data.rowGapM.value : this.rowGapM,
+      clearanceM: data.clearanceM.present
+          ? data.clearanceM.value
+          : this.clearanceM,
+      rowSpacingM: data.rowSpacingM.present
+          ? data.rowSpacingM.value
+          : this.rowSpacingM,
+      panels: data.panels.present ? data.panels.value : this.panels,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ArrayLayout(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('roofPlaneId: $roofPlaneId, ')
+          ..write('panelModelId: $panelModelId, ')
+          ..write('orientation: $orientation, ')
+          ..write('mount: $mount, ')
+          ..write('rackTiltDeg: $rackTiltDeg, ')
+          ..write('rackAzimuthDeg: $rackAzimuthDeg, ')
+          ..write('gapM: $gapM, ')
+          ..write('rowGapM: $rowGapM, ')
+          ..write('clearanceM: $clearanceM, ')
+          ..write('rowSpacingM: $rowSpacingM, ')
+          ..write('panels: $panels')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    roofPlaneId,
+    panelModelId,
+    orientation,
+    mount,
+    rackTiltDeg,
+    rackAzimuthDeg,
+    gapM,
+    rowGapM,
+    clearanceM,
+    rowSpacingM,
+    panels,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ArrayLayout &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.roofPlaneId == this.roofPlaneId &&
+          other.panelModelId == this.panelModelId &&
+          other.orientation == this.orientation &&
+          other.mount == this.mount &&
+          other.rackTiltDeg == this.rackTiltDeg &&
+          other.rackAzimuthDeg == this.rackAzimuthDeg &&
+          other.gapM == this.gapM &&
+          other.rowGapM == this.rowGapM &&
+          other.clearanceM == this.clearanceM &&
+          other.rowSpacingM == this.rowSpacingM &&
+          other.panels == this.panels);
+}
+
+class ArrayLayoutsCompanion extends UpdateCompanion<ArrayLayout> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<String> roofPlaneId;
+  final Value<String?> panelModelId;
+  final Value<LayoutOrientation> orientation;
+  final Value<MountType> mount;
+  final Value<double> rackTiltDeg;
+  final Value<double> rackAzimuthDeg;
+  final Value<double> gapM;
+  final Value<double> rowGapM;
+  final Value<double> clearanceM;
+  final Value<double?> rowSpacingM;
+  final Value<String> panels;
+  final Value<int> rowid;
+  const ArrayLayoutsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.roofPlaneId = const Value.absent(),
+    this.panelModelId = const Value.absent(),
+    this.orientation = const Value.absent(),
+    this.mount = const Value.absent(),
+    this.rackTiltDeg = const Value.absent(),
+    this.rackAzimuthDeg = const Value.absent(),
+    this.gapM = const Value.absent(),
+    this.rowGapM = const Value.absent(),
+    this.clearanceM = const Value.absent(),
+    this.rowSpacingM = const Value.absent(),
+    this.panels = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ArrayLayoutsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required String roofPlaneId,
+    this.panelModelId = const Value.absent(),
+    this.orientation = const Value.absent(),
+    this.mount = const Value.absent(),
+    this.rackTiltDeg = const Value.absent(),
+    this.rackAzimuthDeg = const Value.absent(),
+    this.gapM = const Value.absent(),
+    this.rowGapM = const Value.absent(),
+    this.clearanceM = const Value.absent(),
+    this.rowSpacingM = const Value.absent(),
+    this.panels = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       roofPlaneId = Value(roofPlaneId);
+  static Insertable<ArrayLayout> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<String>? roofPlaneId,
+    Expression<String>? panelModelId,
+    Expression<String>? orientation,
+    Expression<String>? mount,
+    Expression<double>? rackTiltDeg,
+    Expression<double>? rackAzimuthDeg,
+    Expression<double>? gapM,
+    Expression<double>? rowGapM,
+    Expression<double>? clearanceM,
+    Expression<double>? rowSpacingM,
+    Expression<String>? panels,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (roofPlaneId != null) 'roof_plane_id': roofPlaneId,
+      if (panelModelId != null) 'panel_model_id': panelModelId,
+      if (orientation != null) 'orientation': orientation,
+      if (mount != null) 'mount': mount,
+      if (rackTiltDeg != null) 'rack_tilt_deg': rackTiltDeg,
+      if (rackAzimuthDeg != null) 'rack_azimuth_deg': rackAzimuthDeg,
+      if (gapM != null) 'gap_m': gapM,
+      if (rowGapM != null) 'row_gap_m': rowGapM,
+      if (clearanceM != null) 'clearance_m': clearanceM,
+      if (rowSpacingM != null) 'row_spacing_m': rowSpacingM,
+      if (panels != null) 'panels': panels,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ArrayLayoutsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<String>? roofPlaneId,
+    Value<String?>? panelModelId,
+    Value<LayoutOrientation>? orientation,
+    Value<MountType>? mount,
+    Value<double>? rackTiltDeg,
+    Value<double>? rackAzimuthDeg,
+    Value<double>? gapM,
+    Value<double>? rowGapM,
+    Value<double>? clearanceM,
+    Value<double?>? rowSpacingM,
+    Value<String>? panels,
+    Value<int>? rowid,
+  }) {
+    return ArrayLayoutsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      roofPlaneId: roofPlaneId ?? this.roofPlaneId,
+      panelModelId: panelModelId ?? this.panelModelId,
+      orientation: orientation ?? this.orientation,
+      mount: mount ?? this.mount,
+      rackTiltDeg: rackTiltDeg ?? this.rackTiltDeg,
+      rackAzimuthDeg: rackAzimuthDeg ?? this.rackAzimuthDeg,
+      gapM: gapM ?? this.gapM,
+      rowGapM: rowGapM ?? this.rowGapM,
+      clearanceM: clearanceM ?? this.clearanceM,
+      rowSpacingM: rowSpacingM ?? this.rowSpacingM,
+      panels: panels ?? this.panels,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (roofPlaneId.present) {
+      map['roof_plane_id'] = Variable<String>(roofPlaneId.value);
+    }
+    if (panelModelId.present) {
+      map['panel_model_id'] = Variable<String>(panelModelId.value);
+    }
+    if (orientation.present) {
+      map['orientation'] = Variable<String>(
+        $ArrayLayoutsTable.$converterorientation.toSql(orientation.value),
+      );
+    }
+    if (mount.present) {
+      map['mount'] = Variable<String>(
+        $ArrayLayoutsTable.$convertermount.toSql(mount.value),
+      );
+    }
+    if (rackTiltDeg.present) {
+      map['rack_tilt_deg'] = Variable<double>(rackTiltDeg.value);
+    }
+    if (rackAzimuthDeg.present) {
+      map['rack_azimuth_deg'] = Variable<double>(rackAzimuthDeg.value);
+    }
+    if (gapM.present) {
+      map['gap_m'] = Variable<double>(gapM.value);
+    }
+    if (rowGapM.present) {
+      map['row_gap_m'] = Variable<double>(rowGapM.value);
+    }
+    if (clearanceM.present) {
+      map['clearance_m'] = Variable<double>(clearanceM.value);
+    }
+    if (rowSpacingM.present) {
+      map['row_spacing_m'] = Variable<double>(rowSpacingM.value);
+    }
+    if (panels.present) {
+      map['panels'] = Variable<String>(panels.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ArrayLayoutsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('roofPlaneId: $roofPlaneId, ')
+          ..write('panelModelId: $panelModelId, ')
+          ..write('orientation: $orientation, ')
+          ..write('mount: $mount, ')
+          ..write('rackTiltDeg: $rackTiltDeg, ')
+          ..write('rackAzimuthDeg: $rackAzimuthDeg, ')
+          ..write('gapM: $gapM, ')
+          ..write('rowGapM: $rowGapM, ')
+          ..write('clearanceM: $clearanceM, ')
+          ..write('rowSpacingM: $rowSpacingM, ')
+          ..write('panels: $panels, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $StringConfigsTable extends StringConfigs
+    with TableInfo<$StringConfigsTable, StringConfig> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $StringConfigsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  static const VerificationMeta _inverterIndexMeta = const VerificationMeta(
+    'inverterIndex',
+  );
+  @override
+  late final GeneratedColumn<int> inverterIndex = GeneratedColumn<int>(
+    'inverter_index',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _mpptIndexMeta = const VerificationMeta(
+    'mpptIndex',
+  );
+  @override
+  late final GeneratedColumn<int> mpptIndex = GeneratedColumn<int>(
+    'mppt_index',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _seriesMeta = const VerificationMeta('series');
+  @override
+  late final GeneratedColumn<int> series = GeneratedColumn<int>(
+    'series',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _parallelMeta = const VerificationMeta(
+    'parallel',
+  );
+  @override
+  late final GeneratedColumn<int> parallel = GeneratedColumn<int>(
+    'parallel',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _editedMeta = const VerificationMeta('edited');
+  @override
+  late final GeneratedColumn<bool> edited = GeneratedColumn<bool>(
+    'edited',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("edited" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    inverterIndex,
+    mpptIndex,
+    series,
+    parallel,
+    edited,
+    sortOrder,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'string_configs';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<StringConfig> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('inverter_index')) {
+      context.handle(
+        _inverterIndexMeta,
+        inverterIndex.isAcceptableOrUnknown(
+          data['inverter_index']!,
+          _inverterIndexMeta,
+        ),
+      );
+    }
+    if (data.containsKey('mppt_index')) {
+      context.handle(
+        _mpptIndexMeta,
+        mpptIndex.isAcceptableOrUnknown(data['mppt_index']!, _mpptIndexMeta),
+      );
+    }
+    if (data.containsKey('series')) {
+      context.handle(
+        _seriesMeta,
+        series.isAcceptableOrUnknown(data['series']!, _seriesMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_seriesMeta);
+    }
+    if (data.containsKey('parallel')) {
+      context.handle(
+        _parallelMeta,
+        parallel.isAcceptableOrUnknown(data['parallel']!, _parallelMeta),
+      );
+    }
+    if (data.containsKey('edited')) {
+      context.handle(
+        _editedMeta,
+        edited.isAcceptableOrUnknown(data['edited']!, _editedMeta),
+      );
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  StringConfig map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return StringConfig(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      inverterIndex: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}inverter_index'],
+      )!,
+      mpptIndex: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}mppt_index'],
+      )!,
+      series: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}series'],
+      )!,
+      parallel: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}parallel'],
+      )!,
+      edited: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}edited'],
+      )!,
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sort_order'],
+      )!,
+    );
+  }
+
+  @override
+  $StringConfigsTable createAlias(String alias) {
+    return $StringConfigsTable(attachedDatabase, alias);
+  }
+}
+
+class StringConfig extends DataClass implements Insertable<StringConfig> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto.
+  final String projectId;
+
+  /// Inversor (0 = el primero).
+  final int inverterIndex;
+
+  /// Entrada MPPT (0 = la primera).
+  final int mpptIndex;
+
+  /// Paneles en serie.
+  final int series;
+
+  /// Strings en paralelo.
+  final int parallel;
+
+  /// `true` si el usuario lo cambió a mano.
+  final bool edited;
+
+  /// Orden.
+  final int sortOrder;
+  const StringConfig({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.inverterIndex,
+    required this.mpptIndex,
+    required this.series,
+    required this.parallel,
+    required this.edited,
+    required this.sortOrder,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    map['inverter_index'] = Variable<int>(inverterIndex);
+    map['mppt_index'] = Variable<int>(mpptIndex);
+    map['series'] = Variable<int>(series);
+    map['parallel'] = Variable<int>(parallel);
+    map['edited'] = Variable<bool>(edited);
+    map['sort_order'] = Variable<int>(sortOrder);
+    return map;
+  }
+
+  StringConfigsCompanion toCompanion(bool nullToAbsent) {
+    return StringConfigsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      inverterIndex: Value(inverterIndex),
+      mpptIndex: Value(mpptIndex),
+      series: Value(series),
+      parallel: Value(parallel),
+      edited: Value(edited),
+      sortOrder: Value(sortOrder),
+    );
+  }
+
+  factory StringConfig.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return StringConfig(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      inverterIndex: serializer.fromJson<int>(json['inverterIndex']),
+      mpptIndex: serializer.fromJson<int>(json['mpptIndex']),
+      series: serializer.fromJson<int>(json['series']),
+      parallel: serializer.fromJson<int>(json['parallel']),
+      edited: serializer.fromJson<bool>(json['edited']),
+      sortOrder: serializer.fromJson<int>(json['sortOrder']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'inverterIndex': serializer.toJson<int>(inverterIndex),
+      'mpptIndex': serializer.toJson<int>(mpptIndex),
+      'series': serializer.toJson<int>(series),
+      'parallel': serializer.toJson<int>(parallel),
+      'edited': serializer.toJson<bool>(edited),
+      'sortOrder': serializer.toJson<int>(sortOrder),
+    };
+  }
+
+  StringConfig copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    int? inverterIndex,
+    int? mpptIndex,
+    int? series,
+    int? parallel,
+    bool? edited,
+    int? sortOrder,
+  }) => StringConfig(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    inverterIndex: inverterIndex ?? this.inverterIndex,
+    mpptIndex: mpptIndex ?? this.mpptIndex,
+    series: series ?? this.series,
+    parallel: parallel ?? this.parallel,
+    edited: edited ?? this.edited,
+    sortOrder: sortOrder ?? this.sortOrder,
+  );
+  StringConfig copyWithCompanion(StringConfigsCompanion data) {
+    return StringConfig(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      inverterIndex: data.inverterIndex.present
+          ? data.inverterIndex.value
+          : this.inverterIndex,
+      mpptIndex: data.mpptIndex.present ? data.mpptIndex.value : this.mpptIndex,
+      series: data.series.present ? data.series.value : this.series,
+      parallel: data.parallel.present ? data.parallel.value : this.parallel,
+      edited: data.edited.present ? data.edited.value : this.edited,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('StringConfig(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('inverterIndex: $inverterIndex, ')
+          ..write('mpptIndex: $mpptIndex, ')
+          ..write('series: $series, ')
+          ..write('parallel: $parallel, ')
+          ..write('edited: $edited, ')
+          ..write('sortOrder: $sortOrder')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    inverterIndex,
+    mpptIndex,
+    series,
+    parallel,
+    edited,
+    sortOrder,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is StringConfig &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.inverterIndex == this.inverterIndex &&
+          other.mpptIndex == this.mpptIndex &&
+          other.series == this.series &&
+          other.parallel == this.parallel &&
+          other.edited == this.edited &&
+          other.sortOrder == this.sortOrder);
+}
+
+class StringConfigsCompanion extends UpdateCompanion<StringConfig> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<int> inverterIndex;
+  final Value<int> mpptIndex;
+  final Value<int> series;
+  final Value<int> parallel;
+  final Value<bool> edited;
+  final Value<int> sortOrder;
+  final Value<int> rowid;
+  const StringConfigsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.inverterIndex = const Value.absent(),
+    this.mpptIndex = const Value.absent(),
+    this.series = const Value.absent(),
+    this.parallel = const Value.absent(),
+    this.edited = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  StringConfigsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    this.inverterIndex = const Value.absent(),
+    this.mpptIndex = const Value.absent(),
+    required int series,
+    this.parallel = const Value.absent(),
+    this.edited = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       series = Value(series);
+  static Insertable<StringConfig> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<int>? inverterIndex,
+    Expression<int>? mpptIndex,
+    Expression<int>? series,
+    Expression<int>? parallel,
+    Expression<bool>? edited,
+    Expression<int>? sortOrder,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (inverterIndex != null) 'inverter_index': inverterIndex,
+      if (mpptIndex != null) 'mppt_index': mpptIndex,
+      if (series != null) 'series': series,
+      if (parallel != null) 'parallel': parallel,
+      if (edited != null) 'edited': edited,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  StringConfigsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<int>? inverterIndex,
+    Value<int>? mpptIndex,
+    Value<int>? series,
+    Value<int>? parallel,
+    Value<bool>? edited,
+    Value<int>? sortOrder,
+    Value<int>? rowid,
+  }) {
+    return StringConfigsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      inverterIndex: inverterIndex ?? this.inverterIndex,
+      mpptIndex: mpptIndex ?? this.mpptIndex,
+      series: series ?? this.series,
+      parallel: parallel ?? this.parallel,
+      edited: edited ?? this.edited,
+      sortOrder: sortOrder ?? this.sortOrder,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (inverterIndex.present) {
+      map['inverter_index'] = Variable<int>(inverterIndex.value);
+    }
+    if (mpptIndex.present) {
+      map['mppt_index'] = Variable<int>(mpptIndex.value);
+    }
+    if (series.present) {
+      map['series'] = Variable<int>(series.value);
+    }
+    if (parallel.present) {
+      map['parallel'] = Variable<int>(parallel.value);
+    }
+    if (edited.present) {
+      map['edited'] = Variable<bool>(edited.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<int>(sortOrder.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('StringConfigsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('inverterIndex: $inverterIndex, ')
+          ..write('mpptIndex: $mpptIndex, ')
+          ..write('series: $series, ')
+          ..write('parallel: $parallel, ')
+          ..write('edited: $edited, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ElectricalRunsTable extends ElectricalRuns
+    with TableInfo<$ElectricalRunsTable, ElectricalRun> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ElectricalRunsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<RunKind, String> kind =
+      GeneratedColumn<String>(
+        'kind',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<RunKind>($ElectricalRunsTable.$converterkind);
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _lengthMMeta = const VerificationMeta(
+    'lengthM',
+  );
+  @override
+  late final GeneratedColumn<double> lengthM = GeneratedColumn<double>(
+    'length_m',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<CableMaterial, String> material =
+      GeneratedColumn<String>(
+        'material',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: Constant(CableMaterial.copper.name),
+      ).withConverter<CableMaterial>($ElectricalRunsTable.$convertermaterial);
+  @override
+  late final GeneratedColumnWithTypeConverter<RacewayKind, String> raceway =
+      GeneratedColumn<String>(
+        'raceway',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: Constant(RacewayKind.rooftop13to90mm.name),
+      ).withConverter<RacewayKind>($ElectricalRunsTable.$converterraceway);
+  static const VerificationMeta _ambientCMeta = const VerificationMeta(
+    'ambientC',
+  );
+  @override
+  late final GeneratedColumn<double> ambientC = GeneratedColumn<double>(
+    'ambient_c',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(40),
+  );
+  static const VerificationMeta _conductorsMeta = const VerificationMeta(
+    'conductors',
+  );
+  @override
+  late final GeneratedColumn<int> conductors = GeneratedColumn<int>(
+    'conductors',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(2),
+  );
+  static const VerificationMeta _chosenSizeMeta = const VerificationMeta(
+    'chosenSize',
+  );
+  @override
+  late final GeneratedColumn<String> chosenSize = GeneratedColumn<String>(
+    'chosen_size',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _resultSizeMeta = const VerificationMeta(
+    'resultSize',
+  );
+  @override
+  late final GeneratedColumn<String> resultSize = GeneratedColumn<String>(
+    'result_size',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _dropPercentMeta = const VerificationMeta(
+    'dropPercent',
+  );
+  @override
+  late final GeneratedColumn<double> dropPercent = GeneratedColumn<double>(
+    'drop_percent',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    kind,
+    name,
+    lengthM,
+    material,
+    raceway,
+    ambientC,
+    conductors,
+    chosenSize,
+    resultSize,
+    dropPercent,
+    sortOrder,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'electrical_runs';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ElectricalRun> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('length_m')) {
+      context.handle(
+        _lengthMMeta,
+        lengthM.isAcceptableOrUnknown(data['length_m']!, _lengthMMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_lengthMMeta);
+    }
+    if (data.containsKey('ambient_c')) {
+      context.handle(
+        _ambientCMeta,
+        ambientC.isAcceptableOrUnknown(data['ambient_c']!, _ambientCMeta),
+      );
+    }
+    if (data.containsKey('conductors')) {
+      context.handle(
+        _conductorsMeta,
+        conductors.isAcceptableOrUnknown(data['conductors']!, _conductorsMeta),
+      );
+    }
+    if (data.containsKey('chosen_size')) {
+      context.handle(
+        _chosenSizeMeta,
+        chosenSize.isAcceptableOrUnknown(data['chosen_size']!, _chosenSizeMeta),
+      );
+    }
+    if (data.containsKey('result_size')) {
+      context.handle(
+        _resultSizeMeta,
+        resultSize.isAcceptableOrUnknown(data['result_size']!, _resultSizeMeta),
+      );
+    }
+    if (data.containsKey('drop_percent')) {
+      context.handle(
+        _dropPercentMeta,
+        dropPercent.isAcceptableOrUnknown(
+          data['drop_percent']!,
+          _dropPercentMeta,
+        ),
+      );
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ElectricalRun map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ElectricalRun(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      kind: $ElectricalRunsTable.$converterkind.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}kind'],
+        )!,
+      ),
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      lengthM: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}length_m'],
+      )!,
+      material: $ElectricalRunsTable.$convertermaterial.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}material'],
+        )!,
+      ),
+      raceway: $ElectricalRunsTable.$converterraceway.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}raceway'],
+        )!,
+      ),
+      ambientC: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}ambient_c'],
+      )!,
+      conductors: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}conductors'],
+      )!,
+      chosenSize: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}chosen_size'],
+      ),
+      resultSize: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}result_size'],
+      ),
+      dropPercent: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}drop_percent'],
+      ),
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sort_order'],
+      )!,
+    );
+  }
+
+  @override
+  $ElectricalRunsTable createAlias(String alias) {
+    return $ElectricalRunsTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<RunKind, String, String> $converterkind =
+      const EnumNameConverter<RunKind>(RunKind.values);
+  static JsonTypeConverter2<CableMaterial, String, String> $convertermaterial =
+      const EnumNameConverter<CableMaterial>(CableMaterial.values);
+  static JsonTypeConverter2<RacewayKind, String, String> $converterraceway =
+      const EnumNameConverter<RacewayKind>(RacewayKind.values);
+}
+
+class ElectricalRun extends DataClass implements Insertable<ElectricalRun> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto.
+  final String projectId;
+
+  /// String → inversor o inversor → tablero.
+  final RunKind kind;
+
+  /// Nombre visible.
+  final String name;
+
+  /// Longitud en un sentido (m).
+  final double lengthM;
+
+  /// Material.
+  final CableMaterial material;
+
+  /// Canalización.
+  final RacewayKind raceway;
+
+  /// Temperatura ambiente de diseño (°C).
+  final double ambientC;
+
+  /// Conductores portadores de corriente en la canalización.
+  final int conductors;
+
+  /// Calibre elegido a mano (nulo = el mínimo calculado).
+  final String? chosenSize;
+
+  /// Calibre resultante.
+  final String? resultSize;
+
+  /// Caída de tensión resultante (%).
+  final double? dropPercent;
+
+  /// Orden.
+  final int sortOrder;
+  const ElectricalRun({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.kind,
+    required this.name,
+    required this.lengthM,
+    required this.material,
+    required this.raceway,
+    required this.ambientC,
+    required this.conductors,
+    this.chosenSize,
+    this.resultSize,
+    this.dropPercent,
+    required this.sortOrder,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    {
+      map['kind'] = Variable<String>(
+        $ElectricalRunsTable.$converterkind.toSql(kind),
+      );
+    }
+    map['name'] = Variable<String>(name);
+    map['length_m'] = Variable<double>(lengthM);
+    {
+      map['material'] = Variable<String>(
+        $ElectricalRunsTable.$convertermaterial.toSql(material),
+      );
+    }
+    {
+      map['raceway'] = Variable<String>(
+        $ElectricalRunsTable.$converterraceway.toSql(raceway),
+      );
+    }
+    map['ambient_c'] = Variable<double>(ambientC);
+    map['conductors'] = Variable<int>(conductors);
+    if (!nullToAbsent || chosenSize != null) {
+      map['chosen_size'] = Variable<String>(chosenSize);
+    }
+    if (!nullToAbsent || resultSize != null) {
+      map['result_size'] = Variable<String>(resultSize);
+    }
+    if (!nullToAbsent || dropPercent != null) {
+      map['drop_percent'] = Variable<double>(dropPercent);
+    }
+    map['sort_order'] = Variable<int>(sortOrder);
+    return map;
+  }
+
+  ElectricalRunsCompanion toCompanion(bool nullToAbsent) {
+    return ElectricalRunsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      kind: Value(kind),
+      name: Value(name),
+      lengthM: Value(lengthM),
+      material: Value(material),
+      raceway: Value(raceway),
+      ambientC: Value(ambientC),
+      conductors: Value(conductors),
+      chosenSize: chosenSize == null && nullToAbsent
+          ? const Value.absent()
+          : Value(chosenSize),
+      resultSize: resultSize == null && nullToAbsent
+          ? const Value.absent()
+          : Value(resultSize),
+      dropPercent: dropPercent == null && nullToAbsent
+          ? const Value.absent()
+          : Value(dropPercent),
+      sortOrder: Value(sortOrder),
+    );
+  }
+
+  factory ElectricalRun.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ElectricalRun(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      kind: $ElectricalRunsTable.$converterkind.fromJson(
+        serializer.fromJson<String>(json['kind']),
+      ),
+      name: serializer.fromJson<String>(json['name']),
+      lengthM: serializer.fromJson<double>(json['lengthM']),
+      material: $ElectricalRunsTable.$convertermaterial.fromJson(
+        serializer.fromJson<String>(json['material']),
+      ),
+      raceway: $ElectricalRunsTable.$converterraceway.fromJson(
+        serializer.fromJson<String>(json['raceway']),
+      ),
+      ambientC: serializer.fromJson<double>(json['ambientC']),
+      conductors: serializer.fromJson<int>(json['conductors']),
+      chosenSize: serializer.fromJson<String?>(json['chosenSize']),
+      resultSize: serializer.fromJson<String?>(json['resultSize']),
+      dropPercent: serializer.fromJson<double?>(json['dropPercent']),
+      sortOrder: serializer.fromJson<int>(json['sortOrder']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'kind': serializer.toJson<String>(
+        $ElectricalRunsTable.$converterkind.toJson(kind),
+      ),
+      'name': serializer.toJson<String>(name),
+      'lengthM': serializer.toJson<double>(lengthM),
+      'material': serializer.toJson<String>(
+        $ElectricalRunsTable.$convertermaterial.toJson(material),
+      ),
+      'raceway': serializer.toJson<String>(
+        $ElectricalRunsTable.$converterraceway.toJson(raceway),
+      ),
+      'ambientC': serializer.toJson<double>(ambientC),
+      'conductors': serializer.toJson<int>(conductors),
+      'chosenSize': serializer.toJson<String?>(chosenSize),
+      'resultSize': serializer.toJson<String?>(resultSize),
+      'dropPercent': serializer.toJson<double?>(dropPercent),
+      'sortOrder': serializer.toJson<int>(sortOrder),
+    };
+  }
+
+  ElectricalRun copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    RunKind? kind,
+    String? name,
+    double? lengthM,
+    CableMaterial? material,
+    RacewayKind? raceway,
+    double? ambientC,
+    int? conductors,
+    Value<String?> chosenSize = const Value.absent(),
+    Value<String?> resultSize = const Value.absent(),
+    Value<double?> dropPercent = const Value.absent(),
+    int? sortOrder,
+  }) => ElectricalRun(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    kind: kind ?? this.kind,
+    name: name ?? this.name,
+    lengthM: lengthM ?? this.lengthM,
+    material: material ?? this.material,
+    raceway: raceway ?? this.raceway,
+    ambientC: ambientC ?? this.ambientC,
+    conductors: conductors ?? this.conductors,
+    chosenSize: chosenSize.present ? chosenSize.value : this.chosenSize,
+    resultSize: resultSize.present ? resultSize.value : this.resultSize,
+    dropPercent: dropPercent.present ? dropPercent.value : this.dropPercent,
+    sortOrder: sortOrder ?? this.sortOrder,
+  );
+  ElectricalRun copyWithCompanion(ElectricalRunsCompanion data) {
+    return ElectricalRun(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      name: data.name.present ? data.name.value : this.name,
+      lengthM: data.lengthM.present ? data.lengthM.value : this.lengthM,
+      material: data.material.present ? data.material.value : this.material,
+      raceway: data.raceway.present ? data.raceway.value : this.raceway,
+      ambientC: data.ambientC.present ? data.ambientC.value : this.ambientC,
+      conductors: data.conductors.present
+          ? data.conductors.value
+          : this.conductors,
+      chosenSize: data.chosenSize.present
+          ? data.chosenSize.value
+          : this.chosenSize,
+      resultSize: data.resultSize.present
+          ? data.resultSize.value
+          : this.resultSize,
+      dropPercent: data.dropPercent.present
+          ? data.dropPercent.value
+          : this.dropPercent,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ElectricalRun(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('kind: $kind, ')
+          ..write('name: $name, ')
+          ..write('lengthM: $lengthM, ')
+          ..write('material: $material, ')
+          ..write('raceway: $raceway, ')
+          ..write('ambientC: $ambientC, ')
+          ..write('conductors: $conductors, ')
+          ..write('chosenSize: $chosenSize, ')
+          ..write('resultSize: $resultSize, ')
+          ..write('dropPercent: $dropPercent, ')
+          ..write('sortOrder: $sortOrder')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    kind,
+    name,
+    lengthM,
+    material,
+    raceway,
+    ambientC,
+    conductors,
+    chosenSize,
+    resultSize,
+    dropPercent,
+    sortOrder,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ElectricalRun &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.kind == this.kind &&
+          other.name == this.name &&
+          other.lengthM == this.lengthM &&
+          other.material == this.material &&
+          other.raceway == this.raceway &&
+          other.ambientC == this.ambientC &&
+          other.conductors == this.conductors &&
+          other.chosenSize == this.chosenSize &&
+          other.resultSize == this.resultSize &&
+          other.dropPercent == this.dropPercent &&
+          other.sortOrder == this.sortOrder);
+}
+
+class ElectricalRunsCompanion extends UpdateCompanion<ElectricalRun> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<RunKind> kind;
+  final Value<String> name;
+  final Value<double> lengthM;
+  final Value<CableMaterial> material;
+  final Value<RacewayKind> raceway;
+  final Value<double> ambientC;
+  final Value<int> conductors;
+  final Value<String?> chosenSize;
+  final Value<String?> resultSize;
+  final Value<double?> dropPercent;
+  final Value<int> sortOrder;
+  final Value<int> rowid;
+  const ElectricalRunsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.name = const Value.absent(),
+    this.lengthM = const Value.absent(),
+    this.material = const Value.absent(),
+    this.raceway = const Value.absent(),
+    this.ambientC = const Value.absent(),
+    this.conductors = const Value.absent(),
+    this.chosenSize = const Value.absent(),
+    this.resultSize = const Value.absent(),
+    this.dropPercent = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ElectricalRunsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required RunKind kind,
+    required String name,
+    required double lengthM,
+    this.material = const Value.absent(),
+    this.raceway = const Value.absent(),
+    this.ambientC = const Value.absent(),
+    this.conductors = const Value.absent(),
+    this.chosenSize = const Value.absent(),
+    this.resultSize = const Value.absent(),
+    this.dropPercent = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       kind = Value(kind),
+       name = Value(name),
+       lengthM = Value(lengthM);
+  static Insertable<ElectricalRun> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<String>? kind,
+    Expression<String>? name,
+    Expression<double>? lengthM,
+    Expression<String>? material,
+    Expression<String>? raceway,
+    Expression<double>? ambientC,
+    Expression<int>? conductors,
+    Expression<String>? chosenSize,
+    Expression<String>? resultSize,
+    Expression<double>? dropPercent,
+    Expression<int>? sortOrder,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (kind != null) 'kind': kind,
+      if (name != null) 'name': name,
+      if (lengthM != null) 'length_m': lengthM,
+      if (material != null) 'material': material,
+      if (raceway != null) 'raceway': raceway,
+      if (ambientC != null) 'ambient_c': ambientC,
+      if (conductors != null) 'conductors': conductors,
+      if (chosenSize != null) 'chosen_size': chosenSize,
+      if (resultSize != null) 'result_size': resultSize,
+      if (dropPercent != null) 'drop_percent': dropPercent,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ElectricalRunsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<RunKind>? kind,
+    Value<String>? name,
+    Value<double>? lengthM,
+    Value<CableMaterial>? material,
+    Value<RacewayKind>? raceway,
+    Value<double>? ambientC,
+    Value<int>? conductors,
+    Value<String?>? chosenSize,
+    Value<String?>? resultSize,
+    Value<double?>? dropPercent,
+    Value<int>? sortOrder,
+    Value<int>? rowid,
+  }) {
+    return ElectricalRunsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      kind: kind ?? this.kind,
+      name: name ?? this.name,
+      lengthM: lengthM ?? this.lengthM,
+      material: material ?? this.material,
+      raceway: raceway ?? this.raceway,
+      ambientC: ambientC ?? this.ambientC,
+      conductors: conductors ?? this.conductors,
+      chosenSize: chosenSize ?? this.chosenSize,
+      resultSize: resultSize ?? this.resultSize,
+      dropPercent: dropPercent ?? this.dropPercent,
+      sortOrder: sortOrder ?? this.sortOrder,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(
+        $ElectricalRunsTable.$converterkind.toSql(kind.value),
+      );
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (lengthM.present) {
+      map['length_m'] = Variable<double>(lengthM.value);
+    }
+    if (material.present) {
+      map['material'] = Variable<String>(
+        $ElectricalRunsTable.$convertermaterial.toSql(material.value),
+      );
+    }
+    if (raceway.present) {
+      map['raceway'] = Variable<String>(
+        $ElectricalRunsTable.$converterraceway.toSql(raceway.value),
+      );
+    }
+    if (ambientC.present) {
+      map['ambient_c'] = Variable<double>(ambientC.value);
+    }
+    if (conductors.present) {
+      map['conductors'] = Variable<int>(conductors.value);
+    }
+    if (chosenSize.present) {
+      map['chosen_size'] = Variable<String>(chosenSize.value);
+    }
+    if (resultSize.present) {
+      map['result_size'] = Variable<String>(resultSize.value);
+    }
+    if (dropPercent.present) {
+      map['drop_percent'] = Variable<double>(dropPercent.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<int>(sortOrder.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ElectricalRunsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('kind: $kind, ')
+          ..write('name: $name, ')
+          ..write('lengthM: $lengthM, ')
+          ..write('material: $material, ')
+          ..write('raceway: $raceway, ')
+          ..write('ambientC: $ambientC, ')
+          ..write('conductors: $conductors, ')
+          ..write('chosenSize: $chosenSize, ')
+          ..write('resultSize: $resultSize, ')
+          ..write('dropPercent: $dropPercent, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ProtectionDevicesTable extends ProtectionDevices
+    with TableInfo<$ProtectionDevicesTable, ProtectionDevice> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ProtectionDevicesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<ProtectionDeviceKind, String>
+  kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  ).withConverter<ProtectionDeviceKind>($ProtectionDevicesTable.$converterkind);
+  static const VerificationMeta _ratingAMeta = const VerificationMeta(
+    'ratingA',
+  );
+  @override
+  late final GeneratedColumn<double> ratingA = GeneratedColumn<double>(
+    'rating_a',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _voltageVMeta = const VerificationMeta(
+    'voltageV',
+  );
+  @override
+  late final GeneratedColumn<double> voltageV = GeneratedColumn<double>(
+    'voltage_v',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _quantityMeta = const VerificationMeta(
+    'quantity',
+  );
+  @override
+  late final GeneratedColumn<int> quantity = GeneratedColumn<int>(
+    'quantity',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _conductorSizeMeta = const VerificationMeta(
+    'conductorSize',
+  );
+  @override
+  late final GeneratedColumn<String> conductorSize = GeneratedColumn<String>(
+    'conductor_size',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    kind,
+    ratingA,
+    voltageV,
+    quantity,
+    conductorSize,
+    notes,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'protection_devices';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ProtectionDevice> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('rating_a')) {
+      context.handle(
+        _ratingAMeta,
+        ratingA.isAcceptableOrUnknown(data['rating_a']!, _ratingAMeta),
+      );
+    }
+    if (data.containsKey('voltage_v')) {
+      context.handle(
+        _voltageVMeta,
+        voltageV.isAcceptableOrUnknown(data['voltage_v']!, _voltageVMeta),
+      );
+    }
+    if (data.containsKey('quantity')) {
+      context.handle(
+        _quantityMeta,
+        quantity.isAcceptableOrUnknown(data['quantity']!, _quantityMeta),
+      );
+    }
+    if (data.containsKey('conductor_size')) {
+      context.handle(
+        _conductorSizeMeta,
+        conductorSize.isAcceptableOrUnknown(
+          data['conductor_size']!,
+          _conductorSizeMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ProtectionDevice map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ProtectionDevice(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      kind: $ProtectionDevicesTable.$converterkind.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}kind'],
+        )!,
+      ),
+      ratingA: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}rating_a'],
+      ),
+      voltageV: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}voltage_v'],
+      ),
+      quantity: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}quantity'],
+      )!,
+      conductorSize: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}conductor_size'],
+      ),
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+    );
+  }
+
+  @override
+  $ProtectionDevicesTable createAlias(String alias) {
+    return $ProtectionDevicesTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<ProtectionDeviceKind, String, String>
+  $converterkind = const EnumNameConverter<ProtectionDeviceKind>(
+    ProtectionDeviceKind.values,
+  );
+}
+
+class ProtectionDevice extends DataClass
+    implements Insertable<ProtectionDevice> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto.
+  final String projectId;
+
+  /// Tipo.
+  final ProtectionDeviceKind kind;
+
+  /// Corriente nominal (A).
+  final double? ratingA;
+
+  /// Tensión (V).
+  final double? voltageV;
+
+  /// Cantidad.
+  final int quantity;
+
+  /// Calibre (solo conductor de tierra).
+  final String? conductorSize;
+
+  /// Notas.
+  final String? notes;
+  const ProtectionDevice({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.kind,
+    this.ratingA,
+    this.voltageV,
+    required this.quantity,
+    this.conductorSize,
+    this.notes,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    {
+      map['kind'] = Variable<String>(
+        $ProtectionDevicesTable.$converterkind.toSql(kind),
+      );
+    }
+    if (!nullToAbsent || ratingA != null) {
+      map['rating_a'] = Variable<double>(ratingA);
+    }
+    if (!nullToAbsent || voltageV != null) {
+      map['voltage_v'] = Variable<double>(voltageV);
+    }
+    map['quantity'] = Variable<int>(quantity);
+    if (!nullToAbsent || conductorSize != null) {
+      map['conductor_size'] = Variable<String>(conductorSize);
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    return map;
+  }
+
+  ProtectionDevicesCompanion toCompanion(bool nullToAbsent) {
+    return ProtectionDevicesCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      kind: Value(kind),
+      ratingA: ratingA == null && nullToAbsent
+          ? const Value.absent()
+          : Value(ratingA),
+      voltageV: voltageV == null && nullToAbsent
+          ? const Value.absent()
+          : Value(voltageV),
+      quantity: Value(quantity),
+      conductorSize: conductorSize == null && nullToAbsent
+          ? const Value.absent()
+          : Value(conductorSize),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+    );
+  }
+
+  factory ProtectionDevice.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ProtectionDevice(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      kind: $ProtectionDevicesTable.$converterkind.fromJson(
+        serializer.fromJson<String>(json['kind']),
+      ),
+      ratingA: serializer.fromJson<double?>(json['ratingA']),
+      voltageV: serializer.fromJson<double?>(json['voltageV']),
+      quantity: serializer.fromJson<int>(json['quantity']),
+      conductorSize: serializer.fromJson<String?>(json['conductorSize']),
+      notes: serializer.fromJson<String?>(json['notes']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'kind': serializer.toJson<String>(
+        $ProtectionDevicesTable.$converterkind.toJson(kind),
+      ),
+      'ratingA': serializer.toJson<double?>(ratingA),
+      'voltageV': serializer.toJson<double?>(voltageV),
+      'quantity': serializer.toJson<int>(quantity),
+      'conductorSize': serializer.toJson<String?>(conductorSize),
+      'notes': serializer.toJson<String?>(notes),
+    };
+  }
+
+  ProtectionDevice copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    ProtectionDeviceKind? kind,
+    Value<double?> ratingA = const Value.absent(),
+    Value<double?> voltageV = const Value.absent(),
+    int? quantity,
+    Value<String?> conductorSize = const Value.absent(),
+    Value<String?> notes = const Value.absent(),
+  }) => ProtectionDevice(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    kind: kind ?? this.kind,
+    ratingA: ratingA.present ? ratingA.value : this.ratingA,
+    voltageV: voltageV.present ? voltageV.value : this.voltageV,
+    quantity: quantity ?? this.quantity,
+    conductorSize: conductorSize.present
+        ? conductorSize.value
+        : this.conductorSize,
+    notes: notes.present ? notes.value : this.notes,
+  );
+  ProtectionDevice copyWithCompanion(ProtectionDevicesCompanion data) {
+    return ProtectionDevice(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      ratingA: data.ratingA.present ? data.ratingA.value : this.ratingA,
+      voltageV: data.voltageV.present ? data.voltageV.value : this.voltageV,
+      quantity: data.quantity.present ? data.quantity.value : this.quantity,
+      conductorSize: data.conductorSize.present
+          ? data.conductorSize.value
+          : this.conductorSize,
+      notes: data.notes.present ? data.notes.value : this.notes,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProtectionDevice(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('kind: $kind, ')
+          ..write('ratingA: $ratingA, ')
+          ..write('voltageV: $voltageV, ')
+          ..write('quantity: $quantity, ')
+          ..write('conductorSize: $conductorSize, ')
+          ..write('notes: $notes')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    kind,
+    ratingA,
+    voltageV,
+    quantity,
+    conductorSize,
+    notes,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ProtectionDevice &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.kind == this.kind &&
+          other.ratingA == this.ratingA &&
+          other.voltageV == this.voltageV &&
+          other.quantity == this.quantity &&
+          other.conductorSize == this.conductorSize &&
+          other.notes == this.notes);
+}
+
+class ProtectionDevicesCompanion extends UpdateCompanion<ProtectionDevice> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<ProtectionDeviceKind> kind;
+  final Value<double?> ratingA;
+  final Value<double?> voltageV;
+  final Value<int> quantity;
+  final Value<String?> conductorSize;
+  final Value<String?> notes;
+  final Value<int> rowid;
+  const ProtectionDevicesCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.ratingA = const Value.absent(),
+    this.voltageV = const Value.absent(),
+    this.quantity = const Value.absent(),
+    this.conductorSize = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ProtectionDevicesCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required ProtectionDeviceKind kind,
+    this.ratingA = const Value.absent(),
+    this.voltageV = const Value.absent(),
+    this.quantity = const Value.absent(),
+    this.conductorSize = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       kind = Value(kind);
+  static Insertable<ProtectionDevice> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<String>? kind,
+    Expression<double>? ratingA,
+    Expression<double>? voltageV,
+    Expression<int>? quantity,
+    Expression<String>? conductorSize,
+    Expression<String>? notes,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (kind != null) 'kind': kind,
+      if (ratingA != null) 'rating_a': ratingA,
+      if (voltageV != null) 'voltage_v': voltageV,
+      if (quantity != null) 'quantity': quantity,
+      if (conductorSize != null) 'conductor_size': conductorSize,
+      if (notes != null) 'notes': notes,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ProtectionDevicesCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<ProtectionDeviceKind>? kind,
+    Value<double?>? ratingA,
+    Value<double?>? voltageV,
+    Value<int>? quantity,
+    Value<String?>? conductorSize,
+    Value<String?>? notes,
+    Value<int>? rowid,
+  }) {
+    return ProtectionDevicesCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      kind: kind ?? this.kind,
+      ratingA: ratingA ?? this.ratingA,
+      voltageV: voltageV ?? this.voltageV,
+      quantity: quantity ?? this.quantity,
+      conductorSize: conductorSize ?? this.conductorSize,
+      notes: notes ?? this.notes,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(
+        $ProtectionDevicesTable.$converterkind.toSql(kind.value),
+      );
+    }
+    if (ratingA.present) {
+      map['rating_a'] = Variable<double>(ratingA.value);
+    }
+    if (voltageV.present) {
+      map['voltage_v'] = Variable<double>(voltageV.value);
+    }
+    if (quantity.present) {
+      map['quantity'] = Variable<int>(quantity.value);
+    }
+    if (conductorSize.present) {
+      map['conductor_size'] = Variable<String>(conductorSize.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProtectionDevicesCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('kind: $kind, ')
+          ..write('ratingA: $ratingA, ')
+          ..write('voltageV: $voltageV, ')
+          ..write('quantity: $quantity, ')
+          ..write('conductorSize: $conductorSize, ')
+          ..write('notes: $notes, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $SimulationResultsTable extends SimulationResults
+    with TableInfo<$SimulationResultsTable, SimulationResultRecord> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SimulationResultsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: newUuid,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().toUtc(),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
+  @override
+  late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
+    'project_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES projects (id)',
+    ),
+  );
+  static const VerificationMeta _pdcWMeta = const VerificationMeta('pdcW');
+  @override
+  late final GeneratedColumn<double> pdcW = GeneratedColumn<double>(
+    'pdc_w',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _pacWMeta = const VerificationMeta('pacW');
+  @override
+  late final GeneratedColumn<double> pacW = GeneratedColumn<double>(
+    'pac_w',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _firstYearKwhMeta = const VerificationMeta(
+    'firstYearKwh',
+  );
+  @override
+  late final GeneratedColumn<double> firstYearKwh = GeneratedColumn<double>(
+    'first_year_kwh',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _lifetimeKwhMeta = const VerificationMeta(
+    'lifetimeKwh',
+  );
+  @override
+  late final GeneratedColumn<double> lifetimeKwh = GeneratedColumn<double>(
+    'lifetime_kwh',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _yearsMeta = const VerificationMeta('years');
+  @override
+  late final GeneratedColumn<int> years = GeneratedColumn<int>(
+    'years',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(25),
+  );
+  static const VerificationMeta _monthlyKwhMeta = const VerificationMeta(
+    'monthlyKwh',
+  );
+  @override
+  late final GeneratedColumn<String> monthlyKwh = GeneratedColumn<String>(
+    'monthly_kwh',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _yearlyKwhMeta = const VerificationMeta(
+    'yearlyKwh',
+  );
+  @override
+  late final GeneratedColumn<String> yearlyKwh = GeneratedColumn<String>(
+    'yearly_kwh',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _clippedKwhMeta = const VerificationMeta(
+    'clippedKwh',
+  );
+  @override
+  late final GeneratedColumn<double> clippedKwh = GeneratedColumn<double>(
+    'clipped_kwh',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _shadingLossPctMeta = const VerificationMeta(
+    'shadingLossPct',
+  );
+  @override
+  late final GeneratedColumn<double> shadingLossPct = GeneratedColumn<double>(
+    'shading_loss_pct',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _specificYieldMeta = const VerificationMeta(
+    'specificYield',
+  );
+  @override
+  late final GeneratedColumn<double> specificYield = GeneratedColumn<double>(
+    'specific_yield',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _performanceRatioMeta = const VerificationMeta(
+    'performanceRatio',
+  );
+  @override
+  late final GeneratedColumn<double> performanceRatio = GeneratedColumn<double>(
+    'performance_ratio',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _lossesMeta = const VerificationMeta('losses');
+  @override
+  late final GeneratedColumn<String> losses = GeneratedColumn<String>(
+    'losses',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('{}'),
+  );
+  static const VerificationMeta _weatherLabelMeta = const VerificationMeta(
+    'weatherLabel',
+  );
+  @override
+  late final GeneratedColumn<String> weatherLabel = GeneratedColumn<String>(
+    'weather_label',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    pdcW,
+    pacW,
+    firstYearKwh,
+    lifetimeKwh,
+    years,
+    monthlyKwh,
+    yearlyKwh,
+    clippedKwh,
+    shadingLossPct,
+    specificYield,
+    performanceRatio,
+    losses,
+    weatherLabel,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'simulation_results';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SimulationResultRecord> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('project_id')) {
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_projectIdMeta);
+    }
+    if (data.containsKey('pdc_w')) {
+      context.handle(
+        _pdcWMeta,
+        pdcW.isAcceptableOrUnknown(data['pdc_w']!, _pdcWMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_pdcWMeta);
+    }
+    if (data.containsKey('pac_w')) {
+      context.handle(
+        _pacWMeta,
+        pacW.isAcceptableOrUnknown(data['pac_w']!, _pacWMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_pacWMeta);
+    }
+    if (data.containsKey('first_year_kwh')) {
+      context.handle(
+        _firstYearKwhMeta,
+        firstYearKwh.isAcceptableOrUnknown(
+          data['first_year_kwh']!,
+          _firstYearKwhMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_firstYearKwhMeta);
+    }
+    if (data.containsKey('lifetime_kwh')) {
+      context.handle(
+        _lifetimeKwhMeta,
+        lifetimeKwh.isAcceptableOrUnknown(
+          data['lifetime_kwh']!,
+          _lifetimeKwhMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_lifetimeKwhMeta);
+    }
+    if (data.containsKey('years')) {
+      context.handle(
+        _yearsMeta,
+        years.isAcceptableOrUnknown(data['years']!, _yearsMeta),
+      );
+    }
+    if (data.containsKey('monthly_kwh')) {
+      context.handle(
+        _monthlyKwhMeta,
+        monthlyKwh.isAcceptableOrUnknown(data['monthly_kwh']!, _monthlyKwhMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_monthlyKwhMeta);
+    }
+    if (data.containsKey('yearly_kwh')) {
+      context.handle(
+        _yearlyKwhMeta,
+        yearlyKwh.isAcceptableOrUnknown(data['yearly_kwh']!, _yearlyKwhMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_yearlyKwhMeta);
+    }
+    if (data.containsKey('clipped_kwh')) {
+      context.handle(
+        _clippedKwhMeta,
+        clippedKwh.isAcceptableOrUnknown(data['clipped_kwh']!, _clippedKwhMeta),
+      );
+    }
+    if (data.containsKey('shading_loss_pct')) {
+      context.handle(
+        _shadingLossPctMeta,
+        shadingLossPct.isAcceptableOrUnknown(
+          data['shading_loss_pct']!,
+          _shadingLossPctMeta,
+        ),
+      );
+    }
+    if (data.containsKey('specific_yield')) {
+      context.handle(
+        _specificYieldMeta,
+        specificYield.isAcceptableOrUnknown(
+          data['specific_yield']!,
+          _specificYieldMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_specificYieldMeta);
+    }
+    if (data.containsKey('performance_ratio')) {
+      context.handle(
+        _performanceRatioMeta,
+        performanceRatio.isAcceptableOrUnknown(
+          data['performance_ratio']!,
+          _performanceRatioMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_performanceRatioMeta);
+    }
+    if (data.containsKey('losses')) {
+      context.handle(
+        _lossesMeta,
+        losses.isAcceptableOrUnknown(data['losses']!, _lossesMeta),
+      );
+    }
+    if (data.containsKey('weather_label')) {
+      context.handle(
+        _weatherLabelMeta,
+        weatherLabel.isAcceptableOrUnknown(
+          data['weather_label']!,
+          _weatherLabelMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  SimulationResultRecord map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SimulationResultRecord(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      pdcW: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}pdc_w'],
+      )!,
+      pacW: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}pac_w'],
+      )!,
+      firstYearKwh: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}first_year_kwh'],
+      )!,
+      lifetimeKwh: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}lifetime_kwh'],
+      )!,
+      years: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}years'],
+      )!,
+      monthlyKwh: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}monthly_kwh'],
+      )!,
+      yearlyKwh: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}yearly_kwh'],
+      )!,
+      clippedKwh: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}clipped_kwh'],
+      )!,
+      shadingLossPct: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}shading_loss_pct'],
+      )!,
+      specificYield: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}specific_yield'],
+      )!,
+      performanceRatio: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}performance_ratio'],
+      )!,
+      losses: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}losses'],
+      )!,
+      weatherLabel: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}weather_label'],
+      ),
+    );
+  }
+
+  @override
+  $SimulationResultsTable createAlias(String alias) {
+    return $SimulationResultsTable(attachedDatabase, alias);
+  }
+}
+
+class SimulationResultRecord extends DataClass
+    implements Insertable<SimulationResultRecord> {
+  /// Identificador UUID v4.
+  final String id;
+
+  /// Momento de creación (UTC).
+  final DateTime createdAt;
+
+  /// Momento de la última modificación (UTC).
+  final DateTime updatedAt;
+
+  /// Momento del borrado lógico (UTC) o `null` si está activo.
+  final DateTime? deletedAt;
+
+  /// Proyecto.
+  final String projectId;
+
+  /// Potencia DC (W).
+  final double pdcW;
+
+  /// Potencia AC (W).
+  final double pacW;
+
+  /// Energía del primer año (kWh).
+  final double firstYearKwh;
+
+  /// Energía de toda la vida útil (kWh).
+  final double lifetimeKwh;
+
+  /// Años de vida útil simulados.
+  final int years;
+
+  /// Energía mensual del primer año en JSON (12 valores, kWh).
+  final String monthlyKwh;
+
+  /// Energía por año en JSON (kWh).
+  final String yearlyKwh;
+
+  /// Recorte anual (kWh).
+  final double clippedKwh;
+
+  /// Pérdida por sombra (%).
+  final double shadingLossPct;
+
+  /// Rendimiento específico (kWh/kWp).
+  final double specificYield;
+
+  /// Performance ratio.
+  final double performanceRatio;
+
+  /// Pérdidas usadas en JSON (%).
+  final String losses;
+
+  /// Fuente del clima ("NASA POWER 2021–2025").
+  final String? weatherLabel;
+  const SimulationResultRecord({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.projectId,
+    required this.pdcW,
+    required this.pacW,
+    required this.firstYearKwh,
+    required this.lifetimeKwh,
+    required this.years,
+    required this.monthlyKwh,
+    required this.yearlyKwh,
+    required this.clippedKwh,
+    required this.shadingLossPct,
+    required this.specificYield,
+    required this.performanceRatio,
+    required this.losses,
+    this.weatherLabel,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['project_id'] = Variable<String>(projectId);
+    map['pdc_w'] = Variable<double>(pdcW);
+    map['pac_w'] = Variable<double>(pacW);
+    map['first_year_kwh'] = Variable<double>(firstYearKwh);
+    map['lifetime_kwh'] = Variable<double>(lifetimeKwh);
+    map['years'] = Variable<int>(years);
+    map['monthly_kwh'] = Variable<String>(monthlyKwh);
+    map['yearly_kwh'] = Variable<String>(yearlyKwh);
+    map['clipped_kwh'] = Variable<double>(clippedKwh);
+    map['shading_loss_pct'] = Variable<double>(shadingLossPct);
+    map['specific_yield'] = Variable<double>(specificYield);
+    map['performance_ratio'] = Variable<double>(performanceRatio);
+    map['losses'] = Variable<String>(losses);
+    if (!nullToAbsent || weatherLabel != null) {
+      map['weather_label'] = Variable<String>(weatherLabel);
+    }
+    return map;
+  }
+
+  SimulationResultsCompanion toCompanion(bool nullToAbsent) {
+    return SimulationResultsCompanion(
+      id: Value(id),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      projectId: Value(projectId),
+      pdcW: Value(pdcW),
+      pacW: Value(pacW),
+      firstYearKwh: Value(firstYearKwh),
+      lifetimeKwh: Value(lifetimeKwh),
+      years: Value(years),
+      monthlyKwh: Value(monthlyKwh),
+      yearlyKwh: Value(yearlyKwh),
+      clippedKwh: Value(clippedKwh),
+      shadingLossPct: Value(shadingLossPct),
+      specificYield: Value(specificYield),
+      performanceRatio: Value(performanceRatio),
+      losses: Value(losses),
+      weatherLabel: weatherLabel == null && nullToAbsent
+          ? const Value.absent()
+          : Value(weatherLabel),
+    );
+  }
+
+  factory SimulationResultRecord.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SimulationResultRecord(
+      id: serializer.fromJson<String>(json['id']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      projectId: serializer.fromJson<String>(json['projectId']),
+      pdcW: serializer.fromJson<double>(json['pdcW']),
+      pacW: serializer.fromJson<double>(json['pacW']),
+      firstYearKwh: serializer.fromJson<double>(json['firstYearKwh']),
+      lifetimeKwh: serializer.fromJson<double>(json['lifetimeKwh']),
+      years: serializer.fromJson<int>(json['years']),
+      monthlyKwh: serializer.fromJson<String>(json['monthlyKwh']),
+      yearlyKwh: serializer.fromJson<String>(json['yearlyKwh']),
+      clippedKwh: serializer.fromJson<double>(json['clippedKwh']),
+      shadingLossPct: serializer.fromJson<double>(json['shadingLossPct']),
+      specificYield: serializer.fromJson<double>(json['specificYield']),
+      performanceRatio: serializer.fromJson<double>(json['performanceRatio']),
+      losses: serializer.fromJson<String>(json['losses']),
+      weatherLabel: serializer.fromJson<String?>(json['weatherLabel']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'projectId': serializer.toJson<String>(projectId),
+      'pdcW': serializer.toJson<double>(pdcW),
+      'pacW': serializer.toJson<double>(pacW),
+      'firstYearKwh': serializer.toJson<double>(firstYearKwh),
+      'lifetimeKwh': serializer.toJson<double>(lifetimeKwh),
+      'years': serializer.toJson<int>(years),
+      'monthlyKwh': serializer.toJson<String>(monthlyKwh),
+      'yearlyKwh': serializer.toJson<String>(yearlyKwh),
+      'clippedKwh': serializer.toJson<double>(clippedKwh),
+      'shadingLossPct': serializer.toJson<double>(shadingLossPct),
+      'specificYield': serializer.toJson<double>(specificYield),
+      'performanceRatio': serializer.toJson<double>(performanceRatio),
+      'losses': serializer.toJson<String>(losses),
+      'weatherLabel': serializer.toJson<String?>(weatherLabel),
+    };
+  }
+
+  SimulationResultRecord copyWith({
+    String? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? projectId,
+    double? pdcW,
+    double? pacW,
+    double? firstYearKwh,
+    double? lifetimeKwh,
+    int? years,
+    String? monthlyKwh,
+    String? yearlyKwh,
+    double? clippedKwh,
+    double? shadingLossPct,
+    double? specificYield,
+    double? performanceRatio,
+    String? losses,
+    Value<String?> weatherLabel = const Value.absent(),
+  }) => SimulationResultRecord(
+    id: id ?? this.id,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    projectId: projectId ?? this.projectId,
+    pdcW: pdcW ?? this.pdcW,
+    pacW: pacW ?? this.pacW,
+    firstYearKwh: firstYearKwh ?? this.firstYearKwh,
+    lifetimeKwh: lifetimeKwh ?? this.lifetimeKwh,
+    years: years ?? this.years,
+    monthlyKwh: monthlyKwh ?? this.monthlyKwh,
+    yearlyKwh: yearlyKwh ?? this.yearlyKwh,
+    clippedKwh: clippedKwh ?? this.clippedKwh,
+    shadingLossPct: shadingLossPct ?? this.shadingLossPct,
+    specificYield: specificYield ?? this.specificYield,
+    performanceRatio: performanceRatio ?? this.performanceRatio,
+    losses: losses ?? this.losses,
+    weatherLabel: weatherLabel.present ? weatherLabel.value : this.weatherLabel,
+  );
+  SimulationResultRecord copyWithCompanion(SimulationResultsCompanion data) {
+    return SimulationResultRecord(
+      id: data.id.present ? data.id.value : this.id,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      projectId: data.projectId.present ? data.projectId.value : this.projectId,
+      pdcW: data.pdcW.present ? data.pdcW.value : this.pdcW,
+      pacW: data.pacW.present ? data.pacW.value : this.pacW,
+      firstYearKwh: data.firstYearKwh.present
+          ? data.firstYearKwh.value
+          : this.firstYearKwh,
+      lifetimeKwh: data.lifetimeKwh.present
+          ? data.lifetimeKwh.value
+          : this.lifetimeKwh,
+      years: data.years.present ? data.years.value : this.years,
+      monthlyKwh: data.monthlyKwh.present
+          ? data.monthlyKwh.value
+          : this.monthlyKwh,
+      yearlyKwh: data.yearlyKwh.present ? data.yearlyKwh.value : this.yearlyKwh,
+      clippedKwh: data.clippedKwh.present
+          ? data.clippedKwh.value
+          : this.clippedKwh,
+      shadingLossPct: data.shadingLossPct.present
+          ? data.shadingLossPct.value
+          : this.shadingLossPct,
+      specificYield: data.specificYield.present
+          ? data.specificYield.value
+          : this.specificYield,
+      performanceRatio: data.performanceRatio.present
+          ? data.performanceRatio.value
+          : this.performanceRatio,
+      losses: data.losses.present ? data.losses.value : this.losses,
+      weatherLabel: data.weatherLabel.present
+          ? data.weatherLabel.value
+          : this.weatherLabel,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SimulationResultRecord(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('pdcW: $pdcW, ')
+          ..write('pacW: $pacW, ')
+          ..write('firstYearKwh: $firstYearKwh, ')
+          ..write('lifetimeKwh: $lifetimeKwh, ')
+          ..write('years: $years, ')
+          ..write('monthlyKwh: $monthlyKwh, ')
+          ..write('yearlyKwh: $yearlyKwh, ')
+          ..write('clippedKwh: $clippedKwh, ')
+          ..write('shadingLossPct: $shadingLossPct, ')
+          ..write('specificYield: $specificYield, ')
+          ..write('performanceRatio: $performanceRatio, ')
+          ..write('losses: $losses, ')
+          ..write('weatherLabel: $weatherLabel')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    createdAt,
+    updatedAt,
+    deletedAt,
+    projectId,
+    pdcW,
+    pacW,
+    firstYearKwh,
+    lifetimeKwh,
+    years,
+    monthlyKwh,
+    yearlyKwh,
+    clippedKwh,
+    shadingLossPct,
+    specificYield,
+    performanceRatio,
+    losses,
+    weatherLabel,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SimulationResultRecord &&
+          other.id == this.id &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.projectId == this.projectId &&
+          other.pdcW == this.pdcW &&
+          other.pacW == this.pacW &&
+          other.firstYearKwh == this.firstYearKwh &&
+          other.lifetimeKwh == this.lifetimeKwh &&
+          other.years == this.years &&
+          other.monthlyKwh == this.monthlyKwh &&
+          other.yearlyKwh == this.yearlyKwh &&
+          other.clippedKwh == this.clippedKwh &&
+          other.shadingLossPct == this.shadingLossPct &&
+          other.specificYield == this.specificYield &&
+          other.performanceRatio == this.performanceRatio &&
+          other.losses == this.losses &&
+          other.weatherLabel == this.weatherLabel);
+}
+
+class SimulationResultsCompanion
+    extends UpdateCompanion<SimulationResultRecord> {
+  final Value<String> id;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> projectId;
+  final Value<double> pdcW;
+  final Value<double> pacW;
+  final Value<double> firstYearKwh;
+  final Value<double> lifetimeKwh;
+  final Value<int> years;
+  final Value<String> monthlyKwh;
+  final Value<String> yearlyKwh;
+  final Value<double> clippedKwh;
+  final Value<double> shadingLossPct;
+  final Value<double> specificYield;
+  final Value<double> performanceRatio;
+  final Value<String> losses;
+  final Value<String?> weatherLabel;
+  final Value<int> rowid;
+  const SimulationResultsCompanion({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.projectId = const Value.absent(),
+    this.pdcW = const Value.absent(),
+    this.pacW = const Value.absent(),
+    this.firstYearKwh = const Value.absent(),
+    this.lifetimeKwh = const Value.absent(),
+    this.years = const Value.absent(),
+    this.monthlyKwh = const Value.absent(),
+    this.yearlyKwh = const Value.absent(),
+    this.clippedKwh = const Value.absent(),
+    this.shadingLossPct = const Value.absent(),
+    this.specificYield = const Value.absent(),
+    this.performanceRatio = const Value.absent(),
+    this.losses = const Value.absent(),
+    this.weatherLabel = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SimulationResultsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    required String projectId,
+    required double pdcW,
+    required double pacW,
+    required double firstYearKwh,
+    required double lifetimeKwh,
+    this.years = const Value.absent(),
+    required String monthlyKwh,
+    required String yearlyKwh,
+    this.clippedKwh = const Value.absent(),
+    this.shadingLossPct = const Value.absent(),
+    required double specificYield,
+    required double performanceRatio,
+    this.losses = const Value.absent(),
+    this.weatherLabel = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : projectId = Value(projectId),
+       pdcW = Value(pdcW),
+       pacW = Value(pacW),
+       firstYearKwh = Value(firstYearKwh),
+       lifetimeKwh = Value(lifetimeKwh),
+       monthlyKwh = Value(monthlyKwh),
+       yearlyKwh = Value(yearlyKwh),
+       specificYield = Value(specificYield),
+       performanceRatio = Value(performanceRatio);
+  static Insertable<SimulationResultRecord> custom({
+    Expression<String>? id,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? projectId,
+    Expression<double>? pdcW,
+    Expression<double>? pacW,
+    Expression<double>? firstYearKwh,
+    Expression<double>? lifetimeKwh,
+    Expression<int>? years,
+    Expression<String>? monthlyKwh,
+    Expression<String>? yearlyKwh,
+    Expression<double>? clippedKwh,
+    Expression<double>? shadingLossPct,
+    Expression<double>? specificYield,
+    Expression<double>? performanceRatio,
+    Expression<String>? losses,
+    Expression<String>? weatherLabel,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (projectId != null) 'project_id': projectId,
+      if (pdcW != null) 'pdc_w': pdcW,
+      if (pacW != null) 'pac_w': pacW,
+      if (firstYearKwh != null) 'first_year_kwh': firstYearKwh,
+      if (lifetimeKwh != null) 'lifetime_kwh': lifetimeKwh,
+      if (years != null) 'years': years,
+      if (monthlyKwh != null) 'monthly_kwh': monthlyKwh,
+      if (yearlyKwh != null) 'yearly_kwh': yearlyKwh,
+      if (clippedKwh != null) 'clipped_kwh': clippedKwh,
+      if (shadingLossPct != null) 'shading_loss_pct': shadingLossPct,
+      if (specificYield != null) 'specific_yield': specificYield,
+      if (performanceRatio != null) 'performance_ratio': performanceRatio,
+      if (losses != null) 'losses': losses,
+      if (weatherLabel != null) 'weather_label': weatherLabel,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SimulationResultsCompanion copyWith({
+    Value<String>? id,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? projectId,
+    Value<double>? pdcW,
+    Value<double>? pacW,
+    Value<double>? firstYearKwh,
+    Value<double>? lifetimeKwh,
+    Value<int>? years,
+    Value<String>? monthlyKwh,
+    Value<String>? yearlyKwh,
+    Value<double>? clippedKwh,
+    Value<double>? shadingLossPct,
+    Value<double>? specificYield,
+    Value<double>? performanceRatio,
+    Value<String>? losses,
+    Value<String?>? weatherLabel,
+    Value<int>? rowid,
+  }) {
+    return SimulationResultsCompanion(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      projectId: projectId ?? this.projectId,
+      pdcW: pdcW ?? this.pdcW,
+      pacW: pacW ?? this.pacW,
+      firstYearKwh: firstYearKwh ?? this.firstYearKwh,
+      lifetimeKwh: lifetimeKwh ?? this.lifetimeKwh,
+      years: years ?? this.years,
+      monthlyKwh: monthlyKwh ?? this.monthlyKwh,
+      yearlyKwh: yearlyKwh ?? this.yearlyKwh,
+      clippedKwh: clippedKwh ?? this.clippedKwh,
+      shadingLossPct: shadingLossPct ?? this.shadingLossPct,
+      specificYield: specificYield ?? this.specificYield,
+      performanceRatio: performanceRatio ?? this.performanceRatio,
+      losses: losses ?? this.losses,
+      weatherLabel: weatherLabel ?? this.weatherLabel,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (projectId.present) {
+      map['project_id'] = Variable<String>(projectId.value);
+    }
+    if (pdcW.present) {
+      map['pdc_w'] = Variable<double>(pdcW.value);
+    }
+    if (pacW.present) {
+      map['pac_w'] = Variable<double>(pacW.value);
+    }
+    if (firstYearKwh.present) {
+      map['first_year_kwh'] = Variable<double>(firstYearKwh.value);
+    }
+    if (lifetimeKwh.present) {
+      map['lifetime_kwh'] = Variable<double>(lifetimeKwh.value);
+    }
+    if (years.present) {
+      map['years'] = Variable<int>(years.value);
+    }
+    if (monthlyKwh.present) {
+      map['monthly_kwh'] = Variable<String>(monthlyKwh.value);
+    }
+    if (yearlyKwh.present) {
+      map['yearly_kwh'] = Variable<String>(yearlyKwh.value);
+    }
+    if (clippedKwh.present) {
+      map['clipped_kwh'] = Variable<double>(clippedKwh.value);
+    }
+    if (shadingLossPct.present) {
+      map['shading_loss_pct'] = Variable<double>(shadingLossPct.value);
+    }
+    if (specificYield.present) {
+      map['specific_yield'] = Variable<double>(specificYield.value);
+    }
+    if (performanceRatio.present) {
+      map['performance_ratio'] = Variable<double>(performanceRatio.value);
+    }
+    if (losses.present) {
+      map['losses'] = Variable<String>(losses.value);
+    }
+    if (weatherLabel.present) {
+      map['weather_label'] = Variable<String>(weatherLabel.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SimulationResultsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('projectId: $projectId, ')
+          ..write('pdcW: $pdcW, ')
+          ..write('pacW: $pacW, ')
+          ..write('firstYearKwh: $firstYearKwh, ')
+          ..write('lifetimeKwh: $lifetimeKwh, ')
+          ..write('years: $years, ')
+          ..write('monthlyKwh: $monthlyKwh, ')
+          ..write('yearlyKwh: $yearlyKwh, ')
+          ..write('clippedKwh: $clippedKwh, ')
+          ..write('shadingLossPct: $shadingLossPct, ')
+          ..write('specificYield: $specificYield, ')
+          ..write('performanceRatio: $performanceRatio, ')
+          ..write('losses: $losses, ')
+          ..write('weatherLabel: $weatherLabel, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -8075,6 +17592,20 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $HorizonProfilesTable horizonProfiles = $HorizonProfilesTable(
     this,
   );
+  late final $PanelModelsTable panelModels = $PanelModelsTable(this);
+  late final $InverterModelsTable inverterModels = $InverterModelsTable(this);
+  late final $OptimizerModelsTable optimizerModels = $OptimizerModelsTable(
+    this,
+  );
+  late final $BatteryModelsTable batteryModels = $BatteryModelsTable(this);
+  late final $PvDesignsTable pvDesigns = $PvDesignsTable(this);
+  late final $ArrayLayoutsTable arrayLayouts = $ArrayLayoutsTable(this);
+  late final $StringConfigsTable stringConfigs = $StringConfigsTable(this);
+  late final $ElectricalRunsTable electricalRuns = $ElectricalRunsTable(this);
+  late final $ProtectionDevicesTable protectionDevices =
+      $ProtectionDevicesTable(this);
+  late final $SimulationResultsTable simulationResults =
+      $SimulationResultsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -8091,6 +17622,16 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     roofPlanes,
     obstacles,
     horizonProfiles,
+    panelModels,
+    inverterModels,
+    optimizerModels,
+    batteryModels,
+    pvDesigns,
+    arrayLayouts,
+    stringConfigs,
+    electricalRuns,
+    protectionDevices,
+    simulationResults,
   ];
   @override
   DriftDatabaseOptions get options =>
@@ -9018,6 +18559,123 @@ final class $$ProjectsTableReferences
       manager.$state.copyWith(prefetchedData: cache),
     );
   }
+
+  static MultiTypedResultKey<$PvDesignsTable, List<PvDesign>>
+  _pvDesignsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.pvDesigns,
+    aliasName: 'projects__id__pv_designs__project_id',
+  );
+
+  $$PvDesignsTableProcessedTableManager get pvDesignsRefs {
+    final manager = $$PvDesignsTableTableManager(
+      $_db,
+      $_db.pvDesigns,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_pvDesignsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$ArrayLayoutsTable, List<ArrayLayout>>
+  _arrayLayoutsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.arrayLayouts,
+    aliasName: 'projects__id__array_layouts__project_id',
+  );
+
+  $$ArrayLayoutsTableProcessedTableManager get arrayLayoutsRefs {
+    final manager = $$ArrayLayoutsTableTableManager(
+      $_db,
+      $_db.arrayLayouts,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_arrayLayoutsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$StringConfigsTable, List<StringConfig>>
+  _stringConfigsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.stringConfigs,
+    aliasName: 'projects__id__string_configs__project_id',
+  );
+
+  $$StringConfigsTableProcessedTableManager get stringConfigsRefs {
+    final manager = $$StringConfigsTableTableManager(
+      $_db,
+      $_db.stringConfigs,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_stringConfigsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$ElectricalRunsTable, List<ElectricalRun>>
+  _electricalRunsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.electricalRuns,
+    aliasName: 'projects__id__electrical_runs__project_id',
+  );
+
+  $$ElectricalRunsTableProcessedTableManager get electricalRunsRefs {
+    final manager = $$ElectricalRunsTableTableManager(
+      $_db,
+      $_db.electricalRuns,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_electricalRunsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$ProtectionDevicesTable, List<ProtectionDevice>>
+  _protectionDevicesRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.protectionDevices,
+        aliasName: 'projects__id__protection_devices__project_id',
+      );
+
+  $$ProtectionDevicesTableProcessedTableManager get protectionDevicesRefs {
+    final manager = $$ProtectionDevicesTableTableManager(
+      $_db,
+      $_db.protectionDevices,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _protectionDevicesRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<
+    $SimulationResultsTable,
+    List<SimulationResultRecord>
+  >
+  _simulationResultsRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.simulationResults,
+        aliasName: 'projects__id__simulation_results__project_id',
+      );
+
+  $$SimulationResultsTableProcessedTableManager get simulationResultsRefs {
+    final manager = $$SimulationResultsTableTableManager(
+      $_db,
+      $_db.simulationResults,
+    ).filter((f) => f.projectId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _simulationResultsRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$ProjectsTableFilterComposer
@@ -9259,6 +18917,156 @@ class $$ProjectsTableFilterComposer
           }) => $$HorizonProfilesTableFilterComposer(
             $db: $db,
             $table: $db.horizonProfiles,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> pvDesignsRefs(
+    Expression<bool> Function($$PvDesignsTableFilterComposer f) f,
+  ) {
+    final $$PvDesignsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.pvDesigns,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PvDesignsTableFilterComposer(
+            $db: $db,
+            $table: $db.pvDesigns,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> arrayLayoutsRefs(
+    Expression<bool> Function($$ArrayLayoutsTableFilterComposer f) f,
+  ) {
+    final $$ArrayLayoutsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.arrayLayouts,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ArrayLayoutsTableFilterComposer(
+            $db: $db,
+            $table: $db.arrayLayouts,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> stringConfigsRefs(
+    Expression<bool> Function($$StringConfigsTableFilterComposer f) f,
+  ) {
+    final $$StringConfigsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.stringConfigs,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$StringConfigsTableFilterComposer(
+            $db: $db,
+            $table: $db.stringConfigs,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> electricalRunsRefs(
+    Expression<bool> Function($$ElectricalRunsTableFilterComposer f) f,
+  ) {
+    final $$ElectricalRunsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.electricalRuns,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ElectricalRunsTableFilterComposer(
+            $db: $db,
+            $table: $db.electricalRuns,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> protectionDevicesRefs(
+    Expression<bool> Function($$ProtectionDevicesTableFilterComposer f) f,
+  ) {
+    final $$ProtectionDevicesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.protectionDevices,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProtectionDevicesTableFilterComposer(
+            $db: $db,
+            $table: $db.protectionDevices,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> simulationResultsRefs(
+    Expression<bool> Function($$SimulationResultsTableFilterComposer f) f,
+  ) {
+    final $$SimulationResultsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.simulationResults,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SimulationResultsTableFilterComposer(
+            $db: $db,
+            $table: $db.simulationResults,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -9574,6 +19382,158 @@ class $$ProjectsTableAnnotationComposer
     );
     return f(composer);
   }
+
+  Expression<T> pvDesignsRefs<T extends Object>(
+    Expression<T> Function($$PvDesignsTableAnnotationComposer a) f,
+  ) {
+    final $$PvDesignsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.pvDesigns,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PvDesignsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.pvDesigns,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> arrayLayoutsRefs<T extends Object>(
+    Expression<T> Function($$ArrayLayoutsTableAnnotationComposer a) f,
+  ) {
+    final $$ArrayLayoutsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.arrayLayouts,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ArrayLayoutsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.arrayLayouts,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> stringConfigsRefs<T extends Object>(
+    Expression<T> Function($$StringConfigsTableAnnotationComposer a) f,
+  ) {
+    final $$StringConfigsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.stringConfigs,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$StringConfigsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.stringConfigs,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> electricalRunsRefs<T extends Object>(
+    Expression<T> Function($$ElectricalRunsTableAnnotationComposer a) f,
+  ) {
+    final $$ElectricalRunsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.electricalRuns,
+      getReferencedColumn: (t) => t.projectId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ElectricalRunsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.electricalRuns,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> protectionDevicesRefs<T extends Object>(
+    Expression<T> Function($$ProtectionDevicesTableAnnotationComposer a) f,
+  ) {
+    final $$ProtectionDevicesTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.protectionDevices,
+          getReferencedColumn: (t) => t.projectId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$ProtectionDevicesTableAnnotationComposer(
+                $db: $db,
+                $table: $db.protectionDevices,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+
+  Expression<T> simulationResultsRefs<T extends Object>(
+    Expression<T> Function($$SimulationResultsTableAnnotationComposer a) f,
+  ) {
+    final $$SimulationResultsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.simulationResults,
+          getReferencedColumn: (t) => t.projectId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$SimulationResultsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.simulationResults,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
 }
 
 class $$ProjectsTableTableManager
@@ -9598,6 +19558,12 @@ class $$ProjectsTableTableManager
             bool roofPlanesRefs,
             bool obstaclesRefs,
             bool horizonProfilesRefs,
+            bool pvDesignsRefs,
+            bool arrayLayoutsRefs,
+            bool stringConfigsRefs,
+            bool electricalRunsRefs,
+            bool protectionDevicesRefs,
+            bool simulationResultsRefs,
           })
         > {
   $$ProjectsTableTableManager(_$AppDatabase db, $ProjectsTable table)
@@ -9677,6 +19643,12 @@ class $$ProjectsTableTableManager
                 roofPlanesRefs = false,
                 obstaclesRefs = false,
                 horizonProfilesRefs = false,
+                pvDesignsRefs = false,
+                arrayLayoutsRefs = false,
+                stringConfigsRefs = false,
+                electricalRunsRefs = false,
+                protectionDevicesRefs = false,
+                simulationResultsRefs = false,
               }) {
                 return PrefetchHooks(
                   db: db,
@@ -9688,6 +19660,12 @@ class $$ProjectsTableTableManager
                     if (roofPlanesRefs) db.roofPlanes,
                     if (obstaclesRefs) db.obstacles,
                     if (horizonProfilesRefs) db.horizonProfiles,
+                    if (pvDesignsRefs) db.pvDesigns,
+                    if (arrayLayoutsRefs) db.arrayLayouts,
+                    if (stringConfigsRefs) db.stringConfigs,
+                    if (electricalRunsRefs) db.electricalRuns,
+                    if (protectionDevicesRefs) db.protectionDevices,
+                    if (simulationResultsRefs) db.simulationResults,
                   ],
                   addJoins:
                       <
@@ -9861,6 +19839,126 @@ class $$ProjectsTableTableManager
                           referencedColumn: 'project_id',
                           typedResults: items,
                         ),
+                      if (pvDesignsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          PvDesign,
+                          $PvDesignsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._pvDesignsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).pvDesignsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (arrayLayoutsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          ArrayLayout,
+                          $ArrayLayoutsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._arrayLayoutsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).arrayLayoutsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (stringConfigsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          StringConfig,
+                          $StringConfigsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._stringConfigsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).stringConfigsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (electricalRunsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          ElectricalRun,
+                          $ElectricalRunsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._electricalRunsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).electricalRunsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (protectionDevicesRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          ProtectionDevice,
+                          $ProtectionDevicesTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._protectionDevicesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).protectionDevicesRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
+                      if (simulationResultsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Project,
+                          $ProjectsTable,
+                          SimulationResultRecord,
+                          $SimulationResultsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ProjectsTableReferences
+                              ._simulationResultsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ProjectsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).simulationResultsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'project_id',
+                          typedResults: items,
+                        ),
                     ];
                   },
                 );
@@ -9890,6 +19988,12 @@ typedef $$ProjectsTableProcessedTableManager =
         bool roofPlanesRefs,
         bool obstaclesRefs,
         bool horizonProfilesRefs,
+        bool pvDesignsRefs,
+        bool arrayLayoutsRefs,
+        bool stringConfigsRefs,
+        bool electricalRunsRefs,
+        bool protectionDevicesRefs,
+        bool simulationResultsRefs,
       })
     >;
 typedef $$SitesTableCreateCompanionBuilder = SitesCompanion Function({
@@ -12304,6 +22408,24 @@ final class $$RoofPlanesTableReferences
       manager.$state.copyWith(prefetchedData: [item]),
     );
   }
+
+  static MultiTypedResultKey<$ArrayLayoutsTable, List<ArrayLayout>>
+  _arrayLayoutsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.arrayLayouts,
+    aliasName: 'roof_planes__id__array_layouts__roof_plane_id',
+  );
+
+  $$ArrayLayoutsTableProcessedTableManager get arrayLayoutsRefs {
+    final manager = $$ArrayLayoutsTableTableManager(
+      $_db,
+      $_db.arrayLayouts,
+    ).filter((f) => f.roofPlaneId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_arrayLayoutsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$RoofPlanesTableFilterComposer
@@ -12402,6 +22524,31 @@ class $$RoofPlanesTableFilterComposer
           ),
     );
     return composer;
+  }
+
+  Expression<bool> arrayLayoutsRefs(
+    Expression<bool> Function($$ArrayLayoutsTableFilterComposer f) f,
+  ) {
+    final $$ArrayLayoutsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.arrayLayouts,
+      getReferencedColumn: (t) => t.roofPlaneId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ArrayLayoutsTableFilterComposer(
+            $db: $db,
+            $table: $db.arrayLayouts,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
   }
 }
 
@@ -12582,6 +22729,31 @@ class $$RoofPlanesTableAnnotationComposer
     );
     return composer;
   }
+
+  Expression<T> arrayLayoutsRefs<T extends Object>(
+    Expression<T> Function($$ArrayLayoutsTableAnnotationComposer a) f,
+  ) {
+    final $$ArrayLayoutsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.arrayLayouts,
+      getReferencedColumn: (t) => t.roofPlaneId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ArrayLayoutsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.arrayLayouts,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $$RoofPlanesTableTableManager
@@ -12597,7 +22769,7 @@ class $$RoofPlanesTableTableManager
           $$RoofPlanesTableUpdateCompanionBuilder,
           (RoofPlane, $$RoofPlanesTableReferences),
           RoofPlane,
-          PrefetchHooks Function({bool projectId})
+          PrefetchHooks Function({bool projectId, bool arrayLayoutsRefs})
         > {
   $$RoofPlanesTableTableManager(_$AppDatabase db, $RoofPlanesTable table)
     : super(
@@ -12686,45 +22858,69 @@ class $$RoofPlanesTableTableManager
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({projectId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (projectId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.projectId,
-                        referencedTable: $$RoofPlanesTableReferences
-                            ._projectIdTable(db),
-                        referencedColumn: $$RoofPlanesTableReferences
-                            ._projectIdTable(db)
-                            .id,
-                      ) as T;
-                    }
+          prefetchHooksCallback:
+              ({projectId = false, arrayLayoutsRefs = false}) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (arrayLayoutsRefs) db.arrayLayouts,
+                  ],
+                  addJoins:
+                      <
+                        T extends TableManagerState<
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic
+                        >
+                      >(state) {
+                        if (projectId) {
+                          state = state.withJoin(
+                            currentTable: table,
+                            currentColumn: table.projectId,
+                            referencedTable: $$RoofPlanesTableReferences
+                                ._projectIdTable(db),
+                            referencedColumn: $$RoofPlanesTableReferences
+                                ._projectIdTable(db)
+                                .id,
+                          ) as T;
+                        }
 
-                    return state;
+                        return state;
+                      },
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (arrayLayoutsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          RoofPlane,
+                          $RoofPlanesTable,
+                          ArrayLayout,
+                          $ArrayLayoutsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$RoofPlanesTableReferences
+                              ._arrayLayoutsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$RoofPlanesTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).arrayLayoutsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'roof_plane_id',
+                          typedResults: items,
+                        ),
+                    ];
                   },
-              getPrefetchedDataCallback: (items) async {
-                return [];
+                );
               },
-            );
-          },
         ),
       );
 }
@@ -12741,7 +22937,7 @@ typedef $$RoofPlanesTableProcessedTableManager =
       $$RoofPlanesTableUpdateCompanionBuilder,
       (RoofPlane, $$RoofPlanesTableReferences),
       RoofPlane,
-      PrefetchHooks Function({bool projectId})
+      PrefetchHooks Function({bool projectId, bool arrayLayoutsRefs})
     >;
 typedef $$ObstaclesTableCreateCompanionBuilder = ObstaclesCompanion Function({
   Value<String> id,
@@ -13680,6 +23876,5083 @@ typedef $$HorizonProfilesTableProcessedTableManager =
       HorizonProfileRecord,
       PrefetchHooks Function({bool projectId})
     >;
+typedef $$PanelModelsTableCreateCompanionBuilder =
+    PanelModelsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String manufacturer,
+      required String model,
+      required double pmaxW,
+      required double vocV,
+      required double iscA,
+      required double vmpV,
+      required double impA,
+      Value<double> gammaPmaxPct,
+      Value<double> betaVocPct,
+      Value<double> betaVmpPct,
+      required double lengthM,
+      required double widthM,
+      Value<double?> weightKg,
+      Value<CellType> cellType,
+      Value<int?> cellCount,
+      Value<bool> bifacial,
+      Value<double?> bifacialityPct,
+      Value<double?> maxSeriesFuseA,
+      Value<double?> maxSystemVoltageV,
+      Value<EquipmentSource> source,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+typedef $$PanelModelsTableUpdateCompanionBuilder =
+    PanelModelsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> manufacturer,
+      Value<String> model,
+      Value<double> pmaxW,
+      Value<double> vocV,
+      Value<double> iscA,
+      Value<double> vmpV,
+      Value<double> impA,
+      Value<double> gammaPmaxPct,
+      Value<double> betaVocPct,
+      Value<double> betaVmpPct,
+      Value<double> lengthM,
+      Value<double> widthM,
+      Value<double?> weightKg,
+      Value<CellType> cellType,
+      Value<int?> cellCount,
+      Value<bool> bifacial,
+      Value<double?> bifacialityPct,
+      Value<double?> maxSeriesFuseA,
+      Value<double?> maxSystemVoltageV,
+      Value<EquipmentSource> source,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+
+class $$PanelModelsTableFilterComposer
+    extends Composer<_$AppDatabase, $PanelModelsTable> {
+  $$PanelModelsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get manufacturer => $composableBuilder(
+    column: $table.manufacturer,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get model => $composableBuilder(
+    column: $table.model,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get pmaxW => $composableBuilder(
+    column: $table.pmaxW,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get vocV => $composableBuilder(
+    column: $table.vocV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get iscA => $composableBuilder(
+    column: $table.iscA,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get vmpV => $composableBuilder(
+    column: $table.vmpV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get impA => $composableBuilder(
+    column: $table.impA,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get gammaPmaxPct => $composableBuilder(
+    column: $table.gammaPmaxPct,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get betaVocPct => $composableBuilder(
+    column: $table.betaVocPct,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get betaVmpPct => $composableBuilder(
+    column: $table.betaVmpPct,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get lengthM => $composableBuilder(
+    column: $table.lengthM,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get widthM => $composableBuilder(
+    column: $table.widthM,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get weightKg => $composableBuilder(
+    column: $table.weightKg,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<CellType, CellType, String> get cellType =>
+      $composableBuilder(
+        column: $table.cellType,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
+
+  ColumnFilters<int> get cellCount => $composableBuilder(
+    column: $table.cellCount,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get bifacial => $composableBuilder(
+    column: $table.bifacial,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get bifacialityPct => $composableBuilder(
+    column: $table.bifacialityPct,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get maxSeriesFuseA => $composableBuilder(
+    column: $table.maxSeriesFuseA,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get maxSystemVoltageV => $composableBuilder(
+    column: $table.maxSystemVoltageV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<EquipmentSource, EquipmentSource, String>
+  get source => $composableBuilder(
+    column: $table.source,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$PanelModelsTableOrderingComposer
+    extends Composer<_$AppDatabase, $PanelModelsTable> {
+  $$PanelModelsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get manufacturer => $composableBuilder(
+    column: $table.manufacturer,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get model => $composableBuilder(
+    column: $table.model,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get pmaxW => $composableBuilder(
+    column: $table.pmaxW,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get vocV => $composableBuilder(
+    column: $table.vocV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get iscA => $composableBuilder(
+    column: $table.iscA,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get vmpV => $composableBuilder(
+    column: $table.vmpV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get impA => $composableBuilder(
+    column: $table.impA,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get gammaPmaxPct => $composableBuilder(
+    column: $table.gammaPmaxPct,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get betaVocPct => $composableBuilder(
+    column: $table.betaVocPct,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get betaVmpPct => $composableBuilder(
+    column: $table.betaVmpPct,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get lengthM => $composableBuilder(
+    column: $table.lengthM,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get widthM => $composableBuilder(
+    column: $table.widthM,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get weightKg => $composableBuilder(
+    column: $table.weightKg,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get cellType => $composableBuilder(
+    column: $table.cellType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get cellCount => $composableBuilder(
+    column: $table.cellCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get bifacial => $composableBuilder(
+    column: $table.bifacial,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get bifacialityPct => $composableBuilder(
+    column: $table.bifacialityPct,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get maxSeriesFuseA => $composableBuilder(
+    column: $table.maxSeriesFuseA,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get maxSystemVoltageV => $composableBuilder(
+    column: $table.maxSystemVoltageV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get source => $composableBuilder(
+    column: $table.source,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$PanelModelsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $PanelModelsTable> {
+  $$PanelModelsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get manufacturer => $composableBuilder(
+    column: $table.manufacturer,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get model =>
+      $composableBuilder(column: $table.model, builder: (column) => column);
+
+  GeneratedColumn<double> get pmaxW =>
+      $composableBuilder(column: $table.pmaxW, builder: (column) => column);
+
+  GeneratedColumn<double> get vocV =>
+      $composableBuilder(column: $table.vocV, builder: (column) => column);
+
+  GeneratedColumn<double> get iscA =>
+      $composableBuilder(column: $table.iscA, builder: (column) => column);
+
+  GeneratedColumn<double> get vmpV =>
+      $composableBuilder(column: $table.vmpV, builder: (column) => column);
+
+  GeneratedColumn<double> get impA =>
+      $composableBuilder(column: $table.impA, builder: (column) => column);
+
+  GeneratedColumn<double> get gammaPmaxPct => $composableBuilder(
+    column: $table.gammaPmaxPct,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get betaVocPct => $composableBuilder(
+    column: $table.betaVocPct,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get betaVmpPct => $composableBuilder(
+    column: $table.betaVmpPct,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get lengthM =>
+      $composableBuilder(column: $table.lengthM, builder: (column) => column);
+
+  GeneratedColumn<double> get widthM =>
+      $composableBuilder(column: $table.widthM, builder: (column) => column);
+
+  GeneratedColumn<double> get weightKg =>
+      $composableBuilder(column: $table.weightKg, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<CellType, String> get cellType =>
+      $composableBuilder(column: $table.cellType, builder: (column) => column);
+
+  GeneratedColumn<int> get cellCount =>
+      $composableBuilder(column: $table.cellCount, builder: (column) => column);
+
+  GeneratedColumn<bool> get bifacial =>
+      $composableBuilder(column: $table.bifacial, builder: (column) => column);
+
+  GeneratedColumn<double> get bifacialityPct => $composableBuilder(
+    column: $table.bifacialityPct,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get maxSeriesFuseA => $composableBuilder(
+    column: $table.maxSeriesFuseA,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get maxSystemVoltageV => $composableBuilder(
+    column: $table.maxSystemVoltageV,
+    builder: (column) => column,
+  );
+
+  GeneratedColumnWithTypeConverter<EquipmentSource, String> get source =>
+      $composableBuilder(column: $table.source, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+}
+
+class $$PanelModelsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $PanelModelsTable,
+          PanelModel,
+          $$PanelModelsTableFilterComposer,
+          $$PanelModelsTableOrderingComposer,
+          $$PanelModelsTableAnnotationComposer,
+          $$PanelModelsTableCreateCompanionBuilder,
+          $$PanelModelsTableUpdateCompanionBuilder,
+          (
+            PanelModel,
+            BaseReferences<_$AppDatabase, $PanelModelsTable, PanelModel>,
+          ),
+          PanelModel,
+          PrefetchHooks Function()
+        > {
+  $$PanelModelsTableTableManager(_$AppDatabase db, $PanelModelsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$PanelModelsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$PanelModelsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$PanelModelsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> manufacturer = const Value.absent(),
+                Value<String> model = const Value.absent(),
+                Value<double> pmaxW = const Value.absent(),
+                Value<double> vocV = const Value.absent(),
+                Value<double> iscA = const Value.absent(),
+                Value<double> vmpV = const Value.absent(),
+                Value<double> impA = const Value.absent(),
+                Value<double> gammaPmaxPct = const Value.absent(),
+                Value<double> betaVocPct = const Value.absent(),
+                Value<double> betaVmpPct = const Value.absent(),
+                Value<double> lengthM = const Value.absent(),
+                Value<double> widthM = const Value.absent(),
+                Value<double?> weightKg = const Value.absent(),
+                Value<CellType> cellType = const Value.absent(),
+                Value<int?> cellCount = const Value.absent(),
+                Value<bool> bifacial = const Value.absent(),
+                Value<double?> bifacialityPct = const Value.absent(),
+                Value<double?> maxSeriesFuseA = const Value.absent(),
+                Value<double?> maxSystemVoltageV = const Value.absent(),
+                Value<EquipmentSource> source = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => PanelModelsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                manufacturer: manufacturer,
+                model: model,
+                pmaxW: pmaxW,
+                vocV: vocV,
+                iscA: iscA,
+                vmpV: vmpV,
+                impA: impA,
+                gammaPmaxPct: gammaPmaxPct,
+                betaVocPct: betaVocPct,
+                betaVmpPct: betaVmpPct,
+                lengthM: lengthM,
+                widthM: widthM,
+                weightKg: weightKg,
+                cellType: cellType,
+                cellCount: cellCount,
+                bifacial: bifacial,
+                bifacialityPct: bifacialityPct,
+                maxSeriesFuseA: maxSeriesFuseA,
+                maxSystemVoltageV: maxSystemVoltageV,
+                source: source,
+                notes: notes,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String manufacturer,
+                required String model,
+                required double pmaxW,
+                required double vocV,
+                required double iscA,
+                required double vmpV,
+                required double impA,
+                Value<double> gammaPmaxPct = const Value.absent(),
+                Value<double> betaVocPct = const Value.absent(),
+                Value<double> betaVmpPct = const Value.absent(),
+                required double lengthM,
+                required double widthM,
+                Value<double?> weightKg = const Value.absent(),
+                Value<CellType> cellType = const Value.absent(),
+                Value<int?> cellCount = const Value.absent(),
+                Value<bool> bifacial = const Value.absent(),
+                Value<double?> bifacialityPct = const Value.absent(),
+                Value<double?> maxSeriesFuseA = const Value.absent(),
+                Value<double?> maxSystemVoltageV = const Value.absent(),
+                Value<EquipmentSource> source = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => PanelModelsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                manufacturer: manufacturer,
+                model: model,
+                pmaxW: pmaxW,
+                vocV: vocV,
+                iscA: iscA,
+                vmpV: vmpV,
+                impA: impA,
+                gammaPmaxPct: gammaPmaxPct,
+                betaVocPct: betaVocPct,
+                betaVmpPct: betaVmpPct,
+                lengthM: lengthM,
+                widthM: widthM,
+                weightKg: weightKg,
+                cellType: cellType,
+                cellCount: cellCount,
+                bifacial: bifacial,
+                bifacialityPct: bifacialityPct,
+                maxSeriesFuseA: maxSeriesFuseA,
+                maxSystemVoltageV: maxSystemVoltageV,
+                source: source,
+                notes: notes,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$PanelModelsTable, PanelModel>(table),
+                  BaseReferences<_$AppDatabase, $PanelModelsTable, PanelModel>(
+                    db,
+                    table,
+                    e,
+                  ),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$PanelModelsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $PanelModelsTable,
+      PanelModel,
+      $$PanelModelsTableFilterComposer,
+      $$PanelModelsTableOrderingComposer,
+      $$PanelModelsTableAnnotationComposer,
+      $$PanelModelsTableCreateCompanionBuilder,
+      $$PanelModelsTableUpdateCompanionBuilder,
+      (
+        PanelModel,
+        BaseReferences<_$AppDatabase, $PanelModelsTable, PanelModel>,
+      ),
+      PanelModel,
+      PrefetchHooks Function()
+    >;
+typedef $$InverterModelsTableCreateCompanionBuilder =
+    InverterModelsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String manufacturer,
+      required String model,
+      Value<InverterKind> kind,
+      required double pacW,
+      required double vdcMaxV,
+      required double mpptMinV,
+      required double mpptMaxV,
+      Value<int> mpptCount,
+      required double imaxPerMpptA,
+      Value<double?> iscMaxPerMpptA,
+      Value<double> efficiencyPct,
+      Value<int> phases,
+      Value<double> acVoltageV,
+      Value<double?> iacMaxA,
+      Value<EquipmentSource> source,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+typedef $$InverterModelsTableUpdateCompanionBuilder =
+    InverterModelsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> manufacturer,
+      Value<String> model,
+      Value<InverterKind> kind,
+      Value<double> pacW,
+      Value<double> vdcMaxV,
+      Value<double> mpptMinV,
+      Value<double> mpptMaxV,
+      Value<int> mpptCount,
+      Value<double> imaxPerMpptA,
+      Value<double?> iscMaxPerMpptA,
+      Value<double> efficiencyPct,
+      Value<int> phases,
+      Value<double> acVoltageV,
+      Value<double?> iacMaxA,
+      Value<EquipmentSource> source,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+
+class $$InverterModelsTableFilterComposer
+    extends Composer<_$AppDatabase, $InverterModelsTable> {
+  $$InverterModelsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get manufacturer => $composableBuilder(
+    column: $table.manufacturer,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get model => $composableBuilder(
+    column: $table.model,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<InverterKind, InverterKind, String> get kind =>
+      $composableBuilder(
+        column: $table.kind,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
+
+  ColumnFilters<double> get pacW => $composableBuilder(
+    column: $table.pacW,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get vdcMaxV => $composableBuilder(
+    column: $table.vdcMaxV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get mpptMinV => $composableBuilder(
+    column: $table.mpptMinV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get mpptMaxV => $composableBuilder(
+    column: $table.mpptMaxV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get mpptCount => $composableBuilder(
+    column: $table.mpptCount,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get imaxPerMpptA => $composableBuilder(
+    column: $table.imaxPerMpptA,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get iscMaxPerMpptA => $composableBuilder(
+    column: $table.iscMaxPerMpptA,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get efficiencyPct => $composableBuilder(
+    column: $table.efficiencyPct,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get phases => $composableBuilder(
+    column: $table.phases,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get acVoltageV => $composableBuilder(
+    column: $table.acVoltageV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get iacMaxA => $composableBuilder(
+    column: $table.iacMaxA,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<EquipmentSource, EquipmentSource, String>
+  get source => $composableBuilder(
+    column: $table.source,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$InverterModelsTableOrderingComposer
+    extends Composer<_$AppDatabase, $InverterModelsTable> {
+  $$InverterModelsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get manufacturer => $composableBuilder(
+    column: $table.manufacturer,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get model => $composableBuilder(
+    column: $table.model,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get pacW => $composableBuilder(
+    column: $table.pacW,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get vdcMaxV => $composableBuilder(
+    column: $table.vdcMaxV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get mpptMinV => $composableBuilder(
+    column: $table.mpptMinV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get mpptMaxV => $composableBuilder(
+    column: $table.mpptMaxV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get mpptCount => $composableBuilder(
+    column: $table.mpptCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get imaxPerMpptA => $composableBuilder(
+    column: $table.imaxPerMpptA,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get iscMaxPerMpptA => $composableBuilder(
+    column: $table.iscMaxPerMpptA,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get efficiencyPct => $composableBuilder(
+    column: $table.efficiencyPct,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get phases => $composableBuilder(
+    column: $table.phases,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get acVoltageV => $composableBuilder(
+    column: $table.acVoltageV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get iacMaxA => $composableBuilder(
+    column: $table.iacMaxA,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get source => $composableBuilder(
+    column: $table.source,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$InverterModelsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $InverterModelsTable> {
+  $$InverterModelsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get manufacturer => $composableBuilder(
+    column: $table.manufacturer,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get model =>
+      $composableBuilder(column: $table.model, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<InverterKind, String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<double> get pacW =>
+      $composableBuilder(column: $table.pacW, builder: (column) => column);
+
+  GeneratedColumn<double> get vdcMaxV =>
+      $composableBuilder(column: $table.vdcMaxV, builder: (column) => column);
+
+  GeneratedColumn<double> get mpptMinV =>
+      $composableBuilder(column: $table.mpptMinV, builder: (column) => column);
+
+  GeneratedColumn<double> get mpptMaxV =>
+      $composableBuilder(column: $table.mpptMaxV, builder: (column) => column);
+
+  GeneratedColumn<int> get mpptCount =>
+      $composableBuilder(column: $table.mpptCount, builder: (column) => column);
+
+  GeneratedColumn<double> get imaxPerMpptA => $composableBuilder(
+    column: $table.imaxPerMpptA,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get iscMaxPerMpptA => $composableBuilder(
+    column: $table.iscMaxPerMpptA,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get efficiencyPct => $composableBuilder(
+    column: $table.efficiencyPct,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get phases =>
+      $composableBuilder(column: $table.phases, builder: (column) => column);
+
+  GeneratedColumn<double> get acVoltageV => $composableBuilder(
+    column: $table.acVoltageV,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get iacMaxA =>
+      $composableBuilder(column: $table.iacMaxA, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<EquipmentSource, String> get source =>
+      $composableBuilder(column: $table.source, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+}
+
+class $$InverterModelsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $InverterModelsTable,
+          InverterModel,
+          $$InverterModelsTableFilterComposer,
+          $$InverterModelsTableOrderingComposer,
+          $$InverterModelsTableAnnotationComposer,
+          $$InverterModelsTableCreateCompanionBuilder,
+          $$InverterModelsTableUpdateCompanionBuilder,
+          (
+            InverterModel,
+            BaseReferences<_$AppDatabase, $InverterModelsTable, InverterModel>,
+          ),
+          InverterModel,
+          PrefetchHooks Function()
+        > {
+  $$InverterModelsTableTableManager(
+    _$AppDatabase db,
+    $InverterModelsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$InverterModelsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$InverterModelsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$InverterModelsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> manufacturer = const Value.absent(),
+                Value<String> model = const Value.absent(),
+                Value<InverterKind> kind = const Value.absent(),
+                Value<double> pacW = const Value.absent(),
+                Value<double> vdcMaxV = const Value.absent(),
+                Value<double> mpptMinV = const Value.absent(),
+                Value<double> mpptMaxV = const Value.absent(),
+                Value<int> mpptCount = const Value.absent(),
+                Value<double> imaxPerMpptA = const Value.absent(),
+                Value<double?> iscMaxPerMpptA = const Value.absent(),
+                Value<double> efficiencyPct = const Value.absent(),
+                Value<int> phases = const Value.absent(),
+                Value<double> acVoltageV = const Value.absent(),
+                Value<double?> iacMaxA = const Value.absent(),
+                Value<EquipmentSource> source = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => InverterModelsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                manufacturer: manufacturer,
+                model: model,
+                kind: kind,
+                pacW: pacW,
+                vdcMaxV: vdcMaxV,
+                mpptMinV: mpptMinV,
+                mpptMaxV: mpptMaxV,
+                mpptCount: mpptCount,
+                imaxPerMpptA: imaxPerMpptA,
+                iscMaxPerMpptA: iscMaxPerMpptA,
+                efficiencyPct: efficiencyPct,
+                phases: phases,
+                acVoltageV: acVoltageV,
+                iacMaxA: iacMaxA,
+                source: source,
+                notes: notes,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String manufacturer,
+                required String model,
+                Value<InverterKind> kind = const Value.absent(),
+                required double pacW,
+                required double vdcMaxV,
+                required double mpptMinV,
+                required double mpptMaxV,
+                Value<int> mpptCount = const Value.absent(),
+                required double imaxPerMpptA,
+                Value<double?> iscMaxPerMpptA = const Value.absent(),
+                Value<double> efficiencyPct = const Value.absent(),
+                Value<int> phases = const Value.absent(),
+                Value<double> acVoltageV = const Value.absent(),
+                Value<double?> iacMaxA = const Value.absent(),
+                Value<EquipmentSource> source = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => InverterModelsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                manufacturer: manufacturer,
+                model: model,
+                kind: kind,
+                pacW: pacW,
+                vdcMaxV: vdcMaxV,
+                mpptMinV: mpptMinV,
+                mpptMaxV: mpptMaxV,
+                mpptCount: mpptCount,
+                imaxPerMpptA: imaxPerMpptA,
+                iscMaxPerMpptA: iscMaxPerMpptA,
+                efficiencyPct: efficiencyPct,
+                phases: phases,
+                acVoltageV: acVoltageV,
+                iacMaxA: iacMaxA,
+                source: source,
+                notes: notes,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$InverterModelsTable, InverterModel>(table),
+                  BaseReferences<
+                    _$AppDatabase,
+                    $InverterModelsTable,
+                    InverterModel
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$InverterModelsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $InverterModelsTable,
+      InverterModel,
+      $$InverterModelsTableFilterComposer,
+      $$InverterModelsTableOrderingComposer,
+      $$InverterModelsTableAnnotationComposer,
+      $$InverterModelsTableCreateCompanionBuilder,
+      $$InverterModelsTableUpdateCompanionBuilder,
+      (
+        InverterModel,
+        BaseReferences<_$AppDatabase, $InverterModelsTable, InverterModel>,
+      ),
+      InverterModel,
+      PrefetchHooks Function()
+    >;
+typedef $$OptimizerModelsTableCreateCompanionBuilder =
+    OptimizerModelsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String manufacturer,
+      required String model,
+      required double pmaxInW,
+      required double vinMaxV,
+      required double imaxInA,
+      Value<double?> voutMaxV,
+      Value<double?> ioutMaxA,
+      Value<double> efficiencyPct,
+      Value<EquipmentSource> source,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+typedef $$OptimizerModelsTableUpdateCompanionBuilder =
+    OptimizerModelsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> manufacturer,
+      Value<String> model,
+      Value<double> pmaxInW,
+      Value<double> vinMaxV,
+      Value<double> imaxInA,
+      Value<double?> voutMaxV,
+      Value<double?> ioutMaxA,
+      Value<double> efficiencyPct,
+      Value<EquipmentSource> source,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+
+class $$OptimizerModelsTableFilterComposer
+    extends Composer<_$AppDatabase, $OptimizerModelsTable> {
+  $$OptimizerModelsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get manufacturer => $composableBuilder(
+    column: $table.manufacturer,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get model => $composableBuilder(
+    column: $table.model,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get pmaxInW => $composableBuilder(
+    column: $table.pmaxInW,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get vinMaxV => $composableBuilder(
+    column: $table.vinMaxV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get imaxInA => $composableBuilder(
+    column: $table.imaxInA,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get voutMaxV => $composableBuilder(
+    column: $table.voutMaxV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get ioutMaxA => $composableBuilder(
+    column: $table.ioutMaxA,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get efficiencyPct => $composableBuilder(
+    column: $table.efficiencyPct,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<EquipmentSource, EquipmentSource, String>
+  get source => $composableBuilder(
+    column: $table.source,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$OptimizerModelsTableOrderingComposer
+    extends Composer<_$AppDatabase, $OptimizerModelsTable> {
+  $$OptimizerModelsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get manufacturer => $composableBuilder(
+    column: $table.manufacturer,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get model => $composableBuilder(
+    column: $table.model,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get pmaxInW => $composableBuilder(
+    column: $table.pmaxInW,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get vinMaxV => $composableBuilder(
+    column: $table.vinMaxV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get imaxInA => $composableBuilder(
+    column: $table.imaxInA,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get voutMaxV => $composableBuilder(
+    column: $table.voutMaxV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get ioutMaxA => $composableBuilder(
+    column: $table.ioutMaxA,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get efficiencyPct => $composableBuilder(
+    column: $table.efficiencyPct,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get source => $composableBuilder(
+    column: $table.source,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$OptimizerModelsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $OptimizerModelsTable> {
+  $$OptimizerModelsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get manufacturer => $composableBuilder(
+    column: $table.manufacturer,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get model =>
+      $composableBuilder(column: $table.model, builder: (column) => column);
+
+  GeneratedColumn<double> get pmaxInW =>
+      $composableBuilder(column: $table.pmaxInW, builder: (column) => column);
+
+  GeneratedColumn<double> get vinMaxV =>
+      $composableBuilder(column: $table.vinMaxV, builder: (column) => column);
+
+  GeneratedColumn<double> get imaxInA =>
+      $composableBuilder(column: $table.imaxInA, builder: (column) => column);
+
+  GeneratedColumn<double> get voutMaxV =>
+      $composableBuilder(column: $table.voutMaxV, builder: (column) => column);
+
+  GeneratedColumn<double> get ioutMaxA =>
+      $composableBuilder(column: $table.ioutMaxA, builder: (column) => column);
+
+  GeneratedColumn<double> get efficiencyPct => $composableBuilder(
+    column: $table.efficiencyPct,
+    builder: (column) => column,
+  );
+
+  GeneratedColumnWithTypeConverter<EquipmentSource, String> get source =>
+      $composableBuilder(column: $table.source, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+}
+
+class $$OptimizerModelsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $OptimizerModelsTable,
+          OptimizerModel,
+          $$OptimizerModelsTableFilterComposer,
+          $$OptimizerModelsTableOrderingComposer,
+          $$OptimizerModelsTableAnnotationComposer,
+          $$OptimizerModelsTableCreateCompanionBuilder,
+          $$OptimizerModelsTableUpdateCompanionBuilder,
+          (
+            OptimizerModel,
+            BaseReferences<
+              _$AppDatabase,
+              $OptimizerModelsTable,
+              OptimizerModel
+            >,
+          ),
+          OptimizerModel,
+          PrefetchHooks Function()
+        > {
+  $$OptimizerModelsTableTableManager(
+    _$AppDatabase db,
+    $OptimizerModelsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$OptimizerModelsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$OptimizerModelsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$OptimizerModelsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> manufacturer = const Value.absent(),
+                Value<String> model = const Value.absent(),
+                Value<double> pmaxInW = const Value.absent(),
+                Value<double> vinMaxV = const Value.absent(),
+                Value<double> imaxInA = const Value.absent(),
+                Value<double?> voutMaxV = const Value.absent(),
+                Value<double?> ioutMaxA = const Value.absent(),
+                Value<double> efficiencyPct = const Value.absent(),
+                Value<EquipmentSource> source = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => OptimizerModelsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                manufacturer: manufacturer,
+                model: model,
+                pmaxInW: pmaxInW,
+                vinMaxV: vinMaxV,
+                imaxInA: imaxInA,
+                voutMaxV: voutMaxV,
+                ioutMaxA: ioutMaxA,
+                efficiencyPct: efficiencyPct,
+                source: source,
+                notes: notes,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String manufacturer,
+                required String model,
+                required double pmaxInW,
+                required double vinMaxV,
+                required double imaxInA,
+                Value<double?> voutMaxV = const Value.absent(),
+                Value<double?> ioutMaxA = const Value.absent(),
+                Value<double> efficiencyPct = const Value.absent(),
+                Value<EquipmentSource> source = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => OptimizerModelsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                manufacturer: manufacturer,
+                model: model,
+                pmaxInW: pmaxInW,
+                vinMaxV: vinMaxV,
+                imaxInA: imaxInA,
+                voutMaxV: voutMaxV,
+                ioutMaxA: ioutMaxA,
+                efficiencyPct: efficiencyPct,
+                source: source,
+                notes: notes,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$OptimizerModelsTable, OptimizerModel>(table),
+                  BaseReferences<
+                    _$AppDatabase,
+                    $OptimizerModelsTable,
+                    OptimizerModel
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$OptimizerModelsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $OptimizerModelsTable,
+      OptimizerModel,
+      $$OptimizerModelsTableFilterComposer,
+      $$OptimizerModelsTableOrderingComposer,
+      $$OptimizerModelsTableAnnotationComposer,
+      $$OptimizerModelsTableCreateCompanionBuilder,
+      $$OptimizerModelsTableUpdateCompanionBuilder,
+      (
+        OptimizerModel,
+        BaseReferences<_$AppDatabase, $OptimizerModelsTable, OptimizerModel>,
+      ),
+      OptimizerModel,
+      PrefetchHooks Function()
+    >;
+typedef $$BatteryModelsTableCreateCompanionBuilder =
+    BatteryModelsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String manufacturer,
+      required String model,
+      Value<BatteryChemistry> chemistry,
+      required double capacityKwh,
+      Value<double?> usableKwh,
+      required double nominalVoltageV,
+      Value<double?> maxChargeKw,
+      Value<double?> maxDischargeKw,
+      Value<int?> cycles,
+      Value<EquipmentSource> source,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+typedef $$BatteryModelsTableUpdateCompanionBuilder =
+    BatteryModelsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> manufacturer,
+      Value<String> model,
+      Value<BatteryChemistry> chemistry,
+      Value<double> capacityKwh,
+      Value<double?> usableKwh,
+      Value<double> nominalVoltageV,
+      Value<double?> maxChargeKw,
+      Value<double?> maxDischargeKw,
+      Value<int?> cycles,
+      Value<EquipmentSource> source,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+
+class $$BatteryModelsTableFilterComposer
+    extends Composer<_$AppDatabase, $BatteryModelsTable> {
+  $$BatteryModelsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get manufacturer => $composableBuilder(
+    column: $table.manufacturer,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get model => $composableBuilder(
+    column: $table.model,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<BatteryChemistry, BatteryChemistry, String>
+  get chemistry => $composableBuilder(
+    column: $table.chemistry,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<double> get capacityKwh => $composableBuilder(
+    column: $table.capacityKwh,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get usableKwh => $composableBuilder(
+    column: $table.usableKwh,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get nominalVoltageV => $composableBuilder(
+    column: $table.nominalVoltageV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get maxChargeKw => $composableBuilder(
+    column: $table.maxChargeKw,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get maxDischargeKw => $composableBuilder(
+    column: $table.maxDischargeKw,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get cycles => $composableBuilder(
+    column: $table.cycles,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<EquipmentSource, EquipmentSource, String>
+  get source => $composableBuilder(
+    column: $table.source,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$BatteryModelsTableOrderingComposer
+    extends Composer<_$AppDatabase, $BatteryModelsTable> {
+  $$BatteryModelsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get manufacturer => $composableBuilder(
+    column: $table.manufacturer,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get model => $composableBuilder(
+    column: $table.model,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get chemistry => $composableBuilder(
+    column: $table.chemistry,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get capacityKwh => $composableBuilder(
+    column: $table.capacityKwh,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get usableKwh => $composableBuilder(
+    column: $table.usableKwh,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get nominalVoltageV => $composableBuilder(
+    column: $table.nominalVoltageV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get maxChargeKw => $composableBuilder(
+    column: $table.maxChargeKw,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get maxDischargeKw => $composableBuilder(
+    column: $table.maxDischargeKw,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get cycles => $composableBuilder(
+    column: $table.cycles,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get source => $composableBuilder(
+    column: $table.source,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$BatteryModelsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $BatteryModelsTable> {
+  $$BatteryModelsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get manufacturer => $composableBuilder(
+    column: $table.manufacturer,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get model =>
+      $composableBuilder(column: $table.model, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<BatteryChemistry, String> get chemistry =>
+      $composableBuilder(column: $table.chemistry, builder: (column) => column);
+
+  GeneratedColumn<double> get capacityKwh => $composableBuilder(
+    column: $table.capacityKwh,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get usableKwh =>
+      $composableBuilder(column: $table.usableKwh, builder: (column) => column);
+
+  GeneratedColumn<double> get nominalVoltageV => $composableBuilder(
+    column: $table.nominalVoltageV,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get maxChargeKw => $composableBuilder(
+    column: $table.maxChargeKw,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get maxDischargeKw => $composableBuilder(
+    column: $table.maxDischargeKw,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get cycles =>
+      $composableBuilder(column: $table.cycles, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<EquipmentSource, String> get source =>
+      $composableBuilder(column: $table.source, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+}
+
+class $$BatteryModelsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $BatteryModelsTable,
+          BatteryModel,
+          $$BatteryModelsTableFilterComposer,
+          $$BatteryModelsTableOrderingComposer,
+          $$BatteryModelsTableAnnotationComposer,
+          $$BatteryModelsTableCreateCompanionBuilder,
+          $$BatteryModelsTableUpdateCompanionBuilder,
+          (
+            BatteryModel,
+            BaseReferences<_$AppDatabase, $BatteryModelsTable, BatteryModel>,
+          ),
+          BatteryModel,
+          PrefetchHooks Function()
+        > {
+  $$BatteryModelsTableTableManager(_$AppDatabase db, $BatteryModelsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$BatteryModelsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$BatteryModelsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$BatteryModelsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> manufacturer = const Value.absent(),
+                Value<String> model = const Value.absent(),
+                Value<BatteryChemistry> chemistry = const Value.absent(),
+                Value<double> capacityKwh = const Value.absent(),
+                Value<double?> usableKwh = const Value.absent(),
+                Value<double> nominalVoltageV = const Value.absent(),
+                Value<double?> maxChargeKw = const Value.absent(),
+                Value<double?> maxDischargeKw = const Value.absent(),
+                Value<int?> cycles = const Value.absent(),
+                Value<EquipmentSource> source = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => BatteryModelsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                manufacturer: manufacturer,
+                model: model,
+                chemistry: chemistry,
+                capacityKwh: capacityKwh,
+                usableKwh: usableKwh,
+                nominalVoltageV: nominalVoltageV,
+                maxChargeKw: maxChargeKw,
+                maxDischargeKw: maxDischargeKw,
+                cycles: cycles,
+                source: source,
+                notes: notes,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String manufacturer,
+                required String model,
+                Value<BatteryChemistry> chemistry = const Value.absent(),
+                required double capacityKwh,
+                Value<double?> usableKwh = const Value.absent(),
+                required double nominalVoltageV,
+                Value<double?> maxChargeKw = const Value.absent(),
+                Value<double?> maxDischargeKw = const Value.absent(),
+                Value<int?> cycles = const Value.absent(),
+                Value<EquipmentSource> source = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => BatteryModelsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                manufacturer: manufacturer,
+                model: model,
+                chemistry: chemistry,
+                capacityKwh: capacityKwh,
+                usableKwh: usableKwh,
+                nominalVoltageV: nominalVoltageV,
+                maxChargeKw: maxChargeKw,
+                maxDischargeKw: maxDischargeKw,
+                cycles: cycles,
+                source: source,
+                notes: notes,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$BatteryModelsTable, BatteryModel>(table),
+                  BaseReferences<
+                    _$AppDatabase,
+                    $BatteryModelsTable,
+                    BatteryModel
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$BatteryModelsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $BatteryModelsTable,
+      BatteryModel,
+      $$BatteryModelsTableFilterComposer,
+      $$BatteryModelsTableOrderingComposer,
+      $$BatteryModelsTableAnnotationComposer,
+      $$BatteryModelsTableCreateCompanionBuilder,
+      $$BatteryModelsTableUpdateCompanionBuilder,
+      (
+        BatteryModel,
+        BaseReferences<_$AppDatabase, $BatteryModelsTable, BatteryModel>,
+      ),
+      BatteryModel,
+      PrefetchHooks Function()
+    >;
+typedef $$PvDesignsTableCreateCompanionBuilder = PvDesignsCompanion Function({
+  Value<String> id,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<DateTime?> deletedAt,
+  required String projectId,
+  Value<String?> panelModelId,
+  Value<String?> inverterModelId,
+  Value<int> inverterCount,
+  Value<String?> optimizerModelId,
+  Value<String?> batteryModelId,
+  Value<double> systemVoltageLimitV,
+  Value<String> losses,
+  Value<double> shadeThresholdPct,
+  Value<double> gridVoltageV,
+  Value<String> wind,
+  Value<int> rowid,
+});
+typedef $$PvDesignsTableUpdateCompanionBuilder = PvDesignsCompanion Function({
+  Value<String> id,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<DateTime?> deletedAt,
+  Value<String> projectId,
+  Value<String?> panelModelId,
+  Value<String?> inverterModelId,
+  Value<int> inverterCount,
+  Value<String?> optimizerModelId,
+  Value<String?> batteryModelId,
+  Value<double> systemVoltageLimitV,
+  Value<String> losses,
+  Value<double> shadeThresholdPct,
+  Value<double> gridVoltageV,
+  Value<String> wind,
+  Value<int> rowid,
+});
+
+final class $$PvDesignsTableReferences
+    extends BaseReferences<_$AppDatabase, $PvDesignsTable, PvDesign> {
+  $$PvDesignsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('pv_designs__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$PvDesignsTableFilterComposer
+    extends Composer<_$AppDatabase, $PvDesignsTable> {
+  $$PvDesignsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get panelModelId => $composableBuilder(
+    column: $table.panelModelId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get inverterModelId => $composableBuilder(
+    column: $table.inverterModelId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get inverterCount => $composableBuilder(
+    column: $table.inverterCount,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get optimizerModelId => $composableBuilder(
+    column: $table.optimizerModelId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get batteryModelId => $composableBuilder(
+    column: $table.batteryModelId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get systemVoltageLimitV => $composableBuilder(
+    column: $table.systemVoltageLimitV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get losses => $composableBuilder(
+    column: $table.losses,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get shadeThresholdPct => $composableBuilder(
+    column: $table.shadeThresholdPct,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get gridVoltageV => $composableBuilder(
+    column: $table.gridVoltageV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get wind => $composableBuilder(
+    column: $table.wind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$PvDesignsTableOrderingComposer
+    extends Composer<_$AppDatabase, $PvDesignsTable> {
+  $$PvDesignsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get panelModelId => $composableBuilder(
+    column: $table.panelModelId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get inverterModelId => $composableBuilder(
+    column: $table.inverterModelId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get inverterCount => $composableBuilder(
+    column: $table.inverterCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get optimizerModelId => $composableBuilder(
+    column: $table.optimizerModelId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get batteryModelId => $composableBuilder(
+    column: $table.batteryModelId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get systemVoltageLimitV => $composableBuilder(
+    column: $table.systemVoltageLimitV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get losses => $composableBuilder(
+    column: $table.losses,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get shadeThresholdPct => $composableBuilder(
+    column: $table.shadeThresholdPct,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get gridVoltageV => $composableBuilder(
+    column: $table.gridVoltageV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get wind => $composableBuilder(
+    column: $table.wind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$PvDesignsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $PvDesignsTable> {
+  $$PvDesignsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get panelModelId => $composableBuilder(
+    column: $table.panelModelId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get inverterModelId => $composableBuilder(
+    column: $table.inverterModelId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get inverterCount => $composableBuilder(
+    column: $table.inverterCount,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get optimizerModelId => $composableBuilder(
+    column: $table.optimizerModelId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get batteryModelId => $composableBuilder(
+    column: $table.batteryModelId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get systemVoltageLimitV => $composableBuilder(
+    column: $table.systemVoltageLimitV,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get losses =>
+      $composableBuilder(column: $table.losses, builder: (column) => column);
+
+  GeneratedColumn<double> get shadeThresholdPct => $composableBuilder(
+    column: $table.shadeThresholdPct,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get gridVoltageV => $composableBuilder(
+    column: $table.gridVoltageV,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get wind =>
+      $composableBuilder(column: $table.wind, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$PvDesignsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $PvDesignsTable,
+          PvDesign,
+          $$PvDesignsTableFilterComposer,
+          $$PvDesignsTableOrderingComposer,
+          $$PvDesignsTableAnnotationComposer,
+          $$PvDesignsTableCreateCompanionBuilder,
+          $$PvDesignsTableUpdateCompanionBuilder,
+          (PvDesign, $$PvDesignsTableReferences),
+          PvDesign,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$PvDesignsTableTableManager(_$AppDatabase db, $PvDesignsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$PvDesignsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$PvDesignsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$PvDesignsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<String?> panelModelId = const Value.absent(),
+                Value<String?> inverterModelId = const Value.absent(),
+                Value<int> inverterCount = const Value.absent(),
+                Value<String?> optimizerModelId = const Value.absent(),
+                Value<String?> batteryModelId = const Value.absent(),
+                Value<double> systemVoltageLimitV = const Value.absent(),
+                Value<String> losses = const Value.absent(),
+                Value<double> shadeThresholdPct = const Value.absent(),
+                Value<double> gridVoltageV = const Value.absent(),
+                Value<String> wind = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => PvDesignsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                panelModelId: panelModelId,
+                inverterModelId: inverterModelId,
+                inverterCount: inverterCount,
+                optimizerModelId: optimizerModelId,
+                batteryModelId: batteryModelId,
+                systemVoltageLimitV: systemVoltageLimitV,
+                losses: losses,
+                shadeThresholdPct: shadeThresholdPct,
+                gridVoltageV: gridVoltageV,
+                wind: wind,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                Value<String?> panelModelId = const Value.absent(),
+                Value<String?> inverterModelId = const Value.absent(),
+                Value<int> inverterCount = const Value.absent(),
+                Value<String?> optimizerModelId = const Value.absent(),
+                Value<String?> batteryModelId = const Value.absent(),
+                Value<double> systemVoltageLimitV = const Value.absent(),
+                Value<String> losses = const Value.absent(),
+                Value<double> shadeThresholdPct = const Value.absent(),
+                Value<double> gridVoltageV = const Value.absent(),
+                Value<String> wind = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => PvDesignsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                panelModelId: panelModelId,
+                inverterModelId: inverterModelId,
+                inverterCount: inverterCount,
+                optimizerModelId: optimizerModelId,
+                batteryModelId: batteryModelId,
+                systemVoltageLimitV: systemVoltageLimitV,
+                losses: losses,
+                shadeThresholdPct: shadeThresholdPct,
+                gridVoltageV: gridVoltageV,
+                wind: wind,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$PvDesignsTable, PvDesign>(table),
+                  $$PvDesignsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$PvDesignsTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$PvDesignsTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$PvDesignsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $PvDesignsTable,
+      PvDesign,
+      $$PvDesignsTableFilterComposer,
+      $$PvDesignsTableOrderingComposer,
+      $$PvDesignsTableAnnotationComposer,
+      $$PvDesignsTableCreateCompanionBuilder,
+      $$PvDesignsTableUpdateCompanionBuilder,
+      (PvDesign, $$PvDesignsTableReferences),
+      PvDesign,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$ArrayLayoutsTableCreateCompanionBuilder =
+    ArrayLayoutsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      required String roofPlaneId,
+      Value<String?> panelModelId,
+      Value<LayoutOrientation> orientation,
+      Value<MountType> mount,
+      Value<double> rackTiltDeg,
+      Value<double> rackAzimuthDeg,
+      Value<double> gapM,
+      Value<double> rowGapM,
+      Value<double> clearanceM,
+      Value<double?> rowSpacingM,
+      Value<String> panels,
+      Value<int> rowid,
+    });
+typedef $$ArrayLayoutsTableUpdateCompanionBuilder =
+    ArrayLayoutsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<String> roofPlaneId,
+      Value<String?> panelModelId,
+      Value<LayoutOrientation> orientation,
+      Value<MountType> mount,
+      Value<double> rackTiltDeg,
+      Value<double> rackAzimuthDeg,
+      Value<double> gapM,
+      Value<double> rowGapM,
+      Value<double> clearanceM,
+      Value<double?> rowSpacingM,
+      Value<String> panels,
+      Value<int> rowid,
+    });
+
+final class $$ArrayLayoutsTableReferences
+    extends BaseReferences<_$AppDatabase, $ArrayLayoutsTable, ArrayLayout> {
+  $$ArrayLayoutsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('array_layouts__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static $RoofPlanesTable _roofPlaneIdTable(_$AppDatabase db) => db.roofPlanes
+      .createAlias('array_layouts__roof_plane_id__roof_planes__id');
+
+  $$RoofPlanesTableProcessedTableManager get roofPlaneId {
+    final $_column = $_itemColumn<String>('roof_plane_id')!;
+
+    final manager = $$RoofPlanesTableTableManager(
+      $_db,
+      $_db.roofPlanes,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_roofPlaneIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$ArrayLayoutsTableFilterComposer
+    extends Composer<_$AppDatabase, $ArrayLayoutsTable> {
+  $$ArrayLayoutsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get panelModelId => $composableBuilder(
+    column: $table.panelModelId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<LayoutOrientation, LayoutOrientation, String>
+  get orientation => $composableBuilder(
+    column: $table.orientation,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<MountType, MountType, String> get mount =>
+      $composableBuilder(
+        column: $table.mount,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
+
+  ColumnFilters<double> get rackTiltDeg => $composableBuilder(
+    column: $table.rackTiltDeg,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get rackAzimuthDeg => $composableBuilder(
+    column: $table.rackAzimuthDeg,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get gapM => $composableBuilder(
+    column: $table.gapM,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get rowGapM => $composableBuilder(
+    column: $table.rowGapM,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get clearanceM => $composableBuilder(
+    column: $table.clearanceM,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get rowSpacingM => $composableBuilder(
+    column: $table.rowSpacingM,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get panels => $composableBuilder(
+    column: $table.panels,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$RoofPlanesTableFilterComposer get roofPlaneId {
+    final $$RoofPlanesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.roofPlaneId,
+      referencedTable: $db.roofPlanes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$RoofPlanesTableFilterComposer(
+            $db: $db,
+            $table: $db.roofPlanes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ArrayLayoutsTableOrderingComposer
+    extends Composer<_$AppDatabase, $ArrayLayoutsTable> {
+  $$ArrayLayoutsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get panelModelId => $composableBuilder(
+    column: $table.panelModelId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get orientation => $composableBuilder(
+    column: $table.orientation,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get mount => $composableBuilder(
+    column: $table.mount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get rackTiltDeg => $composableBuilder(
+    column: $table.rackTiltDeg,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get rackAzimuthDeg => $composableBuilder(
+    column: $table.rackAzimuthDeg,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get gapM => $composableBuilder(
+    column: $table.gapM,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get rowGapM => $composableBuilder(
+    column: $table.rowGapM,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get clearanceM => $composableBuilder(
+    column: $table.clearanceM,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get rowSpacingM => $composableBuilder(
+    column: $table.rowSpacingM,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get panels => $composableBuilder(
+    column: $table.panels,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$RoofPlanesTableOrderingComposer get roofPlaneId {
+    final $$RoofPlanesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.roofPlaneId,
+      referencedTable: $db.roofPlanes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$RoofPlanesTableOrderingComposer(
+            $db: $db,
+            $table: $db.roofPlanes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ArrayLayoutsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ArrayLayoutsTable> {
+  $$ArrayLayoutsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get panelModelId => $composableBuilder(
+    column: $table.panelModelId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumnWithTypeConverter<LayoutOrientation, String> get orientation =>
+      $composableBuilder(
+        column: $table.orientation,
+        builder: (column) => column,
+      );
+
+  GeneratedColumnWithTypeConverter<MountType, String> get mount =>
+      $composableBuilder(column: $table.mount, builder: (column) => column);
+
+  GeneratedColumn<double> get rackTiltDeg => $composableBuilder(
+    column: $table.rackTiltDeg,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get rackAzimuthDeg => $composableBuilder(
+    column: $table.rackAzimuthDeg,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get gapM =>
+      $composableBuilder(column: $table.gapM, builder: (column) => column);
+
+  GeneratedColumn<double> get rowGapM =>
+      $composableBuilder(column: $table.rowGapM, builder: (column) => column);
+
+  GeneratedColumn<double> get clearanceM => $composableBuilder(
+    column: $table.clearanceM,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get rowSpacingM => $composableBuilder(
+    column: $table.rowSpacingM,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get panels =>
+      $composableBuilder(column: $table.panels, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$RoofPlanesTableAnnotationComposer get roofPlaneId {
+    final $$RoofPlanesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.roofPlaneId,
+      referencedTable: $db.roofPlanes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$RoofPlanesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.roofPlanes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ArrayLayoutsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ArrayLayoutsTable,
+          ArrayLayout,
+          $$ArrayLayoutsTableFilterComposer,
+          $$ArrayLayoutsTableOrderingComposer,
+          $$ArrayLayoutsTableAnnotationComposer,
+          $$ArrayLayoutsTableCreateCompanionBuilder,
+          $$ArrayLayoutsTableUpdateCompanionBuilder,
+          (ArrayLayout, $$ArrayLayoutsTableReferences),
+          ArrayLayout,
+          PrefetchHooks Function({bool projectId, bool roofPlaneId})
+        > {
+  $$ArrayLayoutsTableTableManager(_$AppDatabase db, $ArrayLayoutsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ArrayLayoutsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ArrayLayoutsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ArrayLayoutsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<String> roofPlaneId = const Value.absent(),
+                Value<String?> panelModelId = const Value.absent(),
+                Value<LayoutOrientation> orientation = const Value.absent(),
+                Value<MountType> mount = const Value.absent(),
+                Value<double> rackTiltDeg = const Value.absent(),
+                Value<double> rackAzimuthDeg = const Value.absent(),
+                Value<double> gapM = const Value.absent(),
+                Value<double> rowGapM = const Value.absent(),
+                Value<double> clearanceM = const Value.absent(),
+                Value<double?> rowSpacingM = const Value.absent(),
+                Value<String> panels = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ArrayLayoutsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                roofPlaneId: roofPlaneId,
+                panelModelId: panelModelId,
+                orientation: orientation,
+                mount: mount,
+                rackTiltDeg: rackTiltDeg,
+                rackAzimuthDeg: rackAzimuthDeg,
+                gapM: gapM,
+                rowGapM: rowGapM,
+                clearanceM: clearanceM,
+                rowSpacingM: rowSpacingM,
+                panels: panels,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required String roofPlaneId,
+                Value<String?> panelModelId = const Value.absent(),
+                Value<LayoutOrientation> orientation = const Value.absent(),
+                Value<MountType> mount = const Value.absent(),
+                Value<double> rackTiltDeg = const Value.absent(),
+                Value<double> rackAzimuthDeg = const Value.absent(),
+                Value<double> gapM = const Value.absent(),
+                Value<double> rowGapM = const Value.absent(),
+                Value<double> clearanceM = const Value.absent(),
+                Value<double?> rowSpacingM = const Value.absent(),
+                Value<String> panels = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ArrayLayoutsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                roofPlaneId: roofPlaneId,
+                panelModelId: panelModelId,
+                orientation: orientation,
+                mount: mount,
+                rackTiltDeg: rackTiltDeg,
+                rackAzimuthDeg: rackAzimuthDeg,
+                gapM: gapM,
+                rowGapM: rowGapM,
+                clearanceM: clearanceM,
+                rowSpacingM: rowSpacingM,
+                panels: panels,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$ArrayLayoutsTable, ArrayLayout>(table),
+                  $$ArrayLayoutsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false, roofPlaneId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$ArrayLayoutsTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$ArrayLayoutsTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+                    if (roofPlaneId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.roofPlaneId,
+                        referencedTable: $$ArrayLayoutsTableReferences
+                            ._roofPlaneIdTable(db),
+                        referencedColumn: $$ArrayLayoutsTableReferences
+                            ._roofPlaneIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$ArrayLayoutsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ArrayLayoutsTable,
+      ArrayLayout,
+      $$ArrayLayoutsTableFilterComposer,
+      $$ArrayLayoutsTableOrderingComposer,
+      $$ArrayLayoutsTableAnnotationComposer,
+      $$ArrayLayoutsTableCreateCompanionBuilder,
+      $$ArrayLayoutsTableUpdateCompanionBuilder,
+      (ArrayLayout, $$ArrayLayoutsTableReferences),
+      ArrayLayout,
+      PrefetchHooks Function({bool projectId, bool roofPlaneId})
+    >;
+typedef $$StringConfigsTableCreateCompanionBuilder =
+    StringConfigsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      Value<int> inverterIndex,
+      Value<int> mpptIndex,
+      required int series,
+      Value<int> parallel,
+      Value<bool> edited,
+      Value<int> sortOrder,
+      Value<int> rowid,
+    });
+typedef $$StringConfigsTableUpdateCompanionBuilder =
+    StringConfigsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<int> inverterIndex,
+      Value<int> mpptIndex,
+      Value<int> series,
+      Value<int> parallel,
+      Value<bool> edited,
+      Value<int> sortOrder,
+      Value<int> rowid,
+    });
+
+final class $$StringConfigsTableReferences
+    extends BaseReferences<_$AppDatabase, $StringConfigsTable, StringConfig> {
+  $$StringConfigsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('string_configs__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$StringConfigsTableFilterComposer
+    extends Composer<_$AppDatabase, $StringConfigsTable> {
+  $$StringConfigsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get inverterIndex => $composableBuilder(
+    column: $table.inverterIndex,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get mpptIndex => $composableBuilder(
+    column: $table.mpptIndex,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get series => $composableBuilder(
+    column: $table.series,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get parallel => $composableBuilder(
+    column: $table.parallel,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get edited => $composableBuilder(
+    column: $table.edited,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$StringConfigsTableOrderingComposer
+    extends Composer<_$AppDatabase, $StringConfigsTable> {
+  $$StringConfigsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get inverterIndex => $composableBuilder(
+    column: $table.inverterIndex,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get mpptIndex => $composableBuilder(
+    column: $table.mpptIndex,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get series => $composableBuilder(
+    column: $table.series,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get parallel => $composableBuilder(
+    column: $table.parallel,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get edited => $composableBuilder(
+    column: $table.edited,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$StringConfigsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $StringConfigsTable> {
+  $$StringConfigsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<int> get inverterIndex => $composableBuilder(
+    column: $table.inverterIndex,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get mpptIndex =>
+      $composableBuilder(column: $table.mpptIndex, builder: (column) => column);
+
+  GeneratedColumn<int> get series =>
+      $composableBuilder(column: $table.series, builder: (column) => column);
+
+  GeneratedColumn<int> get parallel =>
+      $composableBuilder(column: $table.parallel, builder: (column) => column);
+
+  GeneratedColumn<bool> get edited =>
+      $composableBuilder(column: $table.edited, builder: (column) => column);
+
+  GeneratedColumn<int> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$StringConfigsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $StringConfigsTable,
+          StringConfig,
+          $$StringConfigsTableFilterComposer,
+          $$StringConfigsTableOrderingComposer,
+          $$StringConfigsTableAnnotationComposer,
+          $$StringConfigsTableCreateCompanionBuilder,
+          $$StringConfigsTableUpdateCompanionBuilder,
+          (StringConfig, $$StringConfigsTableReferences),
+          StringConfig,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$StringConfigsTableTableManager(_$AppDatabase db, $StringConfigsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$StringConfigsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$StringConfigsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$StringConfigsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<int> inverterIndex = const Value.absent(),
+                Value<int> mpptIndex = const Value.absent(),
+                Value<int> series = const Value.absent(),
+                Value<int> parallel = const Value.absent(),
+                Value<bool> edited = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => StringConfigsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                inverterIndex: inverterIndex,
+                mpptIndex: mpptIndex,
+                series: series,
+                parallel: parallel,
+                edited: edited,
+                sortOrder: sortOrder,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                Value<int> inverterIndex = const Value.absent(),
+                Value<int> mpptIndex = const Value.absent(),
+                required int series,
+                Value<int> parallel = const Value.absent(),
+                Value<bool> edited = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => StringConfigsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                inverterIndex: inverterIndex,
+                mpptIndex: mpptIndex,
+                series: series,
+                parallel: parallel,
+                edited: edited,
+                sortOrder: sortOrder,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$StringConfigsTable, StringConfig>(table),
+                  $$StringConfigsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$StringConfigsTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$StringConfigsTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$StringConfigsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $StringConfigsTable,
+      StringConfig,
+      $$StringConfigsTableFilterComposer,
+      $$StringConfigsTableOrderingComposer,
+      $$StringConfigsTableAnnotationComposer,
+      $$StringConfigsTableCreateCompanionBuilder,
+      $$StringConfigsTableUpdateCompanionBuilder,
+      (StringConfig, $$StringConfigsTableReferences),
+      StringConfig,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$ElectricalRunsTableCreateCompanionBuilder =
+    ElectricalRunsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      required RunKind kind,
+      required String name,
+      required double lengthM,
+      Value<CableMaterial> material,
+      Value<RacewayKind> raceway,
+      Value<double> ambientC,
+      Value<int> conductors,
+      Value<String?> chosenSize,
+      Value<String?> resultSize,
+      Value<double?> dropPercent,
+      Value<int> sortOrder,
+      Value<int> rowid,
+    });
+typedef $$ElectricalRunsTableUpdateCompanionBuilder =
+    ElectricalRunsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<RunKind> kind,
+      Value<String> name,
+      Value<double> lengthM,
+      Value<CableMaterial> material,
+      Value<RacewayKind> raceway,
+      Value<double> ambientC,
+      Value<int> conductors,
+      Value<String?> chosenSize,
+      Value<String?> resultSize,
+      Value<double?> dropPercent,
+      Value<int> sortOrder,
+      Value<int> rowid,
+    });
+
+final class $$ElectricalRunsTableReferences
+    extends BaseReferences<_$AppDatabase, $ElectricalRunsTable, ElectricalRun> {
+  $$ElectricalRunsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('electrical_runs__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$ElectricalRunsTableFilterComposer
+    extends Composer<_$AppDatabase, $ElectricalRunsTable> {
+  $$ElectricalRunsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<RunKind, RunKind, String> get kind =>
+      $composableBuilder(
+        column: $table.kind,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get lengthM => $composableBuilder(
+    column: $table.lengthM,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<CableMaterial, CableMaterial, String>
+  get material => $composableBuilder(
+    column: $table.material,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<RacewayKind, RacewayKind, String>
+  get raceway => $composableBuilder(
+    column: $table.raceway,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<double> get ambientC => $composableBuilder(
+    column: $table.ambientC,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get conductors => $composableBuilder(
+    column: $table.conductors,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get chosenSize => $composableBuilder(
+    column: $table.chosenSize,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get resultSize => $composableBuilder(
+    column: $table.resultSize,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get dropPercent => $composableBuilder(
+    column: $table.dropPercent,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ElectricalRunsTableOrderingComposer
+    extends Composer<_$AppDatabase, $ElectricalRunsTable> {
+  $$ElectricalRunsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get lengthM => $composableBuilder(
+    column: $table.lengthM,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get material => $composableBuilder(
+    column: $table.material,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get raceway => $composableBuilder(
+    column: $table.raceway,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get ambientC => $composableBuilder(
+    column: $table.ambientC,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get conductors => $composableBuilder(
+    column: $table.conductors,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get chosenSize => $composableBuilder(
+    column: $table.chosenSize,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get resultSize => $composableBuilder(
+    column: $table.resultSize,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get dropPercent => $composableBuilder(
+    column: $table.dropPercent,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ElectricalRunsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ElectricalRunsTable> {
+  $$ElectricalRunsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<RunKind, String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<double> get lengthM =>
+      $composableBuilder(column: $table.lengthM, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<CableMaterial, String> get material =>
+      $composableBuilder(column: $table.material, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<RacewayKind, String> get raceway =>
+      $composableBuilder(column: $table.raceway, builder: (column) => column);
+
+  GeneratedColumn<double> get ambientC =>
+      $composableBuilder(column: $table.ambientC, builder: (column) => column);
+
+  GeneratedColumn<int> get conductors => $composableBuilder(
+    column: $table.conductors,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get chosenSize => $composableBuilder(
+    column: $table.chosenSize,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get resultSize => $composableBuilder(
+    column: $table.resultSize,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get dropPercent => $composableBuilder(
+    column: $table.dropPercent,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ElectricalRunsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ElectricalRunsTable,
+          ElectricalRun,
+          $$ElectricalRunsTableFilterComposer,
+          $$ElectricalRunsTableOrderingComposer,
+          $$ElectricalRunsTableAnnotationComposer,
+          $$ElectricalRunsTableCreateCompanionBuilder,
+          $$ElectricalRunsTableUpdateCompanionBuilder,
+          (ElectricalRun, $$ElectricalRunsTableReferences),
+          ElectricalRun,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$ElectricalRunsTableTableManager(
+    _$AppDatabase db,
+    $ElectricalRunsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ElectricalRunsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ElectricalRunsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ElectricalRunsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<RunKind> kind = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<double> lengthM = const Value.absent(),
+                Value<CableMaterial> material = const Value.absent(),
+                Value<RacewayKind> raceway = const Value.absent(),
+                Value<double> ambientC = const Value.absent(),
+                Value<int> conductors = const Value.absent(),
+                Value<String?> chosenSize = const Value.absent(),
+                Value<String?> resultSize = const Value.absent(),
+                Value<double?> dropPercent = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ElectricalRunsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                kind: kind,
+                name: name,
+                lengthM: lengthM,
+                material: material,
+                raceway: raceway,
+                ambientC: ambientC,
+                conductors: conductors,
+                chosenSize: chosenSize,
+                resultSize: resultSize,
+                dropPercent: dropPercent,
+                sortOrder: sortOrder,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required RunKind kind,
+                required String name,
+                required double lengthM,
+                Value<CableMaterial> material = const Value.absent(),
+                Value<RacewayKind> raceway = const Value.absent(),
+                Value<double> ambientC = const Value.absent(),
+                Value<int> conductors = const Value.absent(),
+                Value<String?> chosenSize = const Value.absent(),
+                Value<String?> resultSize = const Value.absent(),
+                Value<double?> dropPercent = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ElectricalRunsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                kind: kind,
+                name: name,
+                lengthM: lengthM,
+                material: material,
+                raceway: raceway,
+                ambientC: ambientC,
+                conductors: conductors,
+                chosenSize: chosenSize,
+                resultSize: resultSize,
+                dropPercent: dropPercent,
+                sortOrder: sortOrder,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$ElectricalRunsTable, ElectricalRun>(table),
+                  $$ElectricalRunsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$ElectricalRunsTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$ElectricalRunsTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$ElectricalRunsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ElectricalRunsTable,
+      ElectricalRun,
+      $$ElectricalRunsTableFilterComposer,
+      $$ElectricalRunsTableOrderingComposer,
+      $$ElectricalRunsTableAnnotationComposer,
+      $$ElectricalRunsTableCreateCompanionBuilder,
+      $$ElectricalRunsTableUpdateCompanionBuilder,
+      (ElectricalRun, $$ElectricalRunsTableReferences),
+      ElectricalRun,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$ProtectionDevicesTableCreateCompanionBuilder =
+    ProtectionDevicesCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      required ProtectionDeviceKind kind,
+      Value<double?> ratingA,
+      Value<double?> voltageV,
+      Value<int> quantity,
+      Value<String?> conductorSize,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+typedef $$ProtectionDevicesTableUpdateCompanionBuilder =
+    ProtectionDevicesCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<ProtectionDeviceKind> kind,
+      Value<double?> ratingA,
+      Value<double?> voltageV,
+      Value<int> quantity,
+      Value<String?> conductorSize,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+
+final class $$ProtectionDevicesTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $ProtectionDevicesTable,
+          ProtectionDevice
+        > {
+  $$ProtectionDevicesTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('protection_devices__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$ProtectionDevicesTableFilterComposer
+    extends Composer<_$AppDatabase, $ProtectionDevicesTable> {
+  $$ProtectionDevicesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<
+    ProtectionDeviceKind,
+    ProtectionDeviceKind,
+    String
+  >
+  get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<double> get ratingA => $composableBuilder(
+    column: $table.ratingA,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get voltageV => $composableBuilder(
+    column: $table.voltageV,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get quantity => $composableBuilder(
+    column: $table.quantity,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get conductorSize => $composableBuilder(
+    column: $table.conductorSize,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ProtectionDevicesTableOrderingComposer
+    extends Composer<_$AppDatabase, $ProtectionDevicesTable> {
+  $$ProtectionDevicesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get ratingA => $composableBuilder(
+    column: $table.ratingA,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get voltageV => $composableBuilder(
+    column: $table.voltageV,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get quantity => $composableBuilder(
+    column: $table.quantity,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get conductorSize => $composableBuilder(
+    column: $table.conductorSize,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ProtectionDevicesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ProtectionDevicesTable> {
+  $$ProtectionDevicesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<ProtectionDeviceKind, String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<double> get ratingA =>
+      $composableBuilder(column: $table.ratingA, builder: (column) => column);
+
+  GeneratedColumn<double> get voltageV =>
+      $composableBuilder(column: $table.voltageV, builder: (column) => column);
+
+  GeneratedColumn<int> get quantity =>
+      $composableBuilder(column: $table.quantity, builder: (column) => column);
+
+  GeneratedColumn<String> get conductorSize => $composableBuilder(
+    column: $table.conductorSize,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ProtectionDevicesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ProtectionDevicesTable,
+          ProtectionDevice,
+          $$ProtectionDevicesTableFilterComposer,
+          $$ProtectionDevicesTableOrderingComposer,
+          $$ProtectionDevicesTableAnnotationComposer,
+          $$ProtectionDevicesTableCreateCompanionBuilder,
+          $$ProtectionDevicesTableUpdateCompanionBuilder,
+          (ProtectionDevice, $$ProtectionDevicesTableReferences),
+          ProtectionDevice,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$ProtectionDevicesTableTableManager(
+    _$AppDatabase db,
+    $ProtectionDevicesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ProtectionDevicesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ProtectionDevicesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ProtectionDevicesTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<ProtectionDeviceKind> kind = const Value.absent(),
+                Value<double?> ratingA = const Value.absent(),
+                Value<double?> voltageV = const Value.absent(),
+                Value<int> quantity = const Value.absent(),
+                Value<String?> conductorSize = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ProtectionDevicesCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                kind: kind,
+                ratingA: ratingA,
+                voltageV: voltageV,
+                quantity: quantity,
+                conductorSize: conductorSize,
+                notes: notes,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required ProtectionDeviceKind kind,
+                Value<double?> ratingA = const Value.absent(),
+                Value<double?> voltageV = const Value.absent(),
+                Value<int> quantity = const Value.absent(),
+                Value<String?> conductorSize = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ProtectionDevicesCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                kind: kind,
+                ratingA: ratingA,
+                voltageV: voltageV,
+                quantity: quantity,
+                conductorSize: conductorSize,
+                notes: notes,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$ProtectionDevicesTable, ProtectionDevice>(table),
+                  $$ProtectionDevicesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$ProtectionDevicesTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$ProtectionDevicesTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$ProtectionDevicesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ProtectionDevicesTable,
+      ProtectionDevice,
+      $$ProtectionDevicesTableFilterComposer,
+      $$ProtectionDevicesTableOrderingComposer,
+      $$ProtectionDevicesTableAnnotationComposer,
+      $$ProtectionDevicesTableCreateCompanionBuilder,
+      $$ProtectionDevicesTableUpdateCompanionBuilder,
+      (ProtectionDevice, $$ProtectionDevicesTableReferences),
+      ProtectionDevice,
+      PrefetchHooks Function({bool projectId})
+    >;
+typedef $$SimulationResultsTableCreateCompanionBuilder =
+    SimulationResultsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      required String projectId,
+      required double pdcW,
+      required double pacW,
+      required double firstYearKwh,
+      required double lifetimeKwh,
+      Value<int> years,
+      required String monthlyKwh,
+      required String yearlyKwh,
+      Value<double> clippedKwh,
+      Value<double> shadingLossPct,
+      required double specificYield,
+      required double performanceRatio,
+      Value<String> losses,
+      Value<String?> weatherLabel,
+      Value<int> rowid,
+    });
+typedef $$SimulationResultsTableUpdateCompanionBuilder =
+    SimulationResultsCompanion Function({
+      Value<String> id,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> projectId,
+      Value<double> pdcW,
+      Value<double> pacW,
+      Value<double> firstYearKwh,
+      Value<double> lifetimeKwh,
+      Value<int> years,
+      Value<String> monthlyKwh,
+      Value<String> yearlyKwh,
+      Value<double> clippedKwh,
+      Value<double> shadingLossPct,
+      Value<double> specificYield,
+      Value<double> performanceRatio,
+      Value<String> losses,
+      Value<String?> weatherLabel,
+      Value<int> rowid,
+    });
+
+final class $$SimulationResultsTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $SimulationResultsTable,
+          SimulationResultRecord
+        > {
+  $$SimulationResultsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ProjectsTable _projectIdTable(_$AppDatabase db) =>
+      db.projects.createAlias('simulation_results__project_id__projects__id');
+
+  $$ProjectsTableProcessedTableManager get projectId {
+    final $_column = $_itemColumn<String>('project_id')!;
+
+    final manager = $$ProjectsTableTableManager(
+      $_db,
+      $_db.projects,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_projectIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$SimulationResultsTableFilterComposer
+    extends Composer<_$AppDatabase, $SimulationResultsTable> {
+  $$SimulationResultsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get pdcW => $composableBuilder(
+    column: $table.pdcW,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get pacW => $composableBuilder(
+    column: $table.pacW,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get firstYearKwh => $composableBuilder(
+    column: $table.firstYearKwh,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get lifetimeKwh => $composableBuilder(
+    column: $table.lifetimeKwh,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get years => $composableBuilder(
+    column: $table.years,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get monthlyKwh => $composableBuilder(
+    column: $table.monthlyKwh,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get yearlyKwh => $composableBuilder(
+    column: $table.yearlyKwh,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get clippedKwh => $composableBuilder(
+    column: $table.clippedKwh,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get shadingLossPct => $composableBuilder(
+    column: $table.shadingLossPct,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get specificYield => $composableBuilder(
+    column: $table.specificYield,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get performanceRatio => $composableBuilder(
+    column: $table.performanceRatio,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get losses => $composableBuilder(
+    column: $table.losses,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get weatherLabel => $composableBuilder(
+    column: $table.weatherLabel,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ProjectsTableFilterComposer get projectId {
+    final $$ProjectsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableFilterComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$SimulationResultsTableOrderingComposer
+    extends Composer<_$AppDatabase, $SimulationResultsTable> {
+  $$SimulationResultsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get pdcW => $composableBuilder(
+    column: $table.pdcW,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get pacW => $composableBuilder(
+    column: $table.pacW,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get firstYearKwh => $composableBuilder(
+    column: $table.firstYearKwh,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get lifetimeKwh => $composableBuilder(
+    column: $table.lifetimeKwh,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get years => $composableBuilder(
+    column: $table.years,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get monthlyKwh => $composableBuilder(
+    column: $table.monthlyKwh,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get yearlyKwh => $composableBuilder(
+    column: $table.yearlyKwh,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get clippedKwh => $composableBuilder(
+    column: $table.clippedKwh,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get shadingLossPct => $composableBuilder(
+    column: $table.shadingLossPct,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get specificYield => $composableBuilder(
+    column: $table.specificYield,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get performanceRatio => $composableBuilder(
+    column: $table.performanceRatio,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get losses => $composableBuilder(
+    column: $table.losses,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get weatherLabel => $composableBuilder(
+    column: $table.weatherLabel,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ProjectsTableOrderingComposer get projectId {
+    final $$ProjectsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableOrderingComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$SimulationResultsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $SimulationResultsTable> {
+  $$SimulationResultsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<double> get pdcW =>
+      $composableBuilder(column: $table.pdcW, builder: (column) => column);
+
+  GeneratedColumn<double> get pacW =>
+      $composableBuilder(column: $table.pacW, builder: (column) => column);
+
+  GeneratedColumn<double> get firstYearKwh => $composableBuilder(
+    column: $table.firstYearKwh,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get lifetimeKwh => $composableBuilder(
+    column: $table.lifetimeKwh,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get years =>
+      $composableBuilder(column: $table.years, builder: (column) => column);
+
+  GeneratedColumn<String> get monthlyKwh => $composableBuilder(
+    column: $table.monthlyKwh,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get yearlyKwh =>
+      $composableBuilder(column: $table.yearlyKwh, builder: (column) => column);
+
+  GeneratedColumn<double> get clippedKwh => $composableBuilder(
+    column: $table.clippedKwh,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get shadingLossPct => $composableBuilder(
+    column: $table.shadingLossPct,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get specificYield => $composableBuilder(
+    column: $table.specificYield,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get performanceRatio => $composableBuilder(
+    column: $table.performanceRatio,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get losses =>
+      $composableBuilder(column: $table.losses, builder: (column) => column);
+
+  GeneratedColumn<String> get weatherLabel => $composableBuilder(
+    column: $table.weatherLabel,
+    builder: (column) => column,
+  );
+
+  $$ProjectsTableAnnotationComposer get projectId {
+    final $$ProjectsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.projectId,
+      referencedTable: $db.projects,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ProjectsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.projects,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$SimulationResultsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $SimulationResultsTable,
+          SimulationResultRecord,
+          $$SimulationResultsTableFilterComposer,
+          $$SimulationResultsTableOrderingComposer,
+          $$SimulationResultsTableAnnotationComposer,
+          $$SimulationResultsTableCreateCompanionBuilder,
+          $$SimulationResultsTableUpdateCompanionBuilder,
+          (SimulationResultRecord, $$SimulationResultsTableReferences),
+          SimulationResultRecord,
+          PrefetchHooks Function({bool projectId})
+        > {
+  $$SimulationResultsTableTableManager(
+    _$AppDatabase db,
+    $SimulationResultsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SimulationResultsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SimulationResultsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SimulationResultsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<double> pdcW = const Value.absent(),
+                Value<double> pacW = const Value.absent(),
+                Value<double> firstYearKwh = const Value.absent(),
+                Value<double> lifetimeKwh = const Value.absent(),
+                Value<int> years = const Value.absent(),
+                Value<String> monthlyKwh = const Value.absent(),
+                Value<String> yearlyKwh = const Value.absent(),
+                Value<double> clippedKwh = const Value.absent(),
+                Value<double> shadingLossPct = const Value.absent(),
+                Value<double> specificYield = const Value.absent(),
+                Value<double> performanceRatio = const Value.absent(),
+                Value<String> losses = const Value.absent(),
+                Value<String?> weatherLabel = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SimulationResultsCompanion(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                pdcW: pdcW,
+                pacW: pacW,
+                firstYearKwh: firstYearKwh,
+                lifetimeKwh: lifetimeKwh,
+                years: years,
+                monthlyKwh: monthlyKwh,
+                yearlyKwh: yearlyKwh,
+                clippedKwh: clippedKwh,
+                shadingLossPct: shadingLossPct,
+                specificYield: specificYield,
+                performanceRatio: performanceRatio,
+                losses: losses,
+                weatherLabel: weatherLabel,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String projectId,
+                required double pdcW,
+                required double pacW,
+                required double firstYearKwh,
+                required double lifetimeKwh,
+                Value<int> years = const Value.absent(),
+                required String monthlyKwh,
+                required String yearlyKwh,
+                Value<double> clippedKwh = const Value.absent(),
+                Value<double> shadingLossPct = const Value.absent(),
+                required double specificYield,
+                required double performanceRatio,
+                Value<String> losses = const Value.absent(),
+                Value<String?> weatherLabel = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SimulationResultsCompanion.insert(
+                id: id,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                projectId: projectId,
+                pdcW: pdcW,
+                pacW: pacW,
+                firstYearKwh: firstYearKwh,
+                lifetimeKwh: lifetimeKwh,
+                years: years,
+                monthlyKwh: monthlyKwh,
+                yearlyKwh: yearlyKwh,
+                clippedKwh: clippedKwh,
+                shadingLossPct: shadingLossPct,
+                specificYield: specificYield,
+                performanceRatio: performanceRatio,
+                losses: losses,
+                weatherLabel: weatherLabel,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$SimulationResultsTable, SimulationResultRecord>(
+                    table,
+                  ),
+                  $$SimulationResultsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({projectId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (projectId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.projectId,
+                        referencedTable: $$SimulationResultsTableReferences
+                            ._projectIdTable(db),
+                        referencedColumn: $$SimulationResultsTableReferences
+                            ._projectIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$SimulationResultsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $SimulationResultsTable,
+      SimulationResultRecord,
+      $$SimulationResultsTableFilterComposer,
+      $$SimulationResultsTableOrderingComposer,
+      $$SimulationResultsTableAnnotationComposer,
+      $$SimulationResultsTableCreateCompanionBuilder,
+      $$SimulationResultsTableUpdateCompanionBuilder,
+      (SimulationResultRecord, $$SimulationResultsTableReferences),
+      SimulationResultRecord,
+      PrefetchHooks Function({bool projectId})
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -13706,4 +28979,24 @@ class $AppDatabaseManager {
       $$ObstaclesTableTableManager(_db, _db.obstacles);
   $$HorizonProfilesTableTableManager get horizonProfiles =>
       $$HorizonProfilesTableTableManager(_db, _db.horizonProfiles);
+  $$PanelModelsTableTableManager get panelModels =>
+      $$PanelModelsTableTableManager(_db, _db.panelModels);
+  $$InverterModelsTableTableManager get inverterModels =>
+      $$InverterModelsTableTableManager(_db, _db.inverterModels);
+  $$OptimizerModelsTableTableManager get optimizerModels =>
+      $$OptimizerModelsTableTableManager(_db, _db.optimizerModels);
+  $$BatteryModelsTableTableManager get batteryModels =>
+      $$BatteryModelsTableTableManager(_db, _db.batteryModels);
+  $$PvDesignsTableTableManager get pvDesigns =>
+      $$PvDesignsTableTableManager(_db, _db.pvDesigns);
+  $$ArrayLayoutsTableTableManager get arrayLayouts =>
+      $$ArrayLayoutsTableTableManager(_db, _db.arrayLayouts);
+  $$StringConfigsTableTableManager get stringConfigs =>
+      $$StringConfigsTableTableManager(_db, _db.stringConfigs);
+  $$ElectricalRunsTableTableManager get electricalRuns =>
+      $$ElectricalRunsTableTableManager(_db, _db.electricalRuns);
+  $$ProtectionDevicesTableTableManager get protectionDevices =>
+      $$ProtectionDevicesTableTableManager(_db, _db.protectionDevices);
+  $$SimulationResultsTableTableManager get simulationResults =>
+      $$SimulationResultsTableTableManager(_db, _db.simulationResults);
 }

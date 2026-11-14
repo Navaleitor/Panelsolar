@@ -12,6 +12,8 @@ import 'generated/schema_v2.dart' as v2;
 import 'generated/schema_v3.dart' as v3;
 import 'generated/schema_v4.dart' as v4;
 import 'generated/schema_v5.dart' as v5;
+import 'generated/schema_v6.dart' as v6;
+import 'generated/schema_v7.dart' as v7;
 
 void main() {
   driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
@@ -214,6 +216,103 @@ void main() {
     expect(plane.tiltDeg, 0);
     expect(plane.azimuthDeg, 180);
     expect(plane.walkways, '[]');
+    await db.close();
+  });
+
+  test('v6 (reservada para F6) no cambia el esquema de v5', () async {
+    final schema = await verifier.schemaAt(5);
+    final db = AppDatabase(schema.newConnection());
+    await verifier.migrateAndValidate(db, 6);
+    await db.close();
+    expect(v6.DatabaseAtV6.new, isNotNull);
+  });
+
+  test('v5 → v7 conserva el techo y agrega las tablas de diseño', () async {
+    const clientId = '11111111-1111-4111-8111-111111111111';
+    const projectId = '22222222-2222-4222-8222-222222222222';
+    const planeId = '33333333-3333-4333-8333-333333333333';
+    const created = '2026-11-14T00:00:00.000Z';
+    await verifier.testWithDataIntegrity(
+      oldVersion: 5,
+      newVersion: 7,
+      createOld: v5.DatabaseAtV5.new,
+      createNew: v7.DatabaseAtV7.new,
+      openTestedDatabase: AppDatabase.new,
+      createItems: (batch, oldDb) {
+        batch
+          ..insertAll(oldDb.clients, const [
+            v5.ClientsData(
+              id: clientId,
+              createdAt: created,
+              updatedAt: created,
+              name: 'Ana López',
+            ),
+          ])
+          ..insertAll(oldDb.projects, const [
+            v5.ProjectsData(
+              id: projectId,
+              createdAt: created,
+              updatedAt: created,
+              clientId: clientId,
+              name: 'Casa Cumbres',
+              status: 'design',
+              projectDate: created,
+            ),
+          ])
+          ..insertAll(oldDb.roofPlanes, const [
+            v5.RoofPlanesData(
+              id: planeId,
+              createdAt: created,
+              updatedAt: created,
+              projectId: projectId,
+              name: 'Plano 1',
+              polygon: '[[0,0],[10,0],[10,8],[0,8]]',
+              tiltDeg: 0,
+              tiltSource: 'manual',
+              azimuthDeg: 180,
+              edgeSetbackM: 0.3,
+              walkways: '[]',
+              sortOrder: 0,
+            ),
+          ]);
+      },
+      validateItems: (newDb) async {
+        final planes = await newDb.select(newDb.roofPlanes).get();
+        expect(planes.single.edgeSetbackM, 0.3);
+        expect(await newDb.select(newDb.panelModels).get(), isEmpty);
+        expect(await newDb.select(newDb.arrayLayouts).get(), isEmpty);
+        expect(await newDb.select(newDb.simulationResults).get(), isEmpty);
+      },
+    );
+  });
+
+  test('tras migrar a v7 se guarda un diseño completo', () async {
+    final schema = await verifier.schemaAt(5);
+    final db = AppDatabase(schema.newConnection());
+    await verifier.migrateAndValidate(db, 7);
+    final client = await ClientRepository(db).create(name: 'Ana López');
+    final project = await ProjectRepository(db).create(
+      clientId: client.id,
+      name: 'Casa Cumbres',
+      projectDate: DateTime.utc(2026, 11, 14),
+    );
+    final panel = await PanelModelRepository(db).save(
+      PanelModelsCompanion.insert(
+        manufacturer: 'Marca',
+        model: 'P-550',
+        pmaxW: 550,
+        vocV: 49.6,
+        iscA: 14,
+        vmpV: 41.7,
+        impA: 13.2,
+        lengthM: 2.278,
+        widthM: 1.134,
+      ),
+    );
+    final design = await PvDesignRepository(db)
+        .save(project.id, PvDesignsCompanion(panelModelId: Value(panel.id)));
+    expect(design.shadeThresholdPct, 10);
+    expect(design.systemVoltageLimitV, 600);
     await db.close();
   });
 }

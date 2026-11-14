@@ -1590,11 +1590,2005 @@ i1.GeneratedColumn<String> _column_74(String aliasedName) =>
       type: i1.DriftSqlType.string,
       $customConstraints: 'NOT NULL',
     );
+
+final class Schema6 extends i0.VersionedSchema {
+  Schema6({required super.database}) : super(version: 6);
+  @override
+  late final List<i1.DatabaseSchemaEntity> entities = [
+    companies,
+    clients,
+    projects,
+    sites,
+    utilityBills,
+    photos,
+    documents,
+    roofImages,
+    roofPlanes,
+    obstacles,
+    horizonProfiles,
+  ];
+  late final Shape0 companies = Shape0(
+    source: i0.VersionedTable(
+      entityName: 'companies',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_4,
+        _column_5,
+        _column_6,
+        _column_7,
+        _column_8,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape1 clients = Shape1(
+    source: i0.VersionedTable(
+      entityName: 'clients',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_4,
+        _column_5,
+        _column_6,
+        _column_9,
+        _column_10,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape2 projects = Shape2(
+    source: i0.VersionedTable(
+      entityName: 'projects',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_11,
+        _column_4,
+        _column_12,
+        _column_13,
+        _column_10,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape3 sites = Shape3(
+    source: i0.VersionedTable(
+      entityName: 'sites',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_14,
+        _column_15,
+        _column_16,
+        _column_17,
+        _column_18,
+        _column_19,
+        _column_20,
+        _column_21,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape4 utilityBills = Shape4(
+    source: i0.VersionedTable(
+      entityName: 'utility_bills',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_11,
+        _column_22,
+        _column_23,
+        _column_24,
+        _column_25,
+        _column_26,
+        _column_27,
+        _column_28,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape5 photos = Shape5(
+    source: i0.VersionedTable(
+      entityName: 'photos',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_30,
+        _column_31,
+        _column_32,
+        _column_33,
+        _column_34,
+        _column_35,
+        _column_36,
+        _column_37,
+        _column_38,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape6 documents = Shape6(
+    source: i0.VersionedTable(
+      entityName: 'documents',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_39,
+        _column_40,
+        _column_31,
+        _column_41,
+        _column_42,
+        _column_32,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape7 roofImages = Shape7(
+    source: i0.VersionedTable(
+      entityName: 'roof_images',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_14,
+        _column_43,
+        _column_44,
+        _column_45,
+        _column_46,
+        _column_47,
+        _column_48,
+        _column_49,
+        _column_50,
+        _column_51,
+        _column_52,
+        _column_53,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape8 roofPlanes = Shape8(
+    source: i0.VersionedTable(
+      entityName: 'roof_planes',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_4,
+        _column_54,
+        _column_55,
+        _column_56,
+        _column_57,
+        _column_58,
+        _column_59,
+        _column_60,
+        _column_61,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape9 obstacles = Shape9(
+    source: i0.VersionedTable(
+      entityName: 'obstacles',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_40,
+        _column_62,
+        _column_63,
+        _column_64,
+        _column_65,
+        _column_66,
+        _column_67,
+        _column_68,
+        _column_69,
+        _column_70,
+        _column_71,
+        _column_72,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape10 horizonProfiles = Shape10(
+    source: i0.VersionedTable(
+      entityName: 'horizon_profiles',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_19,
+        _column_73,
+        _column_74,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+}
+
+final class Schema7 extends i0.VersionedSchema {
+  Schema7({required super.database}) : super(version: 7);
+  @override
+  late final List<i1.DatabaseSchemaEntity> entities = [
+    companies,
+    clients,
+    projects,
+    sites,
+    utilityBills,
+    photos,
+    documents,
+    roofImages,
+    roofPlanes,
+    obstacles,
+    horizonProfiles,
+    panelModels,
+    inverterModels,
+    optimizerModels,
+    batteryModels,
+    pvDesigns,
+    arrayLayouts,
+    stringConfigs,
+    electricalRuns,
+    protectionDevices,
+    simulationResults,
+  ];
+  late final Shape0 companies = Shape0(
+    source: i0.VersionedTable(
+      entityName: 'companies',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_4,
+        _column_5,
+        _column_6,
+        _column_7,
+        _column_8,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape1 clients = Shape1(
+    source: i0.VersionedTable(
+      entityName: 'clients',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_4,
+        _column_5,
+        _column_6,
+        _column_9,
+        _column_10,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape2 projects = Shape2(
+    source: i0.VersionedTable(
+      entityName: 'projects',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_11,
+        _column_4,
+        _column_12,
+        _column_13,
+        _column_10,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape3 sites = Shape3(
+    source: i0.VersionedTable(
+      entityName: 'sites',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_14,
+        _column_15,
+        _column_16,
+        _column_17,
+        _column_18,
+        _column_19,
+        _column_20,
+        _column_21,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape4 utilityBills = Shape4(
+    source: i0.VersionedTable(
+      entityName: 'utility_bills',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_11,
+        _column_22,
+        _column_23,
+        _column_24,
+        _column_25,
+        _column_26,
+        _column_27,
+        _column_28,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape5 photos = Shape5(
+    source: i0.VersionedTable(
+      entityName: 'photos',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_30,
+        _column_31,
+        _column_32,
+        _column_33,
+        _column_34,
+        _column_35,
+        _column_36,
+        _column_37,
+        _column_38,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape6 documents = Shape6(
+    source: i0.VersionedTable(
+      entityName: 'documents',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_39,
+        _column_40,
+        _column_31,
+        _column_41,
+        _column_42,
+        _column_32,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape7 roofImages = Shape7(
+    source: i0.VersionedTable(
+      entityName: 'roof_images',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_14,
+        _column_43,
+        _column_44,
+        _column_45,
+        _column_46,
+        _column_47,
+        _column_48,
+        _column_49,
+        _column_50,
+        _column_51,
+        _column_52,
+        _column_53,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape8 roofPlanes = Shape8(
+    source: i0.VersionedTable(
+      entityName: 'roof_planes',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_4,
+        _column_54,
+        _column_55,
+        _column_56,
+        _column_57,
+        _column_58,
+        _column_59,
+        _column_60,
+        _column_61,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape9 obstacles = Shape9(
+    source: i0.VersionedTable(
+      entityName: 'obstacles',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_40,
+        _column_62,
+        _column_63,
+        _column_64,
+        _column_65,
+        _column_66,
+        _column_67,
+        _column_68,
+        _column_69,
+        _column_70,
+        _column_71,
+        _column_72,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape10 horizonProfiles = Shape10(
+    source: i0.VersionedTable(
+      entityName: 'horizon_profiles',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_19,
+        _column_73,
+        _column_74,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape11 panelModels = Shape11(
+    source: i0.VersionedTable(
+      entityName: 'panel_models',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_75,
+        _column_76,
+        _column_77,
+        _column_78,
+        _column_79,
+        _column_80,
+        _column_81,
+        _column_82,
+        _column_83,
+        _column_84,
+        _column_85,
+        _column_65,
+        _column_86,
+        _column_87,
+        _column_88,
+        _column_89,
+        _column_90,
+        _column_91,
+        _column_92,
+        _column_93,
+        _column_10,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape12 inverterModels = Shape12(
+    source: i0.VersionedTable(
+      entityName: 'inverter_models',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_75,
+        _column_76,
+        _column_94,
+        _column_95,
+        _column_96,
+        _column_97,
+        _column_98,
+        _column_99,
+        _column_100,
+        _column_101,
+        _column_102,
+        _column_103,
+        _column_104,
+        _column_105,
+        _column_93,
+        _column_10,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape13 optimizerModels = Shape13(
+    source: i0.VersionedTable(
+      entityName: 'optimizer_models',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_75,
+        _column_76,
+        _column_106,
+        _column_107,
+        _column_108,
+        _column_109,
+        _column_110,
+        _column_111,
+        _column_93,
+        _column_10,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape14 batteryModels = Shape14(
+    source: i0.VersionedTable(
+      entityName: 'battery_models',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_75,
+        _column_76,
+        _column_112,
+        _column_113,
+        _column_114,
+        _column_115,
+        _column_116,
+        _column_117,
+        _column_118,
+        _column_93,
+        _column_10,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape15 pvDesigns = Shape15(
+    source: i0.VersionedTable(
+      entityName: 'pv_designs',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_14,
+        _column_119,
+        _column_120,
+        _column_121,
+        _column_122,
+        _column_123,
+        _column_124,
+        _column_125,
+        _column_126,
+        _column_127,
+        _column_128,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape16 arrayLayouts = Shape16(
+    source: i0.VersionedTable(
+      entityName: 'array_layouts',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_129,
+        _column_119,
+        _column_130,
+        _column_131,
+        _column_132,
+        _column_133,
+        _column_134,
+        _column_135,
+        _column_136,
+        _column_137,
+        _column_138,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape17 stringConfigs = Shape17(
+    source: i0.VersionedTable(
+      entityName: 'string_configs',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_139,
+        _column_140,
+        _column_141,
+        _column_142,
+        _column_143,
+        _column_61,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape18 electricalRuns = Shape18(
+    source: i0.VersionedTable(
+      entityName: 'electrical_runs',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_40,
+        _column_4,
+        _column_85,
+        _column_144,
+        _column_145,
+        _column_146,
+        _column_147,
+        _column_148,
+        _column_149,
+        _column_150,
+        _column_61,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape19 protectionDevices = Shape19(
+    source: i0.VersionedTable(
+      entityName: 'protection_devices',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_40,
+        _column_151,
+        _column_152,
+        _column_153,
+        _column_154,
+        _column_10,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape20 simulationResults = Shape20(
+    source: i0.VersionedTable(
+      entityName: 'simulation_results',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_29,
+        _column_155,
+        _column_95,
+        _column_156,
+        _column_157,
+        _column_158,
+        _column_159,
+        _column_160,
+        _column_161,
+        _column_162,
+        _column_163,
+        _column_164,
+        _column_125,
+        _column_165,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+}
+
+class Shape11 extends i0.VersionedTable {
+  Shape11({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get createdAt =>
+      columnsByName['created_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get updatedAt =>
+      columnsByName['updated_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get deletedAt =>
+      columnsByName['deleted_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get manufacturer =>
+      columnsByName['manufacturer']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get model =>
+      columnsByName['model']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get pmaxW =>
+      columnsByName['pmax_w']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get vocV =>
+      columnsByName['voc_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get iscA =>
+      columnsByName['isc_a']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get vmpV =>
+      columnsByName['vmp_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get impA =>
+      columnsByName['imp_a']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get gammaPmaxPct =>
+      columnsByName['gamma_pmax_pct']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get betaVocPct =>
+      columnsByName['beta_voc_pct']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get betaVmpPct =>
+      columnsByName['beta_vmp_pct']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get lengthM =>
+      columnsByName['length_m']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get widthM =>
+      columnsByName['width_m']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get weightKg =>
+      columnsByName['weight_kg']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<String> get cellType =>
+      columnsByName['cell_type']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<int> get cellCount =>
+      columnsByName['cell_count']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get bifacial =>
+      columnsByName['bifacial']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<double> get bifacialityPct =>
+      columnsByName['bifaciality_pct']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get maxSeriesFuseA =>
+      columnsByName['max_series_fuse_a']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get maxSystemVoltageV =>
+      columnsByName['max_system_voltage_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<String> get source =>
+      columnsByName['source']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get notes =>
+      columnsByName['notes']! as i1.GeneratedColumn<String>;
+}
+
+i1.GeneratedColumn<String> _column_75(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'manufacturer',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<String> _column_76(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'model',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_77(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'pmax_w',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_78(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'voc_v',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_79(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'isc_a',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_80(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'vmp_v',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_81(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'imp_a',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_82(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'gamma_pmax_pct',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT (-0.35)',
+      defaultValue: const i1.CustomExpression('-0.35'),
+    );
+i1.GeneratedColumn<double> _column_83(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'beta_voc_pct',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT (-0.28)',
+      defaultValue: const i1.CustomExpression('-0.28'),
+    );
+i1.GeneratedColumn<double> _column_84(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'beta_vmp_pct',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT (-0.37)',
+      defaultValue: const i1.CustomExpression('-0.37'),
+    );
+i1.GeneratedColumn<double> _column_85(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'length_m',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_86(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'weight_kg',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<String> _column_87(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'cell_type',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL DEFAULT \'mono\'',
+      defaultValue: const i1.CustomExpression('\'mono\''),
+    );
+i1.GeneratedColumn<int> _column_88(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'cell_count',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<int> _column_89(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'bifacial',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL DEFAULT 0 CHECK (bifacial IN (0, 1))',
+      defaultValue: const i1.CustomExpression('0'),
+    );
+i1.GeneratedColumn<double> _column_90(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'bifaciality_pct',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<double> _column_91(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'max_series_fuse_a',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<double> _column_92(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'max_system_voltage_v',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<String> _column_93(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'source',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL DEFAULT \'manual\'',
+      defaultValue: const i1.CustomExpression('\'manual\''),
+    );
+
+class Shape12 extends i0.VersionedTable {
+  Shape12({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get createdAt =>
+      columnsByName['created_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get updatedAt =>
+      columnsByName['updated_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get deletedAt =>
+      columnsByName['deleted_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get manufacturer =>
+      columnsByName['manufacturer']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get model =>
+      columnsByName['model']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get kind =>
+      columnsByName['kind']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get pacW =>
+      columnsByName['pac_w']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get vdcMaxV =>
+      columnsByName['vdc_max_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get mpptMinV =>
+      columnsByName['mppt_min_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get mpptMaxV =>
+      columnsByName['mppt_max_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<int> get mpptCount =>
+      columnsByName['mppt_count']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<double> get imaxPerMpptA =>
+      columnsByName['imax_per_mppt_a']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get iscMaxPerMpptA =>
+      columnsByName['isc_max_per_mppt_a']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get efficiencyPct =>
+      columnsByName['efficiency_pct']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<int> get phases =>
+      columnsByName['phases']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<double> get acVoltageV =>
+      columnsByName['ac_voltage_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get iacMaxA =>
+      columnsByName['iac_max_a']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<String> get source =>
+      columnsByName['source']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get notes =>
+      columnsByName['notes']! as i1.GeneratedColumn<String>;
+}
+
+i1.GeneratedColumn<String> _column_94(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'kind',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL DEFAULT \'string\'',
+      defaultValue: const i1.CustomExpression('\'string\''),
+    );
+i1.GeneratedColumn<double> _column_95(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'pac_w',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_96(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'vdc_max_v',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_97(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'mppt_min_v',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_98(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'mppt_max_v',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<int> _column_99(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'mppt_count',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL DEFAULT 1',
+      defaultValue: const i1.CustomExpression('1'),
+    );
+i1.GeneratedColumn<double> _column_100(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'imax_per_mppt_a',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_101(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'isc_max_per_mppt_a',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<double> _column_102(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'efficiency_pct',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 96.0',
+      defaultValue: const i1.CustomExpression('96.0'),
+    );
+i1.GeneratedColumn<int> _column_103(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'phases',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL DEFAULT 1',
+      defaultValue: const i1.CustomExpression('1'),
+    );
+i1.GeneratedColumn<double> _column_104(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'ac_voltage_v',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 220.0',
+      defaultValue: const i1.CustomExpression('220.0'),
+    );
+i1.GeneratedColumn<double> _column_105(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'iac_max_a',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+
+class Shape13 extends i0.VersionedTable {
+  Shape13({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get createdAt =>
+      columnsByName['created_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get updatedAt =>
+      columnsByName['updated_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get deletedAt =>
+      columnsByName['deleted_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get manufacturer =>
+      columnsByName['manufacturer']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get model =>
+      columnsByName['model']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get pmaxInW =>
+      columnsByName['pmax_in_w']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get vinMaxV =>
+      columnsByName['vin_max_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get imaxInA =>
+      columnsByName['imax_in_a']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get voutMaxV =>
+      columnsByName['vout_max_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get ioutMaxA =>
+      columnsByName['iout_max_a']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get efficiencyPct =>
+      columnsByName['efficiency_pct']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<String> get source =>
+      columnsByName['source']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get notes =>
+      columnsByName['notes']! as i1.GeneratedColumn<String>;
+}
+
+i1.GeneratedColumn<double> _column_106(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'pmax_in_w',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_107(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'vin_max_v',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_108(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'imax_in_a',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_109(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'vout_max_v',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<double> _column_110(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'iout_max_a',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<double> _column_111(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'efficiency_pct',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 99.0',
+      defaultValue: const i1.CustomExpression('99.0'),
+    );
+
+class Shape14 extends i0.VersionedTable {
+  Shape14({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get createdAt =>
+      columnsByName['created_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get updatedAt =>
+      columnsByName['updated_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get deletedAt =>
+      columnsByName['deleted_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get manufacturer =>
+      columnsByName['manufacturer']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get model =>
+      columnsByName['model']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get chemistry =>
+      columnsByName['chemistry']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get capacityKwh =>
+      columnsByName['capacity_kwh']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get usableKwh =>
+      columnsByName['usable_kwh']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get nominalVoltageV =>
+      columnsByName['nominal_voltage_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get maxChargeKw =>
+      columnsByName['max_charge_kw']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get maxDischargeKw =>
+      columnsByName['max_discharge_kw']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<int> get cycles =>
+      columnsByName['cycles']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get source =>
+      columnsByName['source']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get notes =>
+      columnsByName['notes']! as i1.GeneratedColumn<String>;
+}
+
+i1.GeneratedColumn<String> _column_112(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'chemistry',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL DEFAULT \'lfp\'',
+      defaultValue: const i1.CustomExpression('\'lfp\''),
+    );
+i1.GeneratedColumn<double> _column_113(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'capacity_kwh',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_114(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'usable_kwh',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<double> _column_115(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'nominal_voltage_v',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_116(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'max_charge_kw',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<double> _column_117(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'max_discharge_kw',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<int> _column_118(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'cycles',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NULL',
+    );
+
+class Shape15 extends i0.VersionedTable {
+  Shape15({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get createdAt =>
+      columnsByName['created_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get updatedAt =>
+      columnsByName['updated_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get deletedAt =>
+      columnsByName['deleted_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get projectId =>
+      columnsByName['project_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get panelModelId =>
+      columnsByName['panel_model_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get inverterModelId =>
+      columnsByName['inverter_model_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<int> get inverterCount =>
+      columnsByName['inverter_count']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get optimizerModelId =>
+      columnsByName['optimizer_model_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get batteryModelId =>
+      columnsByName['battery_model_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get systemVoltageLimitV =>
+      columnsByName['system_voltage_limit_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<String> get losses =>
+      columnsByName['losses']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get shadeThresholdPct =>
+      columnsByName['shade_threshold_pct']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get gridVoltageV =>
+      columnsByName['grid_voltage_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<String> get wind =>
+      columnsByName['wind']! as i1.GeneratedColumn<String>;
+}
+
+i1.GeneratedColumn<String> _column_119(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'panel_model_id',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<String> _column_120(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'inverter_model_id',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<int> _column_121(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'inverter_count',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL DEFAULT 1',
+      defaultValue: const i1.CustomExpression('1'),
+    );
+i1.GeneratedColumn<String> _column_122(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'optimizer_model_id',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<String> _column_123(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'battery_model_id',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<double> _column_124(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'system_voltage_limit_v',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 600.0',
+      defaultValue: const i1.CustomExpression('600.0'),
+    );
+i1.GeneratedColumn<String> _column_125(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'losses',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL DEFAULT \'{}\'',
+      defaultValue: const i1.CustomExpression('\'{}\''),
+    );
+i1.GeneratedColumn<double> _column_126(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'shade_threshold_pct',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 10.0',
+      defaultValue: const i1.CustomExpression('10.0'),
+    );
+i1.GeneratedColumn<double> _column_127(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'grid_voltage_v',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 220.0',
+      defaultValue: const i1.CustomExpression('220.0'),
+    );
+i1.GeneratedColumn<String> _column_128(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'wind',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL DEFAULT \'{}\'',
+      defaultValue: const i1.CustomExpression('\'{}\''),
+    );
+
+class Shape16 extends i0.VersionedTable {
+  Shape16({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get createdAt =>
+      columnsByName['created_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get updatedAt =>
+      columnsByName['updated_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get deletedAt =>
+      columnsByName['deleted_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get projectId =>
+      columnsByName['project_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get roofPlaneId =>
+      columnsByName['roof_plane_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get panelModelId =>
+      columnsByName['panel_model_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get orientation =>
+      columnsByName['orientation']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get mount =>
+      columnsByName['mount']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get rackTiltDeg =>
+      columnsByName['rack_tilt_deg']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get rackAzimuthDeg =>
+      columnsByName['rack_azimuth_deg']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get gapM =>
+      columnsByName['gap_m']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get rowGapM =>
+      columnsByName['row_gap_m']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get clearanceM =>
+      columnsByName['clearance_m']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get rowSpacingM =>
+      columnsByName['row_spacing_m']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<String> get panels =>
+      columnsByName['panels']! as i1.GeneratedColumn<String>;
+}
+
+i1.GeneratedColumn<String> _column_129(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'roof_plane_id',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL REFERENCES roof_planes(id)',
+    );
+i1.GeneratedColumn<String> _column_130(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'orientation',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL DEFAULT \'portrait\'',
+      defaultValue: const i1.CustomExpression('\'portrait\''),
+    );
+i1.GeneratedColumn<String> _column_131(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'mount',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL DEFAULT \'flush\'',
+      defaultValue: const i1.CustomExpression('\'flush\''),
+    );
+i1.GeneratedColumn<double> _column_132(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'rack_tilt_deg',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 15.0',
+      defaultValue: const i1.CustomExpression('15.0'),
+    );
+i1.GeneratedColumn<double> _column_133(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'rack_azimuth_deg',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 180.0',
+      defaultValue: const i1.CustomExpression('180.0'),
+    );
+i1.GeneratedColumn<double> _column_134(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'gap_m',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 0.02',
+      defaultValue: const i1.CustomExpression('0.02'),
+    );
+i1.GeneratedColumn<double> _column_135(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'row_gap_m',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 0.02',
+      defaultValue: const i1.CustomExpression('0.02'),
+    );
+i1.GeneratedColumn<double> _column_136(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'clearance_m',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 0.3',
+      defaultValue: const i1.CustomExpression('0.3'),
+    );
+i1.GeneratedColumn<double> _column_137(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'row_spacing_m',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<String> _column_138(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'panels',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL DEFAULT \'[]\'',
+      defaultValue: const i1.CustomExpression('\'[]\''),
+    );
+
+class Shape17 extends i0.VersionedTable {
+  Shape17({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get createdAt =>
+      columnsByName['created_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get updatedAt =>
+      columnsByName['updated_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get deletedAt =>
+      columnsByName['deleted_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get projectId =>
+      columnsByName['project_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<int> get inverterIndex =>
+      columnsByName['inverter_index']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get mpptIndex =>
+      columnsByName['mppt_index']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get series =>
+      columnsByName['series']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get parallel =>
+      columnsByName['parallel']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get edited =>
+      columnsByName['edited']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get sortOrder =>
+      columnsByName['sort_order']! as i1.GeneratedColumn<int>;
+}
+
+i1.GeneratedColumn<int> _column_139(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'inverter_index',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL DEFAULT 0',
+      defaultValue: const i1.CustomExpression('0'),
+    );
+i1.GeneratedColumn<int> _column_140(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'mppt_index',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL DEFAULT 0',
+      defaultValue: const i1.CustomExpression('0'),
+    );
+i1.GeneratedColumn<int> _column_141(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'series',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<int> _column_142(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'parallel',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL DEFAULT 1',
+      defaultValue: const i1.CustomExpression('1'),
+    );
+i1.GeneratedColumn<int> _column_143(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'edited',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL DEFAULT 0 CHECK (edited IN (0, 1))',
+      defaultValue: const i1.CustomExpression('0'),
+    );
+
+class Shape18 extends i0.VersionedTable {
+  Shape18({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get createdAt =>
+      columnsByName['created_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get updatedAt =>
+      columnsByName['updated_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get deletedAt =>
+      columnsByName['deleted_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get projectId =>
+      columnsByName['project_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get kind =>
+      columnsByName['kind']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get name =>
+      columnsByName['name']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get lengthM =>
+      columnsByName['length_m']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<String> get material =>
+      columnsByName['material']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get raceway =>
+      columnsByName['raceway']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get ambientC =>
+      columnsByName['ambient_c']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<int> get conductors =>
+      columnsByName['conductors']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get chosenSize =>
+      columnsByName['chosen_size']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get resultSize =>
+      columnsByName['result_size']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get dropPercent =>
+      columnsByName['drop_percent']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<int> get sortOrder =>
+      columnsByName['sort_order']! as i1.GeneratedColumn<int>;
+}
+
+i1.GeneratedColumn<String> _column_144(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'material',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL DEFAULT \'copper\'',
+      defaultValue: const i1.CustomExpression('\'copper\''),
+    );
+i1.GeneratedColumn<String> _column_145(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'raceway',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL DEFAULT \'rooftop13to90mm\'',
+      defaultValue: const i1.CustomExpression('\'rooftop13to90mm\''),
+    );
+i1.GeneratedColumn<double> _column_146(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'ambient_c',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 40.0',
+      defaultValue: const i1.CustomExpression('40.0'),
+    );
+i1.GeneratedColumn<int> _column_147(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'conductors',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL DEFAULT 2',
+      defaultValue: const i1.CustomExpression('2'),
+    );
+i1.GeneratedColumn<String> _column_148(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'chosen_size',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<String> _column_149(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'result_size',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<double> _column_150(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'drop_percent',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+
+class Shape19 extends i0.VersionedTable {
+  Shape19({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get createdAt =>
+      columnsByName['created_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get updatedAt =>
+      columnsByName['updated_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get deletedAt =>
+      columnsByName['deleted_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get projectId =>
+      columnsByName['project_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get kind =>
+      columnsByName['kind']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get ratingA =>
+      columnsByName['rating_a']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get voltageV =>
+      columnsByName['voltage_v']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<int> get quantity =>
+      columnsByName['quantity']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get conductorSize =>
+      columnsByName['conductor_size']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get notes =>
+      columnsByName['notes']! as i1.GeneratedColumn<String>;
+}
+
+i1.GeneratedColumn<double> _column_151(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'rating_a',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<double> _column_152(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'voltage_v',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<int> _column_153(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'quantity',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL DEFAULT 1',
+      defaultValue: const i1.CustomExpression('1'),
+    );
+i1.GeneratedColumn<String> _column_154(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'conductor_size',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NULL',
+    );
+
+class Shape20 extends i0.VersionedTable {
+  Shape20({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get createdAt =>
+      columnsByName['created_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get updatedAt =>
+      columnsByName['updated_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get deletedAt =>
+      columnsByName['deleted_at']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get projectId =>
+      columnsByName['project_id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get pdcW =>
+      columnsByName['pdc_w']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get pacW =>
+      columnsByName['pac_w']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get firstYearKwh =>
+      columnsByName['first_year_kwh']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get lifetimeKwh =>
+      columnsByName['lifetime_kwh']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<int> get years =>
+      columnsByName['years']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get monthlyKwh =>
+      columnsByName['monthly_kwh']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get yearlyKwh =>
+      columnsByName['yearly_kwh']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get clippedKwh =>
+      columnsByName['clipped_kwh']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get shadingLossPct =>
+      columnsByName['shading_loss_pct']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get specificYield =>
+      columnsByName['specific_yield']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<double> get performanceRatio =>
+      columnsByName['performance_ratio']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<String> get losses =>
+      columnsByName['losses']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get weatherLabel =>
+      columnsByName['weather_label']! as i1.GeneratedColumn<String>;
+}
+
+i1.GeneratedColumn<double> _column_155(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'pdc_w',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_156(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'first_year_kwh',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_157(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'lifetime_kwh',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<int> _column_158(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'years',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL DEFAULT 25',
+      defaultValue: const i1.CustomExpression('25'),
+    );
+i1.GeneratedColumn<String> _column_159(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'monthly_kwh',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<String> _column_160(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'yearly_kwh',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_161(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'clipped_kwh',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 0.0',
+      defaultValue: const i1.CustomExpression('0.0'),
+    );
+i1.GeneratedColumn<double> _column_162(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'shading_loss_pct',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 0.0',
+      defaultValue: const i1.CustomExpression('0.0'),
+    );
+i1.GeneratedColumn<double> _column_163(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'specific_yield',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<double> _column_164(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'performance_ratio',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<String> _column_165(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'weather_label',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NULL',
+    );
 i0.MigrationStepWithVersion migrationSteps({
   required Future<void> Function(i1.Migrator m, Schema2 schema) from1To2,
   required Future<void> Function(i1.Migrator m, Schema3 schema) from2To3,
   required Future<void> Function(i1.Migrator m, Schema4 schema) from3To4,
   required Future<void> Function(i1.Migrator m, Schema5 schema) from4To5,
+  required Future<void> Function(i1.Migrator m, Schema6 schema) from5To6,
+  required Future<void> Function(i1.Migrator m, Schema7 schema) from6To7,
 }) {
   return (currentVersion, database) async {
     switch (currentVersion) {
@@ -1618,6 +3612,16 @@ i0.MigrationStepWithVersion migrationSteps({
         final migrator = i1.Migrator(database, schema);
         await from4To5(migrator, schema);
         return 5;
+      case 5:
+        final schema = Schema6(database: database);
+        final migrator = i1.Migrator(database, schema);
+        await from5To6(migrator, schema);
+        return 6;
+      case 6:
+        final schema = Schema7(database: database);
+        final migrator = i1.Migrator(database, schema);
+        await from6To7(migrator, schema);
+        return 7;
       default:
         throw ArgumentError.value('Unknown migration from $currentVersion');
     }
@@ -1629,11 +3633,15 @@ i1.OnUpgrade stepByStep({
   required Future<void> Function(i1.Migrator m, Schema3 schema) from2To3,
   required Future<void> Function(i1.Migrator m, Schema4 schema) from3To4,
   required Future<void> Function(i1.Migrator m, Schema5 schema) from4To5,
+  required Future<void> Function(i1.Migrator m, Schema6 schema) from5To6,
+  required Future<void> Function(i1.Migrator m, Schema7 schema) from6To7,
 }) => i0.VersionedSchema.stepByStepHelper(
   step: migrationSteps(
     from1To2: from1To2,
     from2To3: from2To3,
     from3To4: from3To4,
     from4To5: from4To5,
+    from5To6: from5To6,
+    from6To7: from6To7,
   ),
 );

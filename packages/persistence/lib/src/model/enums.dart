@@ -169,3 +169,135 @@ enum HorizonSource {
   /// Cámara con guías (fase posterior).
   camera,
 }
+
+/// De dónde salió un equipo del catálogo (F4).
+enum EquipmentSource {
+  /// Capturado a mano por el instalador (hoja de datos).
+  manual,
+
+  /// Importado del catálogo público CEC/SAM.
+  cec,
+}
+
+/// Tipo de celda de un panel (F4).
+enum CellType {
+  /// Silicio monocristalino.
+  mono,
+
+  /// Silicio policristalino.
+  poly,
+
+  /// Película delgada.
+  thinFilm,
+
+  /// Otro.
+  other,
+}
+
+/// Tipo de inversor (F4).
+enum InverterKind {
+  /// Inversor de string (central).
+  string,
+
+  /// Microinversor (uno por panel o por pocos paneles).
+  micro,
+
+  /// Híbrido (con baterías).
+  hybrid,
+}
+
+/// Química de una batería (F4).
+enum BatteryChemistry {
+  /// Litio hierro fosfato.
+  lfp,
+
+  /// Litio níquel manganeso cobalto.
+  nmc,
+
+  /// Plomo ácido.
+  leadAcid,
+
+  /// Otra.
+  other,
+}
+
+/// Orientación de los paneles en el arreglo (F4).
+enum LayoutOrientation {
+  /// Vertical: el lado largo sube con la pendiente.
+  portrait,
+
+  /// Horizontal.
+  landscape,
+}
+
+/// Montaje de los paneles (F4).
+enum MountType {
+  /// Pegados al techo (paralelos al plano).
+  flush,
+
+  /// Estructura inclinada sobre techo plano, en filas.
+  tiltedRack,
+}
+
+/// Tramo de cableado (F4).
+enum RunKind {
+  /// Del string al inversor (CD).
+  dcString,
+
+  /// Del inversor al tablero (CA).
+  acOutput,
+}
+
+/// Material del cable (F4).
+enum CableMaterial {
+  /// Cobre.
+  copper,
+
+  /// Aluminio.
+  aluminum,
+}
+
+/// Tipo de canalización (F4).
+enum RacewayKind {
+  /// Tubo en azotea al sol, a menos de 13 mm del techo.
+  rooftopUnder13mm,
+
+  /// Tubo en azotea al sol, de 13 a 90 mm.
+  rooftop13to90mm,
+
+  /// Tubo en azotea al sol, de 90 a 300 mm.
+  rooftop90to300mm,
+
+  /// Tubo en azotea al sol, de 300 a 900 mm.
+  rooftop300to900mm,
+
+  /// Tubo en interior o a la sombra.
+  indoorConduit,
+
+  /// Charola o al aire libre a la sombra.
+  freeAir,
+
+  /// Enterrado.
+  buried,
+}
+
+/// Tipo de protección (F4).
+enum ProtectionDeviceKind {
+  /// Fusible de string.
+  stringFuse,
+
+  /// Desconectador de CD.
+  dcDisconnect,
+
+  /// DPS en CD.
+  dcSpd,
+
+  /// Interruptor de CA.
+  acBreaker,
+
+  /// DPS en CA.
+  acSpd,
+
+  /// Conductor de puesta a tierra.
+  groundingConductor,
+}
