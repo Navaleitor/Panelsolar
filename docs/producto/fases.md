@@ -8,7 +8,7 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 | F1 Clientes y proyectos | `fase-1-clientes` | F0 | Integrada (2026-11-12) — aceptación: [`docs/pruebas/fase-1.md`](../pruebas/fase-1.md) |
 | F2 Motor solar + clima | `fase-2-motor-clima` | F0 | Integrada (2026-11-14) — aceptación: [`docs/pruebas/fase-2.md`](../pruebas/fase-2.md); validación: [`validacion-motor.md`](../pruebas/validacion-motor.md) |
 | F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Integrada (2026-11-14) — aceptación: [`docs/pruebas/fase-3.md`](../pruebas/fase-3.md) |
-| F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | Pendiente |
+| F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | En curso |
 | F5 Unifilar y reportes | `fase-5-unifilar-reportes` | F4 | Pendiente |
 | F6 Operación (mantenimiento, respaldo) | `fase-6-operacion` | F1 | En curso |
 | F7 Producto (freemium, Play Store) | `fase-7-producto` | F1–F6 | Pendiente |
@@ -49,7 +49,7 @@ Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.
 | F1 | `session_01WWCD8k8V1Xc3QPnKzKASNc` (entorno panelsolar) |
 | F2 | `session_01WWCD8oZt4AdV3NdkTVsnwf` (entorno panelsolar) |
 | F3 | `session_01WWCD8khQf1erhr86FAi84j` (entorno panelsolar) |
-| F4 | `session_01WWCD8oK1MwbxZThDeSnurd` |
+| F4 | `session_01WWCD8krc3yMiKeizV6YafY` (entorno panelsolar) |
 | F5 | `session_01WWCD8oed4tQwkDPMVeGy2X` |
 | F6 | `session_01WWCD8jvCLJhSBAuszgZwA5` (entorno panelsolar) |
 | F7 | `session_01WWCD8mfSNStprxgu3zS6jr` |
@@ -68,3 +68,7 @@ Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.
 - **Zona horaria:** automática desde las coordenadas, sin conexión (la implementa F2); editable.
 - **Moneda:** solo MXN por ahora; monedas configurables se revisan antes de publicar (F7).
 - **Altitud del sitio:** opcional y manual. Si falta, el motor usa un valor interno por defecto sin mostrar error.
+
+## Numeración del esquema de BD (2026-11-14)
+- v4: vacía (reservada originalmente para F6). v5: techo (F3). **v6: F6** (equipos, puesta en marcha, mantenimiento, producción, respaldo). **v7: F4** (catálogo, arreglo, strings, cableado, simulación).
+- Regla: una versión ya publicada en un APK nunca se reutiliza; la fase que integra después toma el siguiente número.
