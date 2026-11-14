@@ -43,6 +43,11 @@ Pruebas: `test/geocoding/` (sin red: el HTTP se inyecta).
 
 Prueba con red (opcional): `dart run tool/cross_validation.dart` (requiere `tools/golden_data/out/cross_reference.csv`).
 
+## Catálogo CEC (F4)
+- `src/cec/cec_parser.dart` — `CecParser.modules/inverters` leen los CSV de NREL SAM; `search` filtra por palabras.
+- `src/cec/cec_catalog_client.dart` — `CecCatalogClient.load()` descarga una vez (≈ 6.4 MB) y guarda gzip en la carpeta dada.
+- Licencia y límites: `docs/fuentes-de-datos.md` §9. Pruebas: `test/cec/` con muestras reales en `test/fixtures/`.
+
 ## Notas
 - Licencias y límites: `docs/fuentes-de-datos.md`. NASA POWER responde 429 si se excede; PVGIS limita a 30 llamadas/s por IP.
 - NASA POWER promedia celdas de ~50 km: en montaña su temperatura puede diferir varios grados (se avisa si > 3 °C contra PVGIS).

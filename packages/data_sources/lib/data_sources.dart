@@ -4,6 +4,9 @@ library;
 
 export 'src/attribution/attributions.dart';
 export 'src/cache/project_cache.dart';
+export 'src/cec/cec_catalog_client.dart';
+export 'src/cec/cec_parser.dart';
+export 'src/cec/cec_records.dart';
 export 'src/http/retrying_get.dart';
 export 'src/package_info.dart';
 export 'src/quality/quality_report.dart';

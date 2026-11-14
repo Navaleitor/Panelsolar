@@ -90,5 +90,12 @@ Verificación hecha en F0 (2026-11-10). Decisiones derivadas (aceptadas por el d
   - Con ODbL aplica §6: atribución y *share-alike* si se redistribuye la base derivada (los archivos por zona que publiquemos **sí** serían redistribución → deben publicarse bajo ODbL).
 - **Capa 3 — Google Solar API (BYO key):** la clave, la cuenta y la tarjeta son del instalador. ⚠️ Confirmar en F3 la cuota gratuita y qué permite guardar en el teléfono (términos de caché de Google Maps Platform).
 
+## 9. Catálogo CEC de equipos (F4)
+- **Qué es:** lista pública de paneles e inversores certificados por la California Energy Commission, en el formato de NREL SAM (`CEC Modules.csv` ≈ 6 MB, `CEC Inverters.csv` ≈ 0.4 MB) del repositorio público `NREL/SAM` en GitHub.
+- **Licencia:** SAM se distribuye con licencia BSD-3-Clause; la lista de la CEC es información pública del Estado de California. Uso comercial permitido con atribución.
+- **Uso en la app:** opcional. Se descarga solo cuando el instalador abre "Importar de CEC", se guarda comprimido en el teléfono y se buscan e importan **solo los equipos elegidos** al catálogo propio.
+- **Límites:** la hoja no trae coeficiente de Vmp (se estima γPmax − αIsc), número de MPPT ni corriente por MPPT de los inversores (se toma 1 MPPT con la corriente DC máxima): el instalador debe revisarlos con la hoja de datos.
+- **Atribución:** "Catálogo CEC (California Energy Commission) vía NREL SAM (BSD-3)".
+
 ## Atribuciones (para pantallas y reportes)
 Clima (F2): implementadas en `packages/data_sources/lib/src/attribution/attributions.dart` (NASA POWER: *Reference* + *Data Reference* con versión y fecha de descarga; PVGIS: "Datos: PVGIS © Unión Europea, 2001–<año> (CC BY 4.0); procesados por Panelsolar.") y se muestran en la pantalla de clima. Zonas horarias (F2): el índice simplificado que va dentro de la app es una base derivada ODbL y se distribuye bajo ODbL (aviso en `packages/geo_kit/assets/TIMEZONES-LICENSE.md`); atribución `TimeZoneLocator.attribution` en `geo_kit` ("Zonas horarias: timezone-boundary-builder, © OpenStreetMap contributors (ODbL)"), mostrada en la pantalla de clima. Las demás se agregarán ahí mismo y se imprimirán en cada reporte PDF que use la fuente: "Powered by Esri" + proveedores de la capa; referencia NASA POWER con versión y fecha; "PVGIS © Unión Europea (CC BY 4.0)"; "© OpenStreetMap contributors — openstreetmap.org/copyright".

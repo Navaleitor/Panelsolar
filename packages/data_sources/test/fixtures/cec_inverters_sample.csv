@@ -1,0 +1,7 @@
+Name,Vac,Pso,Paco,Pdco,Vdco,C0,C1,C2,C3,Pnt,Vdcmax,Idcmax,Mppt_low,Mppt_high,CEC_Date,CEC_hybrid
+Units,V,W,W,W,V,1/W,1/V,1/V,1/V,W,V,A,V,V,,
+[0],inv_snl_ac_voltage,inv_snl_pso,inv_snl_paco,inv_snl_pdco,inv_snl_vdco,inv_snl_c0,inv_snl_c1,inv_snl_c2,inv_snl_c3,inv_snl_pnt,inv_snl_vdcmax,inv_snl_idcmax,inv_snl_mppt_low,inv_snl_mppt_hi,inv_cec_date,inv_cec_hybrid
+ABB: PVI-30-OUTD-S-US-A {208V},208,18.1674,3000,3142.3,310,-8.03947e-06,-1.10257e-05,0.000998581,-0.000287238,0.1,480.0,10.1365,100.0,480.0,2018-10-15,N
+Enphase Energy Inc: IQ6-60-2-US {208V},208,1.22879,230,237.181,32,-4.90807e-05,6.23574e-06,-0.0197464,-0.0646424,0.02,37.0,7.41192,27.0,37.0,2021-03-11,N
+"Comma, Inc: Model X {240V}",240,10,5000,5200,380,0,0,0,0,1,600,15,100,500,2020-01-01,N
+Broken,240,1,0,0
