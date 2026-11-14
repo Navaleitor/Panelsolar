@@ -6,7 +6,7 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 |---|---|---|---|
 | F0 Cimientos | `fase-0-cimientos` | — | Completada (2026-11-10) — lista de aceptación: [`docs/pruebas/fase-0.md`](../pruebas/fase-0.md) |
 | F1 Clientes y proyectos | `fase-1-clientes` | F0 | Integrada (2026-11-12) — aceptación: [`docs/pruebas/fase-1.md`](../pruebas/fase-1.md) |
-| F2 Motor solar + clima | `fase-2-motor-clima` | F0 | Lista para revisión (2026-11-12) — aceptación: [`docs/pruebas/fase-2.md`](../pruebas/fase-2.md); validación: [`validacion-motor.md`](../pruebas/validacion-motor.md) |
+| F2 Motor solar + clima | `fase-2-motor-clima` | F0 | Integrada (2026-11-14) — aceptación: [`docs/pruebas/fase-2.md`](../pruebas/fase-2.md); validación: [`validacion-motor.md`](../pruebas/validacion-motor.md) |
 | F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Pendiente |
 | F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | Pendiente |
 | F5 Unifilar y reportes | `fase-5-unifilar-reportes` | F4 | Pendiente |
