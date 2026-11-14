@@ -66,3 +66,106 @@ enum BillingPeriod {
   /// Dos meses (residencial CFE).
   bimonthly,
 }
+
+/// Cómo se obtuvo el plano del techo (F3).
+enum RoofMode {
+  /// Imagen importada por el usuario (vista desde arriba) y calibrada.
+  image,
+
+  /// Croquis a escala con medidas de cinta (sin imagen).
+  sketch,
+}
+
+/// De dónde salió la orientación al norte del plano del techo.
+enum NorthSource {
+  /// Norte arriba (valor por defecto, sin confirmar).
+  imageUp,
+
+  /// El usuario giró la flecha a mano.
+  manual,
+
+  /// Confirmada con la brújula del teléfono (corregida por declinación).
+  compass,
+}
+
+/// De dónde salió la inclinación de un plano del techo.
+enum TiltSource {
+  /// Escrita a mano.
+  manual,
+
+  /// Medida con el inclinómetro del teléfono apoyado en el techo.
+  inclinometer,
+}
+
+/// Tipo de obstáculo (B.7.1). Mismos nombres que `ObstacleType` de geo_kit.
+enum ObstacleKind {
+  /// Tinaco.
+  waterTank,
+
+  /// Antena o mástil.
+  antenna,
+
+  /// Pretil.
+  parapet,
+
+  /// Tanque de gas.
+  gasTank,
+
+  /// Condensadora de minisplit.
+  minisplit,
+
+  /// Domo o tragaluz.
+  dome,
+
+  /// Cubo de escalera.
+  stairwell,
+
+  /// Árbol.
+  tree,
+
+  /// Edificio vecino.
+  neighborBuilding,
+}
+
+/// Forma de la huella de un obstáculo. Mismos nombres que `ObstacleShape`
+/// de geo_kit.
+enum ObstacleOutline {
+  /// Círculo.
+  circle,
+
+  /// Rectángulo.
+  rectangle,
+
+  /// Línea con espesor.
+  line,
+
+  /// Punto.
+  point,
+
+  /// Polígono libre.
+  polygon,
+}
+
+/// De dónde salió la altura de un obstáculo.
+enum HeightSource {
+  /// Valor típico del catálogo.
+  typical,
+
+  /// Medida con cinta.
+  tape,
+
+  /// Medida con el teléfono (distancia × tan(ángulo) + altura de ojos).
+  phone,
+}
+
+/// Origen de un perfil de horizonte (B.3).
+enum HorizonSource {
+  /// Terreno (montañas), descargado de PVGIS.
+  terrain,
+
+  /// Obstáculo lejano medido con brújula e inclinómetro.
+  manual,
+
+  /// Cámara con guías (fase posterior).
+  camera,
+}

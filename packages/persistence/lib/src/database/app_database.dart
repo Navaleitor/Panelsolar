@@ -5,8 +5,12 @@ import 'package:persistence/src/tables/base_columns.dart';
 import 'package:persistence/src/tables/clients.dart';
 import 'package:persistence/src/tables/companies.dart';
 import 'package:persistence/src/tables/documents.dart';
+import 'package:persistence/src/tables/horizon_profiles.dart';
+import 'package:persistence/src/tables/obstacles.dart';
 import 'package:persistence/src/tables/photos.dart';
 import 'package:persistence/src/tables/projects.dart';
+import 'package:persistence/src/tables/roof_images.dart';
+import 'package:persistence/src/tables/roof_planes.dart';
 import 'package:persistence/src/tables/sites.dart';
 import 'package:persistence/src/tables/utility_bills.dart';
 
@@ -24,6 +28,10 @@ part 'app_database.g.dart';
     UtilityBills,
     Photos,
     Documents,
+    RoofImages,
+    RoofPlanes,
+    Obstacles,
+    HorizonProfiles,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -31,7 +39,7 @@ class AppDatabase extends _$AppDatabase {
   new(super.e);
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -51,6 +59,17 @@ class AppDatabase extends _$AppDatabase {
         await m.createTable(schema.utilityBills);
         await m.createTable(schema.photos);
         await m.createTable(schema.documents);
+      },
+      // v4 está reservada para F6 (instalación, mantenimiento y respaldo),
+      // que avanza en paralelo; aquí no cambia nada. Al integrar, el chat
+      // principal sustituye este paso por el de F6.
+      from3To4: (m, schema) async {},
+      // F3: techo (imagen o croquis), planos, obstáculos y horizonte.
+      from4To5: (m, schema) async {
+        await m.createTable(schema.roofImages);
+        await m.createTable(schema.roofPlanes);
+        await m.createTable(schema.obstacles);
+        await m.createTable(schema.horizonProfiles);
       },
     ),
     beforeOpen: (details) async {

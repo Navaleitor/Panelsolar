@@ -5,7 +5,22 @@ Geometría: polígonos, proyección ENU, empaquetado de paneles y parseo de enla
 ## Estado
 - **F1**: `LatLng` y lectura de enlaces/texto de ubicación (este documento).
 - **F2**: zona horaria IANA a partir de coordenadas, sin conexión (`TimeZoneLocator`).
-- **F3**: polígonos, calibración, proyección ENU (pendiente).
+- **F3**: geometría del techo, calibración de imágenes, imán, croquis con cinta, catálogo de obstáculos, declinación magnética (WMM2025) y cálculos de sensores del teléfono.
+
+## Techo (F3)
+| Archivo | Qué hace | Ficha |
+|---|---|---|
+| `geometry/vec2.dart` | Punto/vector (metros locales x = este, y = norte; o píxeles) | — |
+| `geometry/polygon_metrics.dart` | Lados, perímetro, área, ángulos interiores, centroide, punto dentro, polígono simple | 16 |
+| `geometry/polygon_ops.dart` | Envolvente convexa, retiro hacia adentro, dividir por diagonal, franjas | 16 |
+| `roof/scale_calibration.dart` | Metros por píxel y % de verificación | 17 |
+| `roof/image_frame.dart` | Píxel ↔ metros con norte girado; norte desde la brújula | 17 |
+| `roof/snapping.dart` | Imán a vértices y a 90° | 16 |
+| `roof/plane_orientation.dart` | Azimut desde la arista del alero; área/largo inclinados | 18 |
+| `roof/obstacle_catalog.dart`, `obstacle_footprint.dart` | Tipos de B.7.1, tamaños de tinaco, huellas | 19 |
+| `roof/tape_sketch.dart` | Croquis con cinta (lados + giros) y error de cierre | 16 |
+| `magnetic/world_magnetic_model.dart` | Declinación magnética WMM2025 (dominio público, 2025–2030) | 20 |
+| `sensors/phone_orientation.dart` | Inclinómetro, elevación, brújula compensada, altura por ángulo | 21 |
 
 ## Enlaces de mapas (F1)
 `MapLinkParser.parse(texto)` devuelve un `MapLinkResult`:

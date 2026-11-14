@@ -26,3 +26,19 @@ final photoRepositoryProvider = Provider<PhotoRepository>(
 final documentRepositoryProvider = Provider<DocumentRepository>(
   (ref) => DocumentRepository(ref.watch(appDatabaseProvider)),
 );
+
+final roofImageRepositoryProvider = Provider<RoofImageRepository>(
+  (ref) => RoofImageRepository(ref.watch(appDatabaseProvider)),
+);
+
+final roofPlaneRepositoryProvider = Provider<RoofPlaneRepository>(
+  (ref) => RoofPlaneRepository(ref.watch(appDatabaseProvider)),
+);
+
+final obstacleRepositoryProvider = Provider<ObstacleRepository>(
+  (ref) => ObstacleRepository(ref.watch(appDatabaseProvider)),
+);
+
+final horizonProfileRepositoryProvider = Provider<HorizonProfileRepository>(
+  (ref) => HorizonProfileRepository(ref.watch(appDatabaseProvider)),
+);

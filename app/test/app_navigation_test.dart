@@ -40,7 +40,7 @@ void main() {
     await tester.tap(find.text('Ajustes'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Funcionando · esquema v3'), findsOneWidget);
+    expect(find.text('Funcionando · esquema v5'), findsOneWidget);
   });
 
   testWidgets('en inglés usa los textos en inglés', (tester) async {

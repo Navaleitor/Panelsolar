@@ -1,7 +1,7 @@
 // Prueba de migraciones del esquema (plan D: "cada migración desde la versión
 // anterior sin pérdida"). Esqueleto creado por `drift_dev make-migrations` y
 // adaptado a `package:test` (este paquete es Dart puro, sin Flutter).
-import 'package:drift/drift.dart';
+import 'package:drift/drift.dart' hide isNotNull, isNull;
 import 'package:drift_dev/api/migrations_native.dart';
 import 'package:persistence/persistence.dart';
 import 'package:test/test.dart';
@@ -10,6 +10,8 @@ import 'generated/schema.dart';
 import 'generated/schema_v1.dart' as v1;
 import 'generated/schema_v2.dart' as v2;
 import 'generated/schema_v3.dart' as v3;
+import 'generated/schema_v4.dart' as v4;
+import 'generated/schema_v5.dart' as v5;
 
 void main() {
   driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
@@ -127,6 +129,91 @@ void main() {
       projectDate: DateTime.utc(2026, 11, 10),
     );
     expect(project.status, ProjectStatus.prospect);
+    await db.close();
+  });
+
+  test(
+    'v3 → v5 conserva clientes y proyectos y crea las tablas del techo',
+    () async {
+      const created = '2026-11-01T00:00:00.000Z';
+      const clientId = '2d3e4f5a-6b7c-4d8e-9f0a-1b2c3d4e5f60';
+      const projectId = '3e4f5a6b-7c8d-4e9f-8a1b-2c3d4e5f6071';
+
+      await verifier.testWithDataIntegrity(
+        oldVersion: 3,
+        newVersion: 5,
+        createOld: v3.DatabaseAtV3.new,
+        createNew: v5.DatabaseAtV5.new,
+        openTestedDatabase: AppDatabase.new,
+        createItems: (batch, oldDb) {
+          batch
+            ..insertAll(oldDb.clients, const [
+              v3.ClientsData(
+                id: clientId,
+                createdAt: created,
+                updatedAt: created,
+                name: 'Ana López',
+              ),
+            ])
+            ..insertAll(oldDb.projects, const [
+              v3.ProjectsData(
+                id: projectId,
+                createdAt: created,
+                updatedAt: created,
+                clientId: clientId,
+                name: 'Casa Cumbres',
+                status: 'design',
+                projectDate: created,
+              ),
+            ]);
+        },
+        validateItems: (newDb) async {
+          expect(await newDb.select(newDb.clients).get(), const [
+            v5.ClientsData(
+              id: clientId,
+              createdAt: created,
+              updatedAt: created,
+              name: 'Ana López',
+            ),
+          ]);
+          expect(await newDb.select(newDb.projects).get(), hasLength(1));
+          expect(await newDb.select(newDb.roofImages).get(), isEmpty);
+          expect(await newDb.select(newDb.roofPlanes).get(), isEmpty);
+          expect(await newDb.select(newDb.obstacles).get(), isEmpty);
+          expect(await newDb.select(newDb.horizonProfiles).get(), isEmpty);
+        },
+      );
+    },
+  );
+
+  test('v4 (reservada para F6) no cambia el esquema de v3', () async {
+    final schema = await verifier.schemaAt(3);
+    final db = AppDatabase(schema.newConnection());
+    await verifier.migrateAndValidate(db, 4);
+    await db.close();
+    expect(v4.DatabaseAtV4.new, isNotNull);
+  });
+
+  test('tras migrar a v5 se guarda el techo de un proyecto', () async {
+    final schema = await verifier.schemaAt(3);
+    final db = AppDatabase(schema.newConnection());
+    await verifier.migrateAndValidate(db, 5);
+
+    final client = await ClientRepository(db).create(name: 'Ana López');
+    final project = await ProjectRepository(db).create(
+      clientId: client.id,
+      name: 'Casa Cumbres',
+      projectDate: DateTime.utc(2026, 11, 14),
+    );
+    await RoofImageRepository(db).startSketch(project.id);
+    final plane = await RoofPlaneRepository(db).add(
+      projectId: project.id,
+      name: 'Plano 1',
+      polygon: '[[0,0],[10,0],[10,8],[0,8]]',
+    );
+    expect(plane.tiltDeg, 0);
+    expect(plane.azimuthDeg, 180);
+    expect(plane.walkways, '[]');
     await db.close();
   });
 }

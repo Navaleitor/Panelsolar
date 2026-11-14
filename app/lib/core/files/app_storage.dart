@@ -29,6 +29,10 @@ class AppStorage {
   static String photosDir(String projectId) =>
       p.join('projects', projectId, 'photos');
 
+  /// Carpeta relativa de la imagen del techo de un proyecto (F3).
+  static String roofDir(String projectId) =>
+      p.join('projects', projectId, 'roof');
+
   /// Carpeta relativa de los documentos de un proyecto.
   static String documentsDir(String projectId) =>
       p.join('projects', projectId, 'documents');

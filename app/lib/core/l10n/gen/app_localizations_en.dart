@@ -641,4 +641,596 @@ class AppLocalizationsEn extends AppLocalizations {
   String weatherTemperaturesBySource(String source, String min, String max) {
     return '$source: minimum $min °C · maximum $max °C';
   }
+
+  @override
+  String get obstacleWaterTank => 'Water tank';
+
+  @override
+  String get obstacleAntenna => 'Antenna';
+
+  @override
+  String get obstacleParapet => 'Parapet';
+
+  @override
+  String get obstacleGasTank => 'Gas tank';
+
+  @override
+  String get obstacleMinisplit => 'Mini-split unit';
+
+  @override
+  String get obstacleDome => 'Skylight';
+
+  @override
+  String get obstacleStairwell => 'Stairwell';
+
+  @override
+  String get obstacleTree => 'Tree';
+
+  @override
+  String get obstacleNeighborBuilding => 'Neighboring building';
+
+  @override
+  String get roofTitle => 'Roof';
+
+  @override
+  String get roofEntryEmpty => 'Image or sketch, planes, obstacles and shading';
+
+  @override
+  String roofEntrySummary(int count, String area) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count planes',
+      one: '1 plane',
+    );
+    return '$_temp0 · $area';
+  }
+
+  @override
+  String get roofBaseTitle => 'Roof base';
+
+  @override
+  String get roofBaseNone =>
+      'Import a top-down image or draw a sketch with tape measurements.';
+
+  @override
+  String get roofBaseSketch => 'Sketch from tape measurements (no image)';
+
+  @override
+  String get roofBaseImageUncalibrated =>
+      'Image not calibrated: draw a line of known length';
+
+  @override
+  String roofBaseImage(String scale) {
+    return 'Calibrated image · 1 pixel = $scale';
+  }
+
+  @override
+  String get roofImportImage => 'Import image';
+
+  @override
+  String get roofChangeImage => 'Change image';
+
+  @override
+  String get roofSketchMode => 'Tape sketch';
+
+  @override
+  String get roofImageRightsNotice =>
+      'Only use images you have the right to use.';
+
+  @override
+  String get roofImageTopViewHint =>
+      'Top-down view: screenshot, aerial or drone photo, or a plan. Tilted views give wrong measurements.';
+
+  @override
+  String get roofSourceGallery => 'Gallery';
+
+  @override
+  String get roofSourceCamera => 'Camera';
+
+  @override
+  String get roofImageSaved => 'Image saved. Now calibrate the scale.';
+
+  @override
+  String get roofImageInvalid => 'The file is not a valid image.';
+
+  @override
+  String get roofPlanesTitle => 'Roof planes';
+
+  @override
+  String get roofPlanesEmpty => 'No planes drawn yet.';
+
+  @override
+  String roofPlaneListItem(String area, String tilt, String azimuth) {
+    return '$area · tilt $tilt · azimuth $azimuth';
+  }
+
+  @override
+  String get roofObstaclesTitle => 'Obstacles';
+
+  @override
+  String roofObstaclesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count obstacles',
+      one: '1 obstacle',
+      zero: 'None',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get roofOpenEditor => 'Draw and edit';
+
+  @override
+  String get roofShadeTitle => 'Shading';
+
+  @override
+  String get roofShadeSubtitle => 'Shadow by date and time and yearly heat map';
+
+  @override
+  String get roofHorizonTitle => 'Horizon';
+
+  @override
+  String roofHorizonSubtitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count distant obstacles',
+      one: '1 distant obstacle',
+      zero: 'no distant obstacles',
+    );
+    return 'Mountains (PVGIS) and $_temp0';
+  }
+
+  @override
+  String get roofEditorTitle => 'Roof editor';
+
+  @override
+  String get roofToolCalibrate => 'Calibrate';
+
+  @override
+  String get roofToolVerify => 'Check';
+
+  @override
+  String get roofToolNorth => 'North';
+
+  @override
+  String get roofToolDraw => 'Draw';
+
+  @override
+  String get roofToolObstacle => 'Obstacles';
+
+  @override
+  String get roofToolWalkway => 'Walkways';
+
+  @override
+  String get roofToolSelect => 'Select';
+
+  @override
+  String get roofCalibrateFirst =>
+      'First calibrate the scale with a known length.';
+
+  @override
+  String get roofCalibrateHelp =>
+      'Tap both ends of something whose length you know (a roof edge, the lot front, a scale bar). Zoom in to tap precisely.';
+
+  @override
+  String get roofCalibrateDialogTitle => 'How long is the line?';
+
+  @override
+  String get roofVerifyDialogTitle => 'What is its real length?';
+
+  @override
+  String get roofCalibrateDialogHelp =>
+      'Enter the real length in meters (from a tape or the plan).';
+
+  @override
+  String get roofLengthMetersLabel => 'Meters';
+
+  @override
+  String get roofLineTooShort =>
+      'The line is too short. Zoom in and draw a longer one.';
+
+  @override
+  String get roofScaleNone => 'No scale yet.';
+
+  @override
+  String roofScaleValue(String perPixel, String pixelsPerMeter) {
+    return 'Scale: 1 pixel = $perPixel ($pixelsPerMeter pixels per meter)';
+  }
+
+  @override
+  String get roofVerifyHelp =>
+      'Optional: draw another line of known length to check the scale.';
+
+  @override
+  String roofVerifyResult(String measured, String real, String difference) {
+    return 'Measures $measured vs $real real: $difference';
+  }
+
+  @override
+  String get roofVerifyWarning =>
+      'Difference above 5%: the image may be tilted or a measurement is wrong. Recalibrate.';
+
+  @override
+  String get roofNorthHelp =>
+      'Turn the arrow until it points north, or tap two points of a roof edge and confirm it with the compass on site.';
+
+  @override
+  String roofNorthValue(String angle, String source) {
+    return 'North: $angle · $source';
+  }
+
+  @override
+  String get roofNorthSourceDefault => 'up (not confirmed)';
+
+  @override
+  String get roofNorthSourceManual => 'set by hand';
+
+  @override
+  String get roofNorthSourceCompass => 'confirmed with compass';
+
+  @override
+  String get roofNorthCompass => 'Confirm with compass';
+
+  @override
+  String get roofNorthCompassNeedsLine => 'Tap 2 points on an edge';
+
+  @override
+  String get roofNorthArrowTooltip => 'North';
+
+  @override
+  String get roofNorthLetter => 'N';
+
+  @override
+  String get roofDrawHelp =>
+      'Tap each corner of the plane. The magnet helps make 90° corners and join vertices. Tap the first corner to close.';
+
+  @override
+  String roofDrawLive(String sides, String area) {
+    return 'Sides: $sides · Area: $area';
+  }
+
+  @override
+  String get roofSnap => 'Magnet';
+
+  @override
+  String get roofUndo => 'Undo';
+
+  @override
+  String get roofClosePolygon => 'Close plane';
+
+  @override
+  String roofPlaneDefaultName(int number) {
+    return 'Plane $number';
+  }
+
+  @override
+  String get roofObstacleHelp =>
+      'Pick the type and tap where it is. Parapet: tap both ends.';
+
+  @override
+  String get roofWalkwayHelp =>
+      'Tap both ends of the maintenance walkway inside a plane.';
+
+  @override
+  String get roofWalkwayOutside => 'The walkway must be inside a plane.';
+
+  @override
+  String get roofWalkwayWidthTitle => 'Walkway width';
+
+  @override
+  String roofWalkwayItem(String length, String width) {
+    return 'Walkway $length × $width';
+  }
+
+  @override
+  String get roofSelectHelp =>
+      'Tap a plane to see its measurements or an obstacle to edit it.';
+
+  @override
+  String get roofMoveVertexHelp =>
+      'To move a corner: tap it, then tap its new place.';
+
+  @override
+  String roofPlaneSummary(
+    String horizontal,
+    String sloped,
+    String usable,
+    String tilt,
+    String azimuth,
+  ) {
+    return 'Top view $horizontal · real sloped $sloped · usable $usable\nTilt $tilt · azimuth $azimuth';
+  }
+
+  @override
+  String get roofInvalidNumber => 'Enter a valid number.';
+
+  @override
+  String get roofPlaneName => 'Name';
+
+  @override
+  String get roofPlaneTilt => 'Tilt (degrees)';
+
+  @override
+  String get roofPlaneInclinometer => 'Inclinometer';
+
+  @override
+  String get roofPlaneEave => 'Lower edge (eave)';
+
+  @override
+  String roofPlaneEdgeItem(int number, String length, String azimuth) {
+    return 'Side $number: $length → faces $azimuth';
+  }
+
+  @override
+  String roofPlaneAzimuth(String azimuth) {
+    return 'Azimuth (downhill direction): $azimuth (180° = south)';
+  }
+
+  @override
+  String get roofPlaneSetback => 'Edge setback (m)';
+
+  @override
+  String get roofSplitHelp =>
+      'Split into two planes along a diagonal between two corners:';
+
+  @override
+  String get roofSplitVertex => 'Corner';
+
+  @override
+  String get roofSplit => 'Split';
+
+  @override
+  String get roofSplitInvalid => 'That diagonal is not inside the plane.';
+
+  @override
+  String get roofPlaneDeleteTitle => 'Delete the plane?';
+
+  @override
+  String get roofPlaneDeleteMessage => 'It will be removed from the roof.';
+
+  @override
+  String get roofObstacleDiameter => 'Diameter (m)';
+
+  @override
+  String get roofObstacleWidth => 'Width (m)';
+
+  @override
+  String get roofObstacleThickness => 'Thickness (m)';
+
+  @override
+  String get roofObstacleDepth => 'Depth (m)';
+
+  @override
+  String get roofObstacleRotation => 'Rotation (degrees)';
+
+  @override
+  String get roofObstacleHeight => 'Height above your roof (m)';
+
+  @override
+  String get roofObstacleHeightHelp =>
+      'Typical from the catalog, measured with a tape, or with the phone (distance × tan(angle) + eye height).';
+
+  @override
+  String get roofHeightTypical => 'Typical';
+
+  @override
+  String get roofHeightTape => 'Tape';
+
+  @override
+  String get roofHeightPhone => 'Phone';
+
+  @override
+  String get roofHeightPhoneTitle => 'Height with the phone';
+
+  @override
+  String get roofHeightPhoneHelp =>
+      'Stand at a known distance, aim the camera at the highest point and read the angle.';
+
+  @override
+  String get roofHeightDistance => 'Distance to the object (m)';
+
+  @override
+  String get roofHeightAngle => 'Angle to the top (degrees)';
+
+  @override
+  String get roofHeightEye => 'Your eye height (m)';
+
+  @override
+  String roofHeightResult(String height) {
+    return 'Height: $height';
+  }
+
+  @override
+  String get roofSensorTiltTitle => 'Inclinometer';
+
+  @override
+  String get roofSensorTiltHelp =>
+      'Lay the phone on the roof, screen up, with its long side along the slope.';
+
+  @override
+  String get roofSensorCompassTitle => 'Compass';
+
+  @override
+  String get roofSensorCompassHelp =>
+      'Lay the phone on the chosen edge with its top pointing from the first point to the second. Keep it away from metal.';
+
+  @override
+  String get roofSensorAimTitle => 'Aim with the camera';
+
+  @override
+  String get roofSensorAimHelp =>
+      'Aim the back camera at the highest point of the object.';
+
+  @override
+  String roofSensorTiltValue(String value) {
+    return 'Tilt: $value';
+  }
+
+  @override
+  String roofSensorAzimuthValue(String value) {
+    return 'Heading: $value';
+  }
+
+  @override
+  String roofSensorElevationValue(String value) {
+    return 'Angle: $value';
+  }
+
+  @override
+  String roofSensorDeclination(String value) {
+    return 'Corrected to true north with magnetic declination $value (WMM model).';
+  }
+
+  @override
+  String get roofSensorWaiting => 'Waiting for the sensor…';
+
+  @override
+  String get roofSensorUnavailable =>
+      'This phone does not have the sensor or it is off. Type the value by hand.';
+
+  @override
+  String get roofSensorUse => 'Use';
+
+  @override
+  String get roofTapeTitle => 'Tape sketch';
+
+  @override
+  String get roofTapeHelp =>
+      'Enter each side in order. Turn: 90 = normal corner, −90 = inward corner.';
+
+  @override
+  String roofTapeSide(int number) {
+    return 'Side $number (m)';
+  }
+
+  @override
+  String get roofTapeTurn => 'Turn (°)';
+
+  @override
+  String get roofTapeAddSide => 'Add side';
+
+  @override
+  String roofTapeResult(String area, String error) {
+    return 'Area: $area · closure: $error';
+  }
+
+  @override
+  String get roofTapeNotClosed =>
+      'The measurements do not close: check a side or turn.';
+
+  @override
+  String get roofShadeNeedsLocation =>
+      'First save the project location (needed to know where the sun is).';
+
+  @override
+  String roofSunPosition(String elevation, String azimuth) {
+    return 'Sun: $elevation high, azimuth $azimuth';
+  }
+
+  @override
+  String get roofSunHidden =>
+      'The sun is down or hidden by the horizon: no direct shadow.';
+
+  @override
+  String roofShadeTime(String time) {
+    return '$time';
+  }
+
+  @override
+  String get roofShadeCompute => 'Yearly heat map';
+
+  @override
+  String get roofShadeHeatmap => 'Show map';
+
+  @override
+  String roofShadePlaneLoss(
+    String plane,
+    String year,
+    String december,
+    String june,
+  ) {
+    return '$plane: loses $year of direct sun per year (December $december, June $june)';
+  }
+
+  @override
+  String get roofShadeLegend =>
+      'Green = no shade · yellow · red = 30% or more loss. Includes the horizon.';
+
+  @override
+  String get roofHorizonHelp =>
+      'The horizon blocks the low sun. Terrain (mountains, from PVGIS) is combined with the distant obstacles you measure with the phone.';
+
+  @override
+  String get roofTerrainTitle => 'Terrain (PVGIS)';
+
+  @override
+  String get roofTerrainNone => 'Not downloaded';
+
+  @override
+  String roofTerrainValue(String max) {
+    return 'Downloaded · highest point $max';
+  }
+
+  @override
+  String get roofTerrainDownload => 'Download';
+
+  @override
+  String get roofHorizonDownloadError =>
+      'Could not download the horizon. Check the connection.';
+
+  @override
+  String get roofFarTitle => 'Distant obstacles';
+
+  @override
+  String get roofFarEmpty =>
+      'None. Add nearby trees or buildings that block the sun.';
+
+  @override
+  String roofFarItem(int count, String max) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count points',
+      one: '1 point',
+    );
+    return '$_temp0 · up to $max';
+  }
+
+  @override
+  String get roofFarAdd => 'Distant obstacle';
+
+  @override
+  String get roofFarName => 'Name (e.g. neighbor\'s tree)';
+
+  @override
+  String get roofFarDefaultName => 'Distant obstacle';
+
+  @override
+  String get roofFarHelp =>
+      'From the roof, aim the camera at the top edge of the obstacle, left to right, and add several points.';
+
+  @override
+  String get roofFarMeasure => 'Measure point with the phone';
+
+  @override
+  String get roofFarAzimuth => 'Azimuth (°)';
+
+  @override
+  String get roofFarElevation => 'Elevation (°)';
+
+  @override
+  String get roofCardinalN => 'N';
+
+  @override
+  String get roofCardinalE => 'E';
+
+  @override
+  String get roofCardinalS => 'S';
+
+  @override
+  String get roofCardinalW => 'W';
 }

@@ -19,5 +19,11 @@ Una ficha por fórmula del motor (`packages/solar_engine`), plan B.6. Cada ficha
 | 13 | [Estadísticas climáticas](13-estadisticas-climaticas.md) | B.5 / 14 |
 | 14 | [Control de calidad del clima](14-control-de-calidad-clima.md) | B.5 |
 | 15 | [Zona horaria desde coordenadas](15-zona-horaria.md) | auxiliar (decisión 2026-11-14) |
+| 16 | [Polígonos del techo, imán, retiros y croquis](16-poligonos-del-techo.md) | B.4 / 13 (F3) |
+| 17 | [Calibración de escala y marco de la imagen](17-calibracion-de-escala.md) | B.4 (F3) |
+| 18 | [Orientación e inclinación de planos](18-orientacion-de-planos.md) | B.4 (F3) |
+| 19 | [Sombras de obstáculos, horizonte y mapa de calor](19-sombras-de-obstaculos.md) | 12, B.7, B.7.1 (F3) |
+| 20 | [Declinación magnética (WMM2025)](20-declinacion-magnetica-wmm.md) | B.7 B (F3) |
+| 21 | [Inclinómetro, brújula y altura con el teléfono](21-inclinometro-y-brujula.md) | B.7 B, B.7.1 (F3) |
 
 Validación de conjunto: [`docs/pruebas/validacion-motor.md`](../pruebas/validacion-motor.md).

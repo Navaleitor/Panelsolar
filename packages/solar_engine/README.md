@@ -5,7 +5,7 @@ Motor de cálculo solar en Dart puro: posición solar, irradiancia en el plano, 
 > Regla: Dart puro, **sin Flutter**. No depende de la app ni de otros paquetes.
 
 ## Estado
-**F2 completa** (plan B.6 puntos 1–10). Sombras, strings, eléctrico, viento y economía llegan en F4/F5.
+**F2 completa** (plan B.6 puntos 1–10). **F3:** sombras de obstáculos y mapa de calor (punto 12, B.7.1). Strings, eléctrico, viento y economía llegan en F4/F5.
 
 ## Fórmulas (una ficha por fórmula en `docs/formulas/`)
 | Archivo | Qué hace | Ficha |
@@ -24,6 +24,10 @@ Motor de cálculo solar en Dart puro: posición solar, irradiancia en el plano, 
 | `simulation/` | Serie de clima, sitio, sistema, simulación horaria y agregación mensual | 12 |
 | `statistics/climate_statistics.dart` | Estadísticas mensuales, por estación y temperaturas de diseño | 13 |
 | `sunpath/sun_path.dart` | Carta solar (solsticios y equinoccios) | 01 |
+| `shading/shadow_caster.dart` | Sombra de obstáculos (L = h / tan α) en techo plano o inclinado | 19 |
+| `shading/horizon_builder.dart` | Horizonte del terreno + obstáculos lejanos | 19 |
+| `shading/sun_samples.dart` | Sol a una hora local y muestras del año con peso de cielo despejado | 19 |
+| `shading/shade_heatmap.dart` | Mapa de calor anual de sombra por plano | 19 |
 
 Convenciones: ángulos en grados; azimut desde el norte en sentido horario (180 = sur); irradiancias en W/m²; energías en kWh; temperaturas en °C.
 
