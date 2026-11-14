@@ -19,6 +19,10 @@ abstract final class Formatters {
     return format.format(value);
   }
 
+  /// Número con signo (`+3.2`, `-15`), p. ej. para desviaciones en %.
+  static String signed(num value, String locale, {int decimals = 1}) =>
+      '${value >= 0 ? '+' : ''}${number(value, locale, decimals: decimals)}';
+
   /// Importe en centavos como moneda (p. ej. `$1,540.50`).
   static String money(int cents, String currency, String locale) =>
       NumberFormat.simpleCurrency(

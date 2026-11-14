@@ -24,8 +24,20 @@ Las fechas se guardan como texto ISO-8601 (`build.yaml`).
 | `utility_bills` | `UtilityBill` | v3 | Recibo: periodo, `BillingPeriod`, kWh, importe en **centavos**, moneda, código de tarifa. |
 | `photos` | `Photo` | v3 | Proyecto, etapa (`PhotoStage`), ruta relativa, SHA-256, tamaño, GPS, fecha. |
 | `documents` | `Document` | v3 | Proyecto, título, `DocumentKind` (pdf/imagen), ruta relativa, MIME, tamaño, SHA-256. |
+| `installed_equipment` | `InstalledEquipmentItem` | v4 | Equipo instalado: `EquipmentKind`, marca, modelo, serie, instalación, garantía. |
+| `commissioning_records` | `CommissioningRecord` | v4 | Uno por proyecto: `CommissioningStatus`, polaridad, aislamiento (MΩ, V), tierra, etiquetado. `null` = sin revisar. |
+| `string_tests` | `StringTest` | v4 | Voc/Isc esperados y medidos por string, polaridad. |
+| `maintenance_template_items` | `MaintenanceTemplateItem` | v4 | Plantilla editable de servicios (`MaintenanceServiceKind`, meses, incluido). |
+| `maintenance_plan_items` | `MaintenancePlanItem` | v4 | Servicio del plan de un proyecto: meses, última vez, próxima fecha. |
+| `maintenance_visits` | `MaintenanceVisit` | v4 | Bitácora: fecha, técnico, ids de servicios hechos (separados por coma), notas. |
+| `production_readings` | `ProductionReading` | v4 | kWh reales del mes, esperados y POA (kWh/m²). Una activa por mes. |
+| `production_settings` | `ProductionSetting` | v4 | Uno por proyecto: kWp y umbral de alerta (%). |
+| `backup_logs` | `BackupLog` | v4 | Historial: destino, motivo, resultado, tamaño, archivos. |
+| `app_settings` | `AppSetting` | v4 | Ajustes clave → valor (Drive, recordatorios). |
 
-Versión de esquema actual: **3**.
+v4 también agregó `photos.linkedRecordId` (foto de una visita o de la puesta en marcha).
+
+Versión de esquema actual: **4**.
 
 ### Enumeraciones (`lib/src/model/enums.dart`)
 Se guardan como texto con el nombre del valor (`prospect`, `bimonthly`...). **Nunca renombrar un valor** sin migración; agregar al final sí es seguro.
@@ -40,6 +52,14 @@ Se guardan como texto con el nombre del valor (`prospect`, `bimonthly`...). **Nu
 | `PhotoRepository` | Fotos por proyecto y etapa; `existsHash` evita duplicados. |
 | `DocumentRepository` | Documentos por proyecto; renombrar y borrado lógico. |
 | `CompanyRepository` | Perfil de la empresa (F0). |
+| `InstalledEquipmentRepository` | Equipos por proyecto. |
+| `CommissioningRepository` | Checklist (crea o reemplaza) y strings. |
+| `MaintenanceRepository` | Plantilla (`seedTemplateIfEmpty`), plan por proyecto, calendario (`watchUpcoming`). |
+| `MaintenanceVisitRepository` | Bitácora; `logVisit` recorre las próximas fechas en una transacción. |
+| `ProductionRepository` | Lecturas mensuales y ajustes. |
+| `BackupLogRepository` / `AppSettingsRepository` | Historial de respaldos y ajustes. |
+
+`model/date_math.dart`: `addMonthsUtc` (31 ene + 1 mes = 28 feb), `calendarDayUtc`, `monthStartUtc`.
 
 Las rutas de fotos y documentos son **relativas** al directorio de archivos de la app (así sobreviven a un respaldo/restauración en otro teléfono).
 

@@ -38,12 +38,14 @@ class PhotoImporter {
 
   /// Importa [bytes] en la etapa [stage] de [projectId]. Si la foto no
   /// trae GPS y [fromCamera] es `true`, usa la última posición del
-  /// teléfono (la foto se acaba de tomar ahí).
+  /// teléfono (la foto se acaba de tomar ahí). [linkedRecordId] liga la
+  /// foto a una visita de mantenimiento o a la puesta en marcha.
   Future<PhotoImportOutcome> import({
     required String projectId,
     required PhotoStage stage,
     required Uint8List bytes,
     required bool fromCamera,
+    String? linkedRecordId,
   }) async {
     final ProcessedPhoto photo;
     try {
@@ -74,6 +76,7 @@ class PhotoImporter {
       latitude: latitude,
       longitude: longitude,
       takenAt: photo.takenAt ?? (fromCamera ? DateTime.now().toUtc() : null),
+      linkedRecordId: linkedRecordId,
     );
     return PhotoImportOutcome.saved;
   }

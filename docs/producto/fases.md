@@ -10,7 +10,7 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 | F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Pendiente |
 | F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | Pendiente |
 | F5 Unifilar y reportes | `fase-5-unifilar-reportes` | F4 | Pendiente |
-| F6 Operación (mantenimiento, respaldo) | `fase-6-operacion` | F1 | Pendiente |
+| F6 Operación (mantenimiento, respaldo) | `fase-6-operacion` | F1 | Lista para revisión (2026-11-14) — aceptación: [`docs/pruebas/fase-6.md`](../pruebas/fase-6.md) |
 | F7 Producto (freemium, Play Store) | `fase-7-producto` | F1–F6 | Pendiente |
 | F8 iOS | `fase-8-ios` | F7 | Pendiente |
 
@@ -26,6 +26,15 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 - Geocodificación en `packages/data_sources/lib/geocoding.dart` (biblioteca aparte para no chocar con F2).
 - Tarifas CFE 1–1F, DAC y PDBT en `regional_packs` (solo identificación y límite DAC; precios en F5).
 - Fotos comprimidas a 1600 px / JPEG 80 % con SHA-256 y GPS del EXIF; documentos PDF/imagen detectados por firma.
+
+## Notas de F6
+- Esquema de base **v4** (migración v3→v4 con prueba): `installed_equipment`, `commissioning_records`, `string_tests`, `maintenance_template_items`, `maintenance_plan_items`, `maintenance_visits`, `production_readings`, `production_settings`, `backup_logs`, `app_settings` y `photos.linkedRecordId`. **Ojo al integrar con F2**: si F2 también sube el esquema, el segundo en integrarse renumera su versión y regenera `drift_schemas/`.
+- Módulos nuevos: `installation`, `production`, `backup`; `maintenance` y `settings` dejan de ser pantallas vacías.
+- Puesta en marcha IEC 62446-1: Voc ±5 %, Isc ±10 %, aislamiento ≥ 1 MΩ; la app sugiere el estado y el instalador decide.
+- Recordatorios: `flutter_local_notifications` con alarmas inexactas (7 días antes y el día, 9:00).
+- Producción: lo esperado se captura a mano; `ExpectedProductionSource` queda listo para el motor de F2.
+- Respaldo .zip con manifiesto sin cifrar (vista previa) y AES-256-GCM por archivo (PBKDF2-SHA256). Restaurar **reemplaza** todo excepto `backup_logs` y `app_settings`.
+- Drive (`drive.appdata`) con blobs por hash y retención 7+4. **Pendiente del dueño**: crear los IDs de OAuth ([`docs/guias/respaldo-google.md`](../guias/respaldo-google.md)) y pasar el ID web a Claude.
 
 ## Sub-chats (sesiones) por fase
 Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.

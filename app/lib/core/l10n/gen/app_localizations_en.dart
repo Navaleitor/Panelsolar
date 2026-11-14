@@ -508,4 +508,620 @@ class AppLocalizationsEn extends AppLocalizations {
   String consumptionDacWarning(String tariff, String limit) {
     return 'The monthly average exceeds the $tariff tariff limit ($limit kWh/month): risk of moving to DAC.';
   }
+
+  @override
+  String get actionClear => 'Clear';
+
+  @override
+  String get dateNotSet => 'No date';
+
+  @override
+  String get savedMessage => 'Saved';
+
+  @override
+  String get fieldTechnician => 'Technician';
+
+  @override
+  String get installationTitle => 'Installation';
+
+  @override
+  String get equipmentTitle => 'Installed equipment';
+
+  @override
+  String get equipmentEmpty =>
+      'No equipment yet. Add panels, inverter and protections with their serial number.';
+
+  @override
+  String equipmentCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count items',
+      one: '1 item',
+      zero: 'No equipment',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get equipmentNewTitle => 'New equipment';
+
+  @override
+  String get equipmentEditTitle => 'Edit equipment';
+
+  @override
+  String get equipmentDeleteTitle => 'Delete this equipment?';
+
+  @override
+  String get equipmentKind => 'Type';
+
+  @override
+  String get equipmentBrand => 'Brand';
+
+  @override
+  String get equipmentModel => 'Model';
+
+  @override
+  String get equipmentSerial => 'Serial number';
+
+  @override
+  String equipmentSerialShort(String serial) {
+    return 'S/N $serial';
+  }
+
+  @override
+  String get equipmentInstalledAt => 'Installation date';
+
+  @override
+  String get equipmentWarrantyUntil => 'Warranty until';
+
+  @override
+  String warrantyUntil(String date) {
+    return 'Warranty until $date';
+  }
+
+  @override
+  String warrantyExpired(String date) {
+    return 'Warranty expired on $date';
+  }
+
+  @override
+  String get equipmentPanel => 'Panel';
+
+  @override
+  String get equipmentInverter => 'Inverter';
+
+  @override
+  String get equipmentMicroinverter => 'Microinverter';
+
+  @override
+  String get equipmentOptimizer => 'Optimizer';
+
+  @override
+  String get equipmentBattery => 'Battery';
+
+  @override
+  String get equipmentMeter => 'Meter';
+
+  @override
+  String get equipmentProtection => 'Protection';
+
+  @override
+  String get equipmentStructure => 'Mounting structure';
+
+  @override
+  String get equipmentOther => 'Other';
+
+  @override
+  String get commissioningTitle => 'Commissioning';
+
+  @override
+  String get commissioningHint =>
+      'IEC 62446-1 checklist: strings, polarity, insulation, earthing and labelling.';
+
+  @override
+  String get commissioningPending => 'Pending';
+
+  @override
+  String get commissioningApproved => 'Approved';
+
+  @override
+  String get commissioningObservations => 'With observations';
+
+  @override
+  String get commissioningChecks => 'Checks';
+
+  @override
+  String get commissioningDate => 'Test date';
+
+  @override
+  String get commissioningNotes => 'Observations';
+
+  @override
+  String get commissioningResult => 'Result';
+
+  @override
+  String commissioningSuggested(String status) {
+    return 'Based on saved data, the app suggests: $status';
+  }
+
+  @override
+  String get commissioningSaveForPhotos =>
+      'Save the checklist to add evidence photos.';
+
+  @override
+  String get evidencePhotos => 'Evidence photos';
+
+  @override
+  String get checkOk => 'OK';
+
+  @override
+  String get checkFail => 'Fault';
+
+  @override
+  String get checkNotChecked => 'Not checked';
+
+  @override
+  String get checkPolarity => 'Correct polarity';
+
+  @override
+  String get checkPolarityAll => 'Polarity of all strings';
+
+  @override
+  String get checkGrounding => 'Earthing continuity';
+
+  @override
+  String get checkLabeling => 'Labelling and signs';
+
+  @override
+  String get insulationMohm => 'Insulation resistance (MΩ)';
+
+  @override
+  String get insulationTestVoltage => 'Test voltage (V)';
+
+  @override
+  String get insulationHint =>
+      'Minimum 1 MΩ (IEC 62446-1). Test at 500 V for 120–500 V systems; 1000 V above that.';
+
+  @override
+  String get groundingOhm => 'Earth resistance (Ω), if measured';
+
+  @override
+  String get stringsTitle => 'Strings (Voc and Isc)';
+
+  @override
+  String get stringsHint =>
+      'Enter the expected value (datasheet or design) and the measured one. Tolerance: Voc ±5 %, Isc ±10 %.';
+
+  @override
+  String get stringsEmpty => 'No strings measured';
+
+  @override
+  String get stringTestTitle => 'String';
+
+  @override
+  String get stringLabel => 'Name (e.g. S1)';
+
+  @override
+  String get stringDeleteTitle => 'Delete this string?';
+
+  @override
+  String get expectedVoc => 'Expected Voc (V)';
+
+  @override
+  String get measuredVoc => 'Measured Voc (V)';
+
+  @override
+  String get expectedIsc => 'Expected Isc (A)';
+
+  @override
+  String get measuredIsc => 'Measured Isc (A)';
+
+  @override
+  String get calendarEmpty =>
+      'No visits scheduled. Open a project → Maintenance → \"Create plan\".';
+
+  @override
+  String get calendarOverdue => 'Overdue';
+
+  @override
+  String get calendarSoon => 'Next 30 days';
+
+  @override
+  String get calendarLater => 'Later';
+
+  @override
+  String get templateTitle => 'Service template';
+
+  @override
+  String get templateHint =>
+      'These services are copied when you create a project plan. Tap one to change its frequency; long-press to delete it. The switch says whether it is included.';
+
+  @override
+  String get serviceTitle => 'Service';
+
+  @override
+  String get serviceKind => 'Service type';
+
+  @override
+  String get serviceCustomName => 'Custom name (optional)';
+
+  @override
+  String get serviceIntervalMonths => 'Every how many months';
+
+  @override
+  String get serviceIntervalInvalid => 'Enter 1 to 120 months';
+
+  @override
+  String get serviceNextDue => 'Next visit';
+
+  @override
+  String get serviceDeleteTitle => 'Delete this service?';
+
+  @override
+  String get serviceCleaning => 'Panel cleaning';
+
+  @override
+  String get serviceVisualInspection => 'Visual inspection';
+
+  @override
+  String get serviceTightening => 'Connection tightening';
+
+  @override
+  String get serviceInverter => 'Inverter check';
+
+  @override
+  String get serviceProtections => 'Protections check';
+
+  @override
+  String get serviceThermography => 'Thermography';
+
+  @override
+  String get serviceOther => 'Other service';
+
+  @override
+  String everyMonths(int months) {
+    String _temp0 = intl.Intl.pluralLogic(
+      months,
+      locale: localeName,
+      other: 'Every $months months',
+      one: 'Every month',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String nextOn(String date) {
+    return 'Next: $date';
+  }
+
+  @override
+  String get planTitle => 'Service plan';
+
+  @override
+  String get planEmpty => 'This project has no maintenance plan yet.';
+
+  @override
+  String get planEmptyShort => 'No maintenance plan';
+
+  @override
+  String get planFromTemplate => 'Create plan from template';
+
+  @override
+  String get visitsTitle => 'Visit log';
+
+  @override
+  String get visitsEmpty => 'No visits logged yet.';
+
+  @override
+  String get visitLog => 'Log visit';
+
+  @override
+  String get visitTitle => 'Visit';
+
+  @override
+  String get visitDate => 'Visit date';
+
+  @override
+  String get visitServicesDone => 'Services done';
+
+  @override
+  String get visitNoNotes => 'No notes (tap to write)';
+
+  @override
+  String get visitPhotos => 'Visit photos';
+
+  @override
+  String get visitDeleteTitle => 'Delete this visit?';
+
+  @override
+  String get visitDeleteMessage =>
+      'It is removed from the log. Next plan dates do not change.';
+
+  @override
+  String servicesDone(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count services',
+      one: '1 service',
+      zero: 'No services',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get remindersTitle => 'Maintenance reminders';
+
+  @override
+  String get remindersHint => 'Notice 7 days before and on the day, at 9:00.';
+
+  @override
+  String reminderTitle(String service) {
+    return 'Maintenance: $service';
+  }
+
+  @override
+  String reminderBodyToday(String project, String client) {
+    return 'Due today at $project ($client).';
+  }
+
+  @override
+  String reminderBodyBefore(int days, String project, String client) {
+    return 'In $days days at $project ($client).';
+  }
+
+  @override
+  String get productionTitle => 'Production';
+
+  @override
+  String get productionEmpty =>
+      'Enter the kWh shown by the inverter each month to compare them with the expected value.';
+
+  @override
+  String get productionEmptyShort => 'No readings';
+
+  @override
+  String get productionActual => 'Actual';
+
+  @override
+  String get productionExpected => 'Expected';
+
+  @override
+  String get productionBelow => 'Below threshold';
+
+  @override
+  String get productionLast12 => 'Last 12 months with readings';
+
+  @override
+  String get productionSettings => 'Tracking settings';
+
+  @override
+  String get productionKwp => 'Installed power (kWp), for PR';
+
+  @override
+  String get productionThreshold => 'Alert threshold (% below)';
+
+  @override
+  String get productionThresholdHint =>
+      'Example: 15 = warn if actual is 15 % or more below expected.';
+
+  @override
+  String productionAlertTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count months below expected',
+      one: '1 month below expected',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String productionAlertBody(String threshold) {
+    return 'More than $threshold % below. Check cleaning, shading, strings and inverter.';
+  }
+
+  @override
+  String get readingsTitle => 'Monthly readings';
+
+  @override
+  String get readingAdd => 'Add reading';
+
+  @override
+  String get readingTitle => 'Monthly reading';
+
+  @override
+  String get readingMonth => 'Month';
+
+  @override
+  String get readingYear => 'Year';
+
+  @override
+  String get readingActual => 'Actual kWh (from inverter)';
+
+  @override
+  String get readingExpected => 'Expected kWh (optional)';
+
+  @override
+  String get readingPoa =>
+      'Plane-of-array irradiation, kWh/m² (optional, for PR)';
+
+  @override
+  String get readingDeleteTitle => 'Delete this reading?';
+
+  @override
+  String readingVsExpected(String expected, String deviation) {
+    return 'Expected $expected kWh ($deviation %)';
+  }
+
+  @override
+  String get backupTitle => 'Backup';
+
+  @override
+  String get backupExportTitle => 'Export to .zip file';
+
+  @override
+  String get backupExportSubtitle =>
+      'Database, photos and documents. Save it anywhere.';
+
+  @override
+  String get backupExportPasswordHint =>
+      'If you set a password, the file is encrypted (AES-256). It cannot be restored without it: keep it safe. Leave empty for no encryption.';
+
+  @override
+  String get backupExported => 'Backup saved';
+
+  @override
+  String get backupNotSaved => 'The backup was not saved';
+
+  @override
+  String get backupError => 'Could not complete. Try again.';
+
+  @override
+  String get backupImportTitle => 'Restore from .zip file';
+
+  @override
+  String get backupImportSubtitle =>
+      'You will see a preview before data is replaced.';
+
+  @override
+  String get backupHistoryTitle => 'Recent backups';
+
+  @override
+  String get backupHistoryEmpty => 'No backups yet.';
+
+  @override
+  String get backupFailed => 'Failed';
+
+  @override
+  String get backupTriggerManual => 'Manual';
+
+  @override
+  String get backupTriggerAuto => 'Automatic';
+
+  @override
+  String get backupTriggerProject => 'Project finished';
+
+  @override
+  String get backupTriggerRestore => 'Restore';
+
+  @override
+  String get frequencyDaily => 'Daily';
+
+  @override
+  String get frequencyWeekly => 'Weekly';
+
+  @override
+  String get frequencyManual => 'Manual only';
+
+  @override
+  String get driveNotConfigured =>
+      'The app Google account is not configured yet (see docs/guias/respaldo-google.md). The .zip backup works without it.';
+
+  @override
+  String get driveConnect => 'Back up to Google Drive';
+
+  @override
+  String get driveConnectHint =>
+      'Sign in with Google. It is saved in a private app folder in your Drive.';
+
+  @override
+  String get driveBackupNow => 'Back up now';
+
+  @override
+  String driveBackupDone(int count) {
+    return 'Drive backup done ($count new files)';
+  }
+
+  @override
+  String get driveFrequency => 'Automatic backup (on Wi-Fi)';
+
+  @override
+  String get drivePasswordTitle => 'Drive backup password';
+
+  @override
+  String get drivePasswordHint =>
+      'Encrypts Drive backups (AES-256). You will need the password to restore on another phone. Leave empty to remove encryption.';
+
+  @override
+  String get driveEncryptedOn => 'Encryption on';
+
+  @override
+  String get driveEncryptedOff => 'Not encrypted';
+
+  @override
+  String get driveRestore => 'Restore from Google Drive';
+
+  @override
+  String get driveChooseBackup => 'Choose a backup';
+
+  @override
+  String get driveNoBackups => 'No backups in this account.';
+
+  @override
+  String get driveDisconnect => 'Disconnect Google Drive';
+
+  @override
+  String get driveDisconnectMessage =>
+      'Automatic backup stops. Backups already uploaded stay in your Drive.';
+
+  @override
+  String get passwordOptional => 'Password (optional)';
+
+  @override
+  String get passwordConfirm => 'Repeat password';
+
+  @override
+  String get passwordLabel => 'Password';
+
+  @override
+  String get passwordMismatch => 'Passwords do not match';
+
+  @override
+  String get passwordTooShort => 'Use at least 6 characters';
+
+  @override
+  String get passwordWrong => 'Wrong password';
+
+  @override
+  String get restoreTitle => 'Restore backup';
+
+  @override
+  String get restoreInvalid =>
+      'This file is not a Panelsolar backup or is damaged.';
+
+  @override
+  String restoreCreatedWith(String version) {
+    return 'Made with version $version';
+  }
+
+  @override
+  String get restoreEncrypted => 'Encrypted: needs password';
+
+  @override
+  String get restoreNotEncrypted => 'Not encrypted';
+
+  @override
+  String get restoreWarning =>
+      'Restoring replaces ALL data on this phone with the backup.';
+
+  @override
+  String get restoreAction => 'Restore';
+
+  @override
+  String get restoreConfirmTitle => 'Replace all data?';
+
+  @override
+  String get restoreConfirmMessage =>
+      'Current clients, projects and photos are replaced by the backup. This cannot be undone.';
+
+  @override
+  String restoreDone(int restored, int missing) {
+    return 'Restored. Files: $restored recovered, $missing missing.';
+  }
+
+  @override
+  String get restoreNewerApp =>
+      'The backup is from a newer app version. Update the app first.';
 }

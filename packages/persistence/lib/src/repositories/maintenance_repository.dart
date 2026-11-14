@@ -36,8 +36,12 @@ class MaintenanceRepository {
     return select.watch();
   }
 
-  /// Si la plantilla nunca se ha llenado, la llena con [defaults].
-  Future<void> seedTemplateIfEmpty(List<ServiceInput> defaults) async {
+  /// Si la plantilla nunca se ha llenado, la llena con [defaults]; los
+  /// tipos en [disabled] quedan desactivados (servicios opcionales).
+  Future<void> seedTemplateIfEmpty(
+    List<ServiceInput> defaults, {
+    Set<MaintenanceServiceKind> disabled = const {},
+  }) async {
     await _db.transaction(() async {
       final any = await (_db.select(
         _db.maintenanceTemplateItems,
@@ -52,6 +56,7 @@ class MaintenanceRepository {
                 title: Value(_clean(s.title)),
                 intervalMonths: _interval(s.intervalMonths),
                 sortOrder: Value(i),
+                enabled: Value(!disabled.contains(s.kind)),
               ),
             );
       }

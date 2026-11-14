@@ -36,6 +36,11 @@ void main() {
       ],
     );
     await openProject(tester);
+    await tester.scrollUntilVisible(
+      find.text('Sin documentos (PDF o imagen)'),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
     expect(find.text('Sin documentos (PDF o imagen)'), findsOneWidget);
 
     // Copiar el archivo es E/S real: se deja correr fuera del reloj falso.
@@ -47,11 +52,15 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Contrato'), findsOneWidget);
 
+    await tester.ensureVisible(find.text('Contrato'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Contrato'));
     await tester.pumpAndSettle();
     expect(opened.single, startsWith('application/pdf '));
     expect(opened.single, contains(project.id));
 
+    await tester.ensureVisible(docMenu());
+    await tester.pumpAndSettle();
     await tester.tap(docMenu());
     await tester.pumpAndSettle();
     await tester.tap(find.text('Renombrar'));
@@ -64,6 +73,8 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Contrato firmado'), findsOneWidget);
 
+    await tester.ensureVisible(docMenu());
+    await tester.pumpAndSettle();
     await tester.tap(docMenu());
     await tester.pumpAndSettle();
     await tester.tap(find.text('Borrar').last);

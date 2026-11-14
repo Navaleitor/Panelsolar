@@ -18,6 +18,9 @@ Fotos de cada proyecto por etapa: **levantamiento, instalación, mantenimiento**
 3. **Hash SHA-256** del JPEG final: si el proyecto ya tiene esa foto, no se duplica.
 4. Se guarda en `projects/<id>/photos/<hash>.jpg` (ruta relativa) y se registra en la tabla `photos`.
 
+## Fotos ligadas a un registro (F6)
+`presentation/linked_photos_section.dart` muestra y agrega fotos ligadas a una visita de mantenimiento o a la puesta en marcha (`photos.linkedRecordId`). También aparecen en la galería del proyecto en su etapa.
+
 ## Capas
 - `domain/processed_photo.dart` — resultado de la compresión.
 - `data/` — procesador, importador, providers (importador, `ImagePicker`).

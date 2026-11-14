@@ -26,3 +26,32 @@ final photoRepositoryProvider = Provider<PhotoRepository>(
 final documentRepositoryProvider = Provider<DocumentRepository>(
   (ref) => DocumentRepository(ref.watch(appDatabaseProvider)),
 );
+
+final installedEquipmentRepositoryProvider =
+    Provider<InstalledEquipmentRepository>(
+      (ref) => InstalledEquipmentRepository(ref.watch(appDatabaseProvider)),
+    );
+
+final commissioningRepositoryProvider = Provider<CommissioningRepository>(
+  (ref) => CommissioningRepository(ref.watch(appDatabaseProvider)),
+);
+
+final maintenanceRepositoryProvider = Provider<MaintenanceRepository>(
+  (ref) => MaintenanceRepository(ref.watch(appDatabaseProvider)),
+);
+
+final maintenanceVisitRepositoryProvider = Provider<MaintenanceVisitRepository>(
+  (ref) => MaintenanceVisitRepository(ref.watch(appDatabaseProvider)),
+);
+
+final productionRepositoryProvider = Provider<ProductionRepository>(
+  (ref) => ProductionRepository(ref.watch(appDatabaseProvider)),
+);
+
+final backupLogRepositoryProvider = Provider<BackupLogRepository>(
+  (ref) => BackupLogRepository(ref.watch(appDatabaseProvider)),
+);
+
+final appSettingsRepositoryProvider = Provider<AppSettingsRepository>(
+  (ref) => AppSettingsRepository(ref.watch(appDatabaseProvider)),
+);

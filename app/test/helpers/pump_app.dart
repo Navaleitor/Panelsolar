@@ -10,6 +10,9 @@ import 'package:geo_kit/geo_kit.dart';
 import 'package:panelsolar/app.dart';
 import 'package:panelsolar/core/database/database_providers.dart';
 import 'package:panelsolar/core/files/app_storage.dart';
+import 'package:panelsolar/features/backup/data/backup_files.dart';
+import 'package:panelsolar/features/backup/data/backup_providers.dart';
+import 'package:panelsolar/features/maintenance/data/maintenance_providers.dart';
 import 'package:panelsolar/features/site/data/site_data_providers.dart';
 import 'package:persistence/persistence.dart';
 
@@ -31,6 +34,17 @@ class TestEnv {
   final Directory storageDir;
   final location = FakeLocationService();
   final geocoder = FakeGeocoder();
+  final reminders = FakeReminderScheduler();
+  final driveAuth = FakeDriveAuth();
+  final secrets = FakeSecretStore();
+  final schedule = FakeBackupSchedule();
+  final remote = MemoryRemoteStore();
+
+  /// Archivos que la app "guardó" con el selector del sistema.
+  final savedFiles = <String, Uint8List>{};
+
+  /// Archivo que devolverá el selector al importar un .zip.
+  File? fileToPick;
 
   /// Redirecciones falsas para enlaces cortos (`corto → completo`).
   final redirects = <String, String>{};
@@ -41,6 +55,17 @@ class TestEnv {
     locationServiceProvider.overrideWithValue(location),
     geocoderProvider.overrideWithValue(geocoder),
     timeZoneServiceProvider.overrideWithValue(FakeTimeZoneService()),
+    reminderSchedulerProvider.overrideWithValue(reminders),
+    driveAuthProvider.overrideWithValue(driveAuth),
+    secretStoreProvider.overrideWithValue(secrets),
+    backupScheduleProvider.overrideWithValue(schedule),
+    remoteStoreFactoryProvider.overrideWithValue((_) => remote),
+    backupIterationsProvider.overrideWithValue(1000),
+    backupFileSaverProvider.overrideWithValue((name, bytes) async {
+      savedFiles[name] = bytes;
+      return true;
+    }),
+    backupFilePickerProvider.overrideWithValue(() async => fileToPick),
     mapLinkResolverProvider.overrideWithValue(
       MapLinkResolver((uri) async {
         final target = redirects[uri.toString()];

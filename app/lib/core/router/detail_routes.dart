@@ -1,8 +1,17 @@
 import 'package:go_router/go_router.dart';
+import 'package:panelsolar/features/backup/presentation/restore_preview_page.dart';
 import 'package:panelsolar/features/clients/presentation/client_detail_page.dart';
 import 'package:panelsolar/features/clients/presentation/client_form_page.dart';
+import 'package:panelsolar/features/installation/presentation/commissioning_page.dart';
+import 'package:panelsolar/features/installation/presentation/equipment_form_page.dart';
+import 'package:panelsolar/features/installation/presentation/installation_page.dart';
+import 'package:panelsolar/features/maintenance/presentation/maintenance_template_page.dart';
+import 'package:panelsolar/features/maintenance/presentation/project_maintenance_page.dart';
+import 'package:panelsolar/features/maintenance/presentation/visit_detail_page.dart';
+import 'package:panelsolar/features/maintenance/presentation/visit_form_page.dart';
 import 'package:panelsolar/features/photos/presentation/photo_view_page.dart';
 import 'package:panelsolar/features/photos/presentation/photos_page.dart';
+import 'package:panelsolar/features/production/presentation/production_page.dart';
 import 'package:panelsolar/features/projects/presentation/project_detail_page.dart';
 import 'package:panelsolar/features/projects/presentation/project_form_page.dart';
 import 'package:panelsolar/features/site/presentation/location_page.dart';
@@ -66,6 +75,60 @@ final List<RouteBase> detailRoutes = [
       projectId: state.pathParameters['projectId']!,
       photoId: state.pathParameters['photoId']!,
     ),
+  ),
+  // Instalación, mantenimiento y producción (F6).
+  GoRoute(
+    path: '/projects/:projectId/installation',
+    builder: (context, state) =>
+        InstallationPage(projectId: state.pathParameters['projectId']!),
+  ),
+  GoRoute(
+    path: '/projects/:projectId/commissioning',
+    builder: (context, state) =>
+        CommissioningPage(projectId: state.pathParameters['projectId']!),
+  ),
+  GoRoute(
+    path: '/projects/:projectId/equipment/new',
+    builder: (context, state) =>
+        EquipmentFormPage(projectId: state.pathParameters['projectId']!),
+  ),
+  GoRoute(
+    path: '/projects/:projectId/equipment/:equipmentId',
+    builder: (context, state) => EquipmentFormPage(
+      projectId: state.pathParameters['projectId']!,
+      equipmentId: state.pathParameters['equipmentId'],
+    ),
+  ),
+  GoRoute(
+    path: '/projects/:projectId/maintenance',
+    builder: (context, state) =>
+        ProjectMaintenancePage(projectId: state.pathParameters['projectId']!),
+  ),
+  GoRoute(
+    path: '/projects/:projectId/visits/new',
+    builder: (context, state) =>
+        VisitFormPage(projectId: state.pathParameters['projectId']!),
+  ),
+  GoRoute(
+    path: '/projects/:projectId/visits/:visitId',
+    builder: (context, state) => VisitDetailPage(
+      projectId: state.pathParameters['projectId']!,
+      visitId: state.pathParameters['visitId']!,
+    ),
+  ),
+  GoRoute(
+    path: '/projects/:projectId/production',
+    builder: (context, state) =>
+        ProductionPage(projectId: state.pathParameters['projectId']!),
+  ),
+  GoRoute(
+    path: '/maintenance/template',
+    builder: (context, state) => const MaintenanceTemplatePage(),
+  ),
+  GoRoute(
+    path: '/settings/restore',
+    builder: (context, state) =>
+        RestorePreviewPage(request: state.extra! as RestoreRequest),
   ),
   GoRoute(
     path: '/projects/:projectId',

@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:panelsolar/core/l10n/gen/app_localizations.dart';
 import 'package:panelsolar/core/router/app_router.dart';
 import 'package:panelsolar/core/theme/app_theme.dart';
+import 'package:panelsolar/features/maintenance/data/maintenance_providers.dart';
+import 'package:panelsolar/features/maintenance/presentation/reminder_sync.dart';
 
 /// Widget raíz: tema claro/oscuro, idiomas y navegación.
 class PanelsolarApp extends ConsumerWidget {
@@ -13,6 +15,10 @@ class PanelsolarApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // F6: plantilla de mantenimiento inicial y recordatorios al día.
+    ref
+      ..watch(templateSeedProvider)
+      ..watch(reminderSyncProvider);
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       theme: AppTheme.light(),
