@@ -7,6 +7,8 @@ export 'src/geometry/polygon_metrics.dart';
 export 'src/geometry/polygon_ops.dart';
 export 'src/geometry/vec2.dart';
 export 'src/lat_lng.dart';
+export 'src/layout/panel_packer.dart';
+export 'src/layout/region_tests.dart';
 export 'src/magnetic/world_magnetic_model.dart';
 export 'src/map_links/coordinate_text.dart';
 export 'src/map_links/map_link_parser.dart';

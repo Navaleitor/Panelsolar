@@ -6,6 +6,7 @@ Geometría: polígonos, proyección ENU, empaquetado de paneles y parseo de enla
 - **F1**: `LatLng` y lectura de enlaces/texto de ubicación (este documento).
 - **F2**: zona horaria IANA a partir de coordenadas, sin conexión (`TimeZoneLocator`).
 - **F3**: geometría del techo, calibración de imágenes, imán, croquis con cinta, catálogo de obstáculos, declinación magnética (WMM2025) y cálculos de sensores del teléfono.
+- **F4**: empaquetado de paneles en un plano (`layout/panel_packer.dart`, ficha 29): orientación, desplazamientos de rejilla, exclusiones y puntaje por energía.
 
 ## Techo (F3)
 | Archivo | Qué hace | Ficha |
