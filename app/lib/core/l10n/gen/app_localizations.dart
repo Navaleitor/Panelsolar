@@ -985,6 +985,222 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'El promedio mensual rebasa el límite de la tarifa {tariff} ({limit} kWh/mes): riesgo de pasar a DAC.'**
   String consumptionDacWarning(String tariff, String limit);
+
+  /// No description provided for @weatherTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Clima y producción'**
+  String get weatherTitle;
+
+  /// No description provided for @weatherEntryTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Clima y producción (prueba F2)'**
+  String get weatherEntryTitle;
+
+  /// No description provided for @weatherEntrySubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Descarga el clima de una coordenada y estima la producción.'**
+  String get weatherEntrySubtitle;
+
+  /// No description provided for @weatherIntro.
+  ///
+  /// In es, this message translates to:
+  /// **'Producción estimada de un sistema de 1 kWp con la orientación óptima. Datos: NASA POWER (5 años) y PVGIS.'**
+  String get weatherIntro;
+
+  /// No description provided for @weatherLatitude.
+  ///
+  /// In es, this message translates to:
+  /// **'Latitud (°)'**
+  String get weatherLatitude;
+
+  /// No description provided for @weatherLongitude.
+  ///
+  /// In es, this message translates to:
+  /// **'Longitud (°)'**
+  String get weatherLongitude;
+
+  /// No description provided for @weatherInvalidCoordinate.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe un número válido'**
+  String get weatherInvalidCoordinate;
+
+  /// No description provided for @weatherAnalyze.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargar clima y calcular'**
+  String get weatherAnalyze;
+
+  /// No description provided for @weatherRefresh.
+  ///
+  /// In es, this message translates to:
+  /// **'Volver a descargar'**
+  String get weatherRefresh;
+
+  /// No description provided for @weatherLoading.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargando clima y simulando…'**
+  String get weatherLoading;
+
+  /// No description provided for @weatherError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo obtener el clima: {message}'**
+  String weatherError(String message);
+
+  /// No description provided for @weatherSource.
+  ///
+  /// In es, this message translates to:
+  /// **'Serie: {source}'**
+  String weatherSource(String source);
+
+  /// No description provided for @weatherAnnualTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Producción anual'**
+  String get weatherAnnualTitle;
+
+  /// No description provided for @weatherAnnualValue.
+  ///
+  /// In es, this message translates to:
+  /// **'{value} kWh por kWp al año'**
+  String weatherAnnualValue(String value);
+
+  /// No description provided for @weatherPerformanceRatio.
+  ///
+  /// In es, this message translates to:
+  /// **'Performance ratio: {value}'**
+  String weatherPerformanceRatio(String value);
+
+  /// No description provided for @weatherMonthlyTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Producción mensual (kWh por kWp)'**
+  String get weatherMonthlyTitle;
+
+  /// No description provided for @weatherOptimalTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Orientación óptima'**
+  String get weatherOptimalTitle;
+
+  /// No description provided for @weatherOptimalValue.
+  ///
+  /// In es, this message translates to:
+  /// **'Inclinación {tilt}° · azimut {azimuth}°'**
+  String weatherOptimalValue(String tilt, String azimuth);
+
+  /// No description provided for @weatherLatitudeRule.
+  ///
+  /// In es, this message translates to:
+  /// **'Con inclinación = latitud: {value} kWh/kWp ({diff} %)'**
+  String weatherLatitudeRule(String value, String diff);
+
+  /// No description provided for @weatherTemperaturesTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Temperaturas del sitio'**
+  String get weatherTemperaturesTitle;
+
+  /// No description provided for @weatherSunPathTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Trayectoria solar'**
+  String get weatherSunPathTitle;
+
+  /// No description provided for @weatherSunPathAxis.
+  ///
+  /// In es, this message translates to:
+  /// **'Azimut (°) vs. altura solar (°)'**
+  String get weatherSunPathAxis;
+
+  /// No description provided for @weatherJuneSolstice.
+  ///
+  /// In es, this message translates to:
+  /// **'Solsticio de junio'**
+  String get weatherJuneSolstice;
+
+  /// No description provided for @weatherEquinox.
+  ///
+  /// In es, this message translates to:
+  /// **'Equinoccios'**
+  String get weatherEquinox;
+
+  /// No description provided for @weatherDecemberSolstice.
+  ///
+  /// In es, this message translates to:
+  /// **'Solsticio de diciembre'**
+  String get weatherDecemberSolstice;
+
+  /// No description provided for @weatherWarningsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Advertencias'**
+  String get weatherWarningsTitle;
+
+  /// No description provided for @weatherAttributionsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Fuentes de datos'**
+  String get weatherAttributionsTitle;
+
+  /// No description provided for @weatherProjectLocation.
+  ///
+  /// In es, this message translates to:
+  /// **'Ubicación guardada del proyecto:'**
+  String get weatherProjectLocation;
+
+  /// No description provided for @weatherNoProjectLocation.
+  ///
+  /// In es, this message translates to:
+  /// **'Este proyecto todavía no tiene ubicación. Escribe las coordenadas aquí, o agrégala en la ficha del proyecto.'**
+  String get weatherNoProjectLocation;
+
+  /// No description provided for @weatherProjectEntryTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Clima y producción'**
+  String get weatherProjectEntryTitle;
+
+  /// No description provided for @weatherProjectEntrySubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuánta energía daría 1 kWp aquí y la mejor inclinación'**
+  String get weatherProjectEntrySubtitle;
+
+  /// No description provided for @weatherTimeZone.
+  ///
+  /// In es, this message translates to:
+  /// **'Zona horaria: {zone} ({offset})'**
+  String weatherTimeZone(String zone, String offset);
+
+  /// No description provided for @weatherDesignMin.
+  ///
+  /// In es, this message translates to:
+  /// **'Mínima para diseño: {value} °C ({source})'**
+  String weatherDesignMin(String value, String source);
+
+  /// No description provided for @weatherDesignMax.
+  ///
+  /// In es, this message translates to:
+  /// **'Máxima para diseño: {value} °C ({source})'**
+  String weatherDesignMax(String value, String source);
+
+  /// No description provided for @weatherDesignHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Para diseñar los strings se usa la más extrema de las dos fuentes.'**
+  String get weatherDesignHint;
+
+  /// No description provided for @weatherTemperaturesBySource.
+  ///
+  /// In es, this message translates to:
+  /// **'{source}: mínima {min} °C · máxima {max} °C'**
+  String weatherTemperaturesBySource(String source, String min, String max);
 }
 
 class _AppLocalizationsDelegate

@@ -508,4 +508,137 @@ class AppLocalizationsEn extends AppLocalizations {
   String consumptionDacWarning(String tariff, String limit) {
     return 'The monthly average exceeds the $tariff tariff limit ($limit kWh/month): risk of moving to DAC.';
   }
+
+  @override
+  String get weatherTitle => 'Weather and yield';
+
+  @override
+  String get weatherEntryTitle => 'Weather and yield (F2 test)';
+
+  @override
+  String get weatherEntrySubtitle =>
+      'Downloads weather for a coordinate and estimates yield.';
+
+  @override
+  String get weatherIntro =>
+      'Estimated yield of a 1 kWp system at the optimal orientation. Data: NASA POWER (5 years) and PVGIS.';
+
+  @override
+  String get weatherLatitude => 'Latitude (°)';
+
+  @override
+  String get weatherLongitude => 'Longitude (°)';
+
+  @override
+  String get weatherInvalidCoordinate => 'Enter a valid number';
+
+  @override
+  String get weatherAnalyze => 'Download weather and calculate';
+
+  @override
+  String get weatherRefresh => 'Download again';
+
+  @override
+  String get weatherLoading => 'Downloading weather and simulating…';
+
+  @override
+  String weatherError(String message) {
+    return 'Could not get the weather: $message';
+  }
+
+  @override
+  String weatherSource(String source) {
+    return 'Series: $source';
+  }
+
+  @override
+  String get weatherAnnualTitle => 'Annual yield';
+
+  @override
+  String weatherAnnualValue(String value) {
+    return '$value kWh per kWp per year';
+  }
+
+  @override
+  String weatherPerformanceRatio(String value) {
+    return 'Performance ratio: $value';
+  }
+
+  @override
+  String get weatherMonthlyTitle => 'Monthly yield (kWh per kWp)';
+
+  @override
+  String get weatherOptimalTitle => 'Optimal orientation';
+
+  @override
+  String weatherOptimalValue(String tilt, String azimuth) {
+    return 'Tilt $tilt° · azimuth $azimuth°';
+  }
+
+  @override
+  String weatherLatitudeRule(String value, String diff) {
+    return 'With tilt = latitude: $value kWh/kWp ($diff %)';
+  }
+
+  @override
+  String get weatherTemperaturesTitle => 'Site temperatures';
+
+  @override
+  String get weatherSunPathTitle => 'Sun path';
+
+  @override
+  String get weatherSunPathAxis => 'Azimuth (°) vs. solar elevation (°)';
+
+  @override
+  String get weatherJuneSolstice => 'June solstice';
+
+  @override
+  String get weatherEquinox => 'Equinoxes';
+
+  @override
+  String get weatherDecemberSolstice => 'December solstice';
+
+  @override
+  String get weatherWarningsTitle => 'Warnings';
+
+  @override
+  String get weatherAttributionsTitle => 'Data sources';
+
+  @override
+  String get weatherProjectLocation => 'Saved project location:';
+
+  @override
+  String get weatherNoProjectLocation =>
+      'This project has no location yet. Type the coordinates here, or add it on the project page.';
+
+  @override
+  String get weatherProjectEntryTitle => 'Weather and yield';
+
+  @override
+  String get weatherProjectEntrySubtitle =>
+      'How much energy 1 kWp would give here and the best tilt';
+
+  @override
+  String weatherTimeZone(String zone, String offset) {
+    return 'Time zone: $zone ($offset)';
+  }
+
+  @override
+  String weatherDesignMin(String value, String source) {
+    return 'Design minimum: $value °C ($source)';
+  }
+
+  @override
+  String weatherDesignMax(String value, String source) {
+    return 'Design maximum: $value °C ($source)';
+  }
+
+  @override
+  String get weatherDesignHint =>
+      'String design uses the most extreme value of the two sources.';
+
+  @override
+  String weatherTemperaturesBySource(String source, String min, String max) {
+    return '$source: minimum $min °C · maximum $max °C';
+  }
 }

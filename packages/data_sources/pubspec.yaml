@@ -8,6 +8,11 @@ environment:
 
 resolution: workspace
 
+dependencies:
+  http: ^1.5.0
+  solar_engine:
+    path: ../solar_engine
+
 dev_dependencies:
   test: ^1.31.1
   very_good_analysis: ^11.0.0

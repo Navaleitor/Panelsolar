@@ -19,7 +19,7 @@ Obtiene **solo coordenadas** (latitud, longitud, altitud opcional, zona horaria)
 | Enlace de Google/Apple Maps | `MapLinkResolver` de `packages/geo_kit`. Enlaces cortos (`maps.app.goo.gl`, `maps.apple`…) se expanden leyendo solo la cabecera de redirección HTTP. Si el enlace trae solo un nombre de lugar, abre la búsqueda por dirección. | `presentation/widgets/map_link_dialog.dart`, `data/http_redirect_fetcher.dart` |
 | A mano | Decimal o grados/minutos/segundos (`parseCoordinateText` de geo_kit). | `presentation/widgets/manual_coordinates_dialog.dart` |
 
-**Confirmación** (`presentation/widgets/location_confirm_view.dart`): coordenadas en decimal y en grados/minutos/segundos, origen y precisión; altitud editable (el GPS la llena); zona horaria IANA (por defecto la del teléfono, validada con la base del paquete `timezone`). Botón copiar para revisarlas en otra app.
+**Confirmación** (`presentation/widgets/location_confirm_view.dart`): coordenadas en decimal y en grados/minutos/segundos, origen y precisión; altitud editable (el GPS la llena); zona horaria IANA: se propone la **deducida de las coordenadas sin conexión** (`TimeZoneService.timeZoneAt`, índice de `geo_kit`, F2) y, si no se puede, la del teléfono; es editable y se valida con la base del paquete `timezone`. Botón copiar para revisarlas en otra app.
 
 ## Capas
 - `domain/` — `LocationCandidate`, `CoordinateFormat`, interfaces `LocationService` y `TimeZoneService`.
@@ -34,5 +34,5 @@ flutter test test/features/site
 Las pruebas usan GPS, geocodificador y redirecciones **falsos** (`test/helpers/fakes.dart`), sin red.
 
 ## Notas
-- La zona horaria **no** se deduce de las coordenadas (requeriría una base de fronteras sin conexión): se propone la del teléfono y el usuario la corrige si el sitio está en otra zona (p. ej. Sonora).
+- La zona horaria se deduce de las coordenadas sin conexión (decisión del dueño 2026-11-14, implementada en F2): Hermosillo → `America/Hermosillo`, Cancún → `America/Cancun`, Tijuana → `America/Tijuana`. Pruebas: `test/features/site/coordinate_time_zone_test.dart` y `location_time_zone_proposal_test.dart`.
 - Altitud por dirección/enlace: vacía salvo que el usuario la escriba (F2 podrá llenarla con el dato de elevación de PVGIS/NASA).

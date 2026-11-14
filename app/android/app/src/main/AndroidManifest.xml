@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- F1: geocodificación, expandir enlaces cortos de mapas (y luego clima). -->
+    <!-- F1: geocodificación, expandir enlaces cortos de mapas y clima (F2). -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- F1: ubicación del sitio por GPS y GPS de las fotos. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>

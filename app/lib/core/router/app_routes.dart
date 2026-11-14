@@ -23,6 +23,13 @@ abstract final class AppRoutes {
   static String projectEdit(String id) => '/projects/$id/edit';
   static String projectLocation(String id) => '/projects/$id/location';
   static String projectPhotos(String id) => '/projects/$id/photos';
+  static String projectWeather(String id) => '/projects/$id/weather';
   static String photoView(String projectId, String photoId) =>
       '/projects/$projectId/photos/$photoId';
+
+  /// Subruta de Ajustes con la pantalla de clima (F2).
+  static const String weatherSegment = 'weather';
+
+  /// Ruta completa de la pantalla de clima.
+  static const String weather = '/settings/weather';
 }

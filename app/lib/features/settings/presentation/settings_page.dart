@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:panelsolar/core/database/database_providers.dart';
 import 'package:panelsolar/core/l10n/gen/app_localizations.dart';
+import 'package:panelsolar/core/router/app_routes.dart';
 import 'package:panelsolar/core/widgets/empty_module_view.dart';
 
 /// Ajustes. En F0 solo muestra el estado de la base de datos, para que el
@@ -29,6 +31,16 @@ class SettingsPage extends ConsumerWidget {
               loading: () => const LinearProgressIndicator(),
               error: (_, _) => Text(l10n.settingsDatabaseError),
             ),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            key: const Key('settingsWeatherEntry'),
+            leading: const Icon(Icons.wb_sunny),
+            title: Text(l10n.weatherEntryTitle),
+            subtitle: Text(l10n.weatherEntrySubtitle),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.go(AppRoutes.weather),
           ),
         ),
       ],

@@ -31,6 +31,7 @@ class TestEnv {
   final Directory storageDir;
   final location = FakeLocationService();
   final geocoder = FakeGeocoder();
+  final timeZones = FakeTimeZoneService();
 
   /// Redirecciones falsas para enlaces cortos (`corto → completo`).
   final redirects = <String, String>{};
@@ -40,7 +41,7 @@ class TestEnv {
     appStorageProvider.overrideWithValue(AppStorage(storageDir)),
     locationServiceProvider.overrideWithValue(location),
     geocoderProvider.overrideWithValue(geocoder),
-    timeZoneServiceProvider.overrideWithValue(FakeTimeZoneService()),
+    timeZoneServiceProvider.overrideWithValue(timeZones),
     mapLinkResolverProvider.overrideWithValue(
       MapLinkResolver((uri) async {
         final target = redirects[uri.toString()];

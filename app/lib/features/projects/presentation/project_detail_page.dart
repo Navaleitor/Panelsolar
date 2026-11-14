@@ -16,6 +16,7 @@ import 'package:panelsolar/features/projects/presentation/project_providers.dart
 import 'package:panelsolar/features/projects/presentation/widgets/project_status_chip.dart';
 import 'package:panelsolar/features/projects/presentation/widgets/project_status_label.dart';
 import 'package:panelsolar/features/site/presentation/site_summary_card.dart';
+import 'package:panelsolar/features/weather/presentation/widgets/weather_entry_card.dart';
 import 'package:persistence/persistence.dart';
 
 /// Ficha del proyecto: datos, ubicación, fotos y documentos.
@@ -82,6 +83,7 @@ class ProjectDetailPage extends ConsumerWidget {
               SiteSummaryCard(projectId: projectId),
               PhotosSummaryCard(projectId: projectId),
               DocumentsSection(projectId: projectId),
+              WeatherEntryCard(projectId: projectId),
             ],
           );
         },

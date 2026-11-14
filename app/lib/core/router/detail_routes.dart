@@ -7,6 +7,7 @@ import 'package:panelsolar/features/projects/presentation/project_detail_page.da
 import 'package:panelsolar/features/projects/presentation/project_form_page.dart';
 import 'package:panelsolar/features/site/presentation/location_page.dart';
 import 'package:panelsolar/features/utility_bills/presentation/bill_form_page.dart';
+import 'package:panelsolar/features/weather/presentation/weather_page.dart';
 
 /// Pantallas de detalle y edición (pantalla completa, sin barra inferior).
 /// Rutas planas: las específicas (`/new`) van antes que las de `:id`.
@@ -54,6 +55,11 @@ final List<RouteBase> detailRoutes = [
     path: '/projects/:projectId/location',
     builder: (context, state) =>
         LocationPage(projectId: state.pathParameters['projectId']!),
+  ),
+  GoRoute(
+    path: '/projects/:projectId/weather',
+    builder: (context, state) =>
+        WeatherPage(projectId: state.pathParameters['projectId']),
   ),
   GoRoute(
     path: '/projects/:projectId/photos',
