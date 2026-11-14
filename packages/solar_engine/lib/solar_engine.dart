@@ -5,6 +5,20 @@
 library;
 
 export 'src/core/angles.dart' show cosd, degToRad, radToDeg, sind, tand;
+export 'src/design/electrical/conductor_selection.dart';
+export 'src/design/electrical/protections.dart';
+export 'src/design/electrical/voltage_drop.dart';
+export 'src/design/layout/row_spacing.dart';
+export 'src/design/production/design_production.dart';
+export 'src/design/shading/bypass_model.dart';
+export 'src/design/shading/panel_shade.dart';
+export 'src/design/shading/panel_shade_calculator.dart';
+export 'src/design/shading/sky_view.dart';
+export 'src/design/strings/string_design.dart';
+export 'src/design/strings/string_equipment.dart';
+export 'src/design/strings/string_sizing.dart';
+export 'src/design/strings/string_validation.dart';
+export 'src/design/wind/wind_pressure.dart';
 export 'src/irradiance/atmosphere.dart';
 export 'src/irradiance/erbs.dart';
 export 'src/irradiance/incidence.dart';

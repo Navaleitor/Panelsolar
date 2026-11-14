@@ -25,5 +25,13 @@ Una ficha por fórmula del motor (`packages/solar_engine`), plan B.6. Cada ficha
 | 19 | [Sombras de obstáculos, horizonte y mapa de calor](19-sombras-de-obstaculos.md) | 12, B.7, B.7.1 (F3) |
 | 20 | [Declinación magnética (WMM2025)](20-declinacion-magnetica-wmm.md) | B.7 B (F3) |
 | 21 | [Inclinómetro, brújula y altura con el teléfono](21-inclinometro-y-brujula.md) | B.7 B, B.7.1 (F3) |
+| 22 | [Dimensionamiento de strings](22-dimensionamiento-de-strings.md) | 14 (F4) |
+| 23 | [Separación entre filas](23-separacion-entre-filas.md) | 11 (F4) |
+| 24 | [Caída de tensión y calibre mínimo](24-caida-de-tension-y-calibre.md) | 15 (F4) |
+| 25 | [Protecciones y puesta a tierra](25-protecciones-y-tierra.md) | 16 (F4) |
+| 26 | [Viento ASCE 7-22 (indicativo)](26-viento-asce-7-22.md) | 17 (F4) |
+| 27 | [Sombra por panel, diodos y vista de cielo](27-sombra-por-panel-y-diodos.md) | 12, B.7.1 4–6 (F4) |
+| 28 | [Producción del sistema diseñado](28-produccion-del-sistema.md) | 8, 9 (F4) |
+| 29 | [Máximo de paneles en un plano](29-maximo-de-paneles.md) | 13 (F4) |
 
 Validación de conjunto: [`docs/pruebas/validacion-motor.md`](../pruebas/validacion-motor.md).
