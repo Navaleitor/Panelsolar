@@ -49,3 +49,9 @@ Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.
 4. Cada sub-chat entrega resumen, bloqueos y `docs/pruebas/fase-N.md`.
 5. Las decisiones de producto se escalan al chat principal.
 6. Las fases que programan usan el entorno cloud "panelsolar" (Flutter + Android SDK). F3–F8 se recrean en ese entorno cuando les toque.
+
+## Decisiones del dueño (2026-11-14)
+- **Temperaturas para strings (F2/F4):** por defecto, la más extrema de NASA y PVGIS (Tmin más fría, Tmax más caliente); ambas visibles.
+- **Zona horaria:** automática desde las coordenadas, sin conexión (la implementa F2); editable.
+- **Moneda:** solo MXN por ahora; monedas configurables se revisan antes de publicar (F7).
+- **Altitud del sitio:** opcional y manual. Si falta, el motor usa un valor interno por defecto sin mostrar error.
