@@ -45,11 +45,17 @@ void main() {
 
     // Copiar el archivo es E/S real: se deja correr fuera del reloj falso.
     await tester.ensureVisible(find.byKey(const Key('document-add')));
+    await tester.pumpAndSettle();
     await tester.runAsync(() async {
       await tester.tap(find.byKey(const Key('document-add')));
       await Future<void>.delayed(const Duration(milliseconds: 300));
     });
     await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('Contrato'),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
     expect(find.text('Contrato'), findsOneWidget);
 
     await tester.ensureVisible(find.text('Contrato'));

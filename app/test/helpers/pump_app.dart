@@ -113,6 +113,14 @@ extension PumpApp on WidgetTester {
   /// Toca el widget con [key] (desplazando si hace falta) y espera.
   Future<void> tapKey(String key) async {
     final finder = find.byKey(Key(key));
+    // En listas largas lo que está fuera de pantalla aún no existe.
+    if (finder.evaluate().isEmpty) {
+      await scrollUntilVisible(
+        finder,
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+    }
     await ensureVisible(finder);
     await pumpAndSettle();
     await tap(finder);
@@ -128,6 +136,14 @@ extension PumpApp on WidgetTester {
   /// Escribe [text] en el campo con [key].
   Future<void> enterKey(String key, String text) async {
     final finder = find.byKey(Key(key));
+    // En listas largas lo que está fuera de pantalla aún no existe.
+    if (finder.evaluate().isEmpty) {
+      await scrollUntilVisible(
+        finder,
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+    }
     await ensureVisible(finder);
     await enterText(finder, text);
     await pump();
