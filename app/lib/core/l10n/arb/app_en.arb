@@ -325,5 +325,8 @@
   "restoreConfirmTitle": "Replace all data?",
   "restoreConfirmMessage": "Current clients, projects and photos are replaced by the backup. This cannot be undone.",
   "restoreDone": "Restored. Files: {restored} recovered, {missing} missing.",
-  "restoreNewerApp": "The backup is from a newer app version. Update the app first."
+  "restoreNewerApp": "The backup is from a newer app version. Update the app first.",
+  "restoreUndoTitle": "Undo last restore",
+  "restoreUndoSubtitle": "Go back to the data you had before restoring (automatic copy on this phone).",
+  "restoreSafetyKept": "Your previous data was saved: Settings → \"Undo last restore\"."
 }

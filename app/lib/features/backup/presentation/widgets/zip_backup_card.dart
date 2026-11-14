@@ -67,9 +67,20 @@ class _ZipBackupCardState extends ConsumerState<ZipBackupCard> {
     );
   }
 
+  Future<void> _undo() async {
+    final file = ref.read(backupServiceProvider).safetyFile;
+    if (!file.existsSync()) return;
+    await context.push(
+      AppRoutes.restorePreview,
+      extra: RestoreRequest(file: file, fromDrive: false),
+    );
+    if (mounted) setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final hasSafety = ref.watch(backupServiceProvider).safetyFile.existsSync();
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -95,6 +106,15 @@ class _ZipBackupCardState extends ConsumerState<ZipBackupCard> {
             enabled: !_busy,
             onTap: _import,
           ),
+          if (hasSafety)
+            ListTile(
+              key: const Key('backup-undo-restore'),
+              leading: const Icon(Icons.undo),
+              title: Text(l10n.restoreUndoTitle),
+              subtitle: Text(l10n.restoreUndoSubtitle),
+              enabled: !_busy,
+              onTap: _undo,
+            ),
         ],
       ),
     );

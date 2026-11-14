@@ -2053,6 +2053,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'El respaldo es de una versión más nueva de la app. Actualiza la app primero.'**
   String get restoreNewerApp;
+
+  /// No description provided for @restoreUndoTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Deshacer la última restauración'**
+  String get restoreUndoTitle;
+
+  /// No description provided for @restoreUndoSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Vuelve a los datos que había antes de restaurar (copia automática en este teléfono).'**
+  String get restoreUndoSubtitle;
+
+  /// No description provided for @restoreSafetyKept.
+  ///
+  /// In es, this message translates to:
+  /// **'Tus datos anteriores quedaron guardados: Ajustes → \"Deshacer la última restauración\".'**
+  String get restoreSafetyKept;
 }
 
 class _AppLocalizationsDelegate

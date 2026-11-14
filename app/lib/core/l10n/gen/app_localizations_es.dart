@@ -1132,4 +1132,15 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get restoreNewerApp =>
       'El respaldo es de una versión más nueva de la app. Actualiza la app primero.';
+
+  @override
+  String get restoreUndoTitle => 'Deshacer la última restauración';
+
+  @override
+  String get restoreUndoSubtitle =>
+      'Vuelve a los datos que había antes de restaurar (copia automática en este teléfono).';
+
+  @override
+  String get restoreSafetyKept =>
+      'Tus datos anteriores quedaron guardados: Ajustes → \"Deshacer la última restauración\".';
 }

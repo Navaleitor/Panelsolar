@@ -99,4 +99,39 @@ void main() {
       'blob-abc-Zm9vYmFy.enc',
     );
   });
+
+  test('restaurar guarda antes una copia para deshacer', () async {
+    final remote = MemoryRemoteStore();
+    final db = memoryDb();
+    final storage = AppStorage(Directory('${tmp.path}/u')..createSync());
+    final service = serviceFor(db, storage, remote);
+
+    // Respaldo con un cliente "Viejo".
+    await ClientRepository(db).create(name: 'Viejo');
+    final zip = File('${tmp.path}/viejo.zip');
+    await service.exportZip(zip);
+
+    // Hoy hay un cliente "Nuevo"; se restaura el respaldo viejo.
+    await db.customStatement('DELETE FROM clients');
+    await ClientRepository(db).create(name: 'Nuevo');
+    expect(service.safetyFile.existsSync(), isFalse);
+    await service.restoreZip(zip);
+    final names = (await db.select(db.clients).get()).map((c) => c.name);
+    expect(names, ['Viejo']);
+    expect(service.safetyFile.existsSync(), isTrue);
+
+    // Contraseña mala: no toca la copia ni los datos.
+    final locked = File('${tmp.path}/cifrado.zip');
+    await service.exportZip(locked, password: 'secreta1');
+    await expectLater(
+      service.restoreZip(locked, password: 'mala'),
+      throwsA(anything),
+    );
+
+    // Deshacer: restaurar la copia devuelve "Nuevo".
+    await service.restoreZip(service.safetyFile);
+    final undone = (await db.select(db.clients).get()).map((c) => c.name);
+    expect(undone, ['Nuevo']);
+    await db.close();
+  });
 }

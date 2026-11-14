@@ -21,6 +21,7 @@ files/<ruta relativa>[.enc] fotos y documentos (en Drive van aparte)
 ```
 - Cifrado: AES-256-GCM por archivo, llave PBKDF2-SHA256 (150 000 iteraciones) — `data/backup_crypto.dart`, ficha [`docs/formulas/cifrado-respaldo.md`](../../../../docs/formulas/cifrado-respaldo.md).
 - Restaurar (`data/database_snapshot.dart`): se abre la foto con `AppDatabase` (aplica migraciones si es de una versión vieja), se escriben los archivos verificando SHA-256 y luego, en **una transacción**, se reemplazan todas las tablas (`ATTACH` + `INSERT … SELECT`). **No** se reemplazan `backup_logs` ni `app_settings` (propios del teléfono). Un respaldo de una versión más nueva se rechaza.
+- **Deshacer**: antes de cada restauración se guarda un .zip con los datos actuales en `respaldos/antes-de-restaurar.zip` (solo si la restauración termina bien; `BackupService.safetyFile`). En Ajustes aparece "Deshacer la última restauración".
 
 ## Google Drive (`data/drive/`)
 - `drive_auth.dart` — `google_sign_in` 7 + `googleServerClientId` (vacío = no configurado).

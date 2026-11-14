@@ -536,5 +536,8 @@
       }
     }
   },
-  "restoreNewerApp": "El respaldo es de una versión más nueva de la app. Actualiza la app primero."
+  "restoreNewerApp": "El respaldo es de una versión más nueva de la app. Actualiza la app primero.",
+  "restoreUndoTitle": "Deshacer la última restauración",
+  "restoreUndoSubtitle": "Vuelve a los datos que había antes de restaurar (copia automática en este teléfono).",
+  "restoreSafetyKept": "Tus datos anteriores quedaron guardados: Ajustes → \"Deshacer la última restauración\"."
 }

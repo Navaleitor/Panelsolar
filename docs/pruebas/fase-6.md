@@ -51,6 +51,7 @@ Abre un proyecto. En la ficha aparecen tres tarjetas nuevas: **Instalación**, *
 - [ ] **Prueba fuerte (respaldar → borrar → restaurar)**: borra un cliente de prueba; luego **Restaurar desde archivo .zip** → elige el .zip con contraseña → la vista previa muestra fecha, versión y cuántos clientes/proyectos/fotos trae y "Cifrado: pide contraseña".
 - [ ] Escribe una contraseña equivocada → **Restaurar** → confirma → "Contraseña incorrecta" (tus datos no cambian).
 - [ ] Con la contraseña correcta → confirma → vuelve a Clientes y el cliente borrado **regresó**, con sus proyectos y fotos.
+- [ ] Al terminar, el aviso dice que tus datos anteriores quedaron guardados. En Ajustes aparece **Deshacer la última restauración** → vista previa → Restaurar → vuelves a como estabas antes de restaurar (el cliente borrado desaparece otra vez).
 - [ ] Un archivo que no es respaldo (cualquier otro .zip) → "no es un respaldo de Panelsolar".
 
 ### 4.2 Google Drive (solo después de la guía)

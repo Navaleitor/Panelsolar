@@ -74,9 +74,37 @@ class BackupService {
     }
   }
 
-  /// Restaura [zip] (reemplaza todo).
+  /// Copia de seguridad automática de los datos que había antes de la
+  /// última restauración (para poder deshacerla). Ruta relativa a la
+  /// carpeta de la app.
+  static const safetyPath = 'respaldos/antes-de-restaurar.zip';
+
+  /// Archivo de la copia previa a la última restauración (puede no existir).
+  File get safetyFile => archive.storage.file(safetyPath);
+
+  /// Antes de reemplazar los datos guarda un .zip (sin cifrar, solo en
+  /// este teléfono) con lo que hay ahora; queda como [safetyFile] solo si
+  /// la restauración termina bien.
+  Future<RestoreResult> _withSafetyCopy(
+    Future<RestoreResult> Function() restore,
+  ) async {
+    final pending = archive.storage.file('$safetyPath.tmp');
+    await pending.parent.create(recursive: true);
+    await archive.write(pending);
+    try {
+      final result = await restore();
+      await pending.rename(safetyFile.path);
+      return result;
+    } finally {
+      if (pending.existsSync()) pending.deleteSync();
+    }
+  }
+
+  /// Restaura [zip] (reemplaza todo; antes guarda [safetyFile]).
   Future<RestoreResult> restoreZip(File zip, {String? password}) async {
-    final result = await archive.restore(zip, password: password);
+    final result = await _withSafetyCopy(
+      () => archive.restore(zip, password: password),
+    );
     await logs.add(
       target: BackupTarget.zip,
       trigger: BackupTrigger.restore,
@@ -200,10 +228,13 @@ class BackupService {
   Future<File> downloadDriveSnapshot(RemoteFile snapshot) async =>
       await (await _drive(interactive: true))!.download(snapshot);
 
-  /// Restaura un respaldo de Drive ya descargado.
+  /// Restaura un respaldo de Drive ya descargado (antes guarda
+  /// [safetyFile]).
   Future<RestoreResult> restoreDrive(File zip, {String? password}) async {
     final drive = (await _drive(interactive: true))!;
-    final result = await drive.restore(zip, password: password);
+    final result = await _withSafetyCopy(
+      () => drive.restore(zip, password: password),
+    );
     await logs.add(
       target: BackupTarget.drive,
       trigger: BackupTrigger.restore,

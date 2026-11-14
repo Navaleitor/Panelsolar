@@ -33,7 +33,7 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 - Puesta en marcha IEC 62446-1: Voc ±5 %, Isc ±10 %, aislamiento ≥ 1 MΩ; la app sugiere el estado y el instalador decide.
 - Recordatorios: `flutter_local_notifications` con alarmas inexactas (7 días antes y el día, 9:00).
 - Producción: lo esperado se captura a mano; `ExpectedProductionSource` queda listo para el motor de F2.
-- Respaldo .zip con manifiesto sin cifrar (vista previa) y AES-256-GCM por archivo (PBKDF2-SHA256). Restaurar **reemplaza** todo excepto `backup_logs` y `app_settings`.
+- Respaldo .zip con manifiesto sin cifrar (vista previa) y AES-256-GCM por archivo (PBKDF2-SHA256). Restaurar **reemplaza** todo excepto `backup_logs` y `app_settings`; antes guarda automáticamente una copia local para "Deshacer la última restauración".
 - Drive (`drive.appdata`) con blobs por hash y retención 7+4. **Pendiente del dueño**: crear los IDs de OAuth ([`docs/guias/respaldo-google.md`](../guias/respaldo-google.md)) y pasar el ID web a Claude.
 
 ## Sub-chats (sesiones) por fase

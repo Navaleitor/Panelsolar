@@ -1124,4 +1124,15 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get restoreNewerApp =>
       'The backup is from a newer app version. Update the app first.';
+
+  @override
+  String get restoreUndoTitle => 'Undo last restore';
+
+  @override
+  String get restoreUndoSubtitle =>
+      'Go back to the data you had before restoring (automatic copy on this phone).';
+
+  @override
+  String get restoreSafetyKept =>
+      'Your previous data was saved: Settings → \"Undo last restore\".';
 }

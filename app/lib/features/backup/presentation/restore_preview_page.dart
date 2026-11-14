@@ -80,7 +80,8 @@ class _RestorePreviewPageState extends ConsumerState<RestorePreviewPage> {
       messenger.showSnackBar(
         SnackBar(
           content: Text(
-            l10n.restoreDone(result.filesRestored, result.filesMissing),
+            '${l10n.restoreDone(result.filesRestored, result.filesMissing)} '
+            '${l10n.restoreSafetyKept}',
           ),
         ),
       );
