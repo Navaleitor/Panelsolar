@@ -12,6 +12,18 @@ Future<void> openSettings(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
+/// Alterna cuadros del reloj falso con tiempo real (E/S de archivos,
+/// *isolates*) hasta que [done] se cumpla (máximo ~10 s).
+Future<void> pumpUntil(WidgetTester tester, bool Function() done) async {
+  for (var i = 0; i < 200 && !done(); i++) {
+    await tester.pump();
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+  }
+  await tester.pump();
+}
+
 void main() {
   testWidgets('exportar .zip con contraseña, borrar y restaurar con vista '
       'previa', (tester) async {
@@ -25,11 +37,7 @@ void main() {
     await tester.enterKey('password-confirm', 'secreta1');
     await tester.tap(find.byKey(const Key('password-ok')));
     // VACUUM INTO, cifrado y archivos: E/S real fuera del reloj falso.
-    await tester.runAsync(() async {
-      for (var i = 0; i < 100 && env.savedFiles.isEmpty; i++) {
-        await Future<void>.delayed(const Duration(milliseconds: 50));
-      }
-    });
+    await pumpUntil(tester, () => env.savedFiles.isNotEmpty);
     await tester.pumpAndSettle();
     expect(env.savedFiles, hasLength(1));
     expect(find.text('Respaldo guardado'), findsOneWidget);
@@ -53,8 +61,9 @@ void main() {
     await tester.enterKey('restore-password', 'mala');
     await tester.tapKey('restore-start');
     await tester.tap(find.text('Restaurar').last);
-    await tester.runAsync(
-      () => Future<void>.delayed(const Duration(milliseconds: 800)),
+    await pumpUntil(
+      tester,
+      () => find.text('Contraseña incorrecta').evaluate().isNotEmpty,
     );
     await tester.pumpAndSettle();
     expect(find.text('Contraseña incorrecta'), findsOneWidget);
@@ -62,9 +71,7 @@ void main() {
     await tester.enterKey('restore-password', 'secreta1');
     await tester.tapKey('restore-start');
     await tester.tap(find.text('Restaurar').last);
-    await tester.runAsync(
-      () => Future<void>.delayed(const Duration(milliseconds: 800)),
-    );
+    await pumpUntil(tester, () => find.text('Ana').evaluate().isNotEmpty);
     await tester.pumpAndSettle();
     // Vuelve a Clientes con los datos restaurados.
     expect(find.text('Ana'), findsOneWidget);

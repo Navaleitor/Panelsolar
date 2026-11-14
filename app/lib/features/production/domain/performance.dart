@@ -40,7 +40,8 @@ bool isBelowThreshold(
   double thresholdPct,
 ) {
   final dev = deviationFromExpectedPct(actualKwh, expectedKwh);
-  return dev != null && dev < thresholdPct;
+  // Tolerancia para errores de redondeo (595/700 da −15.000000000000002).
+  return dev != null && dev < thresholdPct - 1e-9;
 }
 
 /// Resumen de un conjunto de lecturas.

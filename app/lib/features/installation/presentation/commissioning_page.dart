@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:panelsolar/core/database/repository_providers.dart';
@@ -39,32 +37,23 @@ class _CommissioningPageState extends ConsumerState<CommissioningPage> {
   bool? _labeling;
   bool _loading = true;
 
-  @override
-  void initState() {
-    super.initState();
-    unawaited(_load());
-  }
-
-  Future<void> _load() async {
-    final r = await ref
-        .read(commissioningRepositoryProvider)
-        .watchRecord(widget.projectId)
-        .first;
-    if (r != null) {
-      _status = r.status;
-      _testedAt = r.testedAt;
-      _technician.text = r.technician ?? '';
-      _polarity = r.polarityOk;
-      _insulation.text = decimalText(r.insulationMohm);
-      _testVoltage.text = decimalText(r.insulationTestVoltageV);
-      _grounding = r.groundingOk;
-      _groundingOhm.text = decimalText(r.groundingOhm);
-      _labeling = r.labelingOk;
-      _notes.text = r.notes ?? '';
-    } else {
+  /// Llena el formulario con lo guardado (una sola vez, al llegar el dato).
+  void _fill(CommissioningRecord? r) {
+    _loading = false;
+    if (r == null) {
       _testedAt = DateTime.now().toUtc();
+      return;
     }
-    if (mounted) setState(() => _loading = false);
+    _status = r.status;
+    _testedAt = r.testedAt;
+    _technician.text = r.technician ?? '';
+    _polarity = r.polarityOk;
+    _insulation.text = decimalText(r.insulationMohm);
+    _testVoltage.text = decimalText(r.insulationTestVoltageV);
+    _grounding = r.groundingOk;
+    _groundingOhm.text = decimalText(r.groundingOhm);
+    _labeling = r.labelingOk;
+    _notes.text = r.notes ?? '';
   }
 
   @override
@@ -116,7 +105,9 @@ class _CommissioningPageState extends ConsumerState<CommissioningPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final record = ref.watch(commissioningProvider(widget.projectId)).value;
+    final recordValue = ref.watch(commissioningProvider(widget.projectId));
+    if (_loading && recordValue.hasValue) _fill(recordValue.value);
+    final record = recordValue.value;
     final strings =
         ref.watch(stringTestsProvider(widget.projectId)).value ?? const [];
     final suggested = suggestStatus(record, strings);

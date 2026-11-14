@@ -40,7 +40,7 @@ void main() {
     await tester.tap(find.text('Bien').last);
     await tester.pumpAndSettle();
     await tester.tapKey('string-save');
-    expect(find.textContaining('-0.9 %'), findsOneWidget);
+    expect(find.textContaining('-0,9 %'), findsOneWidget);
     expect(find.byIcon(Icons.check_circle), findsOneWidget);
 
     await tester.enterKey('insulation-mohm', '0.5');

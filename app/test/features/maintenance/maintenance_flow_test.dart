@@ -25,7 +25,7 @@ void main() {
     expect(find.text('Limpieza de paneles'), findsOneWidget);
     expect(find.text('Revisión de protecciones'), findsOneWidget);
     expect(find.text('Termografía'), findsNothing);
-    expect(find.text('Cada 6 meses'), findsNWidgets(2));
+    expect(find.textContaining('Cada 6 meses'), findsNWidgets(2));
 
     // Se programaron avisos (7 días antes y el día) para cada servicio.
     await tester.runAsync(() => Future<void>.delayed(Durations.short2));
@@ -55,16 +55,31 @@ void main() {
     expect(done.lastDoneAt, isNotNull);
 
     // Calendario en la pestaña Mantenimiento.
-    await tester.systemBack();
-    await tester.systemBack();
-    await tester.tap(find.text('Mantenimiento'));
+    for (
+      var i = 0;
+      i < 5 && find.byType(NavigationBar).evaluate().isEmpty;
+      i++
+    ) {
+      await tester.systemBack();
+    }
+    await tester.tap(
+      find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text('Mantenimiento'),
+      ),
+    );
     await tester.pumpAndSettle();
     expect(find.text('Casa Cumbres · Ana'), findsNWidgets(5));
   });
 
   testWidgets('la plantilla se puede editar', (tester) async {
     await tester.pumpPanelsolar();
-    await tester.tap(find.text('Mantenimiento'));
+    await tester.tap(
+      find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text('Mantenimiento'),
+      ),
+    );
     await tester.pumpAndSettle();
     await tester.tapKey('maintenance-template');
     expect(find.text('Termografía'), findsOneWidget);

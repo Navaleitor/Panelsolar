@@ -10,6 +10,11 @@ void main() {
     await seedClientWithProject(tester, env);
     await tester.pumpPanelsolar(env: env);
     await openProject(tester);
+    await tester.scrollUntilVisible(
+      find.byKey(const Key('production-card')),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
     await tester.tapKey('production-card');
 
     // Ajustes: 5 kWp y umbral 15 %.
