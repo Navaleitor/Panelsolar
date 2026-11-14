@@ -4,7 +4,7 @@
 /// Cada fórmula tiene su ficha en `docs/formulas/`.
 library;
 
-export 'src/core/angles.dart' show cosd, degToRad, radToDeg, sind;
+export 'src/core/angles.dart' show cosd, degToRad, radToDeg, sind, tand;
 export 'src/irradiance/atmosphere.dart';
 export 'src/irradiance/erbs.dart';
 export 'src/irradiance/incidence.dart';
@@ -19,6 +19,11 @@ export 'src/position/spa.dart';
 export 'src/power/losses.dart';
 export 'src/power/pvwatts_dc.dart';
 export 'src/power/pvwatts_inverter.dart';
+export 'src/shading/horizon_builder.dart';
+export 'src/shading/plane_geometry.dart';
+export 'src/shading/shade_heatmap.dart';
+export 'src/shading/shadow_caster.dart';
+export 'src/shading/sun_samples.dart';
 export 'src/simulation/horizon_profile.dart';
 export 'src/simulation/monthly_aggregator.dart';
 export 'src/simulation/pv_system.dart';
