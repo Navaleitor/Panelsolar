@@ -62,6 +62,7 @@ class ProtectionInput {
     required this.gridVoltageV,
     required this.standardRatingsA,
     required this.groundingTable,
+    this.fuseRatingsA,
     this.moduleMaxSeriesFuseA,
   });
 
@@ -83,8 +84,13 @@ class ProtectionInput {
   /// Tensión de la red (V).
   final double gridVoltageV;
 
-  /// Capacidades comerciales de fusibles e interruptores (A), en orden.
+  /// Capacidades comerciales de interruptores y desconectadores (A), en
+  /// orden.
   final List<double> standardRatingsA;
+
+  /// Capacidades comerciales de fusibles (A), en orden; si es nula se usa
+  /// [standardRatingsA].
+  final List<double>? fuseRatingsA;
 
   /// Tabla de conductor de tierra: (protección máxima A, calibre), en orden.
   final List<(double, String)> groundingTable;
@@ -113,7 +119,7 @@ abstract final class ProtectionSizing {
   /// Lista de protecciones.
   static List<ProtectionSuggestion> suggest(ProtectionInput i) {
     final fuseMin = i.moduleIscA * continuousFactor;
-    var fuse = roundUp(fuseMin, i.standardRatingsA);
+    var fuse = roundUp(fuseMin, i.fuseRatingsA ?? i.standardRatingsA);
     final maxFuse = i.moduleMaxSeriesFuseA;
     if (maxFuse != null && fuse > maxFuse) fuse = maxFuse;
     final needFuses = stringFusesRequired(i.stringsInParallel);
