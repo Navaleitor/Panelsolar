@@ -42,3 +42,44 @@ final obstacleRepositoryProvider = Provider<ObstacleRepository>(
 final horizonProfileRepositoryProvider = Provider<HorizonProfileRepository>(
   (ref) => HorizonProfileRepository(ref.watch(appDatabaseProvider)),
 );
+
+// F4: catálogo de equipos y diseño FV.
+final panelModelRepositoryProvider = Provider<PanelModelRepository>(
+  (ref) => PanelModelRepository(ref.watch(appDatabaseProvider)),
+);
+
+final inverterModelRepositoryProvider = Provider<InverterModelRepository>(
+  (ref) => InverterModelRepository(ref.watch(appDatabaseProvider)),
+);
+
+final optimizerModelRepositoryProvider = Provider<OptimizerModelRepository>(
+  (ref) => OptimizerModelRepository(ref.watch(appDatabaseProvider)),
+);
+
+final batteryModelRepositoryProvider = Provider<BatteryModelRepository>(
+  (ref) => BatteryModelRepository(ref.watch(appDatabaseProvider)),
+);
+
+final pvDesignRepositoryProvider = Provider<PvDesignRepository>(
+  (ref) => PvDesignRepository(ref.watch(appDatabaseProvider)),
+);
+
+final arrayLayoutRepositoryProvider = Provider<ArrayLayoutRepository>(
+  (ref) => ArrayLayoutRepository(ref.watch(appDatabaseProvider)),
+);
+
+final stringConfigRepositoryProvider = Provider<StringConfigRepository>(
+  (ref) => StringConfigRepository(ref.watch(appDatabaseProvider)),
+);
+
+final electricalRunRepositoryProvider = Provider<ElectricalRunRepository>(
+  (ref) => ElectricalRunRepository(ref.watch(appDatabaseProvider)),
+);
+
+final protectionDeviceRepositoryProvider = Provider<ProtectionDeviceRepository>(
+  (ref) => ProtectionDeviceRepository(ref.watch(appDatabaseProvider)),
+);
+
+final simulationResultRepositoryProvider = Provider<SimulationResultRepository>(
+  (ref) => SimulationResultRepository(ref.watch(appDatabaseProvider)),
+);

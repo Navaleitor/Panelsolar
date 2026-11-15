@@ -1233,4 +1233,259 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get roofCardinalW => 'W';
+
+  @override
+  String get catalogPanels => 'Panels';
+
+  @override
+  String get catalogInverters => 'Inverters';
+
+  @override
+  String get catalogOptimizers => 'Optimizers';
+
+  @override
+  String get catalogBatteries => 'Batteries';
+
+  @override
+  String get catalogNewPanel => 'New panel';
+
+  @override
+  String get catalogNewInverter => 'New inverter';
+
+  @override
+  String get catalogNewOptimizer => 'New optimizer';
+
+  @override
+  String get catalogNewBattery => 'New battery';
+
+  @override
+  String get catalogEditTitle => 'Edit equipment';
+
+  @override
+  String get catalogEmpty =>
+      'No equipment yet. Enter it from its datasheet or import it from the CEC catalog.';
+
+  @override
+  String get catalogInvalidData =>
+      'Check the data: Vmp must be below Voc and the MPPT minimum below the maximum.';
+
+  @override
+  String get catalogDeleteTitle => 'Delete this equipment?';
+
+  @override
+  String get catalogDeleteMessage => 'Designs that already use it keep it.';
+
+  @override
+  String catalogPanelSummary(int watts, String voc, String isc) {
+    return '$watts W · Voc $voc V · Isc $isc A';
+  }
+
+  @override
+  String catalogInverterSummary(String kw, int mppt, String kind) {
+    return '$kw kW · $mppt MPPT · $kind';
+  }
+
+  @override
+  String get specManufacturer => 'Manufacturer';
+
+  @override
+  String get specModel => 'Model';
+
+  @override
+  String get specPmax => 'Maximum power (Pmax)';
+
+  @override
+  String get specVoc => 'Open-circuit voltage (Voc)';
+
+  @override
+  String get specVocHelp =>
+      'Voltage with no load. It rises in the cold: used so the inverter maximum is not exceeded.';
+
+  @override
+  String get specIsc => 'Short-circuit current (Isc)';
+
+  @override
+  String get specIscHelp =>
+      'The panel\'s maximum current. Cables and fuses are chosen with it.';
+
+  @override
+  String get specVmp => 'Voltage at maximum power (Vmp)';
+
+  @override
+  String get specImp => 'Current at maximum power (Imp)';
+
+  @override
+  String get specGammaPmax => 'Pmax temperature coefficient';
+
+  @override
+  String get specCoeffHelp =>
+      'It is in the datasheet as %/°C and is negative (e.g. −0.35).';
+
+  @override
+  String get specBetaVoc => 'Voc temperature coefficient';
+
+  @override
+  String get specBetaVmp => 'Vmp temperature coefficient';
+
+  @override
+  String get specLength => 'Length';
+
+  @override
+  String get specWidth => 'Width';
+
+  @override
+  String get specWeight => 'Weight';
+
+  @override
+  String get specCellType => 'Cell type';
+
+  @override
+  String get specCellCount => 'Number of cells';
+
+  @override
+  String get specBifacial => 'Bifacial';
+
+  @override
+  String get specMaxFuse => 'Maximum series fuse';
+
+  @override
+  String get cellMono => 'Monocrystalline';
+
+  @override
+  String get cellPoly => 'Polycrystalline';
+
+  @override
+  String get cellThinFilm => 'Thin film';
+
+  @override
+  String get cellOther => 'Other';
+
+  @override
+  String get specInverterKind => 'Type';
+
+  @override
+  String get inverterString => 'String';
+
+  @override
+  String get inverterMicro => 'Microinverter';
+
+  @override
+  String get inverterHybrid => 'Hybrid (with batteries)';
+
+  @override
+  String get specPac => 'Output power (Pac)';
+
+  @override
+  String get specVdcMax => 'Maximum input voltage';
+
+  @override
+  String get specMpptMin => 'MPPT minimum';
+
+  @override
+  String get specMpptMax => 'MPPT maximum';
+
+  @override
+  String get specMpptCount => 'Number of MPPTs';
+
+  @override
+  String get specMpptCountHelp =>
+      'Independent inputs. On a microinverter, how many panels it accepts.';
+
+  @override
+  String get specImaxMppt => 'Maximum current per MPPT';
+
+  @override
+  String get specEfficiency => 'Efficiency';
+
+  @override
+  String get specPhases => 'Phases';
+
+  @override
+  String get phaseSingle => 'Single-phase';
+
+  @override
+  String get phaseThree => 'Three-phase';
+
+  @override
+  String get specAcVoltage => 'Output voltage';
+
+  @override
+  String get specIacMax => 'Maximum output current';
+
+  @override
+  String get specPmaxIn => 'Maximum input power';
+
+  @override
+  String get specVinMax => 'Maximum input voltage';
+
+  @override
+  String get specImaxIn => 'Maximum input current';
+
+  @override
+  String get specVoutMax => 'Maximum output voltage';
+
+  @override
+  String get specIoutMax => 'Maximum output current';
+
+  @override
+  String get specChemistry => 'Chemistry';
+
+  @override
+  String get chemLeadAcid => 'Lead-acid';
+
+  @override
+  String get specCapacity => 'Capacity';
+
+  @override
+  String get specUsable => 'Usable capacity';
+
+  @override
+  String get specNominalVoltage => 'Nominal voltage';
+
+  @override
+  String get specMaxCharge => 'Maximum charge';
+
+  @override
+  String get specMaxDischarge => 'Maximum discharge';
+
+  @override
+  String get specCycles => 'Cycle life';
+
+  @override
+  String get specRequired => 'Required';
+
+  @override
+  String get specInvalidNumber => 'Enter a number';
+
+  @override
+  String get specPositive => 'Must be greater than 0';
+
+  @override
+  String get cecTitle => 'Import from the CEC catalog';
+
+  @override
+  String get cecHelp =>
+      'Public catalog of certified equipment. Search by brand or model and import only what you use; check the datasheet afterwards.';
+
+  @override
+  String get cecSearchHint => 'Brand or model';
+
+  @override
+  String get cecLoading => 'Downloading the catalog (≈ 6 MB, first time only)…';
+
+  @override
+  String get cecError =>
+      'The catalog could not be downloaded. Check the connection and try again.';
+
+  @override
+  String get cecTypeMore => 'Type at least 2 letters.';
+
+  @override
+  String get cecNoResults => 'No results.';
+
+  @override
+  String get cecImport => 'Import';
+
+  @override
+  String get cecImported => 'Imported into the catalog';
 }

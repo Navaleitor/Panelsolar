@@ -32,6 +32,16 @@ abstract final class AppRoutes {
   static String photoView(String projectId, String photoId) =>
       '/projects/$projectId/photos/$photoId';
 
+  // Catálogo (F4).
+  static const String catalogCec = '/catalog/cec';
+  static String equipmentNew(String type) => '/catalog/$type/new';
+  static String equipmentEdit(String type, String id) => '/catalog/$type/$id';
+
+  // Diseño FV (F4).
+  static String design(String id) => '/projects/$id/design';
+  static String designSection(String id, String section) =>
+      '/projects/$id/design/$section';
+
   /// Subruta de Ajustes con la pantalla de clima (F2).
   static const String weatherSegment = 'weather';
 

@@ -236,20 +236,62 @@
   "weatherRefresh": "Volver a descargar",
   "weatherLoading": "Descargando clima y simulando…",
   "weatherError": "No se pudo obtener el clima: {message}",
-  "@weatherError": {"placeholders": {"message": {"type": "String"}}},
+  "@weatherError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
   "weatherSource": "Serie: {source}",
-  "@weatherSource": {"placeholders": {"source": {"type": "String"}}},
+  "@weatherSource": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "weatherAnnualTitle": "Producción anual",
   "weatherAnnualValue": "{value} kWh por kWp al año",
-  "@weatherAnnualValue": {"placeholders": {"value": {"type": "String"}}},
+  "@weatherAnnualValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "weatherPerformanceRatio": "Performance ratio: {value}",
-  "@weatherPerformanceRatio": {"placeholders": {"value": {"type": "String"}}},
+  "@weatherPerformanceRatio": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "weatherMonthlyTitle": "Producción mensual (kWh por kWp)",
   "weatherOptimalTitle": "Orientación óptima",
   "weatherOptimalValue": "Inclinación {tilt}° · azimut {azimuth}°",
-  "@weatherOptimalValue": {"placeholders": {"tilt": {"type": "String"}, "azimuth": {"type": "String"}}},
+  "@weatherOptimalValue": {
+    "placeholders": {
+      "tilt": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
   "weatherLatitudeRule": "Con inclinación = latitud: {value} kWh/kWp ({diff} %)",
-  "@weatherLatitudeRule": {"placeholders": {"value": {"type": "String"}, "diff": {"type": "String"}}},
+  "@weatherLatitudeRule": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      },
+      "diff": {
+        "type": "String"
+      }
+    }
+  },
   "weatherTemperaturesTitle": "Temperaturas del sitio",
   "weatherSunPathTitle": "Trayectoria solar",
   "weatherSunPathAxis": "Azimut (°) vs. altura solar (°)",
@@ -263,14 +305,53 @@
   "weatherProjectEntryTitle": "Clima y producción",
   "weatherProjectEntrySubtitle": "Cuánta energía daría 1 kWp aquí y la mejor inclinación",
   "weatherTimeZone": "Zona horaria: {zone} ({offset})",
-  "@weatherTimeZone": {"placeholders": {"zone": {"type": "String"}, "offset": {"type": "String"}}},
+  "@weatherTimeZone": {
+    "placeholders": {
+      "zone": {
+        "type": "String"
+      },
+      "offset": {
+        "type": "String"
+      }
+    }
+  },
   "weatherDesignMin": "Mínima para diseño: {value} °C ({source})",
-  "@weatherDesignMin": {"placeholders": {"value": {"type": "String"}, "source": {"type": "String"}}},
+  "@weatherDesignMin": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "weatherDesignMax": "Máxima para diseño: {value} °C ({source})",
-  "@weatherDesignMax": {"placeholders": {"value": {"type": "String"}, "source": {"type": "String"}}},
+  "@weatherDesignMax": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "weatherDesignHint": "Para diseñar los strings se usa la más extrema de las dos fuentes.",
   "weatherTemperaturesBySource": "{source}: mínima {min} °C · máxima {max} °C",
-  "@weatherTemperaturesBySource": {"placeholders": {"source": {"type": "String"}, "min": {"type": "String"}, "max": {"type": "String"}}},
+  "@weatherTemperaturesBySource": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      },
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
   "obstacleWaterTank": "Tinaco",
   "obstacleAntenna": "Antena",
   "obstacleParapet": "Pretil",
@@ -283,13 +364,28 @@
   "roofTitle": "Techo",
   "roofEntryEmpty": "Imagen o croquis, planos, obstáculos y sombras",
   "roofEntrySummary": "{count, plural, =1{1 plano} other{{count} planos}} · {area}",
-  "@roofEntrySummary": {"placeholders": {"count": {"type": "int"}, "area": {"type": "String"}}},
+  "@roofEntrySummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "area": {
+        "type": "String"
+      }
+    }
+  },
   "roofBaseTitle": "Base del techo",
   "roofBaseNone": "Importa una imagen vista desde arriba o dibuja un croquis con medidas de cinta.",
   "roofBaseSketch": "Croquis con medidas de cinta (sin imagen)",
   "roofBaseImageUncalibrated": "Imagen sin calibrar: traza una línea de medida conocida",
   "roofBaseImage": "Imagen calibrada · 1 píxel = {scale}",
-  "@roofBaseImage": {"placeholders": {"scale": {"type": "String"}}},
+  "@roofBaseImage": {
+    "placeholders": {
+      "scale": {
+        "type": "String"
+      }
+    }
+  },
   "roofImportImage": "Importar imagen",
   "roofChangeImage": "Cambiar imagen",
   "roofSketchMode": "Croquis con cinta",
@@ -302,16 +398,40 @@
   "roofPlanesTitle": "Planos del techo",
   "roofPlanesEmpty": "Aún no hay planos trazados.",
   "roofPlaneListItem": "{area} · inclinación {tilt} · azimut {azimuth}",
-  "@roofPlaneListItem": {"placeholders": {"area": {"type": "String"}, "tilt": {"type": "String"}, "azimuth": {"type": "String"}}},
+  "@roofPlaneListItem": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      },
+      "tilt": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
   "roofObstaclesTitle": "Obstáculos",
   "roofObstaclesCount": "{count, plural, =0{Ninguno} =1{1 obstáculo} other{{count} obstáculos}}",
-  "@roofObstaclesCount": {"placeholders": {"count": {"type": "int"}}},
+  "@roofObstaclesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "roofOpenEditor": "Trazar y editar",
   "roofShadeTitle": "Sombras",
   "roofShadeSubtitle": "Sombra por fecha y hora y mapa de calor del año",
   "roofHorizonTitle": "Horizonte",
   "roofHorizonSubtitle": "Montañas (PVGIS) y {count, plural, =0{ningún obstáculo lejano} =1{1 obstáculo lejano} other{{count} obstáculos lejanos}}",
-  "@roofHorizonSubtitle": {"placeholders": {"count": {"type": "int"}}},
+  "@roofHorizonSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "roofEditorTitle": "Editor del techo",
   "roofToolCalibrate": "Calibrar",
   "roofToolVerify": "Verificar",
@@ -329,14 +449,44 @@
   "roofLineTooShort": "La línea es muy corta. Haz zoom y traza una más larga.",
   "roofScaleNone": "Sin escala todavía.",
   "roofScaleValue": "Escala: 1 píxel = {perPixel} ({pixelsPerMeter} píxeles por metro)",
-  "@roofScaleValue": {"placeholders": {"perPixel": {"type": "String"}, "pixelsPerMeter": {"type": "String"}}},
+  "@roofScaleValue": {
+    "placeholders": {
+      "perPixel": {
+        "type": "String"
+      },
+      "pixelsPerMeter": {
+        "type": "String"
+      }
+    }
+  },
   "roofVerifyHelp": "Opcional: traza otra línea de medida conocida para comprobar la escala.",
   "roofVerifyResult": "Mide {measured} contra {real} reales: {difference}",
-  "@roofVerifyResult": {"placeholders": {"measured": {"type": "String"}, "real": {"type": "String"}, "difference": {"type": "String"}}},
+  "@roofVerifyResult": {
+    "placeholders": {
+      "measured": {
+        "type": "String"
+      },
+      "real": {
+        "type": "String"
+      },
+      "difference": {
+        "type": "String"
+      }
+    }
+  },
   "roofVerifyWarning": "Diferencia mayor a 5 %: la imagen puede estar inclinada o alguna medida está mal. Recalibra.",
   "roofNorthHelp": "Gira la flecha hasta que apunte al norte, o toca dos puntos de una orilla del techo y confírmala con la brújula en sitio.",
   "roofNorthValue": "Norte: {angle} · {source}",
-  "@roofNorthValue": {"placeholders": {"angle": {"type": "String"}, "source": {"type": "String"}}},
+  "@roofNorthValue": {
+    "placeholders": {
+      "angle": {
+        "type": "String"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "roofNorthSourceDefault": "arriba (sin confirmar)",
   "roofNorthSourceManual": "girado a mano",
   "roofNorthSourceCompass": "confirmado con brújula",
@@ -346,31 +496,91 @@
   "roofNorthLetter": "N",
   "roofDrawHelp": "Toca cada esquina del plano. El imán ayuda a hacer esquinas de 90° y a unir vértices. Toca la primera esquina para cerrar.",
   "roofDrawLive": "Lados: {sides} · Área: {area}",
-  "@roofDrawLive": {"placeholders": {"sides": {"type": "String"}, "area": {"type": "String"}}},
+  "@roofDrawLive": {
+    "placeholders": {
+      "sides": {
+        "type": "String"
+      },
+      "area": {
+        "type": "String"
+      }
+    }
+  },
   "roofSnap": "Imán",
   "roofUndo": "Deshacer",
   "roofClosePolygon": "Cerrar plano",
   "roofPlaneDefaultName": "Plano {number}",
-  "@roofPlaneDefaultName": {"placeholders": {"number": {"type": "int"}}},
+  "@roofPlaneDefaultName": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "roofObstacleHelp": "Elige el tipo y toca dónde está. Pretil: toca sus dos extremos.",
   "roofWalkwayHelp": "Toca los dos extremos del pasillo de mantenimiento dentro de un plano.",
   "roofWalkwayOutside": "El pasillo debe quedar dentro de un plano.",
   "roofWalkwayWidthTitle": "Ancho del pasillo",
   "roofWalkwayItem": "Pasillo de {length} × {width}",
-  "@roofWalkwayItem": {"placeholders": {"length": {"type": "String"}, "width": {"type": "String"}}},
+  "@roofWalkwayItem": {
+    "placeholders": {
+      "length": {
+        "type": "String"
+      },
+      "width": {
+        "type": "String"
+      }
+    }
+  },
   "roofSelectHelp": "Toca un plano para ver sus medidas o un obstáculo para editarlo.",
   "roofMoveVertexHelp": "Para mover una esquina: tócala y luego toca su nuevo lugar.",
   "roofPlaneSummary": "Vista desde arriba {horizontal} · real inclinada {sloped} · útil {usable}\nInclinación {tilt} · azimut {azimuth}",
-  "@roofPlaneSummary": {"placeholders": {"horizontal": {"type": "String"}, "sloped": {"type": "String"}, "usable": {"type": "String"}, "tilt": {"type": "String"}, "azimuth": {"type": "String"}}},
+  "@roofPlaneSummary": {
+    "placeholders": {
+      "horizontal": {
+        "type": "String"
+      },
+      "sloped": {
+        "type": "String"
+      },
+      "usable": {
+        "type": "String"
+      },
+      "tilt": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
   "roofInvalidNumber": "Escribe un número válido.",
   "roofPlaneName": "Nombre",
   "roofPlaneTilt": "Inclinación (grados)",
   "roofPlaneInclinometer": "Inclinómetro",
   "roofPlaneEave": "Orilla baja (alero)",
   "roofPlaneEdgeItem": "Lado {number}: {length} → mira a {azimuth}",
-  "@roofPlaneEdgeItem": {"placeholders": {"number": {"type": "int"}, "length": {"type": "String"}, "azimuth": {"type": "String"}}},
+  "@roofPlaneEdgeItem": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      },
+      "length": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
   "roofPlaneAzimuth": "Azimut (hacia dónde baja): {azimuth} (180° = sur)",
-  "@roofPlaneAzimuth": {"placeholders": {"azimuth": {"type": "String"}}},
+  "@roofPlaneAzimuth": {
+    "placeholders": {
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
   "roofPlaneSetback": "Retiro de borde (m)",
   "roofSplitHelp": "Dividir en dos planos por una diagonal entre dos esquinas:",
   "roofSplitVertex": "Esquina",
@@ -394,7 +604,13 @@
   "roofHeightAngle": "Ángulo al tope (grados)",
   "roofHeightEye": "Altura de tus ojos (m)",
   "roofHeightResult": "Altura: {height}",
-  "@roofHeightResult": {"placeholders": {"height": {"type": "String"}}},
+  "@roofHeightResult": {
+    "placeholders": {
+      "height": {
+        "type": "String"
+      }
+    }
+  },
   "roofSensorTiltTitle": "Inclinómetro",
   "roofSensorTiltHelp": "Apoya el teléfono sobre el techo, con la pantalla hacia arriba y el lado largo en la dirección de la pendiente.",
   "roofSensorCompassTitle": "Brújula",
@@ -402,47 +618,131 @@
   "roofSensorAimTitle": "Apuntar con la cámara",
   "roofSensorAimHelp": "Apunta la cámara trasera al punto más alto del objeto.",
   "roofSensorTiltValue": "Inclinación: {value}",
-  "@roofSensorTiltValue": {"placeholders": {"value": {"type": "String"}}},
+  "@roofSensorTiltValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "roofSensorAzimuthValue": "Rumbo: {value}",
-  "@roofSensorAzimuthValue": {"placeholders": {"value": {"type": "String"}}},
+  "@roofSensorAzimuthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "roofSensorElevationValue": "Ángulo: {value}",
-  "@roofSensorElevationValue": {"placeholders": {"value": {"type": "String"}}},
+  "@roofSensorElevationValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "roofSensorDeclination": "Corregido al norte verdadero con declinación magnética {value} (modelo WMM).",
-  "@roofSensorDeclination": {"placeholders": {"value": {"type": "String"}}},
+  "@roofSensorDeclination": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "roofSensorWaiting": "Esperando al sensor…",
   "roofSensorUnavailable": "Este teléfono no tiene el sensor o está apagado. Escribe el valor a mano.",
   "roofSensorUse": "Usar",
   "roofTapeTitle": "Croquis con cinta",
   "roofTapeHelp": "Escribe cada lado en orden. Giro: 90 = esquina normal, −90 = esquina hacia adentro.",
   "roofTapeSide": "Lado {number} (m)",
-  "@roofTapeSide": {"placeholders": {"number": {"type": "int"}}},
+  "@roofTapeSide": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "roofTapeTurn": "Giro (°)",
   "roofTapeAddSide": "Agregar lado",
   "roofTapeResult": "Área: {area} · cierre: {error}",
-  "@roofTapeResult": {"placeholders": {"area": {"type": "String"}, "error": {"type": "String"}}},
+  "@roofTapeResult": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "roofTapeNotClosed": "Las medidas no cierran: revisa algún lado o giro.",
   "roofShadeNeedsLocation": "Primero guarda la ubicación del proyecto (se necesita para saber dónde está el sol).",
   "roofSunPosition": "Sol: {elevation} de altura, azimut {azimuth}",
-  "@roofSunPosition": {"placeholders": {"elevation": {"type": "String"}, "azimuth": {"type": "String"}}},
+  "@roofSunPosition": {
+    "placeholders": {
+      "elevation": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
   "roofSunHidden": "El sol está abajo o tapado por el horizonte: no hay sombra directa.",
   "roofShadeTime": "{time} h",
-  "@roofShadeTime": {"placeholders": {"time": {"type": "String"}}},
+  "@roofShadeTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "roofShadeCompute": "Mapa de calor anual",
   "roofShadeHeatmap": "Ver mapa",
   "roofShadePlaneLoss": "{plane}: pierde {year} del sol directo al año (diciembre {december}, junio {june})",
-  "@roofShadePlaneLoss": {"placeholders": {"plane": {"type": "String"}, "year": {"type": "String"}, "december": {"type": "String"}, "june": {"type": "String"}}},
+  "@roofShadePlaneLoss": {
+    "placeholders": {
+      "plane": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      },
+      "december": {
+        "type": "String"
+      },
+      "june": {
+        "type": "String"
+      }
+    }
+  },
   "roofShadeLegend": "Verde = sin sombra · amarillo · rojo = 30 % o más de pérdida. Incluye el horizonte.",
   "roofHorizonHelp": "El horizonte tapa el sol bajo. Se junta el del terreno (montañas, de PVGIS) con los obstáculos lejanos que midas con el teléfono.",
   "roofTerrainTitle": "Terreno (PVGIS)",
   "roofTerrainNone": "Sin descargar",
   "roofTerrainValue": "Descargado · altura máxima {max}",
-  "@roofTerrainValue": {"placeholders": {"max": {"type": "String"}}},
+  "@roofTerrainValue": {
+    "placeholders": {
+      "max": {
+        "type": "String"
+      }
+    }
+  },
   "roofTerrainDownload": "Descargar",
   "roofHorizonDownloadError": "No se pudo descargar el horizonte. Revisa la conexión.",
   "roofFarTitle": "Obstáculos lejanos",
   "roofFarEmpty": "Ninguno. Agrega árboles o edificios cercanos que tapen el sol.",
   "roofFarItem": "{count, plural, =1{1 punto} other{{count} puntos}} · hasta {max}",
-  "@roofFarItem": {"placeholders": {"count": {"type": "int"}, "max": {"type": "String"}}},
+  "@roofFarItem": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
   "roofFarAdd": "Obstáculo lejano",
   "roofFarName": "Nombre (p. ej. árbol del vecino)",
   "roofFarDefaultName": "Obstáculo lejano",
@@ -453,5 +753,112 @@
   "roofCardinalN": "N",
   "roofCardinalE": "E",
   "roofCardinalS": "S",
-  "roofCardinalW": "O"
+  "roofCardinalW": "O",
+  "catalogPanels": "Paneles",
+  "catalogInverters": "Inversores",
+  "catalogOptimizers": "Optimizadores",
+  "catalogBatteries": "Baterías",
+  "catalogNewPanel": "Panel nuevo",
+  "catalogNewInverter": "Inversor nuevo",
+  "catalogNewOptimizer": "Optimizador nuevo",
+  "catalogNewBattery": "Batería nueva",
+  "catalogEditTitle": "Editar equipo",
+  "catalogEmpty": "Aún no hay equipos. Captúralos con su hoja de datos o impórtalos del catálogo CEC.",
+  "catalogInvalidData": "Revisa los datos: Vmp debe ser menor que Voc y el MPPT mínimo menor que el máximo.",
+  "catalogDeleteTitle": "¿Borrar el equipo?",
+  "catalogDeleteMessage": "Los diseños que ya lo usan lo conservan.",
+  "catalogPanelSummary": "{watts} W · Voc {voc} V · Isc {isc} A",
+  "@catalogPanelSummary": {
+    "placeholders": {
+      "watts": {
+        "type": "int"
+      },
+      "voc": {
+        "type": "String"
+      },
+      "isc": {
+        "type": "String"
+      }
+    }
+  },
+  "catalogInverterSummary": "{kw} kW · {mppt} MPPT · {kind}",
+  "@catalogInverterSummary": {
+    "placeholders": {
+      "kw": {
+        "type": "String"
+      },
+      "mppt": {
+        "type": "int"
+      },
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "specManufacturer": "Fabricante",
+  "specModel": "Modelo",
+  "specPmax": "Potencia máxima (Pmax)",
+  "specVoc": "Voltaje de circuito abierto (Voc)",
+  "specVocHelp": "El voltaje sin carga. Con frío sube: se usa para no pasar el máximo del inversor.",
+  "specIsc": "Corriente de cortocircuito (Isc)",
+  "specIscHelp": "La corriente máxima del panel. Con ella se eligen cables y fusibles.",
+  "specVmp": "Voltaje en máxima potencia (Vmp)",
+  "specImp": "Corriente en máxima potencia (Imp)",
+  "specGammaPmax": "Coeficiente de temperatura de Pmax",
+  "specCoeffHelp": "Viene en la hoja de datos como %/°C y es negativo (p. ej. −0.35).",
+  "specBetaVoc": "Coeficiente de temperatura de Voc",
+  "specBetaVmp": "Coeficiente de temperatura de Vmp",
+  "specLength": "Largo",
+  "specWidth": "Ancho",
+  "specWeight": "Peso",
+  "specCellType": "Tipo de celda",
+  "specCellCount": "Número de celdas",
+  "specBifacial": "Bifacial",
+  "specMaxFuse": "Fusible máximo en serie",
+  "cellMono": "Monocristalino",
+  "cellPoly": "Policristalino",
+  "cellThinFilm": "Película delgada",
+  "cellOther": "Otro",
+  "specInverterKind": "Tipo",
+  "inverterString": "De string",
+  "inverterMicro": "Microinversor",
+  "inverterHybrid": "Híbrido (con baterías)",
+  "specPac": "Potencia de salida (Pac)",
+  "specVdcMax": "Voltaje de entrada máximo",
+  "specMpptMin": "MPPT mínimo",
+  "specMpptMax": "MPPT máximo",
+  "specMpptCount": "Número de MPPT",
+  "specMpptCountHelp": "Entradas independientes. En un microinversor, cuántos paneles admite.",
+  "specImaxMppt": "Corriente máxima por MPPT",
+  "specEfficiency": "Eficiencia",
+  "specPhases": "Fases",
+  "phaseSingle": "Monofásico",
+  "phaseThree": "Trifásico",
+  "specAcVoltage": "Voltaje de salida",
+  "specIacMax": "Corriente máxima de salida",
+  "specPmaxIn": "Potencia de entrada máxima",
+  "specVinMax": "Voltaje de entrada máximo",
+  "specImaxIn": "Corriente de entrada máxima",
+  "specVoutMax": "Voltaje de salida máximo",
+  "specIoutMax": "Corriente de salida máxima",
+  "specChemistry": "Química",
+  "chemLeadAcid": "Plomo ácido",
+  "specCapacity": "Capacidad",
+  "specUsable": "Capacidad útil",
+  "specNominalVoltage": "Voltaje nominal",
+  "specMaxCharge": "Carga máxima",
+  "specMaxDischarge": "Descarga máxima",
+  "specCycles": "Ciclos de vida",
+  "specRequired": "Obligatorio",
+  "specInvalidNumber": "Escribe un número",
+  "specPositive": "Debe ser mayor que 0",
+  "cecTitle": "Importar del catálogo CEC",
+  "cecHelp": "Catálogo público de equipos certificados. Busca por marca o modelo e importa solo los que uses; revisa después la hoja de datos.",
+  "cecSearchHint": "Marca o modelo",
+  "cecLoading": "Descargando el catálogo (≈ 6 MB, solo la primera vez)…",
+  "cecError": "No se pudo descargar el catálogo. Revisa la conexión e inténtalo de nuevo.",
+  "cecTypeMore": "Escribe al menos 2 letras.",
+  "cecNoResults": "Sin resultados.",
+  "cecImport": "Importar",
+  "cecImported": "Importado al catálogo"
 }

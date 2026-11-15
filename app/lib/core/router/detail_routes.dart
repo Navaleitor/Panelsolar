@@ -1,4 +1,7 @@
 import 'package:go_router/go_router.dart';
+import 'package:panelsolar/features/catalog/domain/equipment_type.dart';
+import 'package:panelsolar/features/catalog/presentation/cec_import_page.dart';
+import 'package:panelsolar/features/catalog/presentation/equipment_form_page.dart';
 import 'package:panelsolar/features/clients/presentation/client_detail_page.dart';
 import 'package:panelsolar/features/clients/presentation/client_form_page.dart';
 import 'package:panelsolar/features/photos/presentation/photo_view_page.dart';
@@ -18,6 +21,24 @@ import 'package:panelsolar/features/weather/presentation/weather_page.dart';
 /// Rutas planas: las específicas (`/new`) van antes que las de `:id`.
 /// Los textos de ruta coinciden con los de `AppRoutes`.
 final List<RouteBase> detailRoutes = [
+  // Catálogo (F4).
+  GoRoute(
+    path: '/catalog/cec',
+    builder: (context, state) => const CecImportPage(),
+  ),
+  GoRoute(
+    path: '/catalog/:type/new',
+    builder: (context, state) => EquipmentFormPage(
+      type: EquipmentType.values.byName(state.pathParameters['type']!),
+    ),
+  ),
+  GoRoute(
+    path: '/catalog/:type/:id',
+    builder: (context, state) => EquipmentFormPage(
+      type: EquipmentType.values.byName(state.pathParameters['type']!),
+      id: state.pathParameters['id'],
+    ),
+  ),
   // Clientes.
   GoRoute(
     path: '/clients/new',

@@ -2154,6 +2154,492 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'O'**
   String get roofCardinalW;
+
+  /// No description provided for @catalogPanels.
+  ///
+  /// In es, this message translates to:
+  /// **'Paneles'**
+  String get catalogPanels;
+
+  /// No description provided for @catalogInverters.
+  ///
+  /// In es, this message translates to:
+  /// **'Inversores'**
+  String get catalogInverters;
+
+  /// No description provided for @catalogOptimizers.
+  ///
+  /// In es, this message translates to:
+  /// **'Optimizadores'**
+  String get catalogOptimizers;
+
+  /// No description provided for @catalogBatteries.
+  ///
+  /// In es, this message translates to:
+  /// **'Baterías'**
+  String get catalogBatteries;
+
+  /// No description provided for @catalogNewPanel.
+  ///
+  /// In es, this message translates to:
+  /// **'Panel nuevo'**
+  String get catalogNewPanel;
+
+  /// No description provided for @catalogNewInverter.
+  ///
+  /// In es, this message translates to:
+  /// **'Inversor nuevo'**
+  String get catalogNewInverter;
+
+  /// No description provided for @catalogNewOptimizer.
+  ///
+  /// In es, this message translates to:
+  /// **'Optimizador nuevo'**
+  String get catalogNewOptimizer;
+
+  /// No description provided for @catalogNewBattery.
+  ///
+  /// In es, this message translates to:
+  /// **'Batería nueva'**
+  String get catalogNewBattery;
+
+  /// No description provided for @catalogEditTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar equipo'**
+  String get catalogEditTitle;
+
+  /// No description provided for @catalogEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay equipos. Captúralos con su hoja de datos o impórtalos del catálogo CEC.'**
+  String get catalogEmpty;
+
+  /// No description provided for @catalogInvalidData.
+  ///
+  /// In es, this message translates to:
+  /// **'Revisa los datos: Vmp debe ser menor que Voc y el MPPT mínimo menor que el máximo.'**
+  String get catalogInvalidData;
+
+  /// No description provided for @catalogDeleteTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Borrar el equipo?'**
+  String get catalogDeleteTitle;
+
+  /// No description provided for @catalogDeleteMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Los diseños que ya lo usan lo conservan.'**
+  String get catalogDeleteMessage;
+
+  /// No description provided for @catalogPanelSummary.
+  ///
+  /// In es, this message translates to:
+  /// **'{watts} W · Voc {voc} V · Isc {isc} A'**
+  String catalogPanelSummary(int watts, String voc, String isc);
+
+  /// No description provided for @catalogInverterSummary.
+  ///
+  /// In es, this message translates to:
+  /// **'{kw} kW · {mppt} MPPT · {kind}'**
+  String catalogInverterSummary(String kw, int mppt, String kind);
+
+  /// No description provided for @specManufacturer.
+  ///
+  /// In es, this message translates to:
+  /// **'Fabricante'**
+  String get specManufacturer;
+
+  /// No description provided for @specModel.
+  ///
+  /// In es, this message translates to:
+  /// **'Modelo'**
+  String get specModel;
+
+  /// No description provided for @specPmax.
+  ///
+  /// In es, this message translates to:
+  /// **'Potencia máxima (Pmax)'**
+  String get specPmax;
+
+  /// No description provided for @specVoc.
+  ///
+  /// In es, this message translates to:
+  /// **'Voltaje de circuito abierto (Voc)'**
+  String get specVoc;
+
+  /// No description provided for @specVocHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'El voltaje sin carga. Con frío sube: se usa para no pasar el máximo del inversor.'**
+  String get specVocHelp;
+
+  /// No description provided for @specIsc.
+  ///
+  /// In es, this message translates to:
+  /// **'Corriente de cortocircuito (Isc)'**
+  String get specIsc;
+
+  /// No description provided for @specIscHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'La corriente máxima del panel. Con ella se eligen cables y fusibles.'**
+  String get specIscHelp;
+
+  /// No description provided for @specVmp.
+  ///
+  /// In es, this message translates to:
+  /// **'Voltaje en máxima potencia (Vmp)'**
+  String get specVmp;
+
+  /// No description provided for @specImp.
+  ///
+  /// In es, this message translates to:
+  /// **'Corriente en máxima potencia (Imp)'**
+  String get specImp;
+
+  /// No description provided for @specGammaPmax.
+  ///
+  /// In es, this message translates to:
+  /// **'Coeficiente de temperatura de Pmax'**
+  String get specGammaPmax;
+
+  /// No description provided for @specCoeffHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Viene en la hoja de datos como %/°C y es negativo (p. ej. −0.35).'**
+  String get specCoeffHelp;
+
+  /// No description provided for @specBetaVoc.
+  ///
+  /// In es, this message translates to:
+  /// **'Coeficiente de temperatura de Voc'**
+  String get specBetaVoc;
+
+  /// No description provided for @specBetaVmp.
+  ///
+  /// In es, this message translates to:
+  /// **'Coeficiente de temperatura de Vmp'**
+  String get specBetaVmp;
+
+  /// No description provided for @specLength.
+  ///
+  /// In es, this message translates to:
+  /// **'Largo'**
+  String get specLength;
+
+  /// No description provided for @specWidth.
+  ///
+  /// In es, this message translates to:
+  /// **'Ancho'**
+  String get specWidth;
+
+  /// No description provided for @specWeight.
+  ///
+  /// In es, this message translates to:
+  /// **'Peso'**
+  String get specWeight;
+
+  /// No description provided for @specCellType.
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo de celda'**
+  String get specCellType;
+
+  /// No description provided for @specCellCount.
+  ///
+  /// In es, this message translates to:
+  /// **'Número de celdas'**
+  String get specCellCount;
+
+  /// No description provided for @specBifacial.
+  ///
+  /// In es, this message translates to:
+  /// **'Bifacial'**
+  String get specBifacial;
+
+  /// No description provided for @specMaxFuse.
+  ///
+  /// In es, this message translates to:
+  /// **'Fusible máximo en serie'**
+  String get specMaxFuse;
+
+  /// No description provided for @cellMono.
+  ///
+  /// In es, this message translates to:
+  /// **'Monocristalino'**
+  String get cellMono;
+
+  /// No description provided for @cellPoly.
+  ///
+  /// In es, this message translates to:
+  /// **'Policristalino'**
+  String get cellPoly;
+
+  /// No description provided for @cellThinFilm.
+  ///
+  /// In es, this message translates to:
+  /// **'Película delgada'**
+  String get cellThinFilm;
+
+  /// No description provided for @cellOther.
+  ///
+  /// In es, this message translates to:
+  /// **'Otro'**
+  String get cellOther;
+
+  /// No description provided for @specInverterKind.
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo'**
+  String get specInverterKind;
+
+  /// No description provided for @inverterString.
+  ///
+  /// In es, this message translates to:
+  /// **'De string'**
+  String get inverterString;
+
+  /// No description provided for @inverterMicro.
+  ///
+  /// In es, this message translates to:
+  /// **'Microinversor'**
+  String get inverterMicro;
+
+  /// No description provided for @inverterHybrid.
+  ///
+  /// In es, this message translates to:
+  /// **'Híbrido (con baterías)'**
+  String get inverterHybrid;
+
+  /// No description provided for @specPac.
+  ///
+  /// In es, this message translates to:
+  /// **'Potencia de salida (Pac)'**
+  String get specPac;
+
+  /// No description provided for @specVdcMax.
+  ///
+  /// In es, this message translates to:
+  /// **'Voltaje de entrada máximo'**
+  String get specVdcMax;
+
+  /// No description provided for @specMpptMin.
+  ///
+  /// In es, this message translates to:
+  /// **'MPPT mínimo'**
+  String get specMpptMin;
+
+  /// No description provided for @specMpptMax.
+  ///
+  /// In es, this message translates to:
+  /// **'MPPT máximo'**
+  String get specMpptMax;
+
+  /// No description provided for @specMpptCount.
+  ///
+  /// In es, this message translates to:
+  /// **'Número de MPPT'**
+  String get specMpptCount;
+
+  /// No description provided for @specMpptCountHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Entradas independientes. En un microinversor, cuántos paneles admite.'**
+  String get specMpptCountHelp;
+
+  /// No description provided for @specImaxMppt.
+  ///
+  /// In es, this message translates to:
+  /// **'Corriente máxima por MPPT'**
+  String get specImaxMppt;
+
+  /// No description provided for @specEfficiency.
+  ///
+  /// In es, this message translates to:
+  /// **'Eficiencia'**
+  String get specEfficiency;
+
+  /// No description provided for @specPhases.
+  ///
+  /// In es, this message translates to:
+  /// **'Fases'**
+  String get specPhases;
+
+  /// No description provided for @phaseSingle.
+  ///
+  /// In es, this message translates to:
+  /// **'Monofásico'**
+  String get phaseSingle;
+
+  /// No description provided for @phaseThree.
+  ///
+  /// In es, this message translates to:
+  /// **'Trifásico'**
+  String get phaseThree;
+
+  /// No description provided for @specAcVoltage.
+  ///
+  /// In es, this message translates to:
+  /// **'Voltaje de salida'**
+  String get specAcVoltage;
+
+  /// No description provided for @specIacMax.
+  ///
+  /// In es, this message translates to:
+  /// **'Corriente máxima de salida'**
+  String get specIacMax;
+
+  /// No description provided for @specPmaxIn.
+  ///
+  /// In es, this message translates to:
+  /// **'Potencia de entrada máxima'**
+  String get specPmaxIn;
+
+  /// No description provided for @specVinMax.
+  ///
+  /// In es, this message translates to:
+  /// **'Voltaje de entrada máximo'**
+  String get specVinMax;
+
+  /// No description provided for @specImaxIn.
+  ///
+  /// In es, this message translates to:
+  /// **'Corriente de entrada máxima'**
+  String get specImaxIn;
+
+  /// No description provided for @specVoutMax.
+  ///
+  /// In es, this message translates to:
+  /// **'Voltaje de salida máximo'**
+  String get specVoutMax;
+
+  /// No description provided for @specIoutMax.
+  ///
+  /// In es, this message translates to:
+  /// **'Corriente de salida máxima'**
+  String get specIoutMax;
+
+  /// No description provided for @specChemistry.
+  ///
+  /// In es, this message translates to:
+  /// **'Química'**
+  String get specChemistry;
+
+  /// No description provided for @chemLeadAcid.
+  ///
+  /// In es, this message translates to:
+  /// **'Plomo ácido'**
+  String get chemLeadAcid;
+
+  /// No description provided for @specCapacity.
+  ///
+  /// In es, this message translates to:
+  /// **'Capacidad'**
+  String get specCapacity;
+
+  /// No description provided for @specUsable.
+  ///
+  /// In es, this message translates to:
+  /// **'Capacidad útil'**
+  String get specUsable;
+
+  /// No description provided for @specNominalVoltage.
+  ///
+  /// In es, this message translates to:
+  /// **'Voltaje nominal'**
+  String get specNominalVoltage;
+
+  /// No description provided for @specMaxCharge.
+  ///
+  /// In es, this message translates to:
+  /// **'Carga máxima'**
+  String get specMaxCharge;
+
+  /// No description provided for @specMaxDischarge.
+  ///
+  /// In es, this message translates to:
+  /// **'Descarga máxima'**
+  String get specMaxDischarge;
+
+  /// No description provided for @specCycles.
+  ///
+  /// In es, this message translates to:
+  /// **'Ciclos de vida'**
+  String get specCycles;
+
+  /// No description provided for @specRequired.
+  ///
+  /// In es, this message translates to:
+  /// **'Obligatorio'**
+  String get specRequired;
+
+  /// No description provided for @specInvalidNumber.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe un número'**
+  String get specInvalidNumber;
+
+  /// No description provided for @specPositive.
+  ///
+  /// In es, this message translates to:
+  /// **'Debe ser mayor que 0'**
+  String get specPositive;
+
+  /// No description provided for @cecTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Importar del catálogo CEC'**
+  String get cecTitle;
+
+  /// No description provided for @cecHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Catálogo público de equipos certificados. Busca por marca o modelo e importa solo los que uses; revisa después la hoja de datos.'**
+  String get cecHelp;
+
+  /// No description provided for @cecSearchHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Marca o modelo'**
+  String get cecSearchHint;
+
+  /// No description provided for @cecLoading.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargando el catálogo (≈ 6 MB, solo la primera vez)…'**
+  String get cecLoading;
+
+  /// No description provided for @cecError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo descargar el catálogo. Revisa la conexión e inténtalo de nuevo.'**
+  String get cecError;
+
+  /// No description provided for @cecTypeMore.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe al menos 2 letras.'**
+  String get cecTypeMore;
+
+  /// No description provided for @cecNoResults.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin resultados.'**
+  String get cecNoResults;
+
+  /// No description provided for @cecImport.
+  ///
+  /// In es, this message translates to:
+  /// **'Importar'**
+  String get cecImport;
+
+  /// No description provided for @cecImported.
+  ///
+  /// In es, this message translates to:
+  /// **'Importado al catálogo'**
+  String get cecImported;
 }
 
 class _AppLocalizationsDelegate

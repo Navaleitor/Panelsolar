@@ -1242,4 +1242,260 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get roofCardinalW => 'O';
+
+  @override
+  String get catalogPanels => 'Paneles';
+
+  @override
+  String get catalogInverters => 'Inversores';
+
+  @override
+  String get catalogOptimizers => 'Optimizadores';
+
+  @override
+  String get catalogBatteries => 'Baterías';
+
+  @override
+  String get catalogNewPanel => 'Panel nuevo';
+
+  @override
+  String get catalogNewInverter => 'Inversor nuevo';
+
+  @override
+  String get catalogNewOptimizer => 'Optimizador nuevo';
+
+  @override
+  String get catalogNewBattery => 'Batería nueva';
+
+  @override
+  String get catalogEditTitle => 'Editar equipo';
+
+  @override
+  String get catalogEmpty =>
+      'Aún no hay equipos. Captúralos con su hoja de datos o impórtalos del catálogo CEC.';
+
+  @override
+  String get catalogInvalidData =>
+      'Revisa los datos: Vmp debe ser menor que Voc y el MPPT mínimo menor que el máximo.';
+
+  @override
+  String get catalogDeleteTitle => '¿Borrar el equipo?';
+
+  @override
+  String get catalogDeleteMessage => 'Los diseños que ya lo usan lo conservan.';
+
+  @override
+  String catalogPanelSummary(int watts, String voc, String isc) {
+    return '$watts W · Voc $voc V · Isc $isc A';
+  }
+
+  @override
+  String catalogInverterSummary(String kw, int mppt, String kind) {
+    return '$kw kW · $mppt MPPT · $kind';
+  }
+
+  @override
+  String get specManufacturer => 'Fabricante';
+
+  @override
+  String get specModel => 'Modelo';
+
+  @override
+  String get specPmax => 'Potencia máxima (Pmax)';
+
+  @override
+  String get specVoc => 'Voltaje de circuito abierto (Voc)';
+
+  @override
+  String get specVocHelp =>
+      'El voltaje sin carga. Con frío sube: se usa para no pasar el máximo del inversor.';
+
+  @override
+  String get specIsc => 'Corriente de cortocircuito (Isc)';
+
+  @override
+  String get specIscHelp =>
+      'La corriente máxima del panel. Con ella se eligen cables y fusibles.';
+
+  @override
+  String get specVmp => 'Voltaje en máxima potencia (Vmp)';
+
+  @override
+  String get specImp => 'Corriente en máxima potencia (Imp)';
+
+  @override
+  String get specGammaPmax => 'Coeficiente de temperatura de Pmax';
+
+  @override
+  String get specCoeffHelp =>
+      'Viene en la hoja de datos como %/°C y es negativo (p. ej. −0.35).';
+
+  @override
+  String get specBetaVoc => 'Coeficiente de temperatura de Voc';
+
+  @override
+  String get specBetaVmp => 'Coeficiente de temperatura de Vmp';
+
+  @override
+  String get specLength => 'Largo';
+
+  @override
+  String get specWidth => 'Ancho';
+
+  @override
+  String get specWeight => 'Peso';
+
+  @override
+  String get specCellType => 'Tipo de celda';
+
+  @override
+  String get specCellCount => 'Número de celdas';
+
+  @override
+  String get specBifacial => 'Bifacial';
+
+  @override
+  String get specMaxFuse => 'Fusible máximo en serie';
+
+  @override
+  String get cellMono => 'Monocristalino';
+
+  @override
+  String get cellPoly => 'Policristalino';
+
+  @override
+  String get cellThinFilm => 'Película delgada';
+
+  @override
+  String get cellOther => 'Otro';
+
+  @override
+  String get specInverterKind => 'Tipo';
+
+  @override
+  String get inverterString => 'De string';
+
+  @override
+  String get inverterMicro => 'Microinversor';
+
+  @override
+  String get inverterHybrid => 'Híbrido (con baterías)';
+
+  @override
+  String get specPac => 'Potencia de salida (Pac)';
+
+  @override
+  String get specVdcMax => 'Voltaje de entrada máximo';
+
+  @override
+  String get specMpptMin => 'MPPT mínimo';
+
+  @override
+  String get specMpptMax => 'MPPT máximo';
+
+  @override
+  String get specMpptCount => 'Número de MPPT';
+
+  @override
+  String get specMpptCountHelp =>
+      'Entradas independientes. En un microinversor, cuántos paneles admite.';
+
+  @override
+  String get specImaxMppt => 'Corriente máxima por MPPT';
+
+  @override
+  String get specEfficiency => 'Eficiencia';
+
+  @override
+  String get specPhases => 'Fases';
+
+  @override
+  String get phaseSingle => 'Monofásico';
+
+  @override
+  String get phaseThree => 'Trifásico';
+
+  @override
+  String get specAcVoltage => 'Voltaje de salida';
+
+  @override
+  String get specIacMax => 'Corriente máxima de salida';
+
+  @override
+  String get specPmaxIn => 'Potencia de entrada máxima';
+
+  @override
+  String get specVinMax => 'Voltaje de entrada máximo';
+
+  @override
+  String get specImaxIn => 'Corriente de entrada máxima';
+
+  @override
+  String get specVoutMax => 'Voltaje de salida máximo';
+
+  @override
+  String get specIoutMax => 'Corriente de salida máxima';
+
+  @override
+  String get specChemistry => 'Química';
+
+  @override
+  String get chemLeadAcid => 'Plomo ácido';
+
+  @override
+  String get specCapacity => 'Capacidad';
+
+  @override
+  String get specUsable => 'Capacidad útil';
+
+  @override
+  String get specNominalVoltage => 'Voltaje nominal';
+
+  @override
+  String get specMaxCharge => 'Carga máxima';
+
+  @override
+  String get specMaxDischarge => 'Descarga máxima';
+
+  @override
+  String get specCycles => 'Ciclos de vida';
+
+  @override
+  String get specRequired => 'Obligatorio';
+
+  @override
+  String get specInvalidNumber => 'Escribe un número';
+
+  @override
+  String get specPositive => 'Debe ser mayor que 0';
+
+  @override
+  String get cecTitle => 'Importar del catálogo CEC';
+
+  @override
+  String get cecHelp =>
+      'Catálogo público de equipos certificados. Busca por marca o modelo e importa solo los que uses; revisa después la hoja de datos.';
+
+  @override
+  String get cecSearchHint => 'Marca o modelo';
+
+  @override
+  String get cecLoading =>
+      'Descargando el catálogo (≈ 6 MB, solo la primera vez)…';
+
+  @override
+  String get cecError =>
+      'No se pudo descargar el catálogo. Revisa la conexión e inténtalo de nuevo.';
+
+  @override
+  String get cecTypeMore => 'Escribe al menos 2 letras.';
+
+  @override
+  String get cecNoResults => 'Sin resultados.';
+
+  @override
+  String get cecImport => 'Importar';
+
+  @override
+  String get cecImported => 'Importado al catálogo';
 }

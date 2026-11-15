@@ -17,7 +17,9 @@ void main() {
 
     const tabs = {
       'Proyectos': 'No hay proyectos.',
-      'Catálogo': 'Disponible en la fase F4.',
+      'Catálogo':
+          'Aún no hay equipos. Captúralos con su hoja de datos o impórtalos '
+          'del catálogo CEC.',
       'Mantenimiento': 'Disponible en la fase F6.',
       'Ajustes': 'Disponible en la fase F1.',
       'Clientes': 'Aún no hay clientes. Toca «Nuevo cliente».',
