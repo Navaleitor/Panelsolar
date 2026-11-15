@@ -26,6 +26,7 @@ Plan de servicios por proyecto (con plantilla editable), calendario de próximas
 - `data/reminder_scheduler.dart` — interfaz `ReminderScheduler`; implementación con `flutter_local_notifications` (alarmas **inexactas**: no pide el permiso de alarmas exactas).
 - `presentation/reminder_sync.dart` — `reminderSyncProvider` (se activa en `app.dart`): cada cambio del calendario o del interruptor reprograma todo.
 - Interruptor en Ajustes (`maintenance.reminders.enabled` en `app_settings`). Al encenderlo pide el permiso de Android 13+.
+- Versión fijada a 22.3.x: la 23 exige compilar con Android SDK 37 y el Gradle de Flutter actual llega a 36 (subir cuando Flutter lo soporte).
 - Android: receptores y permisos en `android/app/src/main/AndroidManifest.xml`; *desugaring* en `android/app/build.gradle.kts`.
 
 ## Datos
