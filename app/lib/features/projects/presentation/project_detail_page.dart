@@ -8,9 +8,13 @@ import 'package:panelsolar/core/l10n/gen/app_localizations.dart';
 import 'package:panelsolar/core/router/app_routes.dart';
 import 'package:panelsolar/core/widgets/async_value_view.dart';
 import 'package:panelsolar/core/widgets/confirm_dialog.dart';
+import 'package:panelsolar/features/backup/data/backup_providers.dart';
 import 'package:panelsolar/features/clients/presentation/client_providers.dart';
 import 'package:panelsolar/features/documents/presentation/documents_section.dart';
+import 'package:panelsolar/features/installation/presentation/installation_summary_card.dart';
+import 'package:panelsolar/features/maintenance/presentation/maintenance_summary_card.dart';
 import 'package:panelsolar/features/photos/presentation/photos_summary_card.dart';
+import 'package:panelsolar/features/production/presentation/production_summary_card.dart';
 import 'package:panelsolar/features/projects/domain/project_status_flow.dart';
 import 'package:panelsolar/features/projects/presentation/project_providers.dart';
 import 'package:panelsolar/features/projects/presentation/widgets/project_status_chip.dart';
@@ -20,7 +24,8 @@ import 'package:panelsolar/features/site/presentation/site_summary_card.dart';
 import 'package:panelsolar/features/weather/presentation/widgets/weather_entry_card.dart';
 import 'package:persistence/persistence.dart';
 
-/// Ficha del proyecto: datos, ubicación, techo, fotos, documentos y clima.
+/// Ficha del proyecto: datos, ubicación, techo, fotos, instalación,
+/// mantenimiento, producción, documentos y clima.
 class ProjectDetailPage extends ConsumerWidget {
   const new({required this.projectId, super.key});
 
@@ -38,15 +43,21 @@ class ProjectDetailPage extends ConsumerWidget {
     if (context.mounted) context.pop();
   }
 
-  Future<void> _advance(WidgetRef ref, Project p, ProjectStatus next) => ref
-      .read(projectRepositoryProvider)
-      .update(
-        p.id,
-        name: p.name,
-        status: next,
-        projectDate: p.projectDate,
-        notes: p.notes,
-      );
+  Future<void> _advance(WidgetRef ref, Project p, ProjectStatus next) async {
+    await ref
+        .read(projectRepositoryProvider)
+        .update(
+          p.id,
+          name: p.name,
+          status: next,
+          projectDate: p.projectDate,
+          notes: p.notes,
+        );
+    // F6: al finalizar el proyecto se respalda en Drive (si está activado).
+    if (next == ProjectStatus.installed) {
+      ref.read(projectFinishedBackupProvider)();
+    }
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -84,6 +95,9 @@ class ProjectDetailPage extends ConsumerWidget {
               SiteSummaryCard(projectId: projectId),
               RoofEntryCard(projectId: projectId),
               PhotosSummaryCard(projectId: projectId),
+              InstallationSummaryCard(projectId: projectId),
+              MaintenanceSummaryCard(projectId: projectId),
+              ProductionSummaryCard(projectId: projectId),
               DocumentsSection(projectId: projectId),
               WeatherEntryCard(projectId: projectId),
             ],

@@ -12,6 +12,7 @@ import 'generated/schema_v2.dart' as v2;
 import 'generated/schema_v3.dart' as v3;
 import 'generated/schema_v4.dart' as v4;
 import 'generated/schema_v5.dart' as v5;
+import 'generated/schema_v6.dart' as v6;
 
 void main() {
   driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
@@ -214,6 +215,164 @@ void main() {
     expect(plane.tiltDeg, 0);
     expect(plane.azimuthDeg, 180);
     expect(plane.walkways, '[]');
+    await db.close();
+  });
+
+  test(
+    'v3 → v6 conserva clientes, proyectos y fotos y crea las tablas de F6',
+    () async {
+      const t = '2026-11-01T00:00:00.000Z';
+      await verifier.testWithDataIntegrity(
+        oldVersion: 3,
+        newVersion: 6,
+        createOld: v3.DatabaseAtV3.new,
+        createNew: v6.DatabaseAtV6.new,
+        openTestedDatabase: AppDatabase.new,
+        createItems: (batch, oldDb) {
+          batch
+            ..insertAll(oldDb.clients, const [
+              v3.ClientsData(id: 'c1', createdAt: t, updatedAt: t, name: 'Ana'),
+            ])
+            ..insertAll(oldDb.projects, const [
+              v3.ProjectsData(
+                id: 'p1',
+                createdAt: t,
+                updatedAt: t,
+                clientId: 'c1',
+                name: 'Casa',
+                status: 'installed',
+                projectDate: t,
+              ),
+            ])
+            ..insertAll(oldDb.photos, const [
+              v3.PhotosData(
+                id: 'f1',
+                createdAt: t,
+                updatedAt: t,
+                projectId: 'p1',
+                stage: 'installation',
+                filePath: 'projects/p1/photos/abc.jpg',
+                sha256: 'abc',
+                widthPx: 1600,
+                heightPx: 1200,
+              ),
+            ]);
+        },
+        validateItems: (newDb) async {
+          expect(await newDb.select(newDb.clients).get(), const [
+            v6.ClientsData(id: 'c1', createdAt: t, updatedAt: t, name: 'Ana'),
+          ]);
+          expect(await newDb.select(newDb.projects).get(), hasLength(1));
+          expect(await newDb.select(newDb.photos).get(), const [
+            v6.PhotosData(
+              id: 'f1',
+              createdAt: t,
+              updatedAt: t,
+              projectId: 'p1',
+              stage: 'installation',
+              filePath: 'projects/p1/photos/abc.jpg',
+              sha256: 'abc',
+              widthPx: 1600,
+              heightPx: 1200,
+            ),
+          ]);
+          expect(await newDb.select(newDb.installedEquipment).get(), isEmpty);
+          expect(await newDb.select(newDb.maintenancePlanItems).get(), isEmpty);
+          expect(await newDb.select(newDb.productionReadings).get(), isEmpty);
+          expect(await newDb.select(newDb.backupLogs).get(), isEmpty);
+          expect(await newDb.select(newDb.appSettings).get(), isEmpty);
+        },
+      );
+    },
+  );
+
+  test('v5 → v6 conserva el techo y el horizonte de F3', () async {
+    const t = '2026-11-14T00:00:00.000Z';
+    const plane = v5.RoofPlanesData(
+      id: 'r1',
+      createdAt: t,
+      updatedAt: t,
+      projectId: 'p1',
+      name: 'Losa',
+      polygon: '[[0,0],[10,0],[10,8]]',
+      tiltDeg: 5,
+      tiltSource: 'manual',
+      azimuthDeg: 180,
+      edgeSetbackM: 0.5,
+      walkways: '[]',
+      sortOrder: 0,
+    );
+    const horizon = v5.HorizonProfilesData(
+      id: 'h1',
+      createdAt: t,
+      updatedAt: t,
+      projectId: 'p1',
+      source: 'manual',
+      points: '[[180,12]]',
+    );
+    await verifier.testWithDataIntegrity(
+      oldVersion: 5,
+      newVersion: 6,
+      createOld: v5.DatabaseAtV5.new,
+      createNew: v6.DatabaseAtV6.new,
+      openTestedDatabase: AppDatabase.new,
+      createItems: (batch, oldDb) {
+        batch
+          ..insertAll(oldDb.clients, const [
+            v5.ClientsData(id: 'c1', createdAt: t, updatedAt: t, name: 'Ana'),
+          ])
+          ..insertAll(oldDb.projects, const [
+            v5.ProjectsData(
+              id: 'p1',
+              createdAt: t,
+              updatedAt: t,
+              clientId: 'c1',
+              name: 'Casa',
+              status: 'design',
+              projectDate: t,
+            ),
+          ])
+          ..insertAll(oldDb.roofPlanes, const [plane])
+          ..insertAll(oldDb.horizonProfiles, const [horizon]);
+      },
+      validateItems: (newDb) async {
+        final planes = await newDb.select(newDb.roofPlanes).get();
+        expect(planes.single.toJson(), plane.toJson());
+        final horizons = await newDb.select(newDb.horizonProfiles).get();
+        expect(horizons.single.toJson(), horizon.toJson());
+        expect(await newDb.select(newDb.stringTests).get(), isEmpty);
+      },
+    );
+  });
+
+  test('tras migrar a v6 se guardan equipos y lecturas', () async {
+    final schema = await verifier.schemaAt(5);
+    final db = AppDatabase(schema.newConnection());
+    await verifier.migrateAndValidate(db, 6);
+    final client = await ClientRepository(db).create(name: 'Ana');
+    final project = await ProjectRepository(db).create(
+      clientId: client.id,
+      name: 'Casa',
+      projectDate: DateTime.utc(2026, 11),
+    );
+    await InstalledEquipmentRepository(db).create(project.id, (
+      kind: EquipmentKind.inverter,
+      brand: 'Fronius',
+      model: 'Primo 5.0',
+      serialNumber: 'SN-1',
+      installedAt: null,
+      warrantyUntil: DateTime.utc(2036, 11),
+      notes: null,
+    ));
+    await ProductionRepository(db).saveReading(
+      projectId: project.id,
+      month: DateTime.utc(2026, 10),
+      actualKwh: 640,
+    );
+    expect(
+      await ProductionRepository(db).watchReadings(project.id).first,
+      hasLength(1),
+    );
     await db.close();
   });
 }

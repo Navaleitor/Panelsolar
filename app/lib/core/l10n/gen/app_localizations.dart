@@ -2154,6 +2154,1098 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'O'**
   String get roofCardinalW;
+
+  /// No description provided for @actionClear.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrar'**
+  String get actionClear;
+
+  /// No description provided for @dateNotSet.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin fecha'**
+  String get dateNotSet;
+
+  /// No description provided for @savedMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardado'**
+  String get savedMessage;
+
+  /// No description provided for @fieldTechnician.
+  ///
+  /// In es, this message translates to:
+  /// **'Técnico'**
+  String get fieldTechnician;
+
+  /// No description provided for @installationTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Instalación'**
+  String get installationTitle;
+
+  /// No description provided for @equipmentTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Equipos instalados'**
+  String get equipmentTitle;
+
+  /// No description provided for @equipmentEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay equipos. Agrega paneles, inversor y protecciones con su número de serie.'**
+  String get equipmentEmpty;
+
+  /// No description provided for @equipmentCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =0{Sin equipos} =1{1 equipo} other{{count} equipos}}'**
+  String equipmentCount(int count);
+
+  /// No description provided for @equipmentNewTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Nuevo equipo'**
+  String get equipmentNewTitle;
+
+  /// No description provided for @equipmentEditTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar equipo'**
+  String get equipmentEditTitle;
+
+  /// No description provided for @equipmentDeleteTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Borrar este equipo?'**
+  String get equipmentDeleteTitle;
+
+  /// No description provided for @equipmentKind.
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo'**
+  String get equipmentKind;
+
+  /// No description provided for @equipmentBrand.
+  ///
+  /// In es, this message translates to:
+  /// **'Marca'**
+  String get equipmentBrand;
+
+  /// No description provided for @equipmentModel.
+  ///
+  /// In es, this message translates to:
+  /// **'Modelo'**
+  String get equipmentModel;
+
+  /// No description provided for @equipmentSerial.
+  ///
+  /// In es, this message translates to:
+  /// **'Número de serie'**
+  String get equipmentSerial;
+
+  /// No description provided for @equipmentSerialShort.
+  ///
+  /// In es, this message translates to:
+  /// **'S/N {serial}'**
+  String equipmentSerialShort(String serial);
+
+  /// No description provided for @equipmentInstalledAt.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha de instalación'**
+  String get equipmentInstalledAt;
+
+  /// No description provided for @equipmentWarrantyUntil.
+  ///
+  /// In es, this message translates to:
+  /// **'Garantía hasta'**
+  String get equipmentWarrantyUntil;
+
+  /// No description provided for @warrantyUntil.
+  ///
+  /// In es, this message translates to:
+  /// **'Garantía hasta {date}'**
+  String warrantyUntil(String date);
+
+  /// No description provided for @warrantyExpired.
+  ///
+  /// In es, this message translates to:
+  /// **'Garantía vencida el {date}'**
+  String warrantyExpired(String date);
+
+  /// No description provided for @equipmentPanel.
+  ///
+  /// In es, this message translates to:
+  /// **'Panel'**
+  String get equipmentPanel;
+
+  /// No description provided for @equipmentInverter.
+  ///
+  /// In es, this message translates to:
+  /// **'Inversor'**
+  String get equipmentInverter;
+
+  /// No description provided for @equipmentMicroinverter.
+  ///
+  /// In es, this message translates to:
+  /// **'Microinversor'**
+  String get equipmentMicroinverter;
+
+  /// No description provided for @equipmentOptimizer.
+  ///
+  /// In es, this message translates to:
+  /// **'Optimizador'**
+  String get equipmentOptimizer;
+
+  /// No description provided for @equipmentBattery.
+  ///
+  /// In es, this message translates to:
+  /// **'Batería'**
+  String get equipmentBattery;
+
+  /// No description provided for @equipmentMeter.
+  ///
+  /// In es, this message translates to:
+  /// **'Medidor'**
+  String get equipmentMeter;
+
+  /// No description provided for @equipmentProtection.
+  ///
+  /// In es, this message translates to:
+  /// **'Protección'**
+  String get equipmentProtection;
+
+  /// No description provided for @equipmentStructure.
+  ///
+  /// In es, this message translates to:
+  /// **'Estructura'**
+  String get equipmentStructure;
+
+  /// No description provided for @equipmentOther.
+  ///
+  /// In es, this message translates to:
+  /// **'Otro'**
+  String get equipmentOther;
+
+  /// No description provided for @commissioningTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Puesta en marcha'**
+  String get commissioningTitle;
+
+  /// No description provided for @commissioningHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Checklist IEC 62446-1: strings, polaridad, aislamiento, tierra y etiquetado.'**
+  String get commissioningHint;
+
+  /// No description provided for @commissioningPending.
+  ///
+  /// In es, this message translates to:
+  /// **'Pendiente'**
+  String get commissioningPending;
+
+  /// No description provided for @commissioningApproved.
+  ///
+  /// In es, this message translates to:
+  /// **'Aprobado'**
+  String get commissioningApproved;
+
+  /// No description provided for @commissioningObservations.
+  ///
+  /// In es, this message translates to:
+  /// **'Con observaciones'**
+  String get commissioningObservations;
+
+  /// No description provided for @commissioningChecks.
+  ///
+  /// In es, this message translates to:
+  /// **'Revisiones'**
+  String get commissioningChecks;
+
+  /// No description provided for @commissioningDate.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha de la prueba'**
+  String get commissioningDate;
+
+  /// No description provided for @commissioningNotes.
+  ///
+  /// In es, this message translates to:
+  /// **'Observaciones'**
+  String get commissioningNotes;
+
+  /// No description provided for @commissioningResult.
+  ///
+  /// In es, this message translates to:
+  /// **'Resultado'**
+  String get commissioningResult;
+
+  /// No description provided for @commissioningSuggested.
+  ///
+  /// In es, this message translates to:
+  /// **'Según lo guardado, la app sugiere: {status}'**
+  String commissioningSuggested(String status);
+
+  /// No description provided for @commissioningSaveForPhotos.
+  ///
+  /// In es, this message translates to:
+  /// **'Guarda el checklist para poder agregar fotos de evidencia.'**
+  String get commissioningSaveForPhotos;
+
+  /// No description provided for @evidencePhotos.
+  ///
+  /// In es, this message translates to:
+  /// **'Fotos de evidencia'**
+  String get evidencePhotos;
+
+  /// No description provided for @checkOk.
+  ///
+  /// In es, this message translates to:
+  /// **'Bien'**
+  String get checkOk;
+
+  /// No description provided for @checkFail.
+  ///
+  /// In es, this message translates to:
+  /// **'Falla'**
+  String get checkFail;
+
+  /// No description provided for @checkNotChecked.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin revisar'**
+  String get checkNotChecked;
+
+  /// No description provided for @checkPolarity.
+  ///
+  /// In es, this message translates to:
+  /// **'Polaridad correcta'**
+  String get checkPolarity;
+
+  /// No description provided for @checkPolarityAll.
+  ///
+  /// In es, this message translates to:
+  /// **'Polaridad de todos los strings'**
+  String get checkPolarityAll;
+
+  /// No description provided for @checkGrounding.
+  ///
+  /// In es, this message translates to:
+  /// **'Continuidad de puesta a tierra'**
+  String get checkGrounding;
+
+  /// No description provided for @checkLabeling.
+  ///
+  /// In es, this message translates to:
+  /// **'Etiquetado y señalización'**
+  String get checkLabeling;
+
+  /// No description provided for @insulationMohm.
+  ///
+  /// In es, this message translates to:
+  /// **'Resistencia de aislamiento (MΩ)'**
+  String get insulationMohm;
+
+  /// No description provided for @insulationTestVoltage.
+  ///
+  /// In es, this message translates to:
+  /// **'Tensión de prueba (V)'**
+  String get insulationTestVoltage;
+
+  /// No description provided for @insulationHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Mínimo 1 MΩ (IEC 62446-1). Prueba a 500 V si el sistema es de 120–500 V; a 1000 V si es mayor.'**
+  String get insulationHint;
+
+  /// No description provided for @groundingOhm.
+  ///
+  /// In es, this message translates to:
+  /// **'Resistencia de tierra (Ω), si se midió'**
+  String get groundingOhm;
+
+  /// No description provided for @stringsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Strings (Voc e Isc)'**
+  String get stringsTitle;
+
+  /// No description provided for @stringsHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Captura lo esperado (de la hoja de datos o el diseño) y lo medido. Tolerancia: Voc ±5 %, Isc ±10 %.'**
+  String get stringsHint;
+
+  /// No description provided for @stringsEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin strings medidos'**
+  String get stringsEmpty;
+
+  /// No description provided for @stringTestTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'String'**
+  String get stringTestTitle;
+
+  /// No description provided for @stringLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre (p. ej. S1)'**
+  String get stringLabel;
+
+  /// No description provided for @stringDeleteTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Borrar este string?'**
+  String get stringDeleteTitle;
+
+  /// No description provided for @expectedVoc.
+  ///
+  /// In es, this message translates to:
+  /// **'Voc esperado (V)'**
+  String get expectedVoc;
+
+  /// No description provided for @measuredVoc.
+  ///
+  /// In es, this message translates to:
+  /// **'Voc medido (V)'**
+  String get measuredVoc;
+
+  /// No description provided for @expectedIsc.
+  ///
+  /// In es, this message translates to:
+  /// **'Isc esperado (A)'**
+  String get expectedIsc;
+
+  /// No description provided for @measuredIsc.
+  ///
+  /// In es, this message translates to:
+  /// **'Isc medido (A)'**
+  String get measuredIsc;
+
+  /// No description provided for @calendarEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay visitas programadas. Abre un proyecto → Mantenimiento → \"Crear plan\".'**
+  String get calendarEmpty;
+
+  /// No description provided for @calendarOverdue.
+  ///
+  /// In es, this message translates to:
+  /// **'Vencidas'**
+  String get calendarOverdue;
+
+  /// No description provided for @calendarSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'Próximos 30 días'**
+  String get calendarSoon;
+
+  /// No description provided for @calendarLater.
+  ///
+  /// In es, this message translates to:
+  /// **'Más adelante'**
+  String get calendarLater;
+
+  /// No description provided for @templateTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Plantilla de servicios'**
+  String get templateTitle;
+
+  /// No description provided for @templateHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Estos servicios se copian al crear el plan de un proyecto. Toca uno para cambiar su frecuencia; mantén presionado para borrarlo. El interruptor indica si se incluye.'**
+  String get templateHint;
+
+  /// No description provided for @serviceTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Servicio'**
+  String get serviceTitle;
+
+  /// No description provided for @serviceKind.
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo de servicio'**
+  String get serviceKind;
+
+  /// No description provided for @serviceCustomName.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre personalizado (opcional)'**
+  String get serviceCustomName;
+
+  /// No description provided for @serviceIntervalMonths.
+  ///
+  /// In es, this message translates to:
+  /// **'Cada cuántos meses'**
+  String get serviceIntervalMonths;
+
+  /// No description provided for @serviceIntervalInvalid.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe de 1 a 120 meses'**
+  String get serviceIntervalInvalid;
+
+  /// No description provided for @serviceNextDue.
+  ///
+  /// In es, this message translates to:
+  /// **'Próxima visita'**
+  String get serviceNextDue;
+
+  /// No description provided for @serviceDeleteTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Borrar este servicio?'**
+  String get serviceDeleteTitle;
+
+  /// No description provided for @serviceCleaning.
+  ///
+  /// In es, this message translates to:
+  /// **'Limpieza de paneles'**
+  String get serviceCleaning;
+
+  /// No description provided for @serviceVisualInspection.
+  ///
+  /// In es, this message translates to:
+  /// **'Inspección visual'**
+  String get serviceVisualInspection;
+
+  /// No description provided for @serviceTightening.
+  ///
+  /// In es, this message translates to:
+  /// **'Apriete de conexiones'**
+  String get serviceTightening;
+
+  /// No description provided for @serviceInverter.
+  ///
+  /// In es, this message translates to:
+  /// **'Revisión del inversor'**
+  String get serviceInverter;
+
+  /// No description provided for @serviceProtections.
+  ///
+  /// In es, this message translates to:
+  /// **'Revisión de protecciones'**
+  String get serviceProtections;
+
+  /// No description provided for @serviceThermography.
+  ///
+  /// In es, this message translates to:
+  /// **'Termografía'**
+  String get serviceThermography;
+
+  /// No description provided for @serviceOther.
+  ///
+  /// In es, this message translates to:
+  /// **'Otro servicio'**
+  String get serviceOther;
+
+  /// No description provided for @everyMonths.
+  ///
+  /// In es, this message translates to:
+  /// **'{months, plural, =1{Cada mes} other{Cada {months} meses}}'**
+  String everyMonths(int months);
+
+  /// No description provided for @nextOn.
+  ///
+  /// In es, this message translates to:
+  /// **'Próxima: {date}'**
+  String nextOn(String date);
+
+  /// No description provided for @planTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan de servicios'**
+  String get planTitle;
+
+  /// No description provided for @planEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Este proyecto aún no tiene plan de mantenimiento.'**
+  String get planEmpty;
+
+  /// No description provided for @planEmptyShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin plan de mantenimiento'**
+  String get planEmptyShort;
+
+  /// No description provided for @planFromTemplate.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear plan desde la plantilla'**
+  String get planFromTemplate;
+
+  /// No description provided for @visitsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Bitácora de visitas'**
+  String get visitsTitle;
+
+  /// No description provided for @visitsEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay visitas registradas.'**
+  String get visitsEmpty;
+
+  /// No description provided for @visitLog.
+  ///
+  /// In es, this message translates to:
+  /// **'Registrar visita'**
+  String get visitLog;
+
+  /// No description provided for @visitTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Visita'**
+  String get visitTitle;
+
+  /// No description provided for @visitDate.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha de la visita'**
+  String get visitDate;
+
+  /// No description provided for @visitServicesDone.
+  ///
+  /// In es, this message translates to:
+  /// **'Servicios hechos'**
+  String get visitServicesDone;
+
+  /// No description provided for @visitNoNotes.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin notas (toca para escribir)'**
+  String get visitNoNotes;
+
+  /// No description provided for @visitPhotos.
+  ///
+  /// In es, this message translates to:
+  /// **'Fotos de la visita'**
+  String get visitPhotos;
+
+  /// No description provided for @visitDeleteTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Borrar esta visita?'**
+  String get visitDeleteTitle;
+
+  /// No description provided for @visitDeleteMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Se borra de la bitácora. Las próximas fechas del plan no cambian.'**
+  String get visitDeleteMessage;
+
+  /// No description provided for @servicesDone.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =0{Sin servicios} =1{1 servicio} other{{count} servicios}}'**
+  String servicesDone(int count);
+
+  /// No description provided for @remindersTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Recordatorios de mantenimiento'**
+  String get remindersTitle;
+
+  /// No description provided for @remindersHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Aviso 7 días antes y el mismo día, a las 9:00.'**
+  String get remindersHint;
+
+  /// No description provided for @reminderTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Mantenimiento: {service}'**
+  String reminderTitle(String service);
+
+  /// No description provided for @reminderBodyToday.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoy toca en {project} ({client}).'**
+  String reminderBodyToday(String project, String client);
+
+  /// No description provided for @reminderBodyBefore.
+  ///
+  /// In es, this message translates to:
+  /// **'En {days} días en {project} ({client}).'**
+  String reminderBodyBefore(int days, String project, String client);
+
+  /// No description provided for @productionTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Producción'**
+  String get productionTitle;
+
+  /// No description provided for @productionEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Captura cada mes los kWh que marca el inversor para compararlos con lo esperado.'**
+  String get productionEmpty;
+
+  /// No description provided for @productionEmptyShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin lecturas'**
+  String get productionEmptyShort;
+
+  /// No description provided for @productionActual.
+  ///
+  /// In es, this message translates to:
+  /// **'Real'**
+  String get productionActual;
+
+  /// No description provided for @productionExpected.
+  ///
+  /// In es, this message translates to:
+  /// **'Esperado'**
+  String get productionExpected;
+
+  /// No description provided for @productionBelow.
+  ///
+  /// In es, this message translates to:
+  /// **'Bajo el umbral'**
+  String get productionBelow;
+
+  /// No description provided for @productionLast12.
+  ///
+  /// In es, this message translates to:
+  /// **'Últimos 12 meses con lectura'**
+  String get productionLast12;
+
+  /// No description provided for @productionSettings.
+  ///
+  /// In es, this message translates to:
+  /// **'Ajustes de seguimiento'**
+  String get productionSettings;
+
+  /// No description provided for @productionKwp.
+  ///
+  /// In es, this message translates to:
+  /// **'Potencia instalada (kWp), para el PR'**
+  String get productionKwp;
+
+  /// No description provided for @productionThreshold.
+  ///
+  /// In es, this message translates to:
+  /// **'Umbral de alerta (% por debajo)'**
+  String get productionThreshold;
+
+  /// No description provided for @productionThresholdHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Ejemplo: 15 = avisar si lo real queda 15 % o más por debajo de lo esperado.'**
+  String get productionThresholdHint;
+
+  /// No description provided for @productionAlertTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 mes por debajo de lo esperado} other{{count} meses por debajo de lo esperado}}'**
+  String productionAlertTitle(int count);
+
+  /// No description provided for @productionAlertBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Más de {threshold} % abajo. Revisa limpieza, sombras, strings e inversor.'**
+  String productionAlertBody(String threshold);
+
+  /// No description provided for @readingsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Lecturas mensuales'**
+  String get readingsTitle;
+
+  /// No description provided for @readingAdd.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar lectura'**
+  String get readingAdd;
+
+  /// No description provided for @readingTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Lectura del mes'**
+  String get readingTitle;
+
+  /// No description provided for @readingMonth.
+  ///
+  /// In es, this message translates to:
+  /// **'Mes'**
+  String get readingMonth;
+
+  /// No description provided for @readingYear.
+  ///
+  /// In es, this message translates to:
+  /// **'Año'**
+  String get readingYear;
+
+  /// No description provided for @readingActual.
+  ///
+  /// In es, this message translates to:
+  /// **'kWh reales (del inversor)'**
+  String get readingActual;
+
+  /// No description provided for @readingExpected.
+  ///
+  /// In es, this message translates to:
+  /// **'kWh esperados (opcional)'**
+  String get readingExpected;
+
+  /// No description provided for @readingPoa.
+  ///
+  /// In es, this message translates to:
+  /// **'Irradiación en el plano, kWh/m² (opcional, para PR)'**
+  String get readingPoa;
+
+  /// No description provided for @readingDeleteTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Borrar esta lectura?'**
+  String get readingDeleteTitle;
+
+  /// No description provided for @readingVsExpected.
+  ///
+  /// In es, this message translates to:
+  /// **'Esperado {expected} kWh ({deviation} %)'**
+  String readingVsExpected(String expected, String deviation);
+
+  /// No description provided for @backupTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Respaldo'**
+  String get backupTitle;
+
+  /// No description provided for @backupExportTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Exportar a archivo .zip'**
+  String get backupExportTitle;
+
+  /// No description provided for @backupExportSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Base de datos, fotos y documentos. Guárdalo donde quieras.'**
+  String get backupExportSubtitle;
+
+  /// No description provided for @backupExportPasswordHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Si pones contraseña, el archivo va cifrado (AES-256). Sin ella no se puede restaurar: guárdala bien. Déjala vacía para no cifrar.'**
+  String get backupExportPasswordHint;
+
+  /// No description provided for @backupExported.
+  ///
+  /// In es, this message translates to:
+  /// **'Respaldo guardado'**
+  String get backupExported;
+
+  /// No description provided for @backupNotSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'No se guardó el respaldo'**
+  String get backupNotSaved;
+
+  /// No description provided for @backupError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo completar. Intenta de nuevo.'**
+  String get backupError;
+
+  /// No description provided for @backupImportTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Restaurar desde archivo .zip'**
+  String get backupImportTitle;
+
+  /// No description provided for @backupImportSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Verás una vista previa antes de reemplazar los datos.'**
+  String get backupImportSubtitle;
+
+  /// No description provided for @backupHistoryTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Últimos respaldos'**
+  String get backupHistoryTitle;
+
+  /// No description provided for @backupHistoryEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay respaldos.'**
+  String get backupHistoryEmpty;
+
+  /// No description provided for @backupFailed.
+  ///
+  /// In es, this message translates to:
+  /// **'Falló'**
+  String get backupFailed;
+
+  /// No description provided for @backupTriggerManual.
+  ///
+  /// In es, this message translates to:
+  /// **'Manual'**
+  String get backupTriggerManual;
+
+  /// No description provided for @backupTriggerAuto.
+  ///
+  /// In es, this message translates to:
+  /// **'Automático'**
+  String get backupTriggerAuto;
+
+  /// No description provided for @backupTriggerProject.
+  ///
+  /// In es, this message translates to:
+  /// **'Proyecto finalizado'**
+  String get backupTriggerProject;
+
+  /// No description provided for @backupTriggerRestore.
+  ///
+  /// In es, this message translates to:
+  /// **'Restauración'**
+  String get backupTriggerRestore;
+
+  /// No description provided for @frequencyDaily.
+  ///
+  /// In es, this message translates to:
+  /// **'Diario'**
+  String get frequencyDaily;
+
+  /// No description provided for @frequencyWeekly.
+  ///
+  /// In es, this message translates to:
+  /// **'Semanal'**
+  String get frequencyWeekly;
+
+  /// No description provided for @frequencyManual.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo manual'**
+  String get frequencyManual;
+
+  /// No description provided for @driveNotConfigured.
+  ///
+  /// In es, this message translates to:
+  /// **'Falta configurar la cuenta de Google de la app (ver docs/guias/respaldo-google.md). El respaldo .zip funciona sin esto.'**
+  String get driveNotConfigured;
+
+  /// No description provided for @driveConnect.
+  ///
+  /// In es, this message translates to:
+  /// **'Respaldar en Google Drive'**
+  String get driveConnect;
+
+  /// No description provided for @driveConnectHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Inicia sesión con Google. Se guarda en una carpeta privada de la app en tu Drive.'**
+  String get driveConnectHint;
+
+  /// No description provided for @driveBackupNow.
+  ///
+  /// In es, this message translates to:
+  /// **'Respaldar ahora'**
+  String get driveBackupNow;
+
+  /// No description provided for @driveBackupDone.
+  ///
+  /// In es, this message translates to:
+  /// **'Respaldo en Drive listo ({count} archivos nuevos)'**
+  String driveBackupDone(int count);
+
+  /// No description provided for @driveFrequency.
+  ///
+  /// In es, this message translates to:
+  /// **'Respaldo automático (con Wi-Fi)'**
+  String get driveFrequency;
+
+  /// No description provided for @drivePasswordTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña del respaldo en Drive'**
+  String get drivePasswordTitle;
+
+  /// No description provided for @drivePasswordHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Cifra los respaldos de Drive (AES-256). Necesitarás la contraseña para restaurar en otro teléfono. Déjala vacía para quitar el cifrado.'**
+  String get drivePasswordHint;
+
+  /// No description provided for @driveEncryptedOn.
+  ///
+  /// In es, this message translates to:
+  /// **'Cifrado activado'**
+  String get driveEncryptedOn;
+
+  /// No description provided for @driveEncryptedOff.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin cifrado'**
+  String get driveEncryptedOff;
+
+  /// No description provided for @driveRestore.
+  ///
+  /// In es, this message translates to:
+  /// **'Restaurar desde Google Drive'**
+  String get driveRestore;
+
+  /// No description provided for @driveChooseBackup.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige un respaldo'**
+  String get driveChooseBackup;
+
+  /// No description provided for @driveNoBackups.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay respaldos en esta cuenta.'**
+  String get driveNoBackups;
+
+  /// No description provided for @driveDisconnect.
+  ///
+  /// In es, this message translates to:
+  /// **'Desconectar Google Drive'**
+  String get driveDisconnect;
+
+  /// No description provided for @driveDisconnectMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Se detiene el respaldo automático. Los respaldos ya subidos se quedan en tu Drive.'**
+  String get driveDisconnectMessage;
+
+  /// No description provided for @passwordOptional.
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña (opcional)'**
+  String get passwordOptional;
+
+  /// No description provided for @passwordConfirm.
+  ///
+  /// In es, this message translates to:
+  /// **'Repite la contraseña'**
+  String get passwordConfirm;
+
+  /// No description provided for @passwordLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña'**
+  String get passwordLabel;
+
+  /// No description provided for @passwordMismatch.
+  ///
+  /// In es, this message translates to:
+  /// **'Las contraseñas no coinciden'**
+  String get passwordMismatch;
+
+  /// No description provided for @passwordTooShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Usa al menos 6 caracteres'**
+  String get passwordTooShort;
+
+  /// No description provided for @passwordWrong.
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña incorrecta'**
+  String get passwordWrong;
+
+  /// No description provided for @restoreTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Restaurar respaldo'**
+  String get restoreTitle;
+
+  /// No description provided for @restoreInvalid.
+  ///
+  /// In es, this message translates to:
+  /// **'Este archivo no es un respaldo de Panelsolar o está dañado.'**
+  String get restoreInvalid;
+
+  /// No description provided for @restoreCreatedWith.
+  ///
+  /// In es, this message translates to:
+  /// **'Hecho con la versión {version}'**
+  String restoreCreatedWith(String version);
+
+  /// No description provided for @restoreEncrypted.
+  ///
+  /// In es, this message translates to:
+  /// **'Cifrado: pide contraseña'**
+  String get restoreEncrypted;
+
+  /// No description provided for @restoreNotEncrypted.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin cifrar'**
+  String get restoreNotEncrypted;
+
+  /// No description provided for @restoreWarning.
+  ///
+  /// In es, this message translates to:
+  /// **'Restaurar reemplaza TODOS los datos de este teléfono por los del respaldo.'**
+  String get restoreWarning;
+
+  /// No description provided for @restoreAction.
+  ///
+  /// In es, this message translates to:
+  /// **'Restaurar'**
+  String get restoreAction;
+
+  /// No description provided for @restoreConfirmTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Reemplazar todos los datos?'**
+  String get restoreConfirmTitle;
+
+  /// No description provided for @restoreConfirmMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Los clientes, proyectos y fotos actuales se cambian por los del respaldo. No se puede deshacer.'**
+  String get restoreConfirmMessage;
+
+  /// No description provided for @restoreDone.
+  ///
+  /// In es, this message translates to:
+  /// **'Restaurado. Archivos: {restored} recuperados, {missing} faltantes.'**
+  String restoreDone(int restored, int missing);
+
+  /// No description provided for @restoreNewerApp.
+  ///
+  /// In es, this message translates to:
+  /// **'El respaldo es de una versión más nueva de la app. Actualiza la app primero.'**
+  String get restoreNewerApp;
+
+  /// No description provided for @restoreUndoTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Deshacer la última restauración'**
+  String get restoreUndoTitle;
+
+  /// No description provided for @restoreUndoSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Vuelve a los datos que había antes de restaurar (copia automática en este teléfono).'**
+  String get restoreUndoSubtitle;
+
+  /// No description provided for @restoreSafetyKept.
+  ///
+  /// In es, this message translates to:
+  /// **'Tus datos anteriores quedaron guardados: Ajustes → \"Deshacer la última restauración\".'**
+  String get restoreSafetyKept;
+
+  /// No description provided for @readingExpectedFromEngine.
+  ///
+  /// In es, this message translates to:
+  /// **'Propuesto por el motor solar (clima del sitio × kWp). Puedes cambiarlo.'**
+  String get readingExpectedFromEngine;
 }
 
 class _AppLocalizationsDelegate

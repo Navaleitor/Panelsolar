@@ -236,20 +236,62 @@
   "weatherRefresh": "Volver a descargar",
   "weatherLoading": "Descargando clima y simulando…",
   "weatherError": "No se pudo obtener el clima: {message}",
-  "@weatherError": {"placeholders": {"message": {"type": "String"}}},
+  "@weatherError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
   "weatherSource": "Serie: {source}",
-  "@weatherSource": {"placeholders": {"source": {"type": "String"}}},
+  "@weatherSource": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "weatherAnnualTitle": "Producción anual",
   "weatherAnnualValue": "{value} kWh por kWp al año",
-  "@weatherAnnualValue": {"placeholders": {"value": {"type": "String"}}},
+  "@weatherAnnualValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "weatherPerformanceRatio": "Performance ratio: {value}",
-  "@weatherPerformanceRatio": {"placeholders": {"value": {"type": "String"}}},
+  "@weatherPerformanceRatio": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "weatherMonthlyTitle": "Producción mensual (kWh por kWp)",
   "weatherOptimalTitle": "Orientación óptima",
   "weatherOptimalValue": "Inclinación {tilt}° · azimut {azimuth}°",
-  "@weatherOptimalValue": {"placeholders": {"tilt": {"type": "String"}, "azimuth": {"type": "String"}}},
+  "@weatherOptimalValue": {
+    "placeholders": {
+      "tilt": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
   "weatherLatitudeRule": "Con inclinación = latitud: {value} kWh/kWp ({diff} %)",
-  "@weatherLatitudeRule": {"placeholders": {"value": {"type": "String"}, "diff": {"type": "String"}}},
+  "@weatherLatitudeRule": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      },
+      "diff": {
+        "type": "String"
+      }
+    }
+  },
   "weatherTemperaturesTitle": "Temperaturas del sitio",
   "weatherSunPathTitle": "Trayectoria solar",
   "weatherSunPathAxis": "Azimut (°) vs. altura solar (°)",
@@ -263,14 +305,53 @@
   "weatherProjectEntryTitle": "Clima y producción",
   "weatherProjectEntrySubtitle": "Cuánta energía daría 1 kWp aquí y la mejor inclinación",
   "weatherTimeZone": "Zona horaria: {zone} ({offset})",
-  "@weatherTimeZone": {"placeholders": {"zone": {"type": "String"}, "offset": {"type": "String"}}},
+  "@weatherTimeZone": {
+    "placeholders": {
+      "zone": {
+        "type": "String"
+      },
+      "offset": {
+        "type": "String"
+      }
+    }
+  },
   "weatherDesignMin": "Mínima para diseño: {value} °C ({source})",
-  "@weatherDesignMin": {"placeholders": {"value": {"type": "String"}, "source": {"type": "String"}}},
+  "@weatherDesignMin": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "weatherDesignMax": "Máxima para diseño: {value} °C ({source})",
-  "@weatherDesignMax": {"placeholders": {"value": {"type": "String"}, "source": {"type": "String"}}},
+  "@weatherDesignMax": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "weatherDesignHint": "Para diseñar los strings se usa la más extrema de las dos fuentes.",
   "weatherTemperaturesBySource": "{source}: mínima {min} °C · máxima {max} °C",
-  "@weatherTemperaturesBySource": {"placeholders": {"source": {"type": "String"}, "min": {"type": "String"}, "max": {"type": "String"}}},
+  "@weatherTemperaturesBySource": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      },
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
   "obstacleWaterTank": "Tinaco",
   "obstacleAntenna": "Antena",
   "obstacleParapet": "Pretil",
@@ -283,13 +364,28 @@
   "roofTitle": "Techo",
   "roofEntryEmpty": "Imagen o croquis, planos, obstáculos y sombras",
   "roofEntrySummary": "{count, plural, =1{1 plano} other{{count} planos}} · {area}",
-  "@roofEntrySummary": {"placeholders": {"count": {"type": "int"}, "area": {"type": "String"}}},
+  "@roofEntrySummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "area": {
+        "type": "String"
+      }
+    }
+  },
   "roofBaseTitle": "Base del techo",
   "roofBaseNone": "Importa una imagen vista desde arriba o dibuja un croquis con medidas de cinta.",
   "roofBaseSketch": "Croquis con medidas de cinta (sin imagen)",
   "roofBaseImageUncalibrated": "Imagen sin calibrar: traza una línea de medida conocida",
   "roofBaseImage": "Imagen calibrada · 1 píxel = {scale}",
-  "@roofBaseImage": {"placeholders": {"scale": {"type": "String"}}},
+  "@roofBaseImage": {
+    "placeholders": {
+      "scale": {
+        "type": "String"
+      }
+    }
+  },
   "roofImportImage": "Importar imagen",
   "roofChangeImage": "Cambiar imagen",
   "roofSketchMode": "Croquis con cinta",
@@ -302,16 +398,40 @@
   "roofPlanesTitle": "Planos del techo",
   "roofPlanesEmpty": "Aún no hay planos trazados.",
   "roofPlaneListItem": "{area} · inclinación {tilt} · azimut {azimuth}",
-  "@roofPlaneListItem": {"placeholders": {"area": {"type": "String"}, "tilt": {"type": "String"}, "azimuth": {"type": "String"}}},
+  "@roofPlaneListItem": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      },
+      "tilt": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
   "roofObstaclesTitle": "Obstáculos",
   "roofObstaclesCount": "{count, plural, =0{Ninguno} =1{1 obstáculo} other{{count} obstáculos}}",
-  "@roofObstaclesCount": {"placeholders": {"count": {"type": "int"}}},
+  "@roofObstaclesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "roofOpenEditor": "Trazar y editar",
   "roofShadeTitle": "Sombras",
   "roofShadeSubtitle": "Sombra por fecha y hora y mapa de calor del año",
   "roofHorizonTitle": "Horizonte",
   "roofHorizonSubtitle": "Montañas (PVGIS) y {count, plural, =0{ningún obstáculo lejano} =1{1 obstáculo lejano} other{{count} obstáculos lejanos}}",
-  "@roofHorizonSubtitle": {"placeholders": {"count": {"type": "int"}}},
+  "@roofHorizonSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "roofEditorTitle": "Editor del techo",
   "roofToolCalibrate": "Calibrar",
   "roofToolVerify": "Verificar",
@@ -329,14 +449,44 @@
   "roofLineTooShort": "La línea es muy corta. Haz zoom y traza una más larga.",
   "roofScaleNone": "Sin escala todavía.",
   "roofScaleValue": "Escala: 1 píxel = {perPixel} ({pixelsPerMeter} píxeles por metro)",
-  "@roofScaleValue": {"placeholders": {"perPixel": {"type": "String"}, "pixelsPerMeter": {"type": "String"}}},
+  "@roofScaleValue": {
+    "placeholders": {
+      "perPixel": {
+        "type": "String"
+      },
+      "pixelsPerMeter": {
+        "type": "String"
+      }
+    }
+  },
   "roofVerifyHelp": "Opcional: traza otra línea de medida conocida para comprobar la escala.",
   "roofVerifyResult": "Mide {measured} contra {real} reales: {difference}",
-  "@roofVerifyResult": {"placeholders": {"measured": {"type": "String"}, "real": {"type": "String"}, "difference": {"type": "String"}}},
+  "@roofVerifyResult": {
+    "placeholders": {
+      "measured": {
+        "type": "String"
+      },
+      "real": {
+        "type": "String"
+      },
+      "difference": {
+        "type": "String"
+      }
+    }
+  },
   "roofVerifyWarning": "Diferencia mayor a 5 %: la imagen puede estar inclinada o alguna medida está mal. Recalibra.",
   "roofNorthHelp": "Gira la flecha hasta que apunte al norte, o toca dos puntos de una orilla del techo y confírmala con la brújula en sitio.",
   "roofNorthValue": "Norte: {angle} · {source}",
-  "@roofNorthValue": {"placeholders": {"angle": {"type": "String"}, "source": {"type": "String"}}},
+  "@roofNorthValue": {
+    "placeholders": {
+      "angle": {
+        "type": "String"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "roofNorthSourceDefault": "arriba (sin confirmar)",
   "roofNorthSourceManual": "girado a mano",
   "roofNorthSourceCompass": "confirmado con brújula",
@@ -346,31 +496,91 @@
   "roofNorthLetter": "N",
   "roofDrawHelp": "Toca cada esquina del plano. El imán ayuda a hacer esquinas de 90° y a unir vértices. Toca la primera esquina para cerrar.",
   "roofDrawLive": "Lados: {sides} · Área: {area}",
-  "@roofDrawLive": {"placeholders": {"sides": {"type": "String"}, "area": {"type": "String"}}},
+  "@roofDrawLive": {
+    "placeholders": {
+      "sides": {
+        "type": "String"
+      },
+      "area": {
+        "type": "String"
+      }
+    }
+  },
   "roofSnap": "Imán",
   "roofUndo": "Deshacer",
   "roofClosePolygon": "Cerrar plano",
   "roofPlaneDefaultName": "Plano {number}",
-  "@roofPlaneDefaultName": {"placeholders": {"number": {"type": "int"}}},
+  "@roofPlaneDefaultName": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "roofObstacleHelp": "Elige el tipo y toca dónde está. Pretil: toca sus dos extremos.",
   "roofWalkwayHelp": "Toca los dos extremos del pasillo de mantenimiento dentro de un plano.",
   "roofWalkwayOutside": "El pasillo debe quedar dentro de un plano.",
   "roofWalkwayWidthTitle": "Ancho del pasillo",
   "roofWalkwayItem": "Pasillo de {length} × {width}",
-  "@roofWalkwayItem": {"placeholders": {"length": {"type": "String"}, "width": {"type": "String"}}},
+  "@roofWalkwayItem": {
+    "placeholders": {
+      "length": {
+        "type": "String"
+      },
+      "width": {
+        "type": "String"
+      }
+    }
+  },
   "roofSelectHelp": "Toca un plano para ver sus medidas o un obstáculo para editarlo.",
   "roofMoveVertexHelp": "Para mover una esquina: tócala y luego toca su nuevo lugar.",
   "roofPlaneSummary": "Vista desde arriba {horizontal} · real inclinada {sloped} · útil {usable}\nInclinación {tilt} · azimut {azimuth}",
-  "@roofPlaneSummary": {"placeholders": {"horizontal": {"type": "String"}, "sloped": {"type": "String"}, "usable": {"type": "String"}, "tilt": {"type": "String"}, "azimuth": {"type": "String"}}},
+  "@roofPlaneSummary": {
+    "placeholders": {
+      "horizontal": {
+        "type": "String"
+      },
+      "sloped": {
+        "type": "String"
+      },
+      "usable": {
+        "type": "String"
+      },
+      "tilt": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
   "roofInvalidNumber": "Escribe un número válido.",
   "roofPlaneName": "Nombre",
   "roofPlaneTilt": "Inclinación (grados)",
   "roofPlaneInclinometer": "Inclinómetro",
   "roofPlaneEave": "Orilla baja (alero)",
   "roofPlaneEdgeItem": "Lado {number}: {length} → mira a {azimuth}",
-  "@roofPlaneEdgeItem": {"placeholders": {"number": {"type": "int"}, "length": {"type": "String"}, "azimuth": {"type": "String"}}},
+  "@roofPlaneEdgeItem": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      },
+      "length": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
   "roofPlaneAzimuth": "Azimut (hacia dónde baja): {azimuth} (180° = sur)",
-  "@roofPlaneAzimuth": {"placeholders": {"azimuth": {"type": "String"}}},
+  "@roofPlaneAzimuth": {
+    "placeholders": {
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
   "roofPlaneSetback": "Retiro de borde (m)",
   "roofSplitHelp": "Dividir en dos planos por una diagonal entre dos esquinas:",
   "roofSplitVertex": "Esquina",
@@ -394,7 +604,13 @@
   "roofHeightAngle": "Ángulo al tope (grados)",
   "roofHeightEye": "Altura de tus ojos (m)",
   "roofHeightResult": "Altura: {height}",
-  "@roofHeightResult": {"placeholders": {"height": {"type": "String"}}},
+  "@roofHeightResult": {
+    "placeholders": {
+      "height": {
+        "type": "String"
+      }
+    }
+  },
   "roofSensorTiltTitle": "Inclinómetro",
   "roofSensorTiltHelp": "Apoya el teléfono sobre el techo, con la pantalla hacia arriba y el lado largo en la dirección de la pendiente.",
   "roofSensorCompassTitle": "Brújula",
@@ -402,47 +618,131 @@
   "roofSensorAimTitle": "Apuntar con la cámara",
   "roofSensorAimHelp": "Apunta la cámara trasera al punto más alto del objeto.",
   "roofSensorTiltValue": "Inclinación: {value}",
-  "@roofSensorTiltValue": {"placeholders": {"value": {"type": "String"}}},
+  "@roofSensorTiltValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "roofSensorAzimuthValue": "Rumbo: {value}",
-  "@roofSensorAzimuthValue": {"placeholders": {"value": {"type": "String"}}},
+  "@roofSensorAzimuthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "roofSensorElevationValue": "Ángulo: {value}",
-  "@roofSensorElevationValue": {"placeholders": {"value": {"type": "String"}}},
+  "@roofSensorElevationValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "roofSensorDeclination": "Corregido al norte verdadero con declinación magnética {value} (modelo WMM).",
-  "@roofSensorDeclination": {"placeholders": {"value": {"type": "String"}}},
+  "@roofSensorDeclination": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "roofSensorWaiting": "Esperando al sensor…",
   "roofSensorUnavailable": "Este teléfono no tiene el sensor o está apagado. Escribe el valor a mano.",
   "roofSensorUse": "Usar",
   "roofTapeTitle": "Croquis con cinta",
   "roofTapeHelp": "Escribe cada lado en orden. Giro: 90 = esquina normal, −90 = esquina hacia adentro.",
   "roofTapeSide": "Lado {number} (m)",
-  "@roofTapeSide": {"placeholders": {"number": {"type": "int"}}},
+  "@roofTapeSide": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "roofTapeTurn": "Giro (°)",
   "roofTapeAddSide": "Agregar lado",
   "roofTapeResult": "Área: {area} · cierre: {error}",
-  "@roofTapeResult": {"placeholders": {"area": {"type": "String"}, "error": {"type": "String"}}},
+  "@roofTapeResult": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "roofTapeNotClosed": "Las medidas no cierran: revisa algún lado o giro.",
   "roofShadeNeedsLocation": "Primero guarda la ubicación del proyecto (se necesita para saber dónde está el sol).",
   "roofSunPosition": "Sol: {elevation} de altura, azimut {azimuth}",
-  "@roofSunPosition": {"placeholders": {"elevation": {"type": "String"}, "azimuth": {"type": "String"}}},
+  "@roofSunPosition": {
+    "placeholders": {
+      "elevation": {
+        "type": "String"
+      },
+      "azimuth": {
+        "type": "String"
+      }
+    }
+  },
   "roofSunHidden": "El sol está abajo o tapado por el horizonte: no hay sombra directa.",
   "roofShadeTime": "{time} h",
-  "@roofShadeTime": {"placeholders": {"time": {"type": "String"}}},
+  "@roofShadeTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "roofShadeCompute": "Mapa de calor anual",
   "roofShadeHeatmap": "Ver mapa",
   "roofShadePlaneLoss": "{plane}: pierde {year} del sol directo al año (diciembre {december}, junio {june})",
-  "@roofShadePlaneLoss": {"placeholders": {"plane": {"type": "String"}, "year": {"type": "String"}, "december": {"type": "String"}, "june": {"type": "String"}}},
+  "@roofShadePlaneLoss": {
+    "placeholders": {
+      "plane": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      },
+      "december": {
+        "type": "String"
+      },
+      "june": {
+        "type": "String"
+      }
+    }
+  },
   "roofShadeLegend": "Verde = sin sombra · amarillo · rojo = 30 % o más de pérdida. Incluye el horizonte.",
   "roofHorizonHelp": "El horizonte tapa el sol bajo. Se junta el del terreno (montañas, de PVGIS) con los obstáculos lejanos que midas con el teléfono.",
   "roofTerrainTitle": "Terreno (PVGIS)",
   "roofTerrainNone": "Sin descargar",
   "roofTerrainValue": "Descargado · altura máxima {max}",
-  "@roofTerrainValue": {"placeholders": {"max": {"type": "String"}}},
+  "@roofTerrainValue": {
+    "placeholders": {
+      "max": {
+        "type": "String"
+      }
+    }
+  },
   "roofTerrainDownload": "Descargar",
   "roofHorizonDownloadError": "No se pudo descargar el horizonte. Revisa la conexión.",
   "roofFarTitle": "Obstáculos lejanos",
   "roofFarEmpty": "Ninguno. Agrega árboles o edificios cercanos que tapen el sol.",
   "roofFarItem": "{count, plural, =1{1 punto} other{{count} puntos}} · hasta {max}",
-  "@roofFarItem": {"placeholders": {"count": {"type": "int"}, "max": {"type": "String"}}},
+  "@roofFarItem": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
   "roofFarAdd": "Obstáculo lejano",
   "roofFarName": "Nombre (p. ej. árbol del vecino)",
   "roofFarDefaultName": "Obstáculo lejano",
@@ -453,5 +753,321 @@
   "roofCardinalN": "N",
   "roofCardinalE": "E",
   "roofCardinalS": "S",
-  "roofCardinalW": "O"
+  "roofCardinalW": "O",
+  "actionClear": "Borrar",
+  "dateNotSet": "Sin fecha",
+  "savedMessage": "Guardado",
+  "fieldTechnician": "Técnico",
+  "installationTitle": "Instalación",
+  "equipmentTitle": "Equipos instalados",
+  "equipmentEmpty": "Aún no hay equipos. Agrega paneles, inversor y protecciones con su número de serie.",
+  "equipmentCount": "{count, plural, =0{Sin equipos} =1{1 equipo} other{{count} equipos}}",
+  "@equipmentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "equipmentNewTitle": "Nuevo equipo",
+  "equipmentEditTitle": "Editar equipo",
+  "equipmentDeleteTitle": "¿Borrar este equipo?",
+  "equipmentKind": "Tipo",
+  "equipmentBrand": "Marca",
+  "equipmentModel": "Modelo",
+  "equipmentSerial": "Número de serie",
+  "equipmentSerialShort": "S/N {serial}",
+  "@equipmentSerialShort": {
+    "placeholders": {
+      "serial": {
+        "type": "String"
+      }
+    }
+  },
+  "equipmentInstalledAt": "Fecha de instalación",
+  "equipmentWarrantyUntil": "Garantía hasta",
+  "warrantyUntil": "Garantía hasta {date}",
+  "@warrantyUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "warrantyExpired": "Garantía vencida el {date}",
+  "@warrantyExpired": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "equipmentPanel": "Panel",
+  "equipmentInverter": "Inversor",
+  "equipmentMicroinverter": "Microinversor",
+  "equipmentOptimizer": "Optimizador",
+  "equipmentBattery": "Batería",
+  "equipmentMeter": "Medidor",
+  "equipmentProtection": "Protección",
+  "equipmentStructure": "Estructura",
+  "equipmentOther": "Otro",
+  "commissioningTitle": "Puesta en marcha",
+  "commissioningHint": "Checklist IEC 62446-1: strings, polaridad, aislamiento, tierra y etiquetado.",
+  "commissioningPending": "Pendiente",
+  "commissioningApproved": "Aprobado",
+  "commissioningObservations": "Con observaciones",
+  "commissioningChecks": "Revisiones",
+  "commissioningDate": "Fecha de la prueba",
+  "commissioningNotes": "Observaciones",
+  "commissioningResult": "Resultado",
+  "commissioningSuggested": "Según lo guardado, la app sugiere: {status}",
+  "@commissioningSuggested": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "commissioningSaveForPhotos": "Guarda el checklist para poder agregar fotos de evidencia.",
+  "evidencePhotos": "Fotos de evidencia",
+  "checkOk": "Bien",
+  "checkFail": "Falla",
+  "checkNotChecked": "Sin revisar",
+  "checkPolarity": "Polaridad correcta",
+  "checkPolarityAll": "Polaridad de todos los strings",
+  "checkGrounding": "Continuidad de puesta a tierra",
+  "checkLabeling": "Etiquetado y señalización",
+  "insulationMohm": "Resistencia de aislamiento (MΩ)",
+  "insulationTestVoltage": "Tensión de prueba (V)",
+  "insulationHint": "Mínimo 1 MΩ (IEC 62446-1). Prueba a 500 V si el sistema es de 120–500 V; a 1000 V si es mayor.",
+  "groundingOhm": "Resistencia de tierra (Ω), si se midió",
+  "stringsTitle": "Strings (Voc e Isc)",
+  "stringsHint": "Captura lo esperado (de la hoja de datos o el diseño) y lo medido. Tolerancia: Voc ±5 %, Isc ±10 %.",
+  "stringsEmpty": "Sin strings medidos",
+  "stringTestTitle": "String",
+  "stringLabel": "Nombre (p. ej. S1)",
+  "stringDeleteTitle": "¿Borrar este string?",
+  "expectedVoc": "Voc esperado (V)",
+  "measuredVoc": "Voc medido (V)",
+  "expectedIsc": "Isc esperado (A)",
+  "measuredIsc": "Isc medido (A)",
+  "calendarEmpty": "No hay visitas programadas. Abre un proyecto → Mantenimiento → \"Crear plan\".",
+  "calendarOverdue": "Vencidas",
+  "calendarSoon": "Próximos 30 días",
+  "calendarLater": "Más adelante",
+  "templateTitle": "Plantilla de servicios",
+  "templateHint": "Estos servicios se copian al crear el plan de un proyecto. Toca uno para cambiar su frecuencia; mantén presionado para borrarlo. El interruptor indica si se incluye.",
+  "serviceTitle": "Servicio",
+  "serviceKind": "Tipo de servicio",
+  "serviceCustomName": "Nombre personalizado (opcional)",
+  "serviceIntervalMonths": "Cada cuántos meses",
+  "serviceIntervalInvalid": "Escribe de 1 a 120 meses",
+  "serviceNextDue": "Próxima visita",
+  "serviceDeleteTitle": "¿Borrar este servicio?",
+  "serviceCleaning": "Limpieza de paneles",
+  "serviceVisualInspection": "Inspección visual",
+  "serviceTightening": "Apriete de conexiones",
+  "serviceInverter": "Revisión del inversor",
+  "serviceProtections": "Revisión de protecciones",
+  "serviceThermography": "Termografía",
+  "serviceOther": "Otro servicio",
+  "everyMonths": "{months, plural, =1{Cada mes} other{Cada {months} meses}}",
+  "@everyMonths": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "nextOn": "Próxima: {date}",
+  "@nextOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "planTitle": "Plan de servicios",
+  "planEmpty": "Este proyecto aún no tiene plan de mantenimiento.",
+  "planEmptyShort": "Sin plan de mantenimiento",
+  "planFromTemplate": "Crear plan desde la plantilla",
+  "visitsTitle": "Bitácora de visitas",
+  "visitsEmpty": "Aún no hay visitas registradas.",
+  "visitLog": "Registrar visita",
+  "visitTitle": "Visita",
+  "visitDate": "Fecha de la visita",
+  "visitServicesDone": "Servicios hechos",
+  "visitNoNotes": "Sin notas (toca para escribir)",
+  "visitPhotos": "Fotos de la visita",
+  "visitDeleteTitle": "¿Borrar esta visita?",
+  "visitDeleteMessage": "Se borra de la bitácora. Las próximas fechas del plan no cambian.",
+  "servicesDone": "{count, plural, =0{Sin servicios} =1{1 servicio} other{{count} servicios}}",
+  "@servicesDone": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "remindersTitle": "Recordatorios de mantenimiento",
+  "remindersHint": "Aviso 7 días antes y el mismo día, a las 9:00.",
+  "reminderTitle": "Mantenimiento: {service}",
+  "@reminderTitle": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      }
+    }
+  },
+  "reminderBodyToday": "Hoy toca en {project} ({client}).",
+  "@reminderBodyToday": {
+    "placeholders": {
+      "project": {
+        "type": "String"
+      },
+      "client": {
+        "type": "String"
+      }
+    }
+  },
+  "reminderBodyBefore": "En {days} días en {project} ({client}).",
+  "@reminderBodyBefore": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      },
+      "project": {
+        "type": "String"
+      },
+      "client": {
+        "type": "String"
+      }
+    }
+  },
+  "productionTitle": "Producción",
+  "productionEmpty": "Captura cada mes los kWh que marca el inversor para compararlos con lo esperado.",
+  "productionEmptyShort": "Sin lecturas",
+  "productionActual": "Real",
+  "productionExpected": "Esperado",
+  "productionBelow": "Bajo el umbral",
+  "productionLast12": "Últimos 12 meses con lectura",
+  "productionSettings": "Ajustes de seguimiento",
+  "productionKwp": "Potencia instalada (kWp), para el PR",
+  "productionThreshold": "Umbral de alerta (% por debajo)",
+  "productionThresholdHint": "Ejemplo: 15 = avisar si lo real queda 15 % o más por debajo de lo esperado.",
+  "productionAlertTitle": "{count, plural, =1{1 mes por debajo de lo esperado} other{{count} meses por debajo de lo esperado}}",
+  "@productionAlertTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "productionAlertBody": "Más de {threshold} % abajo. Revisa limpieza, sombras, strings e inversor.",
+  "@productionAlertBody": {
+    "placeholders": {
+      "threshold": {
+        "type": "String"
+      }
+    }
+  },
+  "readingsTitle": "Lecturas mensuales",
+  "readingAdd": "Agregar lectura",
+  "readingTitle": "Lectura del mes",
+  "readingMonth": "Mes",
+  "readingYear": "Año",
+  "readingActual": "kWh reales (del inversor)",
+  "readingExpected": "kWh esperados (opcional)",
+  "readingPoa": "Irradiación en el plano, kWh/m² (opcional, para PR)",
+  "readingDeleteTitle": "¿Borrar esta lectura?",
+  "readingVsExpected": "Esperado {expected} kWh ({deviation} %)",
+  "@readingVsExpected": {
+    "placeholders": {
+      "expected": {
+        "type": "String"
+      },
+      "deviation": {
+        "type": "String"
+      }
+    }
+  },
+  "backupTitle": "Respaldo",
+  "backupExportTitle": "Exportar a archivo .zip",
+  "backupExportSubtitle": "Base de datos, fotos y documentos. Guárdalo donde quieras.",
+  "backupExportPasswordHint": "Si pones contraseña, el archivo va cifrado (AES-256). Sin ella no se puede restaurar: guárdala bien. Déjala vacía para no cifrar.",
+  "backupExported": "Respaldo guardado",
+  "backupNotSaved": "No se guardó el respaldo",
+  "backupError": "No se pudo completar. Intenta de nuevo.",
+  "backupImportTitle": "Restaurar desde archivo .zip",
+  "backupImportSubtitle": "Verás una vista previa antes de reemplazar los datos.",
+  "backupHistoryTitle": "Últimos respaldos",
+  "backupHistoryEmpty": "Aún no hay respaldos.",
+  "backupFailed": "Falló",
+  "backupTriggerManual": "Manual",
+  "backupTriggerAuto": "Automático",
+  "backupTriggerProject": "Proyecto finalizado",
+  "backupTriggerRestore": "Restauración",
+  "frequencyDaily": "Diario",
+  "frequencyWeekly": "Semanal",
+  "frequencyManual": "Solo manual",
+  "driveNotConfigured": "Falta configurar la cuenta de Google de la app (ver docs/guias/respaldo-google.md). El respaldo .zip funciona sin esto.",
+  "driveConnect": "Respaldar en Google Drive",
+  "driveConnectHint": "Inicia sesión con Google. Se guarda en una carpeta privada de la app en tu Drive.",
+  "driveBackupNow": "Respaldar ahora",
+  "driveBackupDone": "Respaldo en Drive listo ({count} archivos nuevos)",
+  "@driveBackupDone": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "driveFrequency": "Respaldo automático (con Wi-Fi)",
+  "drivePasswordTitle": "Contraseña del respaldo en Drive",
+  "drivePasswordHint": "Cifra los respaldos de Drive (AES-256). Necesitarás la contraseña para restaurar en otro teléfono. Déjala vacía para quitar el cifrado.",
+  "driveEncryptedOn": "Cifrado activado",
+  "driveEncryptedOff": "Sin cifrado",
+  "driveRestore": "Restaurar desde Google Drive",
+  "driveChooseBackup": "Elige un respaldo",
+  "driveNoBackups": "No hay respaldos en esta cuenta.",
+  "driveDisconnect": "Desconectar Google Drive",
+  "driveDisconnectMessage": "Se detiene el respaldo automático. Los respaldos ya subidos se quedan en tu Drive.",
+  "passwordOptional": "Contraseña (opcional)",
+  "passwordConfirm": "Repite la contraseña",
+  "passwordLabel": "Contraseña",
+  "passwordMismatch": "Las contraseñas no coinciden",
+  "passwordTooShort": "Usa al menos 6 caracteres",
+  "passwordWrong": "Contraseña incorrecta",
+  "restoreTitle": "Restaurar respaldo",
+  "restoreInvalid": "Este archivo no es un respaldo de Panelsolar o está dañado.",
+  "restoreCreatedWith": "Hecho con la versión {version}",
+  "@restoreCreatedWith": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreEncrypted": "Cifrado: pide contraseña",
+  "restoreNotEncrypted": "Sin cifrar",
+  "restoreWarning": "Restaurar reemplaza TODOS los datos de este teléfono por los del respaldo.",
+  "restoreAction": "Restaurar",
+  "restoreConfirmTitle": "¿Reemplazar todos los datos?",
+  "restoreConfirmMessage": "Los clientes, proyectos y fotos actuales se cambian por los del respaldo. No se puede deshacer.",
+  "restoreDone": "Restaurado. Archivos: {restored} recuperados, {missing} faltantes.",
+  "@restoreDone": {
+    "placeholders": {
+      "restored": {
+        "type": "int"
+      },
+      "missing": {
+        "type": "int"
+      }
+    }
+  },
+  "restoreNewerApp": "El respaldo es de una versión más nueva de la app. Actualiza la app primero.",
+  "restoreUndoTitle": "Deshacer la última restauración",
+  "restoreUndoSubtitle": "Vuelve a los datos que había antes de restaurar (copia automática en este teléfono).",
+  "restoreSafetyKept": "Tus datos anteriores quedaron guardados: Ajustes → \"Deshacer la última restauración\".",
+  "readingExpectedFromEngine": "Propuesto por el motor solar (clima del sitio × kWp). Puedes cambiarlo."
 }

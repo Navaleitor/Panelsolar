@@ -29,7 +29,21 @@ Las fechas se guardan como texto ISO-8601 (`build.yaml`).
 | `obstacles` | `Obstacle` | v5 | `ObstacleKind`, `ObstacleOutline`, centro/medidas/giro o puntos (m), altura sobre el techo (`HeightSource`), litros del tinaco. |
 | `horizon_profiles` | `HorizonProfileRecord` | v5 | `HorizonSource` (terreno PVGIS / manual / cámara), nombre y puntos `[[azimut, elevación], ...]`. La clase no se llama `HorizonProfile` para no chocar con la del motor. |
 
-Versión de esquema actual: **5**. La **v4 está reservada para F6** (instalación, mantenimiento y respaldo, en paralelo): en esta rama `from3To4` no cambia nada y su foto `drift_schema_v4.json` es igual a la v3. Al integrar F6, el chat principal pone su v4 y vuelve a generar la foto de la v5 (receta de abajo).
+| `installed_equipment` | `InstalledEquipmentItem` | v6 | Equipo instalado: `EquipmentKind`, marca, modelo, serie, instalación, garantía. |
+| `commissioning_records` | `CommissioningRecord` | v6 | Uno por proyecto: `CommissioningStatus`, polaridad, aislamiento (MΩ, V), tierra, etiquetado. `null` = sin revisar. |
+| `string_tests` | `StringTest` | v6 | Voc/Isc esperados y medidos por string, polaridad. |
+| `maintenance_template_items` | `MaintenanceTemplateItem` | v6 | Plantilla editable de servicios (`MaintenanceServiceKind`, meses, incluido). |
+| `maintenance_plan_items` | `MaintenancePlanItem` | v6 | Servicio del plan de un proyecto: meses, última vez, próxima fecha. |
+| `maintenance_visits` | `MaintenanceVisit` | v6 | Bitácora: fecha, técnico, ids de servicios hechos (separados por coma), notas. |
+| `production_readings` | `ProductionReading` | v6 | kWh reales del mes, esperados y POA (kWh/m²). Una activa por mes. |
+| `production_settings` | `ProductionSetting` | v6 | Uno por proyecto: kWp y umbral de alerta (%). |
+| `backup_logs` | `BackupLog` | v6 | Historial: destino, motivo, resultado, tamaño, archivos. |
+| `app_settings` | `AppSetting` | v6 | Ajustes clave → valor (Drive, recordatorios). |
+
+v6 también agregó `photos.linkedRecordId` (foto de una visita o de la puesta en marcha).
+
+
+Versión de esquema actual: **6**. La **v4 quedó vacía** (`from3To4` no hace nada: estaba reservada para F6, pero F3 se integró antes con v5). F6 está en v6 (`from5To6`). No cambiar: hay teléfonos con v5.
 
 ### Enumeraciones (`lib/src/model/enums.dart`)
 Se guardan como texto con el nombre del valor (`prospect`, `bimonthly`...). **Nunca renombrar un valor** sin migración; agregar al final sí es seguro.
@@ -48,6 +62,14 @@ Se guardan como texto con el nombre del valor (`prospect`, `bimonthly`...). **Nu
 | `ObstacleRepository` | Obstáculos por proyecto; valida ancho > 0 y altura ≥ 0. |
 | `HorizonProfileRepository` | Un terreno por proyecto (`saveTerrain`) y obstáculos lejanos (`addManual`). |
 | `CompanyRepository` | Perfil de la empresa (F0). |
+| `InstalledEquipmentRepository` | Equipos por proyecto. |
+| `CommissioningRepository` | Checklist (crea o reemplaza) y strings. |
+| `MaintenanceRepository` | Plantilla (`seedTemplateIfEmpty`), plan por proyecto, calendario (`watchUpcoming`). |
+| `MaintenanceVisitRepository` | Bitácora; `logVisit` recorre las próximas fechas en una transacción. |
+| `ProductionRepository` | Lecturas mensuales y ajustes. |
+| `BackupLogRepository` / `AppSettingsRepository` | Historial de respaldos y ajustes. |
+
+`model/date_math.dart`: `addMonthsUtc` (31 ene + 1 mes = 28 feb), `calendarDayUtc`, `monthStartUtc`.
 
 Las rutas de fotos y documentos son **relativas** al directorio de archivos de la app (así sobreviven a un respaldo/restauración en otro teléfono).
 

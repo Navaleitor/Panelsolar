@@ -10,6 +10,11 @@ import 'package:geo_kit/geo_kit.dart';
 import 'package:panelsolar/app.dart';
 import 'package:panelsolar/core/database/database_providers.dart';
 import 'package:panelsolar/core/files/app_storage.dart';
+import 'package:panelsolar/features/backup/data/backup_files.dart';
+import 'package:panelsolar/features/backup/data/backup_providers.dart';
+import 'package:panelsolar/features/maintenance/data/maintenance_providers.dart';
+import 'package:panelsolar/features/production/data/production_providers.dart';
+import 'package:panelsolar/features/production/domain/expected_production_source.dart';
 import 'package:panelsolar/features/site/data/site_data_providers.dart';
 import 'package:persistence/persistence.dart';
 
@@ -32,6 +37,20 @@ class TestEnv {
   final location = FakeLocationService();
   final geocoder = FakeGeocoder();
   final timeZones = FakeTimeZoneService();
+  final reminders = FakeReminderScheduler();
+
+  /// Producción esperada (sin red): manual por omisión.
+  ExpectedProductionSource expected = const ManualExpectedSource();
+  final driveAuth = FakeDriveAuth();
+  final secrets = FakeSecretStore();
+  final schedule = FakeBackupSchedule();
+  final remote = MemoryRemoteStore();
+
+  /// Archivos que la app "guardó" con el selector del sistema.
+  final savedFiles = <String, Uint8List>{};
+
+  /// Archivo que devolverá el selector al importar un .zip.
+  File? fileToPick;
 
   /// Redirecciones falsas para enlaces cortos (`corto → completo`).
   final redirects = <String, String>{};
@@ -42,6 +61,18 @@ class TestEnv {
     locationServiceProvider.overrideWithValue(location),
     geocoderProvider.overrideWithValue(geocoder),
     timeZoneServiceProvider.overrideWithValue(timeZones),
+    reminderSchedulerProvider.overrideWithValue(reminders),
+    expectedProductionSourceProvider.overrideWithValue(expected),
+    driveAuthProvider.overrideWithValue(driveAuth),
+    secretStoreProvider.overrideWithValue(secrets),
+    backupScheduleProvider.overrideWithValue(schedule),
+    remoteStoreFactoryProvider.overrideWithValue((_) => remote),
+    backupIterationsProvider.overrideWithValue(1000),
+    backupFileSaverProvider.overrideWithValue((name, bytes) async {
+      savedFiles[name] = bytes;
+      return true;
+    }),
+    backupFilePickerProvider.overrideWithValue(() async => fileToPick),
     mapLinkResolverProvider.overrideWithValue(
       MapLinkResolver((uri) async {
         final target = redirects[uri.toString()];
@@ -82,6 +113,14 @@ extension PumpApp on WidgetTester {
   /// Toca el widget con [key] (desplazando si hace falta) y espera.
   Future<void> tapKey(String key) async {
     final finder = find.byKey(Key(key));
+    // En listas largas lo que está fuera de pantalla aún no existe.
+    if (finder.evaluate().isEmpty) {
+      await scrollUntilVisible(
+        finder,
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+    }
     await ensureVisible(finder);
     await pumpAndSettle();
     await tap(finder);
@@ -97,6 +136,14 @@ extension PumpApp on WidgetTester {
   /// Escribe [text] en el campo con [key].
   Future<void> enterKey(String key, String text) async {
     final finder = find.byKey(Key(key));
+    // En listas largas lo que está fuera de pantalla aún no existe.
+    if (finder.evaluate().isEmpty) {
+      await scrollUntilVisible(
+        finder,
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+    }
     await ensureVisible(finder);
     await enterText(finder, text);
     await pump();

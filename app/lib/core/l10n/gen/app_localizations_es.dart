@@ -1242,4 +1242,635 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get roofCardinalW => 'O';
+
+  @override
+  String get actionClear => 'Borrar';
+
+  @override
+  String get dateNotSet => 'Sin fecha';
+
+  @override
+  String get savedMessage => 'Guardado';
+
+  @override
+  String get fieldTechnician => 'Técnico';
+
+  @override
+  String get installationTitle => 'Instalación';
+
+  @override
+  String get equipmentTitle => 'Equipos instalados';
+
+  @override
+  String get equipmentEmpty =>
+      'Aún no hay equipos. Agrega paneles, inversor y protecciones con su número de serie.';
+
+  @override
+  String equipmentCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count equipos',
+      one: '1 equipo',
+      zero: 'Sin equipos',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get equipmentNewTitle => 'Nuevo equipo';
+
+  @override
+  String get equipmentEditTitle => 'Editar equipo';
+
+  @override
+  String get equipmentDeleteTitle => '¿Borrar este equipo?';
+
+  @override
+  String get equipmentKind => 'Tipo';
+
+  @override
+  String get equipmentBrand => 'Marca';
+
+  @override
+  String get equipmentModel => 'Modelo';
+
+  @override
+  String get equipmentSerial => 'Número de serie';
+
+  @override
+  String equipmentSerialShort(String serial) {
+    return 'S/N $serial';
+  }
+
+  @override
+  String get equipmentInstalledAt => 'Fecha de instalación';
+
+  @override
+  String get equipmentWarrantyUntil => 'Garantía hasta';
+
+  @override
+  String warrantyUntil(String date) {
+    return 'Garantía hasta $date';
+  }
+
+  @override
+  String warrantyExpired(String date) {
+    return 'Garantía vencida el $date';
+  }
+
+  @override
+  String get equipmentPanel => 'Panel';
+
+  @override
+  String get equipmentInverter => 'Inversor';
+
+  @override
+  String get equipmentMicroinverter => 'Microinversor';
+
+  @override
+  String get equipmentOptimizer => 'Optimizador';
+
+  @override
+  String get equipmentBattery => 'Batería';
+
+  @override
+  String get equipmentMeter => 'Medidor';
+
+  @override
+  String get equipmentProtection => 'Protección';
+
+  @override
+  String get equipmentStructure => 'Estructura';
+
+  @override
+  String get equipmentOther => 'Otro';
+
+  @override
+  String get commissioningTitle => 'Puesta en marcha';
+
+  @override
+  String get commissioningHint =>
+      'Checklist IEC 62446-1: strings, polaridad, aislamiento, tierra y etiquetado.';
+
+  @override
+  String get commissioningPending => 'Pendiente';
+
+  @override
+  String get commissioningApproved => 'Aprobado';
+
+  @override
+  String get commissioningObservations => 'Con observaciones';
+
+  @override
+  String get commissioningChecks => 'Revisiones';
+
+  @override
+  String get commissioningDate => 'Fecha de la prueba';
+
+  @override
+  String get commissioningNotes => 'Observaciones';
+
+  @override
+  String get commissioningResult => 'Resultado';
+
+  @override
+  String commissioningSuggested(String status) {
+    return 'Según lo guardado, la app sugiere: $status';
+  }
+
+  @override
+  String get commissioningSaveForPhotos =>
+      'Guarda el checklist para poder agregar fotos de evidencia.';
+
+  @override
+  String get evidencePhotos => 'Fotos de evidencia';
+
+  @override
+  String get checkOk => 'Bien';
+
+  @override
+  String get checkFail => 'Falla';
+
+  @override
+  String get checkNotChecked => 'Sin revisar';
+
+  @override
+  String get checkPolarity => 'Polaridad correcta';
+
+  @override
+  String get checkPolarityAll => 'Polaridad de todos los strings';
+
+  @override
+  String get checkGrounding => 'Continuidad de puesta a tierra';
+
+  @override
+  String get checkLabeling => 'Etiquetado y señalización';
+
+  @override
+  String get insulationMohm => 'Resistencia de aislamiento (MΩ)';
+
+  @override
+  String get insulationTestVoltage => 'Tensión de prueba (V)';
+
+  @override
+  String get insulationHint =>
+      'Mínimo 1 MΩ (IEC 62446-1). Prueba a 500 V si el sistema es de 120–500 V; a 1000 V si es mayor.';
+
+  @override
+  String get groundingOhm => 'Resistencia de tierra (Ω), si se midió';
+
+  @override
+  String get stringsTitle => 'Strings (Voc e Isc)';
+
+  @override
+  String get stringsHint =>
+      'Captura lo esperado (de la hoja de datos o el diseño) y lo medido. Tolerancia: Voc ±5 %, Isc ±10 %.';
+
+  @override
+  String get stringsEmpty => 'Sin strings medidos';
+
+  @override
+  String get stringTestTitle => 'String';
+
+  @override
+  String get stringLabel => 'Nombre (p. ej. S1)';
+
+  @override
+  String get stringDeleteTitle => '¿Borrar este string?';
+
+  @override
+  String get expectedVoc => 'Voc esperado (V)';
+
+  @override
+  String get measuredVoc => 'Voc medido (V)';
+
+  @override
+  String get expectedIsc => 'Isc esperado (A)';
+
+  @override
+  String get measuredIsc => 'Isc medido (A)';
+
+  @override
+  String get calendarEmpty =>
+      'No hay visitas programadas. Abre un proyecto → Mantenimiento → \"Crear plan\".';
+
+  @override
+  String get calendarOverdue => 'Vencidas';
+
+  @override
+  String get calendarSoon => 'Próximos 30 días';
+
+  @override
+  String get calendarLater => 'Más adelante';
+
+  @override
+  String get templateTitle => 'Plantilla de servicios';
+
+  @override
+  String get templateHint =>
+      'Estos servicios se copian al crear el plan de un proyecto. Toca uno para cambiar su frecuencia; mantén presionado para borrarlo. El interruptor indica si se incluye.';
+
+  @override
+  String get serviceTitle => 'Servicio';
+
+  @override
+  String get serviceKind => 'Tipo de servicio';
+
+  @override
+  String get serviceCustomName => 'Nombre personalizado (opcional)';
+
+  @override
+  String get serviceIntervalMonths => 'Cada cuántos meses';
+
+  @override
+  String get serviceIntervalInvalid => 'Escribe de 1 a 120 meses';
+
+  @override
+  String get serviceNextDue => 'Próxima visita';
+
+  @override
+  String get serviceDeleteTitle => '¿Borrar este servicio?';
+
+  @override
+  String get serviceCleaning => 'Limpieza de paneles';
+
+  @override
+  String get serviceVisualInspection => 'Inspección visual';
+
+  @override
+  String get serviceTightening => 'Apriete de conexiones';
+
+  @override
+  String get serviceInverter => 'Revisión del inversor';
+
+  @override
+  String get serviceProtections => 'Revisión de protecciones';
+
+  @override
+  String get serviceThermography => 'Termografía';
+
+  @override
+  String get serviceOther => 'Otro servicio';
+
+  @override
+  String everyMonths(int months) {
+    String _temp0 = intl.Intl.pluralLogic(
+      months,
+      locale: localeName,
+      other: 'Cada $months meses',
+      one: 'Cada mes',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String nextOn(String date) {
+    return 'Próxima: $date';
+  }
+
+  @override
+  String get planTitle => 'Plan de servicios';
+
+  @override
+  String get planEmpty => 'Este proyecto aún no tiene plan de mantenimiento.';
+
+  @override
+  String get planEmptyShort => 'Sin plan de mantenimiento';
+
+  @override
+  String get planFromTemplate => 'Crear plan desde la plantilla';
+
+  @override
+  String get visitsTitle => 'Bitácora de visitas';
+
+  @override
+  String get visitsEmpty => 'Aún no hay visitas registradas.';
+
+  @override
+  String get visitLog => 'Registrar visita';
+
+  @override
+  String get visitTitle => 'Visita';
+
+  @override
+  String get visitDate => 'Fecha de la visita';
+
+  @override
+  String get visitServicesDone => 'Servicios hechos';
+
+  @override
+  String get visitNoNotes => 'Sin notas (toca para escribir)';
+
+  @override
+  String get visitPhotos => 'Fotos de la visita';
+
+  @override
+  String get visitDeleteTitle => '¿Borrar esta visita?';
+
+  @override
+  String get visitDeleteMessage =>
+      'Se borra de la bitácora. Las próximas fechas del plan no cambian.';
+
+  @override
+  String servicesDone(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count servicios',
+      one: '1 servicio',
+      zero: 'Sin servicios',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get remindersTitle => 'Recordatorios de mantenimiento';
+
+  @override
+  String get remindersHint => 'Aviso 7 días antes y el mismo día, a las 9:00.';
+
+  @override
+  String reminderTitle(String service) {
+    return 'Mantenimiento: $service';
+  }
+
+  @override
+  String reminderBodyToday(String project, String client) {
+    return 'Hoy toca en $project ($client).';
+  }
+
+  @override
+  String reminderBodyBefore(int days, String project, String client) {
+    return 'En $days días en $project ($client).';
+  }
+
+  @override
+  String get productionTitle => 'Producción';
+
+  @override
+  String get productionEmpty =>
+      'Captura cada mes los kWh que marca el inversor para compararlos con lo esperado.';
+
+  @override
+  String get productionEmptyShort => 'Sin lecturas';
+
+  @override
+  String get productionActual => 'Real';
+
+  @override
+  String get productionExpected => 'Esperado';
+
+  @override
+  String get productionBelow => 'Bajo el umbral';
+
+  @override
+  String get productionLast12 => 'Últimos 12 meses con lectura';
+
+  @override
+  String get productionSettings => 'Ajustes de seguimiento';
+
+  @override
+  String get productionKwp => 'Potencia instalada (kWp), para el PR';
+
+  @override
+  String get productionThreshold => 'Umbral de alerta (% por debajo)';
+
+  @override
+  String get productionThresholdHint =>
+      'Ejemplo: 15 = avisar si lo real queda 15 % o más por debajo de lo esperado.';
+
+  @override
+  String productionAlertTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meses por debajo de lo esperado',
+      one: '1 mes por debajo de lo esperado',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String productionAlertBody(String threshold) {
+    return 'Más de $threshold % abajo. Revisa limpieza, sombras, strings e inversor.';
+  }
+
+  @override
+  String get readingsTitle => 'Lecturas mensuales';
+
+  @override
+  String get readingAdd => 'Agregar lectura';
+
+  @override
+  String get readingTitle => 'Lectura del mes';
+
+  @override
+  String get readingMonth => 'Mes';
+
+  @override
+  String get readingYear => 'Año';
+
+  @override
+  String get readingActual => 'kWh reales (del inversor)';
+
+  @override
+  String get readingExpected => 'kWh esperados (opcional)';
+
+  @override
+  String get readingPoa =>
+      'Irradiación en el plano, kWh/m² (opcional, para PR)';
+
+  @override
+  String get readingDeleteTitle => '¿Borrar esta lectura?';
+
+  @override
+  String readingVsExpected(String expected, String deviation) {
+    return 'Esperado $expected kWh ($deviation %)';
+  }
+
+  @override
+  String get backupTitle => 'Respaldo';
+
+  @override
+  String get backupExportTitle => 'Exportar a archivo .zip';
+
+  @override
+  String get backupExportSubtitle =>
+      'Base de datos, fotos y documentos. Guárdalo donde quieras.';
+
+  @override
+  String get backupExportPasswordHint =>
+      'Si pones contraseña, el archivo va cifrado (AES-256). Sin ella no se puede restaurar: guárdala bien. Déjala vacía para no cifrar.';
+
+  @override
+  String get backupExported => 'Respaldo guardado';
+
+  @override
+  String get backupNotSaved => 'No se guardó el respaldo';
+
+  @override
+  String get backupError => 'No se pudo completar. Intenta de nuevo.';
+
+  @override
+  String get backupImportTitle => 'Restaurar desde archivo .zip';
+
+  @override
+  String get backupImportSubtitle =>
+      'Verás una vista previa antes de reemplazar los datos.';
+
+  @override
+  String get backupHistoryTitle => 'Últimos respaldos';
+
+  @override
+  String get backupHistoryEmpty => 'Aún no hay respaldos.';
+
+  @override
+  String get backupFailed => 'Falló';
+
+  @override
+  String get backupTriggerManual => 'Manual';
+
+  @override
+  String get backupTriggerAuto => 'Automático';
+
+  @override
+  String get backupTriggerProject => 'Proyecto finalizado';
+
+  @override
+  String get backupTriggerRestore => 'Restauración';
+
+  @override
+  String get frequencyDaily => 'Diario';
+
+  @override
+  String get frequencyWeekly => 'Semanal';
+
+  @override
+  String get frequencyManual => 'Solo manual';
+
+  @override
+  String get driveNotConfigured =>
+      'Falta configurar la cuenta de Google de la app (ver docs/guias/respaldo-google.md). El respaldo .zip funciona sin esto.';
+
+  @override
+  String get driveConnect => 'Respaldar en Google Drive';
+
+  @override
+  String get driveConnectHint =>
+      'Inicia sesión con Google. Se guarda en una carpeta privada de la app en tu Drive.';
+
+  @override
+  String get driveBackupNow => 'Respaldar ahora';
+
+  @override
+  String driveBackupDone(int count) {
+    return 'Respaldo en Drive listo ($count archivos nuevos)';
+  }
+
+  @override
+  String get driveFrequency => 'Respaldo automático (con Wi-Fi)';
+
+  @override
+  String get drivePasswordTitle => 'Contraseña del respaldo en Drive';
+
+  @override
+  String get drivePasswordHint =>
+      'Cifra los respaldos de Drive (AES-256). Necesitarás la contraseña para restaurar en otro teléfono. Déjala vacía para quitar el cifrado.';
+
+  @override
+  String get driveEncryptedOn => 'Cifrado activado';
+
+  @override
+  String get driveEncryptedOff => 'Sin cifrado';
+
+  @override
+  String get driveRestore => 'Restaurar desde Google Drive';
+
+  @override
+  String get driveChooseBackup => 'Elige un respaldo';
+
+  @override
+  String get driveNoBackups => 'No hay respaldos en esta cuenta.';
+
+  @override
+  String get driveDisconnect => 'Desconectar Google Drive';
+
+  @override
+  String get driveDisconnectMessage =>
+      'Se detiene el respaldo automático. Los respaldos ya subidos se quedan en tu Drive.';
+
+  @override
+  String get passwordOptional => 'Contraseña (opcional)';
+
+  @override
+  String get passwordConfirm => 'Repite la contraseña';
+
+  @override
+  String get passwordLabel => 'Contraseña';
+
+  @override
+  String get passwordMismatch => 'Las contraseñas no coinciden';
+
+  @override
+  String get passwordTooShort => 'Usa al menos 6 caracteres';
+
+  @override
+  String get passwordWrong => 'Contraseña incorrecta';
+
+  @override
+  String get restoreTitle => 'Restaurar respaldo';
+
+  @override
+  String get restoreInvalid =>
+      'Este archivo no es un respaldo de Panelsolar o está dañado.';
+
+  @override
+  String restoreCreatedWith(String version) {
+    return 'Hecho con la versión $version';
+  }
+
+  @override
+  String get restoreEncrypted => 'Cifrado: pide contraseña';
+
+  @override
+  String get restoreNotEncrypted => 'Sin cifrar';
+
+  @override
+  String get restoreWarning =>
+      'Restaurar reemplaza TODOS los datos de este teléfono por los del respaldo.';
+
+  @override
+  String get restoreAction => 'Restaurar';
+
+  @override
+  String get restoreConfirmTitle => '¿Reemplazar todos los datos?';
+
+  @override
+  String get restoreConfirmMessage =>
+      'Los clientes, proyectos y fotos actuales se cambian por los del respaldo. No se puede deshacer.';
+
+  @override
+  String restoreDone(int restored, int missing) {
+    return 'Restaurado. Archivos: $restored recuperados, $missing faltantes.';
+  }
+
+  @override
+  String get restoreNewerApp =>
+      'El respaldo es de una versión más nueva de la app. Actualiza la app primero.';
+
+  @override
+  String get restoreUndoTitle => 'Deshacer la última restauración';
+
+  @override
+  String get restoreUndoSubtitle =>
+      'Vuelve a los datos que había antes de restaurar (copia automática en este teléfono).';
+
+  @override
+  String get restoreSafetyKept =>
+      'Tus datos anteriores quedaron guardados: Ajustes → \"Deshacer la última restauración\".';
+
+  @override
+  String get readingExpectedFromEngine =>
+      'Propuesto por el motor solar (clima del sitio × kWp). Puedes cambiarlo.';
 }

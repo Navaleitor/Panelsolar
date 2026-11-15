@@ -11,3 +11,10 @@ photosProvider = StreamProvider.autoDispose
           .watch(photoRepositoryProvider)
           .watchByProject(arg.projectId, stage: arg.stage),
     );
+
+/// Fotos activas ligadas a un registro (visita o puesta en marcha).
+final StreamProviderFamily<List<Photo>, String> linkedPhotosProvider =
+    StreamProvider.autoDispose.family<List<Photo>, String>(
+      (ref, recordId) =>
+          ref.watch(photoRepositoryProvider).watchByLinkedRecord(recordId),
+    );

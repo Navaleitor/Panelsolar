@@ -18,8 +18,10 @@ void main() {
     const tabs = {
       'Proyectos': 'No hay proyectos.',
       'Catálogo': 'Disponible en la fase F4.',
-      'Mantenimiento': 'Disponible en la fase F6.',
-      'Ajustes': 'Disponible en la fase F1.',
+      'Mantenimiento':
+          'No hay visitas programadas. Abre un proyecto → '
+          'Mantenimiento → "Crear plan".',
+      'Ajustes': 'Exportar a archivo .zip',
       'Clientes': 'Aún no hay clientes. Toca «Nuevo cliente».',
     };
     for (final MapEntry(key: tab, value: text) in tabs.entries) {
@@ -39,8 +41,13 @@ void main() {
     await tester.pumpPanelsolar();
     await tester.tap(find.text('Ajustes'));
     await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.textContaining('Funcionando'),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
 
-    expect(find.text('Funcionando · esquema v5'), findsOneWidget);
+    expect(find.text('Funcionando · esquema v6'), findsOneWidget);
   });
 
   testWidgets('en inglés usa los textos en inglés', (tester) async {

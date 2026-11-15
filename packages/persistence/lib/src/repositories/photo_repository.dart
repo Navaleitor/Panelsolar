@@ -22,6 +22,16 @@ class PhotoRepository {
     return select.watch();
   }
 
+  /// Fotos activas ligadas a un registro (visita o puesta en marcha).
+  Stream<List<Photo>> watchByLinkedRecord(String linkedRecordId) {
+    final select = _db.select(_db.photos)
+      ..where(
+        (f) => f.linkedRecordId.equals(linkedRecordId) & f.deletedAt.isNull(),
+      )
+      ..orderBy([(f) => OrderingTerm.desc(f.createdAt)]);
+    return select.watch();
+  }
+
   /// `true` si el proyecto ya tiene una foto activa con ese hash.
   Future<bool> existsHash(String projectId, String sha256) async {
     final query = _db.select(_db.photos)
@@ -47,6 +57,7 @@ class PhotoRepository {
     double? longitude,
     DateTime? takenAt,
     String? caption,
+    String? linkedRecordId,
   }) {
     return _db
         .into(_db.photos)
@@ -62,6 +73,7 @@ class PhotoRepository {
             longitude: Value(longitude),
             takenAt: Value(takenAt?.toUtc()),
             caption: Value(caption),
+            linkedRecordId: Value(linkedRecordId),
           ),
         );
   }

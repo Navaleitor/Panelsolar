@@ -10,7 +10,7 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 | F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Integrada (2026-11-14) — aceptación: [`docs/pruebas/fase-3.md`](../pruebas/fase-3.md) |
 | F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | En pausa (se reanuda al integrar F6) |
 | F5 Unifilar y reportes | `fase-5-unifilar-reportes` | F4 | Pendiente |
-| F6 Operación (mantenimiento, respaldo) | `fase-6-operacion` | F1 | En curso |
+| F6 Operación (mantenimiento, respaldo) | `fase-6-operacion` | F1 | Lista para revisión (2026-11-14) — aceptación: [`docs/pruebas/fase-6.md`](../pruebas/fase-6.md) |
 | F7 Producto (freemium, Play Store) | `fase-7-producto` | F1–F6 | Pendiente |
 | F8 iOS | `fase-8-ios` | F7 | Pendiente |
 
@@ -39,6 +39,15 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 - Sombras en `solar_engine/shading` (L = h / tan α, también sobre planos inclinados), deslizador de fecha y hora, mapa de calor anual en un isolate, horizonte PVGIS + obstáculos lejanos. Fichas 16–21.
 - Esquema **v5**: `roof_images`, `roof_planes`, `obstacles`, `horizon_profiles` (metros, coordenadas locales). **v4 queda reservada para F6** (en esta rama `from3To4` no cambia nada); al integrar, el chat principal pone la v4 de F6 y regenera la foto de la v5.
 - Dependencia nueva: `sensors_plus` (BSD-3). Prueba de aceptación automática: techo de 12 × 9 m dentro de ±5 %.
+
+## Notas de F6
+- Esquema de base **v6** (`from5To6`, con pruebas v3→v6 y v5→v6; la v4 quedó vacía): `installed_equipment`, `commissioning_records`, `string_tests`, `maintenance_template_items`, `maintenance_plan_items`, `maintenance_visits`, `production_readings`, `production_settings`, `backup_logs`, `app_settings` y `photos.linkedRecordId`.
+- Módulos nuevos: `installation`, `production`, `backup`; `maintenance` y `settings` dejan de ser pantallas vacías.
+- Puesta en marcha IEC 62446-1: Voc ±5 %, Isc ±10 %, aislamiento ≥ 1 MΩ; la app sugiere el estado y el instalador decide.
+- Recordatorios: `flutter_local_notifications` con alarmas inexactas (7 días antes y el día, 9:00).
+- Producción: lo esperado se precarga con el motor de F2 (kWh/kWp típico del mes × kWp del proyecto) y es editable; `ExpectedProductionSource` permite cambiar a F4 después.
+- Respaldo .zip con manifiesto sin cifrar (vista previa) y AES-256-GCM por archivo (PBKDF2-SHA256). Restaurar **reemplaza** todo excepto `backup_logs` y `app_settings`; antes guarda automáticamente una copia local para "Deshacer la última restauración".
+- Drive (`drive.appdata`) con blobs por hash y retención 7+4. **Pendiente del dueño**: crear los IDs de OAuth ([`docs/guias/respaldo-google.md`](../guias/respaldo-google.md)) y pasar el ID web a Claude.
 
 ## Sub-chats (sesiones) por fase
 Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.
