@@ -8,9 +8,9 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 | F1 Clientes y proyectos | `fase-1-clientes` | F0 | Integrada (2026-11-12) — aceptación: [`docs/pruebas/fase-1.md`](../pruebas/fase-1.md) |
 | F2 Motor solar + clima | `fase-2-motor-clima` | F0 | Integrada (2026-11-14) — aceptación: [`docs/pruebas/fase-2.md`](../pruebas/fase-2.md); validación: [`validacion-motor.md`](../pruebas/validacion-motor.md) |
 | F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Integrada (2026-11-14) — aceptación: [`docs/pruebas/fase-3.md`](../pruebas/fase-3.md) |
-| F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | En pausa (se reanuda al integrar F6) |
+| F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | En curso (reanudada 2026-11-15) |
 | F5 Unifilar y reportes | `fase-5-unifilar-reportes` | F4 | Pendiente |
-| F6 Operación (mantenimiento, respaldo) | `fase-6-operacion` | F1 | Lista para revisión (2026-11-14) — aceptación: [`docs/pruebas/fase-6.md`](../pruebas/fase-6.md) |
+| F6 Operación (mantenimiento, respaldo) | `fase-6-operacion` | F1 | Integrada (2026-11-15) — aceptación: [`docs/pruebas/fase-6.md`](../pruebas/fase-6.md) |
 | F7 Producto (freemium, Play Store) | `fase-7-producto` | F1–F6 | Pendiente |
 | F8 iOS | `fase-8-ios` | F7 | Pendiente |
 
