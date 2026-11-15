@@ -8,7 +8,7 @@ Cada fase se trabaja en su propio chat (sesión) y en su propia rama `fase-N-...
 | F1 Clientes y proyectos | `fase-1-clientes` | F0 | Integrada (2026-11-12) — aceptación: [`docs/pruebas/fase-1.md`](../pruebas/fase-1.md) |
 | F2 Motor solar + clima | `fase-2-motor-clima` | F0 | Integrada (2026-11-14) — aceptación: [`docs/pruebas/fase-2.md`](../pruebas/fase-2.md); validación: [`validacion-motor.md`](../pruebas/validacion-motor.md) |
 | F3 Sitio y techo | `fase-3-sitio-techo` | F0, F2 (posición solar) | Integrada (2026-11-14) — aceptación: [`docs/pruebas/fase-3.md`](../pruebas/fase-3.md) |
-| F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | En curso |
+| F4 Diseño FV | `fase-4-diseno-fv` | F2, F3 | En pausa (se reanuda al integrar F6) |
 | F5 Unifilar y reportes | `fase-5-unifilar-reportes` | F4 | Pendiente |
 | F6 Operación (mantenimiento, respaldo) | `fase-6-operacion` | F1 | En curso |
 | F7 Producto (freemium, Play Store) | `fase-7-producto` | F1–F6 | Pendiente |
@@ -58,7 +58,7 @@ Chat principal (coordinador): `session_01WWCD8p6kSS93PVRjPCoDeK`.
 ## Reglas de coordinación
 1. Un sub-chat recibe instrucciones solo cuando sus dependencias están integradas en la rama base `ccr-4f7d63d4-px61ld`.
 2. Al terminar una fase, el principal revisa la rama, abre PR hacia la rama base (con permiso del dueño), verifica CI e integra.
-3. Paralelismo tras F0: F1 + F2; luego F3 + F6; luego F4 → F5 → F7 → F8.
+3. **Una sola fase activa a la vez** (decisión del dueño, 2026-11-15). Orden: F6 → F4 → F5 → F7 → F8.
 4. Cada sub-chat entrega resumen, bloqueos y `docs/pruebas/fase-N.md`.
 5. Las decisiones de producto se escalan al chat principal.
 6. Las fases que programan usan el entorno cloud "panelsolar" (Flutter + Android SDK). F3–F8 se recrean en ese entorno cuando les toque.
